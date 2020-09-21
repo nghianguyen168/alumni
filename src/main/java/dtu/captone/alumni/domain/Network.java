@@ -1,13 +1,11 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,22 +22,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Network extends Auditable implements Serializable{
-	
-	 private static final long serialVersionUID = 1L;
-	 
-	 @Id
-	 @Column(name = "id")
-	 @NotNull
-	 private int id;
-	 
-	 @OneToMany
-	 @JoinTable(name = "member",joinColumns = @JoinColumn(name="member_id"), inverseJoinColumns = @JoinColumn(name = "id"))
-	 private Member member_id;
-	 
-	 @ManyToOne
-	 @JoinTable(name = "member",joinColumns = @JoinColumn(name="friend_id"), inverseJoinColumns = @JoinColumn(name = "id"))
-	 private Member  friend_id;
-	 
+public class Network  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "network_id")
+	@NotNull
+	private int network_id;
+
+	@Column(name = "member_id")
+	@NotNull
+	private Member member_id;
+
+	@Column(name = "friend_id")
+	@NotNull
+	private Member friend_id;
 
 }

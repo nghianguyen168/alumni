@@ -1,7 +1,6 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,14 +19,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Trainning_system extends Auditable implements Serializable{
+public class Trainning_system  implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;
 	 
 	 @Id
-	 @Column(name = "id")
+	 @Column(name = "trainning_system_id")
 	 @NotNull
-	 private int id;
+	 private int trainning_system_id;
 	 
 	 @Column(name = "code")
 	 @NotNull

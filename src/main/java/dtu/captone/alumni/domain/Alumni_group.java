@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import dtu.captone.alumni.model.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,13 +20,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Alumni_group extends Auditable implements Serializable{
+public class Alumni_group  implements Serializable{
 	 private static final long serialVersionUID = 1L;
 	 
 	@Id
-	@Column(name = "id")
+	@Column(name = "group_id")
 	@NotNull
-	private int id;
+	private int group_id;
 	
 	@Column(name = "group_name")
 	@NotNull

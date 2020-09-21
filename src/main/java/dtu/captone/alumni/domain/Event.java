@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import dtu.captone.alumni.model.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,14 +21,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Event extends Auditable implements Serializable{
+public class Event   implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "id")
+	@Column(name = "event_id")
 	@NotNull
-	private int id;
+	private int event_id;
 	
 	@Column(name = "event_name")
 	@NotNull
@@ -48,5 +49,8 @@ public class Event extends Auditable implements Serializable{
 	@Column(name = "place")
 	@NotNull
 	private String place;
+	
+	@Column(name = "enable")
+	private int enable;
 	
 }

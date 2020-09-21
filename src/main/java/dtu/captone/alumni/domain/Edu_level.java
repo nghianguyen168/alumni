@@ -25,9 +25,9 @@ public class Edu_level implements Serializable{
 	 private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "edu_level_id")
 	@NotNull
-	private int id; 
+	private int edu_level_id; 
 	
 	@Column(name = "edu_level_code")
 	@NotNull

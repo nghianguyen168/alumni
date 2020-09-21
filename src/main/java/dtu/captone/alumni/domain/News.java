@@ -24,9 +24,9 @@ public class News {
 	private static final  long serialVersionUID=1L;
 	
 	@Id
-	@Column(name = "id")
+	@Column(name = "news_id")
 	@NotNull
-	private int id;
+	private int news_id;
 	
 	@Column(name = "news_name")
 	@NotNull
@@ -42,6 +42,9 @@ public class News {
 	
 	@Column(name = "detail")
 	private String detail;
+	
+	@Column(name = "enable")
+	private int enable;
 	
 
 }

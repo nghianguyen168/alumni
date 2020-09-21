@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import dtu.captone.alumni.model.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,14 +21,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Job extends Auditable implements Serializable{
+public class Job  implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;
 	 
 	 @Id
-	 @Column(name = "id")
+	 @Column(name = "job_id")
 	 @NotNull
-	 private int id;
+	 private int job_id;
 	 
 	 @Column(name = "position")
 	 @NotNull
@@ -55,5 +56,8 @@ public class Job extends Auditable implements Serializable{
 	 
 	 @Column(name = "decription")
 	 private String decription;
+	 
+	 @Column(name = "enable")
+		private int enable;
 
 }
