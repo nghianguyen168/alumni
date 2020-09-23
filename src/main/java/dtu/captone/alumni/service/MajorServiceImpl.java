@@ -1,5 +1,7 @@
 package dtu.captone.alumni.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,18 @@ public class MajorServiceImpl implements MajorService{
 	public void delelte(int major_id) {
 		majorRespository.deleteById(major_id);
 		
+	}
+
+	@Override
+	public Major findById(int id) {
+		// TODO Auto-generated method stub
+		return majorRespository.findById(id);
+	}
+
+	@Override
+	public List<Major> findAll() {
+		// TODO Auto-generated method stub
+		return majorRespository.findAll();
 	}
 	
 

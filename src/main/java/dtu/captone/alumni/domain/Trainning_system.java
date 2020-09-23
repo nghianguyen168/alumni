@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -24,9 +26,10 @@ public class Trainning_system  implements Serializable{
 	 private static final long serialVersionUID = 1L;
 	 
 	 @Id
-	 @Column(name = "trainning_system_id")
+	 @Column(name = "id")
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @NotNull
-	 private int trainning_system_id;
+	 private int id;
 	 
 	 @Column(name = "code")
 	 @NotNull

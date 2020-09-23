@@ -2,6 +2,8 @@ package dtu.captone.alumni.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -24,9 +26,10 @@ public class News {
 	private static final  long serialVersionUID=1L;
 	
 	@Id
-	@Column(name = "news_id")
+	@Column(name = "id")
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int news_id;
+	private int id;
 	
 	@Column(name = "news_name")
 	@NotNull

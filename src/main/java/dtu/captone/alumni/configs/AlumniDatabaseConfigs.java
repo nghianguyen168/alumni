@@ -86,8 +86,8 @@ public class AlumniDatabaseConfigs {
 	     
 	    Properties additionalProperties() {
 	        Properties properties = new Properties();
-	        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-	        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+	        properties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
+	        properties.put("hibernate.show-sql", env.getProperty("spring.jpa.show-sql"));
 	           
 	        return properties;
 	    }
