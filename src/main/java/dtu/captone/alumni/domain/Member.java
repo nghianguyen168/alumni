@@ -36,8 +36,7 @@ public class Member  implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private int id;
+	private Integer id;
 
 	@Column(name = "first_name")
 	@NotNull
@@ -46,6 +45,14 @@ public class Member  implements Serializable {
 	@Column(name = "last_name")
 	@NotNull
 	private String last_name;
+	
+	@Column(name = "dtu_mail")
+	@NotNull
+	private String dtu_mail;
+	
+	@Column(name = "password")
+	@NotNull
+	private String password;
 
 	@Column(name = "dat_of_birth")
 	private Date dat_of_birth;
@@ -84,7 +91,7 @@ public class Member  implements Serializable {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "major_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_major"))
+	@JoinColumn(name = "major_id",referencedColumnName = "id")
 	private Major major;
 
 	@Column(name = "year_participate")
@@ -102,5 +109,14 @@ public class Member  implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "edu_level_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_edu_level"))
 	private Edu_level edu_level;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
+	private Member_type member_type;
+	
+	@Column(name = "enable")
+	@NotNull
+	private int enable;
+
 
 }

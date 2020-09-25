@@ -2,6 +2,7 @@ package dtu.captone.alumni.controller.alumni;
 
 import java.util.List;
 
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -71,15 +72,16 @@ public class TestController {
 		return null;
 	}
 	
-	@GetMapping("/member/add")
-	public String addMember() {
-		
-		Member member = new Member(7, "Nguyễn", "cường", null, "QB", "Male", "1", "DN", "a@gmail.com", "0968997331", "f.jpg", "hihi", 
-				new Major(3,"aad", "fdf"), 2017, 2021, null , null);
-	
-		memberService.save(member);
-		return "demo";
-	}
+	/*
+	 * @GetMapping("/member/add") public String addMember() {
+	 * 
+	 * Member member = new Member(6, "Nguyễn", "cường", null, "QB", "Male", "1",
+	 * "DN", "a@gmail.com", "0968997331", "f.jpg", "hihi", new Major(3,"aad",
+	 * "fdf"), 2017, 2021, new Trainning_system(1, "CN", "Cử nhân") , new
+	 * Edu_level(1, "DH", "Đại Học"),null);
+	 * 
+	 * memberService.save(member); return "demo"; }
+	 */
 	
 	@GetMapping("/member/get")
 	public @ResponseBody List<Member> getMember() {
@@ -185,6 +187,26 @@ public class TestController {
 	@GetMapping("job/findId/{id}")
 	public @ResponseBody Job findById(@PathVariable int id) {
 		return jobService.findById(id);
+	}
+	
+	@PostMapping("member/add")
+	public @ResponseBody Member addMember(@ModelAttribute("member") Member member) {
+		return memberService.save(member);
+	}
+	
+	@GetMapping("member/findById/{id}")
+	public @ResponseBody Member findMemberByID(@PathVariable int id) {
+		return memberService.findById(id);
+	}
+	
+	@GetMapping("member/findEnablePage")
+	public @ResponseBody Page<Member> findAllEnabble(){
+		return memberService.getListEnable(PageRequest.of(0, 5, Sort.by("id")));
+	}
+	
+	@GetMapping("member/findAlumni")
+	public @ResponseBody Page<Member> findAlumni(){
+		return memberService.getListByTypeEnable(1,PageRequest.of(0, 5, Sort.by("id")));
 	}
 	
 	

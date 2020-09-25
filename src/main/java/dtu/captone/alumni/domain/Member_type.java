@@ -1,7 +1,6 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,26 +16,23 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "edu_level")
+@Table(name = "member_type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Edu_level implements Serializable{
-	
-	 private static final long serialVersionUID = 1L;
+public class Member_type implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@NotNull
-	private int id; 
+	@Column(name = "type_name")
+	private String type_name;
 	
-	@Column(name = "edu_level_code")
-	@NotNull
-	private String edu_level_code;
 	
-	@Column(name = "edu_level_name")
-	@NotNull
-	private String edu_level_name;
 }

@@ -3,6 +3,9 @@ package dtu.captone.alumni.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import dtu.captone.alumni.domain.Member;
@@ -15,8 +18,8 @@ public class MemberServiceImpl implements MemberService{
 	private MemberRespository memberRespository;
 	
 	@Override
-	public void save(Member member) {
-		memberRespository.save(member);
+	public Member save(Member member) {
+		return memberRespository.save(member);
 		
 	}
 
@@ -32,17 +35,6 @@ public class MemberServiceImpl implements MemberService{
 		memberRespository.deleteById(id);
 	}
 
-	@Override
-	public List<Member> findAll() {
-		// TODO Auto-generated method stub
-		return memberRespository.findAll();
-	}
-
-	@Override
-	public List<Member> getListEnable() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int active(int enable, int id) {
@@ -60,6 +52,37 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> findByName(String member_name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Page<Member> findAll(Pageable page) {
+		// TODO Auto-generated method stub
+		return memberRespository.findAll(page);
+	}
+
+
+	@Override
+	public List<Member> findAll() {
+		// TODO Auto-generated method stub
+		return memberRespository.findAll();
+	}
+
+	@Override
+	public Page<Member> getListEnable(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<Member> findByHomwtown(String hometown, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<Member> getListByTypeEnable(int type, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return memberRespository.getListByTypeEnable(1, PageRequest.of(0, 5));
 	}
 
 }

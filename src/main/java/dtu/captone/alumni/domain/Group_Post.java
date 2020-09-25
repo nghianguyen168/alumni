@@ -1,7 +1,7 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,53 +20,47 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "job")
+@Table(name = "group_post")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Job implements Serializable {
-
+public class Group_Post  implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private int id;
-
-	@Column(name = "position")
+	
+	@Column(name = "title")
 	@NotNull
-	private String position;
-
-	@Column(name = "company_name")
+	private String title;
+	
+	@Column(name = "time_post")
 	@NotNull
-	private String company_name;
-
-	@Column(name = "salary")
+	private Timestamp time_post;
+	
+	@Column(name = "media")
 	@NotNull
-	private String salary;
-
-	@Column(name = "location")
+	private String media;
+	
+	@Column(name = "file")
 	@NotNull
-	private String location;
-
-	@Column(name = "posted_on")
-	@NotNull
-	private Date posted_on;
-
-	@Column(name = "deadline_apply")
-	@NotNull
-	private Date deadline_apply;
-
-	@Column(name = "decription")
-	private String decription;
+	private String file;
+	
+	@Column(name = "sum_like")
+	private int sum_like;
+	
+	@Column(name = "sum_comment")
+	private int sum_comment;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
 	private Member member;
-
-	@Column(name = "enable")
-	private int enable;
-
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "groupId",referencedColumnName = "id")
+	private Alumni_group alumni_group;
 }

@@ -2,19 +2,26 @@ package dtu.captone.alumni.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import dtu.captone.alumni.domain.Member;
-import dtu.captone.alumni.form.MemberForm;
 
 public interface MemberService {
-	void save(Member member);
+	Member save(Member member);
 	void delete(Member member);
 	void delete(int id);
+	Page<Member> findAll(Pageable page);
 	List<Member> findAll();
-	List<Member> getListEnable();
+	Page<Member> getListEnable(Pageable page);
 	int active(int enable,int id);
 	Member findById(int id);
 	List<Member> findByName(@Param("member_name") String member_name);
 	
+	
+	//Tìm kiếm 
+	Page<Member> findByHomwtown(String hometown,Pageable pageable);
+	
+	Page<Member> getListByTypeEnable(int type,Pageable pageable);
 }
