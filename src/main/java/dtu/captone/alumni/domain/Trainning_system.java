@@ -38,6 +38,6 @@ public class Trainning_system  implements Serializable{
 	 @Column(name = "training_system_name")
 	 @NotNull
 	 private String training_system_name;
-	 
+	 	
 
 }

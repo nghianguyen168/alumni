@@ -1,12 +1,11 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Member  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +48,7 @@ public class Member  implements Serializable {
 	private String last_name;
 
 	@Column(name = "dat_of_birth")
-	private Timestamp dat_of_birth;
+	private Date dat_of_birth;
 
 	@Column(name = "hometown")
 	@NotNull
@@ -80,13 +82,9 @@ public class Member  implements Serializable {
 	@Column(name = "decription")
 	private String decription;
 	
-
-	@Column(name = "major_id")
-	private int major_id;
 	
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "major_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_major"),insertable = false,updatable = false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "major_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_major"))
 	private Major major;
 
 	@Column(name = "year_participate")
@@ -97,11 +95,11 @@ public class Member  implements Serializable {
 	@NotNull
 	private int year_greduate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
 	private Trainning_system trainning_system;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "edu_level_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_edu_level"))
 	private Edu_level edu_level;
 

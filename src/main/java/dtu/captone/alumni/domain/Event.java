@@ -2,6 +2,7 @@ package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import dtu.captone.alumni.model.Auditable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -43,11 +45,11 @@ public class Event   implements Serializable{
 	
 	@Column(name = "time_start")
 	@NotNull
-	private Date time_start;
+	private Timestamp time_start;
 	
 	@Column(name = "time_end")
 	@NotNull
-	private Date time_end;
+	private Timestamp time_end;
 	
 	@Column(name = "place")
 	@NotNull

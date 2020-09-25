@@ -9,4 +9,5 @@ public interface MajorService {
 	void delelte(int major_id);
 	Major findById(int id);
 	List<Major> findAll();
+	
 }

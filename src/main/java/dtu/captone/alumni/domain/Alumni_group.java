@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Alumni_group  implements Serializable{
+	
 	 private static final long serialVersionUID = 1L;
 	 
 	@Id

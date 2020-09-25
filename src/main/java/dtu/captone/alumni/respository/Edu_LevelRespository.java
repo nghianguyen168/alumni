@@ -3,11 +3,10 @@ package dtu.captone.alumni.respository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.domain.Edu_level;
+
 
 @Repository
-public interface MemberRespository extends JpaRepository<Member, Integer>{
-	
-	Member findById(int id);
+public interface Edu_LevelRespository  extends JpaRepository<Edu_level, Integer>{
 	
 }
