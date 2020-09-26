@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ import dtu.captone.alumni.service.MemberService;
 import dtu.captone.alumni.service.NewsService;
 import dtu.captone.alumni.service.TrainningSystemService;
 
-@RestController
+@Controller
 public class TestController {
 
 	@Autowired
@@ -60,6 +61,11 @@ public class TestController {
 		Major major= new Major(3, "gfdg", "gdgd");
 		Major major2 = majorServiceImpl.save(major);
 		return "demo";
+	}
+	
+	@GetMapping("demo")
+	public String test1() {
+		return "admin.index";
 	}
 	@GetMapping("/major")
 	public @ResponseBody List<Major> tetsmajor() {

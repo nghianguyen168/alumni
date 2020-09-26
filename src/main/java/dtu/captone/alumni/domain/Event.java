@@ -1,7 +1,6 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -11,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,5 +54,6 @@ public class Event   implements Serializable{
 	
 	@Column(name = "enable")
 	private int enable;
+	
 	
 }
