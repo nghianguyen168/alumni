@@ -15,6 +15,17 @@
 	</definition>
 	<definition name="admin.index" extends="templates.admin">
 		<put-attribute name="content"
-			value="/WEB-INF/views/admin/index.jsp"></put-attribute>
+			value="/WEB-INF/jsp/admin/index.jsp"></put-attribute>
 	</definition>
+	
+	<!-- 	admin-news -->
+	<definition name="admin.news.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.news.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/add.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

@@ -13,19 +13,19 @@
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>Dashio - Bootstrap Admin Template</title>
 
-   <link href="/resources/admin/img/favicon.png" rel="icon">
-  <link href="/resources/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
+   <link href="/resources/templates/admin/img/favicon.png" rel="icon">
+  <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="/resources/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/resources/templates/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
-  <link href="/resources/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="/resources/admin/css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="/resources/admin/lib/gritter/css/jquery.gritter.css" />
+  <link href="/resources/templates/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/resources/templates/admin/css/zabuto_calendar.css">
+  <link rel="stylesheet" type="text/css" href="/resources/templates/admin/lib/gritter/css/jquery.gritter.css" />
   <!-- Custom styles for this template -->
-  <link href="<c:url value="/resources/admin/css/style.css"/>" rel="stylesheet" />
-  <link href="/resources/admin/ss/style-responsive.css" rel="stylesheet">
-  <script src="/resources/admin/lib/chart-master/Chart.js"></script>
+  <link href="/resources/templates/admin/css/style.css" rel="stylesheet" />
+  <link href="/resources/templates/admin/css/style-responsive.css" rel="stylesheet">
+  <script src="/resources/templates/admin/lib/chart-master/Chart.js"></script>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -70,25 +70,26 @@
     <!--footer start-->
     <footer class="site-footer">
       <!--footer để ở đây-->
+       <tiles:insertAttribute name="footer" />
     </footer>
     <!--footer end-->
-    <tiles:insertAttribute name="footer" />
+   
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="/resources/admin/lib/jquery/jquery.min.js"></script>
+  <script src="/resources/templates/admin/lib/jquery/jquery.min.js"></script>
 
-  <script src="/resources/admin/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="/resource/admin/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="/resources/admin/lib/jquery.scrollTo.min.js"></script>
-  <script src="/resources/admin/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="/resources/admin/lib/jquery.sparkline.js"></script>
+  <script src="/resources/templates/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/resources/templates/admin/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/resources/templates/admin/lib/jquery.scrollTo.min.js"></script>
+  <script src="/resources/templates/admin/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="/resources/templates/admin/lib/jquery.sparkline.js"></script>
   <!--common script for all pages-->
-  <script src="/resources/admin/lib/common-scripts.js"></script>
-  <script type="text/javascript" src="/resources/admin/lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="/resources/admin/lib/gritter-conf.js"></script>
+  <script src="/resources/templates/admin/lib/common-scripts.js"></script>
+  <script type="text/javascript" src="/resources/templates/admin/lib/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="/resources/templates/admin/lib/gritter-conf.js"></script>
   <!--script for this page-->
-  <script src="/resources/admin/lib/sparkline-chart.js"></script>
-  <script src="/resources/admin/lib/zabuto_calendar.js"></script>
+  <script src="/resources/templates/admin/lib/sparkline-chart.js"></script>
+  <script src="/resources/templates/admin/lib/zabuto_calendar.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
