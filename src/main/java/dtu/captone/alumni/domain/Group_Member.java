@@ -15,34 +15,28 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "alumni_group")
+@Table(name = "group_member")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-public class Alumni_group  implements Serializable{
-	
-	 private static final long serialVersionUID = 1L;
-	 
+public class Group_Member implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int id;
 	
-	@Column(name = "group_name")
-	@NotNull
-	private String group_name;
-	
-	@Column(name = "group_decription")
-	private String group_decription;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "group_id", referencedColumnName = "id")
+	private Alumni_group alumni_group;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "create_by",referencedColumnName = "id")
+	@JoinColumn(name = "member_id", referencedColumnName = "id")
 	private Member member;
-
 }

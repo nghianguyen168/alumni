@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import dtu.captone.alumni.domain.Job;
@@ -54,5 +55,17 @@ public class JobServiceImpl implements JobService {
 	public List<Job> findByAuthorId(int author_id) {
 		// TODO Auto-generated method stub
 		return jobRespository.findByAuthorId(author_id);
+	}
+
+	@Override
+	public List<Job> findAll(Sort sort) {
+		// TODO Auto-generated method stub
+		return jobRespository.findAll(sort);
+	}
+
+	@Override
+	public int active(int enable, int id) {
+		// TODO Auto-generated method stub
+		return jobRespository.active(enable, id);
 	}
 }

@@ -26,10 +26,15 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	
 	List<Job> findByAuthorId(Integer authorId);
 	
-	@Query(value = "UPDATE job SET enable = ? AND id = ? AND authorId=?",nativeQuery = true)
+	@Query(value = "UPDATE job SET enable = ? WHERE id = ? AND authorId=?",nativeQuery = true)
 	@Modifying(clearAutomatically=true, flushAutomatically = true)
 	@Transactional
 	int active(int active,int id,int author_id);
+	
+	@Query(value = "UPDATE job SET enable = ? WHERE id = ?",nativeQuery = true)
+	@Modifying(clearAutomatically=true, flushAutomatically = true)
+	@Transactional
+	int active(int active,int id);
 	
 	@Query(value = "SELECT * FROM job WHERE enable = 1",nativeQuery = true)
 	Page<Job> getJobListEnable(Pageable pageable);

@@ -48,6 +48,17 @@
 	</definition>
 	<!-- 	ket thuc admin-event -->
 	
+	<!--  job -->
+	<definition name="admin.job.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/job/index.jsp"></put-attribute>
+	</definition>
+	
+	<!--Group -->
+	<definition name="admin.group.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/group/index.jsp"></put-attribute>
+	</definition>
 	
 	
 </tiles-definitions>
