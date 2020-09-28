@@ -42,11 +42,11 @@ public class Event   implements Serializable{
 	
 	@Column(name = "time_start")
 	@NotNull
-	private Timestamp time_start;
+	private String time_start;
 	
 	@Column(name = "time_end")
 	@NotNull
-	private Timestamp time_end;
+	private String time_end;
 	
 	@Column(name = "place")
 	@NotNull

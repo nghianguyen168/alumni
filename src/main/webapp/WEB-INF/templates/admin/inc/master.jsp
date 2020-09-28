@@ -26,6 +26,13 @@
   <link href="/resources/templates/admin/css/style.css" rel="stylesheet" />
   <link href="/resources/templates/admin/css/style-responsive.css" rel="stylesheet">
   <script src="/resources/templates/admin/lib/chart-master/Chart.js"></script>
+    <script src="/libraries/ckeditor/ckeditor.js"></script>
+     <script src="/libraries/ckfinder/ckfinder.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    
+
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -90,6 +97,14 @@
   <!--script for this page-->
   <script src="/resources/templates/admin/lib/sparkline-chart.js"></script>
   <script src="/resources/templates/admin/lib/zabuto_calendar.js"></script>
+  <script src="/resources/templates/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/resources/templates/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="/resources/templates/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/resources/templates/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/resources/templates/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/resources/templates/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({

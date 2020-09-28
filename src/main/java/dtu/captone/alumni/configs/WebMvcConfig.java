@@ -29,30 +29,29 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+		registry.addResourceHandler("/libraries/**").addResourceLocations("/WEB-INF/resources/libraries/");
 
 	}
+
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		TilesViewResolver viewResolver = new TilesViewResolver();
 		registry.viewResolver(viewResolver);
 	}
-	
+
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver resover = new CommonsMultipartResolver();
 		return resover;
-		
+
 	}
-	
+
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		tilesConfigurer.setDefinitions(new String[] { 
-				"/WEB-INF/templates/tiles-admin.xml", 
-		});
+		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/templates/tiles-admin.xml", });
 		tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;
 	}
-
 
 }

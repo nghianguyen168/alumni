@@ -60,7 +60,12 @@ public class CommonConstants {
 	public static final String ROLE_STORE = "ROLE_STORE";
 
 	public static final String TIMEZONE = "GMT+9";
-
+	
+	public static final String SUCCESS = "success";
+	public static final String ERROR = "error";
+	public static final String MSG = "msg";
+	
+	public static final int LIMIT_PAGE_ADMIN=10;
 	private CommonConstants() {
 		throw new InstantiationError("Must not instantiate this class");
 	}

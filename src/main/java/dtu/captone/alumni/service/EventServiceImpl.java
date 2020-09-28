@@ -1,8 +1,11 @@
 package dtu.captone.alumni.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import dtu.captone.alumni.domain.Event;
@@ -48,6 +51,12 @@ public class EventServiceImpl implements EventService {
 	public Page<Event> getNewsListEnable(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return eventRespository.getNewsListEnable(pageable);
+	}
+
+	@Override
+	public List<Event> findAll(Sort sort) {
+		// TODO Auto-generated method stub
+		return eventRespository.findAll(sort);
 	}
 
 }

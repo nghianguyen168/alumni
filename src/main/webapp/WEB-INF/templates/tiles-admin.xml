@@ -27,5 +27,27 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/admin/news/add.jsp"></put-attribute>
 	</definition>
+	<definition name="admin.news.edit" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/edit.jsp"></put-attribute>
+	</definition>
+	<!-- 	ket thuc admin-news -->
+	
+	<!-- 	admin-event -->
+	<definition name="admin.event.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.event.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/add.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.event.edit" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/edit.jsp"></put-attribute>
+	</definition>
+	<!-- 	ket thuc admin-event -->
+	
+	
 	
 </tiles-definitions>

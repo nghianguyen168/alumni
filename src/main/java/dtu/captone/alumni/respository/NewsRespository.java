@@ -15,10 +15,9 @@ import dtu.captone.alumni.domain.News;
 public interface NewsRespository extends JpaRepository<News, Integer>{
 	News findById(int id);
 	
-	
-	@Query(value = "UPDATE news SET enable = ? AND id = ?",nativeQuery = true)
-	@Modifying(clearAutomatically=true, flushAutomatically = true)
+	@Modifying
 	@Transactional
+	@Query(value = "UPDATE news SET enable = ? WHERE id = ?",nativeQuery = true)
 	int active(int active,int id);
 	
 	

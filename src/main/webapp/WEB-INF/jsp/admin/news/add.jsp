@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <div class="row mt">
           <div class="col-lg-12">
             <h4><i class="fa fa-angle-right"></i> THÊM TIN TỨC</h4>
@@ -9,32 +10,38 @@
                   <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Tên Tin</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="news_name" type="text" />
+                      <input class=" form-control" id="firstname" name="news_name" type="text" required/>
                     </div>
                   </div>
               <div class="form-group">
-                  <label class="control-label col-md-3">Hình ảnh</label>
-                  <div class="col-md-4">
-                    <input type="file" class="default" name="hinhanh"/>
+                  <label for="firstname" class="control-label col-lg-2">Hình ảnh</label>
+                  <div class="col-lg-10">
+                    <input type="file" class=" form-control"  class="default" name="hinhanh" required/>
                   </div>
                 </div>
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Mô tả</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="decription" type="text" />
+                      <textarea class=" form-control" id="decription" name="decription" type="text" required ></textarea>
                     </div>
                   </div>
                  <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Chi tiết</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="detail" type="text" />
+                      <textarea class=" form-control" id="detail" name="detail" type="text" required ></textarea>
                     </div>
                   </div>
                 <div class="form-group ">
                     <label for="newsletter" class="control-label col-lg-2 col-sm-3">Hiển thị</label>
                     <div class="col-lg-10 col-sm-9">
-                      <input type="checkbox" style="width: 20px" class="checkbox form-control" id="newsletter" name="enable" />
+                      <input type="checkbox" style="width: 20px" value="0" class="checkbox form-control" id="enable" name="enable" />
                     </div>
+                    <script type="text/javascript">
+                    $('#enable').on('change', function(){
+                    	   this.value = this.checked ? 1 : 0;
+                    	   // alert(this.value);
+                    	}).change();
+                    </script>
                   </div>
               
                   <div class="form-group">
@@ -47,6 +54,12 @@
               </div>
             </div>
             <!-- /form-panel -->
+            <script type="text/javascript">
+            	var ckeditor = CKEDITOR.replace('decription');
+            	var ckeditor1 = CKEDITOR.replace('detail');
+            	CKFinder.setupCKEditor(ckeditor,'/libraries/ckfinder/');
+            	
+            </script>
           </div>
           <!-- /col-lg-12 -->
         </div>

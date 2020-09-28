@@ -19,7 +19,7 @@ public interface EventRespository extends JpaRepository<Event, Integer>,JpaSpeci
 	Event findById(int id);
 	
 	
-	@Query(value = "UPDATE event SET enable = ? AND id = ?",nativeQuery = true)
+	@Query(value = "UPDATE event SET enable = ? WHERE id = ?",nativeQuery = true)
 	@Modifying(clearAutomatically=true, flushAutomatically = true)
 	@Transactional
 	int active(int active,int id);

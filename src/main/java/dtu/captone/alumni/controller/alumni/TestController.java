@@ -65,7 +65,7 @@ public class TestController {
 	
 	@GetMapping("demo")
 	public String test1() {
-		return "admin.index";
+		return "admin.news.indexTest";
 	}
 	@GetMapping("/major")
 	public @ResponseBody List<Major> tetsmajor() {
