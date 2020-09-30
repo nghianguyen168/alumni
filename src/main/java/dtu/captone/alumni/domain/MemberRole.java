@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class Member_role  {
+public class MemberRole  {
 
 	private static final long serialVersionUID = 1L;
 

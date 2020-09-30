@@ -44,5 +44,9 @@ public class Alumni_group  implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "create_by",referencedColumnName = "id")
 	private Member member;
+	
+	@Column(name = "sum_member")
+	private int sum_member;
+	
 
 }

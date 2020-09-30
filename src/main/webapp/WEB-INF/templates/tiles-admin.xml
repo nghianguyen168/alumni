@@ -13,11 +13,22 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/templates/admin/inc/footer.jsp" />
 	</definition>
+	
+	
 	<definition name="admin.index" extends="templates.admin">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/admin/index.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="auth.login"
+		template="/WEB-INF/jsp/auth/login.jsp">
+		
+	</definition>
+	
+	<definition name="admin.error"
+		template="/WEB-INF/jsp/auth/error.jsp">
+		
+	</definition>
 	<!-- 	admin-news -->
 	<definition name="admin.news.index" extends="templates.admin">
 		<put-attribute name="content"

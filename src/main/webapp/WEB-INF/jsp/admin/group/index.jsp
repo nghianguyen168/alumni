@@ -45,30 +45,33 @@
 						<th><i class="fa fa-bullhorn"></i> ID</th>
 						<th class="hidden-phone"><i class="fa fa-question-circle"></i>
 							Tên Group</th>
-						<th><i class=""></i>Số Thành Viên</th>
+						<th><i class=""></i>Mô tả</th>
 						<th><i class=""></i>Tạo Bởi</th>
+						<th><i class=""></i>Số thành viên</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-				
-				
-						<tr>
-							<td class="hidden-phone"></td>
-							<td><a href="basic_table.html#"></a></td>
-							<td><img style="width: 200px;" src="/resources/uploads/"></td>
-							<td></td>
-							<td><a href=""><img src="/resources/uploads/on.png"></a></td>
-							<td>
-								<a style="margin-top: 10px;" type="button" class="btn btn-primary btn-xs">
-									<i class="fa fa-pencil"></i>
-								</a>
-								<a style="margin-top: 10px" type="button" class="btn btn-danger btn-xs">
-									<i class="fa fa-trash-o "></i>
-								</a>
-							</td>
-						</tr>
+					<c:if test="${not empty groupList }">
+						<c:forEach items="${groupList }" var="group">
+							<tr>
+								<td class="hidden-phone">${group.id }</td>
+								<td><a href="basic_table.html#">${group.group_name }</a></td>
+								<td>${group.group_decription }</td>
+								<td>${group.member.first_name } ${group.member.last_name }</td>
+								<td>${group.sum_member}</td>
+								<td>
+									<a style="margin-top: 10px;" type="button" class="btn btn-primary btn-xs">
+										<i class="fa fa-pencil"></i>
+									</a>
+									<a style="margin-top: 10px" type="button" class="btn btn-danger btn-xs">
+										<i class="fa fa-trash-o "></i>
+									</a>
+								</td>
+							</tr>
+						</c:forEach>
 					
+					</c:if>
 				</tbody>
 			</table>
 			<div class="row-fluid">

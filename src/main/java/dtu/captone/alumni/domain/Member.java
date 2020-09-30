@@ -2,6 +2,8 @@ package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +13,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -46,9 +52,9 @@ public class Member  implements Serializable {
 	@NotNull
 	private String last_name;
 	
-	@Column(name = "dtu_mail")
+	@Column(name = "dtuMail")
 	@NotNull
-	private String dtu_mail;
+	private String dtuMail;
 	
 	@Column(name = "password")
 	@NotNull
@@ -85,6 +91,9 @@ public class Member  implements Serializable {
 	@NotNull
 	private String avatar;
 	
+	@Column(name = "token")
+	private String token;
+	
 	
 	@Column(name = "decription")
 	private String decription;
@@ -117,6 +126,28 @@ public class Member  implements Serializable {
 	@Column(name = "enable")
 	@NotNull
 	private int enable;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@ApiModelProperty(notes = "user role)")
+	@JsonIgnore
+	private Set<Role> roles = new HashSet<Role>();
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
+
+	public void removeRole(Role role) {
+		this.roles.remove(role);
+	}
 
 
 }
