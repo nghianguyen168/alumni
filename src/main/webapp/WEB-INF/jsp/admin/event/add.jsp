@@ -16,13 +16,13 @@
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian bắt đầu:</label>
                     <div class="col-lg-10 col-sm-9">
-				    <input class="form-control"  name="time_start" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+				    <input class="form-control"  name="time_start" type="datetime-local" value="" id="example-datetime-local-input">
 				  </div>
                   </div>
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian kết thúc:</label>
                     <div class="col-lg-10 col-sm-9">
-					    <input class="form-control" name="time_end" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+					    <input class="form-control" name="time_end" type="datetime-local" value="" id="example-datetime-local-input">
 					  </div>
                   </div>
                    <div class="form-group ">

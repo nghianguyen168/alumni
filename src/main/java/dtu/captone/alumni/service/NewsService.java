@@ -21,5 +21,7 @@ public interface NewsService {
 	Page<News> findAll(Pageable pageable);
 	List<News> findAll(Sort sort);
 	
+
+	
 	Page<News> getNewsListEnable(Pageable pageable);
 }

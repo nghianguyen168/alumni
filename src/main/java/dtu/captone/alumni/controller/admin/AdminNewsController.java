@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -52,7 +53,6 @@ public class AdminNewsController extends AbstractController{
 	@Qualifier("userInfoHandler")
 	private UserInfoHandler userInfoHandler;
 	
-	
 	@GetMapping({"/index","/index/{page}"})
 	public String index(ModelMap model,@PathVariable(required = false, name = "page") Integer page,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization,HttpServletRequest request) {
 		if (page == null) {
@@ -77,7 +77,7 @@ public class AdminNewsController extends AbstractController{
 	public String addNews(@ModelAttribute("news") News news,@RequestParam("hinhanh") MultipartFile hinhanh,RedirectAttributes rd,HttpServletRequest request) throws IllegalStateException, IOException {
 		String picture = FileUtil.upload(hinhanh, request);
 		news.setPicture(picture);
-		 System.out.println(news.getNews_name());
+		 System.out.println(news.getNewsName());
 		 News newsadd = newsService.save(news);
 		 if(newsadd!=null) {
 			 rd.addFlashAttribute(CommonConstants.MSG,

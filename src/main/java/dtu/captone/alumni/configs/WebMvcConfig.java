@@ -49,7 +49,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/templates/tiles-admin.xml", });
+		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/templates/tiles-admin.xml", "/WEB-INF/templates/tiles-public.xml"});
 		tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;
 	}

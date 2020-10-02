@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="/resources/uploads/${userLogin.avatar }" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="/admin/member/profile/${userLogin.id }"><img src="/resources/uploads/${userLogin.avatar }" class="img-circle" width="80"></a></p>
           <a href="javascript:void(0)" class="centered" id="authorLogin"></a>
           <li class="mt">
             <a id="home" class="home active" href="${pagecontext.request.contextPath }/admin/index">

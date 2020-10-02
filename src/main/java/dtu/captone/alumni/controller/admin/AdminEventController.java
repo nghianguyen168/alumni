@@ -1,5 +1,8 @@
 package dtu.captone.alumni.controller.admin;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.base.AbstractController;
 import dtu.captone.alumni.constant.CommonConstants;
+
 import dtu.captone.alumni.domain.Event;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.security.UserInfoHandler;
@@ -73,8 +77,10 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@PostMapping("add")
-	public String addevent(@ModelAttribute("event") Event event, RedirectAttributes rd) {
+	public String addevent(@ModelAttribute("event") Event event, RedirectAttributes rd) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
 		Event eventSave = eventService.save(event);
+		
 		if (eventSave != null) {
 			rd.addFlashAttribute(CommonConstants.MSG,
 					messageSource.getMessage("add_success", null, Locale.getDefault()));

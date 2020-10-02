@@ -62,49 +62,55 @@
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Số Điện Thoại</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.phone }" id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.phone }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">DTU Mail</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.dtuMail }" id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.dtuMail }" id="c-name" class="form-control" readonly>
+                            </div>
+                          </div>
+                            <div class="form-group">
+                            <label class="col-lg-2 control-label">Mật khẩu</label>
+                            <div class="col-lg-6">
+                              <input type="password" placeholder=" " value="${member.password }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Quê Quán</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.hometown }" id="lives-in" class="form-control">
+                              <input type="text" placeholder=" " value="${member.hometown }" id="lives-in" class="form-control" readonly>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Nơi Ở Hiện Tại</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.addressNow }" id="lives-in" class="form-control">
+                              <input type="text" placeholder=" " value="${member.addressNow }" id="lives-in" class="form-control" readonly>
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="col-lg-2 control-label">Năm Nhập Học</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.yearParticipate }" id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.yearParticipate }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="col-lg-2 control-label">Năm Tốt Nghiệp</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.yearGreduate }" id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.yearGreduate }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="col-lg-2 control-label">Ngành Học</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.major.majorName }" id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.major.majorName }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="col-lg-2 control-label">Nơi Làm Việc Hiện Tại</label>
                             <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.workAt }"  id="c-name" class="form-control">
+                              <input type="text" placeholder=" " value="${member.workAt }"  id="c-name" class="form-control" readonly>
                             </div>
                           </div>
                          

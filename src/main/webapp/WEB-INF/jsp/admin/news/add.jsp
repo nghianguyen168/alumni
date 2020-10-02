@@ -10,7 +10,7 @@
                   <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Tên Tin</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="news_name" type="text" required/>
+                      <input class=" form-control" id="firstname" name="newsName" type="text" required/>
                     </div>
                   </div>
               <div class="form-group">

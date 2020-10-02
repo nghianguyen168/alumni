@@ -36,7 +36,7 @@
 					<c:forEach var="news" items="${newsList}" >
 						<tr>
 							<td class="hidden-phone"><div id="newsId${news.id}" >${news.id }</div></td>
-							<td><a href="basic_table.html#">${news.news_name }</a></td>
+							<td><a href="basic_table.html#">${news.newsName }</a></td>
 							<td><img style="width: 200px;" src="/resources/uploads/${news.picture }"></td>
 							<td>${news.decription }</td>
 							<c:set var="activeImg" value="" />

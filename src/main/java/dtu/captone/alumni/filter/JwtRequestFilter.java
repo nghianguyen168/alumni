@@ -63,4 +63,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
+
+	public Object sessionManagement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,7 @@ import dtu.captone.alumni.domain.News;
 @Repository
 public interface NewsRespository extends JpaRepository<News, Integer>{
 	News findById(int id);
+	
 	
 	@Modifying
 	@Transactional

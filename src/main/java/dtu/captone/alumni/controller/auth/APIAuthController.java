@@ -1,4 +1,4 @@
-package dtu.captone.alumni.controller.auth;
+	package dtu.captone.alumni.controller.auth;
 
 import java.util.ArrayList;
 import java.util.HashMap;

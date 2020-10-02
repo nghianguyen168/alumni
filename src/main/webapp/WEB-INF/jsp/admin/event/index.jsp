@@ -40,11 +40,11 @@
 							<tr>
 							<td class="hidden-phone">${event.id }</td>
 							<td><a href="basic_table.html#">${event.event_name}</a></td>
-							<fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_start}" var="start" />
-							<fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_end}" var="end" />
+							<%-- <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_start}" var="start" />
+							<fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_end}" var="end" /> --%>
 							
-							<td><fmt:formatDate type="both" dateStyle="short"  timeStyle="short" value="${start}" /></td>
-							<td><fmt:formatDate type="both" dateStyle="short"  timeStyle="short" value="${end}" /></td>
+							<td>${event.time_start}</td>
+							<td>${event.time_end}</td>
 							
 							<td>${event.place}</td>
 							<td>${event.decription}</a></td>

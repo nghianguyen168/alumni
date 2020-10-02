@@ -12,8 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -23,6 +25,7 @@ import dtu.captone.alumni.security.AjaxAuthenticationFailureHandler;
 import dtu.captone.alumni.security.AjaxAuthenticationSuccessHandler;
 import dtu.captone.alumni.security.AjaxLogoutSuccessHandler;
 import dtu.captone.alumni.security.Http401UnauthorizedEntryPoint;
+import io.swagger.models.HttpMethod;
 import lombok.extern.java.Log;
 
 @Log
@@ -65,6 +68,14 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	
+	@Bean
+	public JwtRequestFilter authenticationJwtTokenFilter() {
+		return new JwtRequestFilter();
+	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -74,14 +85,30 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		
-		http.authorizeRequests().and().csrf().disable().formLogin().loginPage("/auth/login").permitAll()
-				.defaultSuccessUrl("/admin/index").failureUrl("/auth/login?msg=Err").and().logout()
-				.logoutUrl("/auth/logout").logoutSuccessUrl("/api/admin/logout").invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage("/error403");
-		http.authorizeRequests().antMatchers("/resources/**").permitAll();
-		
-		
+		  http.authorizeRequests().and().csrf().disable().formLogin().loginPage(
+		  "/auth/login").permitAll()
+		  .defaultSuccessUrl("/admin/index").failureUrl("/auth/login?msg=Err").and().
+		  logout() .logoutUrl("/auth/logout").logoutSuccessUrl("/api/admin/logout").
+		  invalidateHttpSession(true)
+		  .deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage(
+		  "/error403");
+		  http.authorizeRequests().antMatchers("/resources/**").permitAll();
+		 
+
+		/*
+		 * http.cors().and().csrf().disable().exceptionHandling().
+		 * authenticationEntryPoint(unauthorizedHandler).and()
+		 * .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+		 * and().authorizeRequests()
+		 * .antMatchers("/auth/login/**").permitAll().antMatchers("/api/admin/login").
+		 * permitAll().antMatchers("/resources/**").permitAll().anyRequest()
+		 * .authenticated();
+		 * 
+		 * http.addFilterBefore(authenticationJwtTokenFilter(),
+		 * UsernamePasswordAuthenticationFilter.class);
+		 */
 
 		/*
 		 * http.csrf().disable() // dont authenticate this particular request
