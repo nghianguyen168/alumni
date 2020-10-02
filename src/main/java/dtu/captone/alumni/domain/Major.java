@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Major  implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;
@@ -33,10 +32,10 @@ public class Major  implements Serializable{
 	 
 	 @Column(name = "major_code")
 	 @NotNull
-	 private String major_code;
+	 private String majorCode;
 	 
 	 @Column(name = "major_name")
 	 @NotNull
-	 private String major_name;
+	 private String majorName;
 
 }

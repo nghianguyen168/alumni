@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import javax.persistence.criteria.Order;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,21 +18,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dtu.captone.alumni.base.AbstractController;
+import dtu.captone.alumni.auth.service.UserService;
 import dtu.captone.alumni.constant.CommonConstants;
+import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.News;
+import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.NewsService;
 import dtu.captone.alumni.utils.FileUtil;
 import dtu.captone.alumni.utils.PaginationUtils;
 
 @Controller
 @RequestMapping("/admin/news")
-public class AdminNewsController {
+public class AdminNewsController extends AbstractController{
 	
 	@Autowired
 	MessageSource messageSource;
@@ -41,12 +45,23 @@ public class AdminNewsController {
 	@Autowired
 	private NewsService newsService;
 	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	@Qualifier("userInfoHandler")
+	private UserInfoHandler userInfoHandler;
+	
 	
 	@GetMapping({"/index","/index/{page}"})
-	public String index(ModelMap model,@PathVariable(required = false, name = "page") Integer page) {
+	public String index(ModelMap model,@PathVariable(required = false, name = "page") Integer page,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization,HttpServletRequest request) {
 		if (page == null) {
 			page = 1;
 		}
+		
+		Member member = currentUser(authorization);
+		System.out.println(member);
+		
 		int offset = PaginationUtils.getOffset(page);
 		List<News> newsList = newsService.findAll(Sort.by("id").descending());
 		model.addAttribute("newsList", newsList);

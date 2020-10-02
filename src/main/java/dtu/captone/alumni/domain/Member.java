@@ -33,7 +33,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Member  implements Serializable {
 
@@ -46,11 +45,11 @@ public class Member  implements Serializable {
 
 	@Column(name = "first_name")
 	@NotNull
-	private String first_name;
+	private String firstName;
 
 	@Column(name = "last_name")
 	@NotNull
-	private String last_name;
+	private String lastName;
 	
 	@Column(name = "dtuMail")
 	@NotNull
@@ -61,7 +60,7 @@ public class Member  implements Serializable {
 	private String password;
 
 	@Column(name = "dat_of_birth")
-	private Date dat_of_birth;
+	private Date dateOfBirth;
 
 	@Column(name = "hometown")
 	@NotNull
@@ -77,7 +76,11 @@ public class Member  implements Serializable {
 
 	@Column(name = "address_now")
 	@NotNull
-	private String address_now;
+	private String addressNow;
+	
+	@Column(name = "work_at")
+	@NotNull
+	private String workAt;
 
 	@Column(name = "email")
 	@NotNull
@@ -105,11 +108,11 @@ public class Member  implements Serializable {
 
 	@Column(name = "year_participate")
 	@NotNull
-	private int year_participate;
+	private int yearParticipate;
 
 	@Column(name = "year_greduate")
 	@NotNull
-	private int year_greduate;
+	private int yearGreduate;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
@@ -121,7 +124,7 @@ public class Member  implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
-	private Member_type member_type;
+	private MemberType memberType;
 	
 	@Column(name = "enable")
 	@NotNull
@@ -129,8 +132,6 @@ public class Member  implements Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	@ApiModelProperty(notes = "user role)")
-	@JsonIgnore
 	private Set<Role> roles = new HashSet<Role>();
 
 	public Set<Role> getRoles() {

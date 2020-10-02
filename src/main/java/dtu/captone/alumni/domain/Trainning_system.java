@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Trainning_system  implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <p class="centered"><a href="profile.html"><img src="/resources/uploads/${userLogin.avatar }" class="img-circle" width="80"></a></p>
+          <a href="javascript:void(0)" class="centered" id="authorLogin"></a>
           <li class="mt">
             <a id="home" class="home active" href="${pagecontext.request.contextPath }/admin/index">
               <i class="fa fa-dashboard"></i>
@@ -16,21 +16,32 @@
               </a>
           </li>
             <li>
-            <a href="${pagecontext.request.contextPath }/admin/event/index">
+            <a id="event" href="${pagecontext.request.contextPath }/admin/event/index">
               <i class="fa fa-calendar-o"></i>
               <span>Quảng Lý Sự Kiện</span>
               </a>
           </li>
+           <li>
+            <a id="job"	 href="${pagecontext.request.contextPath }/admin/job/index">
+              <i class="fa fa-calendar-o"></i>
+              <span>Job Từ Doanh Nghiệp</span>
+              </a>
+          </li>
+           <li>
+            <a id="group"	 href="${pagecontext.request.contextPath }/admin/group/index">
+              <i class="fa fa-calendar-o"></i>
+              <span>Quản lý Group</span>
+              </a>
+          </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a id="member" href="javascript:;">
               <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
+              <span>Quản Lý Thành Viên</span>
               </a>
             <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
+              <li id="csv"><a href="${pageContext.request.contextPath }/admin/member/index/1">Cựu Sinh Viên</a></li>
+              <li id="sv"><a href="${pageContext.request.contextPath }/admin/member/index/2">Sinh Viên</a></li>
+              <li id="gv"><a href="${pageContext.request.contextPath }/admin/member/index/3">Giảng Viên</a></li>
             </ul>
           </li>
           <li class="sub-menu">

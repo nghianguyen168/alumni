@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int active(int enable, int id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return memberRespository.active(enable, id);
 	}
 
 	@Override
@@ -83,6 +83,12 @@ public class MemberServiceImpl implements MemberService{
 	public Page<Member> getListByTypeEnable(int type, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return memberRespository.getListByTypeEnable(1, PageRequest.of(0, 5));
+	}
+
+	@Override
+	public List<Member> findByMemberType(int member_type) {
+		// TODO Auto-generated method stub
+		return memberRespository.findByMemberType(member_type);
 	}
 
 }

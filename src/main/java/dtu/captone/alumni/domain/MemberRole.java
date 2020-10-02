@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "member_role")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 @Data
 public class MemberRole  {
 

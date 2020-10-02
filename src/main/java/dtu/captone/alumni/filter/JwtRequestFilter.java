@@ -39,9 +39,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 !request.getServletPath().contains("swagger") &&
                 !request.getServletPath().contains("api-docs") && 
                 !request.getServletPath().contains("resources") && 
-                !request.getServletPath().contains("admin") && 
-                !request.getServletPath().contains("job") && 
-                !request.getServletPath().contains("news") && 
+                
+               
+              
                 !request.getServletPath().contains("")) {
             Member user = userService.findByToken(requestTokenHeader);
             if (user == null) {

@@ -72,4 +72,16 @@
 	</definition>
 	
 	
+	<!--Member -->
+	<definition name="admin.member.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.member.profile" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/profile.jsp"></put-attribute>
+	</definition>
+	
+	
+	
 </tiles-definitions>

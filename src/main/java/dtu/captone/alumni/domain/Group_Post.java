@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Group_Post  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

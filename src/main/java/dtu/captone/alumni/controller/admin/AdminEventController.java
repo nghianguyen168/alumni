@@ -3,7 +3,10 @@ package dtu.captone.alumni.controller.admin;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -13,34 +16,53 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dtu.captone.alumni.base.AbstractController;
 import dtu.captone.alumni.constant.CommonConstants;
 import dtu.captone.alumni.domain.Event;
+import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.EventService;
 import dtu.captone.alumni.utils.PaginationUtils;
 
 @Controller
 @RequestMapping("/admin/event")
-public class AdminEventController {
+public class AdminEventController extends AbstractController{
 
 	@Autowired
 	MessageSource messageSource;
 
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	@Qualifier("userInfoHandler")
+	private UserInfoHandler userInfoHandler;
+	
+	@ModelAttribute
+	public void userinfo(HttpSession session,Model model) {
+		Member member = (Member)session.getAttribute("userInfo");
+		model.addAttribute("userLogin", member);
+	}
+	
 
 	@GetMapping({ "/index", "/index/{page}" })
-	public String index(ModelMap model, @PathVariable(required = false, name = "page") Integer page) {
+	public String index(ModelMap model, @PathVariable(required = false, name = "page") Integer page,HttpSession session,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization) {
 		if (page == null) {
 			page = 1;
 		}
+		
+		
+		System.out.println("user:"+session.getAttribute("userInfo"));
+		
+		
 		int offset = PaginationUtils.getOffset(page);
 		List<Event> eventList = eventService.findAll(Sort.by("id").descending());
-		System.out.println(eventList.get(0).getTime_end());
 		model.addAttribute("eventList", eventList);
 		return "admin.event.index";
 	}

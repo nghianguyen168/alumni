@@ -11,9 +11,9 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>DTU-Alumni : Trang quản trị</title>
 
-   <link href="/resources/templates/admin/img/favicon.png" rel="icon">
+   <link href="/resources/templates/admin/img/dt.png" rel="icon">
   <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
@@ -31,6 +31,7 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="/resources/templates/auth.js"></script>
     
 
   <!-- =======================================================
@@ -83,7 +84,7 @@
    
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="/resources/templates/admin/lib/jquery/jquery.min.js"></script>
+
 
   <script src="/resources/templates/admin/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="/resources/templates/admin/lib/jquery.dcjqaccordion.2.7.js"></script>
@@ -97,7 +98,7 @@
   <!--script for this page-->
   <script src="/resources/templates/admin/lib/sparkline-chart.js"></script>
   <script src="/resources/templates/admin/lib/zabuto_calendar.js"></script>
-  <script src="/resources/templates/admin/plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="/resources/templates/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->

@@ -19,11 +19,10 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "job")
+@Table(name = "network")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Network  implements Serializable {
 
 	private static final long serialVersionUID = 1L;

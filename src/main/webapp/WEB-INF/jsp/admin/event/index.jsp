@@ -125,3 +125,7 @@
 	</div>
 	<!-- /col-md-12 -->
 </div>
+<script>
+document.getElementById("home").classList.remove('active');
+	document.getElementById("event").classList.add('active');
+</script>

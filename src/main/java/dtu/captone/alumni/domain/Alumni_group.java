@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class Alumni_group  implements Serializable{
 	
 	 private static final long serialVersionUID = 1L;
@@ -45,7 +45,7 @@ public class Alumni_group  implements Serializable{
 	@JoinColumn(name = "create_by",referencedColumnName = "id")
 	private Member member;
 	
-	@Column(name = "sum_member")
+	@Transient
 	private int sum_member;
 	
 

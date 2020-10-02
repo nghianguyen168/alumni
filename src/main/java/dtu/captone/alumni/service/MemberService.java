@@ -19,7 +19,7 @@ public interface MemberService {
 	Member findById(int id);
 	List<Member> findByName(@Param("member_name") String member_name);
 	
-	
+	List<Member> findByMemberType(int member_type);
 	//Tìm kiếm 
 	Page<Member> findByHomwtown(String hometown,Pageable pageable);
 	

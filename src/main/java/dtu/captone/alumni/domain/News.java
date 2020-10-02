@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-@EqualsAndHashCode(callSuper=false)
 public class News {
 	private static final  long serialVersionUID=1L;
 	

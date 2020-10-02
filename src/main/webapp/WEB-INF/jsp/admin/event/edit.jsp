@@ -53,3 +53,7 @@
           </div>
           <!-- /col-lg-12 -->
         </div>
+ <script>
+		document.getElementById("home").classList.remove('active');
+	document.getElementById("news").classList.add('active');
+</script>

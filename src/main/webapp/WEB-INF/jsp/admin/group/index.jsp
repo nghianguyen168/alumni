@@ -58,7 +58,7 @@
 								<td class="hidden-phone">${group.id }</td>
 								<td><a href="basic_table.html#">${group.group_name }</a></td>
 								<td>${group.group_decription }</td>
-								<td>${group.member.first_name } ${group.member.last_name }</td>
+								<td>${group.member.firstName } ${group.member.lastName }</td>
 								<td>${group.sum_member}</td>
 								<td>
 									<a style="margin-top: 10px;" type="button" class="btn btn-primary btn-xs">

@@ -17,6 +17,7 @@ public interface UserService {
     int getAllDataCount(Specification<Member> spec);
 
     Member findByDtuMail(String mail);
+    
     Member findByDtuMailAndPassword(String mail,String password);
 
     Member saveAdmin(Member Member);

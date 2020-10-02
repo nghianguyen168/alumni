@@ -20,8 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-public class Member_type implements Serializable {
+public class MemberType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
