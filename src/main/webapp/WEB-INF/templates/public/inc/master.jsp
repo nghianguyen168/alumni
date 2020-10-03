@@ -13,6 +13,7 @@
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <script type=”text/javascript” src=”http://code.jquery.com/jquery-2.0.3.min.js”></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="/resources/templates/public/js/slide.js"></script>
 </head>
 

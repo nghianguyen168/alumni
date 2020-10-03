@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <div class="row mt">
           <div class="col-lg-12">
             <h4><i class="fa fa-angle-right"></i>CẬP NHẬT SỰ KIỆN</h4>
@@ -16,7 +17,7 @@
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian bắt đầu:</label>
                     <div class="col-lg-10 col-sm-9">
-                    
+                  
 				    <input class="form-control"  name="time_start" type="datetime-local" value="${event.time_start}" id="example-datetime-local-input">
 				  </div>
                   </div>

@@ -15,7 +15,7 @@
                   <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Tên Tin</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" value="${news.news_name }" name="news_name" type="text" />
+                      <input class=" form-control" id="firstname" value="${news.newsName }" name="newsName" type="text" />
                     </div>
                   </div>
               <div class="form-group">

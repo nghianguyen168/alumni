@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import = "java.util.Date" %>
+<%@ page import="java.util.Date"%>
 <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <div id="news">
 	<div class="container">
@@ -19,7 +19,8 @@
 							style="width: 100%; object-fit: cover; height: 150px;"
 							src="/resources/uploads/${news.picture }"></a>
 						<div>
-							<div class="date">Ngày 29/11/2018</div>
+						<fmt:parseDate value="${news.createAt }" pattern="yyyy-MM-dd HH:mm" var="time"/>
+							<div class="date"><fmt:formatDate value="${time}"  pattern="dd-MM-yyyy HH:mm a"/></div>
 							<a href="#">${newsName }</a>
 							<div>
 								<div>${news.decription }</div>
@@ -56,6 +57,7 @@
 							<p>
 								<a href="#">${event.event_name }</a>
 							</p>
+						
 
 							<div class="past-event">Past Event</div>
 							<%-- <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss"
@@ -65,20 +67,39 @@
 							<%-- <fmt:parseDate value="${event.time_start}" var="start" type="date" pattern="dd/MM/yyyy HH:mm:ss a" /> --%>
 							<%-- <fmt:formatDate type="both"  dateStyle="short" pattern="dd/MM/yyyy"
 								value="${event.time_start}" /> --%>
-						 <%-- <fmt:parseDate value="${event.time_start}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
-						 <fmt:formatDate value="${myDate}" var="startFormat" type="both" dateStyle="" pattern="yyyy-MM-dd"/> --%>
-      			 
+
+
+
 							<div class="time">
-								<div>Thời gian: ${event.time_start } - ${event.time_end }</div>
-								<div>Địa điểm: ${event.place }</div>
-							</div>
+							<fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd HH:mm" var="start"/>
 							
+								<div>
+									<strong>Bắt đầu:</strong>
+									<%-- <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+										value="${event.time_start }" /> --%>
+										<fmt:formatDate value="${start}"  pattern="dd-MM-yyyy HH:mm a"/>
+								</div>
 							
-							<a></a>
-							<div>
-								<a href="#">XEM THÊM</a>
+							<fmt:parseDate value="${event.time_end }" pattern="yyyy-MM-dd HH:mm" var="end"/>
+								<div>
+									<strong>Kết thúc:</strong>
+									<%-- <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+										value="${event.time_end }" /> --%>
+										<fmt:formatDate value="${end}" pattern="dd-MM-yyyy HH:mm a"/>
+								
+								</div>
+								<br>
+								<div><i class="fa fa-map-marker" aria-hidden="true"></i>  ${event.place }</div>
 							</div>
 
+
+							<a></a>
+							<div>
+								<div style="float: right;">
+								<br>
+									<a href="#">XEM THÊM</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
