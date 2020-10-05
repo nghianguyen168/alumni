@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,10 +38,22 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	@Query(value = "SELECT * FROM job WHERE enable = 1",nativeQuery = true)
 	Page<Job> getJobListEnable(Pageable pageable);
 	
+	@Query(value = "SELECT * FROM job WHERE enable = 1 ORDER BY id DESC",nativeQuery = true)
+	List<Job> getJobEnable();
+	
+	@Query(value = "SELECT * FROM job WHERE enable = 1 AND major_id = ? ORDER BY id DESC ",nativeQuery = true)
+	List<Job> getJobListByMajor(int majorId);
+	
+	
 	/*
 	 * @Query(value = "SELECT * FROM job WHERE author_id=?",nativeQuery = true)
 	 * List<News> getNewsListByAuthor(int author_id);
 	 */
+	@Query(value = "SELECT count(id) FROM job WHERE enable =1 ",nativeQuery = true)
+    public int sumJobEnable();
+	
+	@Query(value = "SELECT count(id) FROM job",nativeQuery = true)
+    public int sumJob();
 	
 
 }

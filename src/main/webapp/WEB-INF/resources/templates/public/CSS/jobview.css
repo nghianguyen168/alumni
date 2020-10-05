@@ -108,7 +108,8 @@ header .container>div>ul>li>a:hover {
     padding: 20px 0;
     background-color: #000059;
     color: white;
-    padding-left: 281px;
+  
+    text-align: center;
 }
 
 

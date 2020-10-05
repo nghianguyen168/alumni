@@ -43,12 +43,12 @@
 						
 					<tr>
 						<td class="hidden-phone">${job.id }</td>
-						<td><a href="basic_table.html#">${job.company_name}</a></td>
-						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.posted_on }" /></td>
-						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.deadline_apply }" /></td>
+						<td><a href="basic_table.html#">${job.companyName}</a></td>
+						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.postedOn }" /></td>
+						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.deadlineApply }" /></td>
 						<td>${job.salary }</td>
 						<td>${job.decription }</td>
-						<td>${job.member.first_name} ${job.member.last_name }</td>
+						<td>${job.member.firstName} ${job.member.lastName }</td>
 						<c:choose >
 								<c:when test="${job.enable eq 1 }">
 									<c:set var="activeImg" value="on.png" />

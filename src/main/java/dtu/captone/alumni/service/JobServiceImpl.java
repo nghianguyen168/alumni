@@ -2,6 +2,8 @@ package dtu.captone.alumni.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +20,9 @@ public class JobServiceImpl implements JobService {
 	private JobRespository jobRespository;
 	
 	@Override
-	public Job save(Job Job) {
-		
-		return jobRespository.save(Job);
+	@Transactional
+	public Job save(Job job) {
+		return jobRespository.save(job);
 	}
 
 	@Override
@@ -67,5 +69,24 @@ public class JobServiceImpl implements JobService {
 	public int active(int enable, int id) {
 		// TODO Auto-generated method stub
 		return jobRespository.active(enable, id);
+	}
+
+	@Override
+	public int sumJobEnable() {
+		// TODO Auto-generated method stub
+		return jobRespository.sumJobEnable();
+	}
+
+	@Override
+	public List<Job> getJobListEnable() {
+		// TODO Auto-generated method stub
+		return jobRespository.getJobEnable();
+				}
+
+	@Override
+	public List<Job> getJobListByMajor(int majorId) {
+		// TODO Auto-generated method stub
+		return jobRespository.getJobListByMajor(majorId);
+		
 	}
 }

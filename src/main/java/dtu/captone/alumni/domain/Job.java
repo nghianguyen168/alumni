@@ -2,16 +2,20 @@ package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
@@ -33,8 +37,7 @@ public class Job implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private int id;
+	private Integer id;
 
 	@Column(name = "position")
 	@NotNull
@@ -42,7 +45,7 @@ public class Job implements Serializable {
 
 	@Column(name = "company_name")
 	@NotNull
-	private String company_name;
+	private String companyName;
 
 	@Column(name = "salary")
 	@NotNull
@@ -53,21 +56,28 @@ public class Job implements Serializable {
 	private String location;
 
 	@Column(name = "posted_on")
-	@NotNull
-	private Date posted_on;
+	private Timestamp postedOn;
 
 	@Column(name = "deadline_apply")
 	@NotNull
-	private Date deadline_apply;
+	private Date deadlineApply;
 
 	@Column(name = "decription")
 	private String decription;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
-	private Member member;
+	private Member member = new Member();
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "major_id",referencedColumnName = "id")
+	private Major major=new Major();
+
 
 	@Column(name = "enable")
 	private int enable;
+	
+
+	
 
 }

@@ -89,8 +89,7 @@
   <div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:2"><img src='/resources/templates/loading.gif' width="100" height="100" /></div>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/resources/templates/admin/login.js"></script>
-  <script src="/resources/templates/templates/auth.js"></script>
+  <script src="/resources/templates/public/login.js"></script>
   <script src="/resources/templates/admin/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/resources/templates/admin/lib/bootstrap/js/bootstrap.min.js"></script>
   <!--BACKSTRETCH-->

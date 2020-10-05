@@ -180,7 +180,7 @@ header .container>div>ul>li>a:hover {
 .banner {
     overflow: initial;
     min-height: 122px;
-    background: url(../IMAGE//CAREER/bg2.jpg) center center / cover no-repeat;
+    background: url("/resources/templates/public/IMAGE/CAREER/bg2.jpg") center center / cover no-repeat;
     padding-bottom: 20px;
     background-color: rgb(224, 224, 224);
     opacity: 0.8;
@@ -322,12 +322,19 @@ form {
     width: calc((100% - 0px) /3);
 }
 
-.job-internship {
+.job-status-open {
     padding: 3px 12px;
     margin: 8px 0px 0px;
     border-radius: 12px;
     display: inline-block;
-    background-color: #E0E0E0 !important;
+    background-color: #9fc4a1 !important;
+}
+.job-status-close {
+    padding: 3px 12px;
+    margin: 8px 0px 0px;
+    border-radius: 12px;
+    display: inline-block;
+    background-color: #cc766f !important;
 }
 
 .job-internship-closed {
@@ -370,10 +377,16 @@ form {
     color: white;
 }
 
-.infor {
+.infor-img {
+	margin-top:5px;
+	float:left;
+    display: inline;
+}
+.infor-detail {
+	margin-left:10px;
+	float:left;
     display: inline-block
 }
-
 .infor>div {
     display: inline-block;
     padding-right: 5px;

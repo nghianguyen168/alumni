@@ -31,11 +31,9 @@ public class Major  implements Serializable{
 	 private int id;
 	 
 	 @Column(name = "major_code")
-	 @NotNull
 	 private String majorCode;
 	 
 	 @Column(name = "major_name")
-	 @NotNull
 	 private String majorName;
 
 }

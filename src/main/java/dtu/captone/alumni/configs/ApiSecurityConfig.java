@@ -86,16 +86,23 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		
-		  http.authorizeRequests().and().csrf().disable().formLogin().loginPage(
-		  "/auth/login").permitAll()
-		  .defaultSuccessUrl("/admin/index").failureUrl("/auth/login?msg=Err").and().
-		  logout() .logoutUrl("/auth/logout").logoutSuccessUrl("/api/admin/logout").
-		  invalidateHttpSession(true)
-		  .deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage(
-		  "/error403");
+		/*
+		 * http.authorizeRequests().and().csrf().disable().formLogin().loginPage(
+		 * "/auth/login").permitAll()
+		 * .defaultSuccessUrl("/admin/index").failureUrl("/auth/login?msg=Err").and().
+		 * logout() .logoutUrl("/auth/logout").logoutSuccessUrl("/api/admin/logout").
+		 * invalidateHttpSession(true)
+		 * .deleteCookies("JSESSIONID").and().exceptionHandling().accessDeniedPage(
+		 * "/error403");
+		 */
+		  
 		  http.authorizeRequests().antMatchers("/resources/**").permitAll();
-		 
+		  
+		  http.authorizeRequests().and().csrf().disable().formLogin().loginPage(
+				  "/login").permitAll().defaultSuccessUrl("/home").permitAll().and().logout().logoutUrl("/logout")
+		  .logoutSuccessUrl("/home").invalidateHttpSession(true).deleteCookies("JSESSIONID").and().exceptionHandling()
+		  .accessDeniedPage(
+				  "/error403");
 
 		/*
 		 * http.cors().and().csrf().disable().exceptionHandling().

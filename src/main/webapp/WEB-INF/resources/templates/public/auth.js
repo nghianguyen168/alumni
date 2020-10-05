@@ -19,6 +19,6 @@ $(document).ready(function() {
 			$(".title_book").text("My Book List");
 		}*/
 		$("#authorLogin").html(userInfo.member.first_name + " "+userInfo.user.last_name);
-		$("#avatarLogin").html(' <img src="/resources/uploads/'+userInfo.mem.avatar+'" id="avatarLogin"  class="img-circle elevation-2" >');
+		$("#avatarLogin").html(' <img src="/resources/uploads/'+userInfo.user.avatar+'" id="avatarLogin"  class="img-circle elevation-2" >');
 	}
 });

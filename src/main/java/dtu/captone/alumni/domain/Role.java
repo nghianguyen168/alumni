@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class Role {
 	
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id")

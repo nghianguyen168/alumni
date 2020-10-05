@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -102,9 +104,9 @@ public class Member  implements Serializable {
 	private String decription;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "major_id",referencedColumnName = "id")
-	private Major major;
+	private Major major = new Major();
 
 	@Column(name = "year_participate")
 	@NotNull
@@ -114,23 +116,24 @@ public class Member  implements Serializable {
 	@NotNull
 	private int yearGreduate;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
-	private Trainning_system trainning_system;
+	private Trainning_system trainning_system = new Trainning_system();
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "edu_level_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_edu_level"))
-	private Edu_level edu_level;
+	private Edu_level edu_level = new Edu_level();
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
-	private MemberType memberType;
+	private MemberType memberType = new MemberType();
 	
 	@Column(name = "enable")
 	@NotNull
 	private int enable;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<Role>();
 

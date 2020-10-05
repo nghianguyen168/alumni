@@ -6,7 +6,7 @@ import static java.util.Arrays.asList;
 
 public class CommonConstants {
 
-	public static final String DIR_UPLOAD = "WEB-INF/resources/uploads";
+	public static final String DIR_UPLOAD = "WEB-INF/resources/uploads"; 
 
 	public static final String ACTIVE = "1";
 
@@ -21,6 +21,8 @@ public class CommonConstants {
 	public static final String BIRTHDAY_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
 	public static final int DEFAULT_PAGING_SIZE = 10;
+	
+	public static final int LIMIT_PAGE_JOB = 10;
 
 	public static final int DEFAULT_PAGING_PAGE = 0;
 

@@ -2,9 +2,6 @@ package dtu.captone.alumni.service;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-
-import org.hibernate.annotations.Cascade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,5 +26,12 @@ public interface JobService {
 	
 	Page<Job> getJobListEnable(Pageable pageable);
 	
+	List<Job> getJobListEnable();
+	
+	List<Job> getJobListByMajor(int majorId);
+	
+	
 	List<Job> findByAuthorId(int authorId);
+	
+	int sumJobEnable();
 }

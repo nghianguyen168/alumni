@@ -38,6 +38,10 @@ public class UserInfoHandler {
 		}
 		return userInfo;
 	}
+	
+	public Member isUserLogin(HttpSession session) {
+		return (Member)session.getAttribute("userInfo");
+	}
 
 	public List<Role> getRoles(HttpSession session) {
 		List<Role> roles = new ArrayList<>();
