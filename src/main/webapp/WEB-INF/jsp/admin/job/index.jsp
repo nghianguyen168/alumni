@@ -30,7 +30,7 @@
 						<th><i class=""></i>Ngày đăng</th>
 						<th><i class=""></i>Hạn nộp</th>
 						<th><i class=""></i>Mức lương</th>
-						<th><i class=""></i>Mô tả</th>
+						<th><i class=""></i>Địa chỉ</th>
 						<th><i class=""></i>Người đăng</th>
 						<th><i class=""></i> Status</th>
 						<th></th>
@@ -47,7 +47,7 @@
 						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.postedOn }" /></td>
 						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.deadlineApply }" /></td>
 						<td>${job.salary }</td>
-						<td>${job.decription }</td>
+						<td>${job.location }</td>
 						<td>${job.member.firstName} ${job.member.lastName }</td>
 						<c:choose >
 								<c:when test="${job.enable eq 1 }">

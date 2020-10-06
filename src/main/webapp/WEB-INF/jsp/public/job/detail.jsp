@@ -28,9 +28,10 @@
 
 					</div>
 					<li class="category-list"><span class="category-span">Tôi
-							đăng tuyển</span> <span class="category-count">0</span></li>
-					<li class="category-list"><span class="category-span">Tôi
 							ứng tuyển</span> <span class="category-count">0</span></li>
+				<li  class="category-list"><span class="category-span"><a style="text-decoration: none;"
+											onclick="return loading();" href="/job/user-post">Tôi đăng tuyển</a></span>
+								</li>
 
 				</ul>
 			</div>
@@ -65,19 +66,19 @@
 									
 								</div> -->
 								<div class="chia2" style="margin-left: 20px;">
-									<div style="">
+									<div  style="width: 200px;">
 										<strong><i
 											style="font-size: 16px; font-weight: bold;"
 											class="fa fa-building" aria-hidden="true"> Công Ty:</i></strong>
 										<p style="padding-left: 18px;">${job.companyName }</p>
 									</div>
-									<div>
+									<div  style="width: 200px;">
 										<i style="font-size: 16px; font-weight: bold;"
 											class="fa fa-map-marker" aria-hidden="true"> Địa điểm làm
 											việc:</i>
 										<p style="padding-left: 10px;">${job.location }</p>
 									</div>
-									<div>
+									<div  style="width: 200px;">
 										<i style="font-size: 16px; font-weight: bold;"
 											class="fa fa-check" aria-hidden="true"> Vị trí tuyển dụng</i>
 										<p style="padding-left: 18px;">${job.position }</p>
@@ -138,7 +139,8 @@
 													${job.member.lastName}</span>
 											</div>
 											<div>
-												<span class=" ">Đăng tuyển lúc: ${job.postedOn }</span>
+												<span class=" ">Đăng tuyển lúc:  <fmt:formatDate type="both"
+																	pattern="dd-MM-yyyy  HH:mm a" value="${job.postedOn}" /> </span>
 											</div>
 										</div>
 									</div>
@@ -165,15 +167,27 @@
 								<div class="basic-title"
 									style="padding-left: 10px; color: blue;">
 									<i class="fa fa-file-text" aria-hidden="true"
-										style="color: blue;"></i> Applay
+										style="color: blue;"></i> Gửi CV cho người đăng tuyển
 								</div>
 								<div style="padding-left: 35px; padding-bottom: 5px;">
-									<form action="">
-										<label for="myfile">Chọn files:</label> <input type="file"
-											id="myfile" name="myfile" multiple><br>
+									<form action="/job/apply/${job.id }" method="post" enctype="multipart/form-data">
+										<label for="myfile">Chọn files:</label> <input type="file" 
+											id="cvfile" name="cvfile" ><br>
 										<div class="apply-1">
-											<button class="apply-2" type="next">APPLY</button>
+											<button class="apply-2" id="uploadButton" type="next" >APPLY</button>
 										</div>
+										<script type="text/javascript">
+										  $("#cvfile").change(function () {
+										        var fileExtension = ['pdf', 'docx'];
+										        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+										        	$('#uploadButton').attr('disabled','disabled');
+										            alert("Chỉ châp nhận định dạng : "+fileExtension.join(', '));
+										        } else{
+										        	$('#uploadButton').removeAttr('disabled','disabled');
+										        	
+										        }
+										    });
+										</script>
 									</form>
 								</div>
 							</div>

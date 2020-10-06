@@ -44,6 +44,22 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/job/detail.jsp"></put-attribute>
 	</definition>
+	<definition name="public.job.userpost" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/userpost.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.job.edit" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/edit.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.job.apply" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/apply_list.jsp"></put-attribute>
+	</definition>
+	
+	
 	
 	
 	

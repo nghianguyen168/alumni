@@ -55,5 +55,10 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	@Query(value = "SELECT count(id) FROM job",nativeQuery = true)
     public int sumJob();
 	
+	@Modifying
+	@Query(value = "UPDATE job SET views = views+1 WHERE id=? ",nativeQuery = true)
+	@Transactional
+	public int updateViews(int id);
+	
 
 }

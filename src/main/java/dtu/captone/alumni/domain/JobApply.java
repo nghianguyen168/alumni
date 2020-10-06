@@ -26,11 +26,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "job")
+@Table(name = "job_apply")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Job implements Serializable {
+public class JobApply implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,49 +38,26 @@ public class Job implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "position")
-	@NotNull
-	private String position;
-
-	@Column(name = "company_name")
-	@NotNull
-	private String companyName;
-
-	@Column(name = "salary")
-	@NotNull
-	private String salary;
-
-	@Column(name = "location")
-	@NotNull
-	private String location;
-
-	@Column(name = "posted_on")
-	private Timestamp postedOn;
 	
-	@Column(name = "views")
-	private int views;
-
-	@Column(name = "deadline_apply")
+	@Column(name = "cv")
 	@NotNull
-	private Date deadlineApply;
-
-	@Column(name = "decription")
-	private String decription;
+	private String cv;
 	
+	@Column(name = "apply_on")
+	private Timestamp applyOn;
+
+	
+	@ManyToOne(cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	@JoinColumn(name = "job_id",referencedColumnName = "id")
+	private Job job = new Job();
+	
+
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "authorId",referencedColumnName = "id")
+	@JoinColumn(name = "member_id",referencedColumnName = "id")
 	private Member member = new Member();
 	
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "major_id",referencedColumnName = "id")
-	private Major major=new Major();
-
-
-	@Column(name = "enable")
-	private int enable;
-	
-
+	@Column(name = "check_status")
+	private int checkStatus;
 	
 
 }

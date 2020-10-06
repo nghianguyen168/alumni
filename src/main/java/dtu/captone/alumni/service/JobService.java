@@ -34,4 +34,6 @@ public interface JobService {
 	List<Job> findByAuthorId(int authorId);
 	
 	int sumJobEnable();
+	
+	int updateViews(int id);
 }

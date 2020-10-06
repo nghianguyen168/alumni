@@ -4,7 +4,7 @@
 <header>
 	<div class="container">
 		<div class="logo-dtu">
-				<a href="#"><img src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
+				<a href="/home"><img src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
 		</div>
 		<c:choose>
 				<c:when test="${userInfo ne null }">

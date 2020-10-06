@@ -36,29 +36,15 @@
 			</div>
 
 			<div class="dang-tin">
-				<div class="banner">
-					<div>
-						<p class="biding">Công ty của bạn muốn tuyển dụng? Hãy chia sẻ
-							cơ hội nghề nghiệp với nguồn nhân lực chất lượng của Cộng đồng</p>
-					</div>
-					<div class="button-dang-viec">
-					
-						<button class="dang-viec"
-							onclick="document.getElementById('post-job').style.display='block'">
-							<span class="material-icons"> add </span>
-							<p>Đăng một công việc / thực tập</p>
-
-						</button>
-					</div>
-
+				
+	
+				<div class="job-list">
+				<div class="" style="background-color: white;">
+				<div>
+				<br>
+					<h5 style="font-weight: bold; color: #33739E; margin-left: 10px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Chỉnh sửa tin tuyển dụng</h5>
 				</div>
-				<div id="post-job">
-					<div class="post-job-title">
-						Đăng một công việc/thực tập <a style="float: right; color: white;"
-							href="javascript:void(0)"
-							onclick="document.getElementById('post-job').style.display='none'">Đóng</a>
-					</div>
-					<form action="${pageContext.request.contextPath }/job/add"
+					<form action="${pageContext.request.contextPath }/job/edit/${job.id}"
 						method="post">
 						<div class="two-cool">
 							<div>
@@ -71,20 +57,26 @@
 												cần đăng tuyển--</option>
 											<c:if test="${not empty majorList }">
 												<c:forEach items="${majorList }" var="major">
-
-
-													<option value="${major.id }">${major.majorName}</option>
+													<c:choose>
+														<c:when test="${job.major.id eq major.id }">
+															<option selected="selected" value="${major.id }">${major.majorName}</option>
+														</c:when>
+														<c:otherwise>
+															<option  value="${major.id }">${major.majorName}</option>
+														</c:otherwise>
+													</c:choose>
+													
 												</c:forEach>
 											</c:if>
 										</select>
 									</div>
 									<div class="md-form" style="margin-top: 10px;">
 										<label for="company">Tên công ty</label> <br> <input
-											class="form-control" name="companyName" required type="text"
+											class="form-control" name="companyName" value="${job.companyName }" required type="text"
 											id="company" placeholder="Tên công ty">
 									</div>
 									<div class="md-form" style="margin-top: 10px;">
-										<label for="company">Vị trí tuyển dụng</label> <br> <input
+										<label for="company">Vị trí tuyển dụng</label> <br> <input value="${job.position }"
 											class="form-control" required type="text" id="company"
 											name="position" placeholder="Vị trí tuyển dụng">
 									</div>
@@ -95,17 +87,17 @@
 							</div>
 							<div>
 								<div class="md-form" style="margin-top: 10px;">
-									<label for="company">Địa điểm</label> <br> <input
+									<label for="company">Địa điểm</label> <br> <input value="${job.location }"
 										class="form-control" required type="text" id="company"
 										name="location" placeholder="Địa điểm làm việc">
 								</div>
 								<div class="md-form" style="margin-top: 14px;">
-									<label for="company">Hạn tuyển dụng</label> <br> <input
+									<label for="company">Hạn tuyển dụng</label> <br> <input value="${job.deadlineApply }"
 										class="form-control" required type="date" id="company"
 										name="deadlineApply" placeholder="Hạn tuyển dụng">
 								</div>
 								<div class="md-form" style="margin-top: 10px;">
-									<label for="company">Mức lương</label> <br> <input
+									<label for="company">Mức lương</label> <br> <input value="${job.salary }"
 										class="form-control" required type="text" id="company"
 										name="salary" placeholder="Mức lương">
 								</div>
@@ -115,114 +107,17 @@
 							<div class="textfield ">
 								<label for="description">Mô tả công việc</label><br>
 								<textarea class="form-control" id="decription" name="decription"
-									rows="15" placeholder="Mô tả công việc"></textarea>
+									rows="15" placeholder="Mô tả công việc">${job.decription }</textarea>
 								<br>
 
 							</div>
 						</div>
 						<div class="submit-1">
-							<button class="submit-2" type="next">SUBMIT</button>
+							<button onclick="window.history.go(-1); return false;" type="button" class="btn btn-danger">Hủy</button>
+							<button type="submit" class="btn btn-primary">Cập nhật</button>
 						</div>
 					</form>
-				</div>
-				<div></div>
-				<br>
-	
-				<div class="job-list">
-					<c:if test="${not empty jobList }">
-						<c:forEach items="${jobList }" var="job">
 					
-							<div class="current-tab">
-								<div class="job-tab ">
-									<div class="name-job ">
-										<span class="font-medium ">${job.position }</span> | <span>Công
-											${job.companyName }</span> <span>
-										</span>
-									</div>
-									<div>
-										<div class="chia3 ">
-											<div>
-
-												<div>
-													<i class="fa fa-map-marker" aria-hidden="true"></i> <span
-														class=" ">${job.location }</span>
-												</div>
-											</div>
-											<div>
-												<div>
-													<i class="fa fa-calendar-times-o" aria-hidden="true"></i> <span
-														class=" "><fmt:formatDate type="both"
-															pattern="dd-MM-yyyy" value="${job.deadlineApply }" /></span>
-												</div>
-
-											</div>
-											<div>
-												<div>
-													<i class="fa fa-money" aria-hidden="true"></i> <span
-														class=" ">${job.salary }</span>
-												</div>
-											</div>
-
-										</div>
-										<fmt:formatDate var="nows" value="${now}" type="both" pattern="dd-MM-yyyy" /> 
-										<c:set var="job_status" value=""/>
-										
-										<div>
-										<c:choose >
-											
-											<c:when test="${job.deadlineApply gt now }">
-													<c:set var="job_status" value="Open"/>
-													<div class="job-status-open ">${job_status }</div>
-											</c:when>
-											<c:otherwise>
-												<c:set var="job_status" value="Closed"/>
-												<div class="job-status-close ">${job_status }</div>
-											</c:otherwise>
-										</c:choose>
-											
-
-										</div>
-									</div>
-									<div class="chia2-2 ">
-										<div>
-											<div class="infor-img">
-												<div>
-													<a href=" "><img class="comment-avatar "
-														src="/resources/uploads/${job.member.avatar } "></a>
-												</div>
-
-
-											</div>
-											<div class="infor-detail">
-												<div>
-													<span class="font-medium">${job.member.firstName }
-														${job.member.lastName }</span>
-												</div>
-												<div>
-													<span style="font-size: 12px;" class=" ">Đăng lúc
-														<td><i><fmt:formatDate type="both"
-																	pattern="dd-MM-yyyy  HH:mm a" value="${job.postedOn }" /></i>
-													</span>
-													
-												</div>
-											</div>
-											<div style="margin-left:20px;">
-											<br>
-												<span style="margin-left: 60px;"><i class="fa fa-eye" aria-hidden="true"></i> ${job.views }</span>
-											</div>
-											
-										</div>
-										<ul>
-										
-											<li><a class="view " href="/job/detail/${job.id }">CHI TIẾT</a></li>
-
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-						</c:forEach>
-					</c:if>
 					
 <p class="totop"> 
     <a href="#top">Back to top</a> 
@@ -262,5 +157,6 @@
 		<script type="text/javascript">
 			CKEDITOR.replace('decription');
 		</script>
+		</div>
 	</div>
 </div>

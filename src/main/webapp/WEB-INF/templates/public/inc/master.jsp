@@ -16,11 +16,11 @@
 	href="/resources/templates/public/CSS/style.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/CSS/nghenghiep.css">
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/CSS/jobview.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/loading-bar.css">
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/loading-bar.min.css">
 <link href="/your-path-to-fontawesome/css/fontawesome.css"
 	rel="stylesheet">
@@ -42,9 +42,15 @@
 <script src="/resources/templates/public/loading-bar.min.js"></script>
 <script src="/libraries/ckeditor/ckeditor.js"></script>
 <script src="/libraries/ckfinder/ckfinder.js"></script>
-          <script type="text/javascript"
-        		src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script data-require="jquery@*" data-semver="2.0.3"
+	src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script data-require="bootstrap@*" data-semver="3.1.1"
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link data-require="bootstrap-css@3.1.1" data-semver="3.1.1"
+	rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 </head>
 
 <body>

@@ -89,4 +89,10 @@ public class JobServiceImpl implements JobService {
 		return jobRespository.getJobListByMajor(majorId);
 		
 	}
+
+	@Override
+	public int updateViews(int id) {
+		// TODO Auto-generated method stub
+		return jobRespository.updateViews(id);
+	}
 }
