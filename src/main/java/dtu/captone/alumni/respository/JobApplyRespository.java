@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,15 +21,30 @@ import dtu.captone.alumni.domain.JobApply;
 @Repository
 public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	
-	Job findById(int id);
+	JobApply findById(int id);
 	
-	@Query(value = "SELECT * FROM job_apply WHERE job_id = ?",nativeQuery = true)
-	List<JobApply> findByJob(Integer id);
+	
+	@Query(value = "SELECT * FROM job_apply WHERE job_id = ? LIMIT ?,?",nativeQuery = true)
+	List<JobApply> findByJob(Integer id,int offset,int limit);
+	
+	@Query(value = "SELECT * FROM job_apply WHERE member_id=?",nativeQuery = true)
+	List<JobApply> findJobApply(int id);
+	
 	
 	@Modifying
 	@Query(value = "DELETE FROM job_apply WHERE job_id = ? ",nativeQuery = true)
 	@Transactional
 	public void deleteByJob_Id(int job_id);
+	
+	@Modifying
+	@Query(value = "UPDATE job_apply SET check_status = 1 WHERE job_id =?",nativeQuery = true)
+	@Transactional
+	public int updateCheckStatus(int job_id);
+	
+	@Query(value = "SELECT count(id) FROM job_apply WHERE job_id=?",nativeQuery = true)
+    public int sumJobApply(int id);
+	
+	
 	/*
 	 * @Query(value = "SELECT * FROM job WHERE authorId = ?",nativeQuery = true)
 	 * List<Job> findByAuthorId(Integer authorId);

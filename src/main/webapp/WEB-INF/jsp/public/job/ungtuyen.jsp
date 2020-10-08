@@ -38,22 +38,21 @@
 			<div class="dang-tin">
 				
 
-				<h5 style="font-weight: bold;">BẠN CÓ ${jobList.size() } TIN
-					TUYỂN DỤNG - CẢM ƠN BẠN ĐÃ CHIA SẺ CÙNG DTU ALUMNI</h5>
+				<h5 style="font-weight: bold;">BẠN ĐÃ APPLY VÀO ${jobApply.size()} VỊ TRÍ</h5>
 				<div class="job-list" style=" box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"">
 				<c:if test="${not empty msg}">
 					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px;">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
 					</div>
 				</c:if>
-					<c:if test="${not empty jobList }">
-						<c:forEach items="${jobList }" var="job">
+					<c:if test="${not empty jobApply }">
+						<c:forEach items="${jobApply }" var="apply">
 
 							<div class="current-tab">
 								<div class="job-tab ">
 									<div class="name-job ">
-										<span class="font-medium ">${job.position }</span> | <span>Công
-											${job.companyName }</span> <span> </span>
+										<span class="font-medium ">${apply.job.position }</span> | <span>Công
+											${apply.job.companyName }</span> <span> </span>
 									</div>
 									<div>
 										<div class="chia3 ">
@@ -61,21 +60,21 @@
 
 												<div>
 													<i class="fa fa-map-marker" aria-hidden="true"></i> <span
-														class=" ">${job.location }</span>
+														class=" ">${apply.job.location }</span>
 												</div>
 											</div>
 											<div>
 												<div>
 													<i class="fa fa-calendar-times-o" aria-hidden="true"></i> <span
 														class=" "><fmt:formatDate type="both"
-															pattern="dd-MM-yyyy" value="${job.deadlineApply }" /></span>
+															pattern="dd-MM-yyyy" value="${apply.job.deadlineApply }" /></span>
 												</div>
 
 											</div>
 											<div>
 												<div>
 													<i class="fa fa-money" aria-hidden="true"></i> <span
-														class=" ">${job.salary }</span>
+														class=" ">${apply.job.salary }</span>
 												</div>
 											</div>
 
@@ -87,7 +86,7 @@
 										<div>
 											<c:choose>
 
-												<c:when test="${job.deadlineApply gt now }">
+												<c:when test="${apply.job.deadlineApply gt now }">
 													<c:set var="job_status" value="Open" />
 													<div class="job-status-open ">${job_status }</div>
 												</c:when>
@@ -105,77 +104,31 @@
 											<div class="infor-img">
 												<div>
 													<a href=" "><img class="comment-avatar "
-														src="/resources/uploads/${job.member.avatar } "></a>
+														src="/resources/uploads/${apply.member.avatar } "></a>
 												</div>
 
 
 											</div>
 											<div class="infor-detail">
 												<div>
-													<span class="font-medium">Đăng bởi bạn</span>
+													<span class="font-medium">Đăng bởi ${apply.member.firstName } ${apply.member.firstName }</span>
 												</div>
 												<div>
 													<span class=" ">Đăng lúc
 														<td><i><fmt:formatDate type="both"
-																	pattern="dd-MM-yyyy  HH:mm a" value="${job.postedOn }" /></i>
+																	pattern="dd-MM-yyyy  HH:mm a" value="${apply.job.postedOn }" /></i>
 													</span>
 												</div>
 											</div>
-											<div style="margin-left: 20px;">
-												<br> <span style="margin-left: 60px;"><i
-													class="fa fa-eye" aria-hidden="true"></i> ${job.views }</span>
-											</div>
+										
 											<br>
-											<div>
-
-												<a href="/job/apply/${job.id }"><i class="fa fa-hand-o-right"
-													aria-hidden="true"></i> Xem danh sách apply cho job này!</a>
-											</div>
+											
 										</div>
-										<ul>
-											<a class="btn btn-success btn-sm rounded-0"
-												type="button" data-toggle="tooltip" data-placement="top"
-												title="Edit" href="/job/edit/${job.id }">
-												<i class="fa fa-edit"></i>
-											</a>
-											
-											   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											        <div class="modal-dialog">
-											            <div class="modal-content">
-											            
-											                <div class="modal-header">
-											                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											                    <h4 class="modal-title" id="myModalLabel">Xác nhận xóa</h4>
-											                </div>
-											            
-											                <div class="modal-body">
-											                    <p>Bạn có chắc chắn muốn xóa bài tuyển dụng này?</p>
-											                    <p class="debug-url"></p>
-											                </div>
-											                
-											                <div class="modal-footer">
-											                    <button style="margin-top: 10px;" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-											                    <a href="/job/user-post/del/${job.id }" class="btn btn-danger btn-ok">Delete</a>
-											                </div>
-											            </div>
-											        </div>
-											    </div>
-											
-											   <button style="margin-top: 10px;" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm rounded-0" type="button"
-												data-toggle="tooltip" data-placement="top" title="Delete">
-												<i class="fa fa-trash"></i>
-												</button>
-											  
-											
-											
-											    <script>
-											        $('#confirm-delete').on('show.bs.modal', function(e) {
-											            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-											          
-											        });
-											    </script>
+										<div>
 
-										</ul>
+												<p style="float: right;"><i >Apply CV vào <fmt:formatDate type="both"
+																	pattern="dd-MM-yyyy  HH:mm a" value="${apply.applyOn }" /></i></p>
+											</div>
 										
 									</div>
 								</div>

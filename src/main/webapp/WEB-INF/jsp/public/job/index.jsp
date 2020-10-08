@@ -125,9 +125,23 @@
 						</div>
 					</form>
 				</div>
+				<div>
+						<form>
+					  <div class="input-group" style="width: 50%; float: right; margin-bottom: 20px;">
+					    <input type="text" class="form-control" placeholder="Tìm kiếm tin tuyển dụng...">
+					    <div class="input-group-btn">
+					      <button class="btn btn-default" type="submit">
+					        <i class="glyphicon glyphicon-search"></i>
+					      </button>
+					    </div>
+					  </div>
+					</form>
+				
+				</div>
 				<div></div>
 				<br>
-	
+				<br>
+				
 				<div class="job-list">
 					<c:if test="${not empty jobList }">
 						<c:forEach items="${jobList }" var="job">

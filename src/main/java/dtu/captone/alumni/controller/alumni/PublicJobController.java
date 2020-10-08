@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -75,7 +75,7 @@ public class PublicJobController extends UserInfoHandler {
 	}
 
 	@PostMapping("add")
-	public String add(@ModelAttribute("job") Job job, @RequestParam("major_id") int major_id, HttpSession session) {
+	public String add(@ModelAttribute("job") Job job, @RequestParam("major_id") int major_id, HttpSession session,RedirectAttributes rd) {
 		if (session.getAttribute("userInfo") != null) {
 
 			System.out.println(major_id);
@@ -85,11 +85,12 @@ public class PublicJobController extends UserInfoHandler {
 			job.setMember(member);
 			job.setEnable(1);
 			job.setPostedOn(Timestamp.valueOf(LocalDateTime.now()));
-
+			
 			Job jobadd = jobService.save(job);
 		}
-		System.out.println(job);
-		return "redirect:/job/index";
+		rd.addFlashAttribute(CommonConstants.MSG,
+				messageSource.getMessage("add-job-success", null, Locale.getDefault()));
+		return "redirect:/job/user-post";
 
 	}
 	
@@ -187,17 +188,53 @@ public class PublicJobController extends UserInfoHandler {
 		return "redirect:/job/user-post";
 	}
 	
-	@GetMapping("/apply/{id}")
-	public String apply(Model model,@PathVariable int id,HttpSession session) {
+	@GetMapping({"/apply/{id}","/apply/{id}/{page}"})
+	public String apply(Model model,@PathVariable int id,@PathVariable(required = false,name = "page") Integer page,HttpSession session) {
 		if (isUserLogin(session) == null) {
 			return "redirect:/login";
 		}
-		List<JobApply> applyList = jobApplyService.findByJob(id);
-		System.out.println(applyList);
+		if(page==null) {
+			page=1;
+		}
+		int offset = (page - 1)*CommonConstants.LIMIT_PAGE_JOB_APPLY;
+		List<JobApply> applyList = jobApplyService.findByJob(id, offset, CommonConstants.LIMIT_PAGE_JOB_APPLY);
+		String jobName = jobService.findById(id).getPosition() + " - "+jobService.findById(id).getCompanyName();
+		
+		int totalRow = jobApplyService.sumJobApply(id);
+		int totalPage = (int)Math.ceil((float)totalRow / CommonConstants.LIMIT_PAGE_JOB_APPLY);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("sumApply", totalRow);
+		model.addAttribute("page", page);
+		model.addAttribute("jobName", jobName);
+		model.addAttribute("idJob", id);
 		model.addAttribute("applyList", applyList);
 		return "public.job.apply";
 	}
 	
+	@PostMapping("/apply/checked")
+	public @ResponseBody String check_apply(@RequestParam("idJob") int id) {
+		System.out.println("id job:"+id);
+		int updateCheckStatus = jobApplyService.updateCheckStatus(id);
+		if(updateCheckStatus>0) {
+			return "Cập nhật thành công!";
+		} else {
+			return null;
+		}
+		
+	}
+	
+	@GetMapping("/apply-me")
+	public String applyOfMe(Model model,HttpSession session) {
+		if (isUserLogin(session) == null) {
+			return "redirect:/login";
+		}
+		Member member = isUserLogin(session);
+		List<JobApply> jobApply = jobApplyService.findJobApply(member.getId());
+		model.addAttribute("jobApply", jobApply);
+		return "public.job.ungtuyen";
+		
+	}
+
 
 	
 }

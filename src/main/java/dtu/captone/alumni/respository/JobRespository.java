@@ -22,7 +22,7 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	
 	Job findById(int id);
 	
-	@Query(value = "SELECT * FROM job WHERE authorId = ?",nativeQuery = true)
+	@Query(value = "SELECT * FROM job WHERE authorId = ? ORDER BY id DESC",nativeQuery = true)
 	List<Job> findByAuthorId(Integer authorId);
 	
 	@Query(value = "UPDATE job SET enable = ? WHERE id = ? AND authorId=?",nativeQuery = true)

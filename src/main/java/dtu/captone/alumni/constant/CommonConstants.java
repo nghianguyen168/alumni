@@ -23,7 +23,8 @@ public class CommonConstants {
 	public static final int DEFAULT_PAGING_SIZE = 10;
 	
 	public static final int LIMIT_PAGE_JOB = 10;
-
+	
+	public static final int LIMIT_PAGE_JOB_APPLY = 10;
 	public static final int DEFAULT_PAGING_PAGE = 0;
 
 	public static final List<String> FIBRES = asList("4", "12", "24", "28", "72", "96", "120", "144", "192", "288",

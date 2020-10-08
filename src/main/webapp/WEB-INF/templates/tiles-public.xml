@@ -59,6 +59,12 @@
 			value="/WEB-INF/jsp/public/job/apply_list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="public.job.ungtuyen" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/ungtuyen.jsp"></put-attribute>
+	</definition>
+	
+	
 	
 	
 	

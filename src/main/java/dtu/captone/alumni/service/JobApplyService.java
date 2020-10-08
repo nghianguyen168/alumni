@@ -23,12 +23,17 @@ public interface JobApplyService {
 	
 	Page<JobApply> findAll(Pageable pageable);
 	
-	List<JobApply> findByJob(Integer id);
+	List<JobApply> findByJob(Integer id,int offset,int limit);
 	
 	List<JobApply> findAll(Sort sort);
 	
+	List<JobApply> findJobApply(int id);
+	
 	void deleteByJob_id(int id);
 	
+	int updateCheckStatus(int id);
+	
+	int sumJobApply(int id);
 	
 	/*
 	 * List<Job> getJobListByMajor(int majorId);

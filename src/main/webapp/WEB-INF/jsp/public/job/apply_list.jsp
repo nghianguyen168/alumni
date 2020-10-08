@@ -40,9 +40,52 @@
 				
 				<div></div>
 				<br>
-	
+					
 				<div class="job-list" style="background-color: white;  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"">
-					<table class="table table-striped">
+					<div>
+						<div style="float: left;">
+							<br>
+							<h5 style="font-weight: bold; margin-left: 10px; ">Có ${sumApply} ứng viên apply vào job "<span style="color: #33739E"><i>${jobName }</i></span> "!</h5>
+							<br>
+						</div>
+						<div style="float: right;">
+							<br>
+							<button id="check-apply" style="margin-right: 20px;" type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Đánh dấu đã check</button>
+							<br>
+							<script type="text/javascript">
+								
+								$(document).on('click','#check-apply,#check-apply',function(e){
+										
+												
+											
+												var id = ${idJob}
+												
+									
+												$.ajax({
+													url: '${pageContext.request.contextPath}/job/apply/checked',
+												type : 'POST',
+												cache : false,
+												data : {
+													//(key , value)
+													
+													idJob : id
+												},
+												success : function(response) {
+													$('#check-apply').html("Đã check!");
+													$('#checkApply-table').load(" #checkApply-table");
+												},
+												error : function(response) {
+													alert('Có lỗi xảy ra');
+												}
+											});
+											return false;
+										});
+										
+								</script>	
+						</div>
+						
+					</div>
+					<table id="checkApply-table" class="table table-striped">
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
@@ -51,18 +94,32 @@
 						      <th scope="col">Email cá nhân</th>
 						      <th scope="col">Apply time</th>
 						      <th scope="col">CV</th>
+						      <th scope="col">Status</th>
 						    </tr>
 						  </thead>
-						  <tbody>
+						  <tbody >
 						  <c:if test="${not empty applyList }">
-						  	<c:forEach items="${applyList }" var="apply">
+						  	
+						  	<c:forEach items="${applyList }" var="apply" varStatus="stt" begin="0" end="${applyList.size() }">
 						  		<tr>
-							      <th scope="row">1</th>
+							      <th scope="row">${stt.index+1 }</th>
 							      <td>${apply.member.firstName } ${apply.member.lastName }</td>
 							      <td> <a style="display: inline; text-decoration: none" href="mailto: ${job.member.dtuMail}">${apply.member.dtuMail}</a></td>
 							      <td><a style="display: inline; text-decoration: none" href="mailto: ${job.member.email}">${apply.member.email}</a></td>
 							      <td>${apply.applyOn }</td>
 							      <td ><a href="/resources/uploads/${apply.cv}">${apply.cv}</a>
+							       </td>
+							       <td >
+							       <c:choose>
+							       		<c:when test="${apply.checkStatus ==0}">
+							       				<span class="label label-warning label-mini">Mới</span>
+							       		</c:when>
+							       		<c:otherwise>
+							       			<span class="label label-success label-mini">Đã check</span>
+							       		</c:otherwise>
+							       </c:choose>
+							       
+							       	
 							       </td>
 							    </tr>
 						  	</c:forEach>
@@ -71,39 +128,40 @@
 						   
 						  </tbody>
 						</table>
-					
-<p class="totop"> 
-    <a href="#top">Back to top</a> 
-</p>
-<div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:3"><img src='/resources/templates/loading8.gif' width="100" height="100" /></div>
- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-  <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
-    <script src="/resources/templates/public/js/loading.js"></script>
-  <!-- <script src="jquery.simpleLoadMore.js"></script> -->
-  <script>
-    $('.job-list').simpleLoadMore({
-      item: '.current-tab',
-      count: 5,
-      counterInBtn: true,
-      btnText: 'View More {showing}/{total}',
-    });
-  </script>
-  <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 				</div>
+					<ul style="float: right; margin-top: -10px;" class="pagination">
 					
+						  	<c:choose>
+						  		<c:when test="${page eq 1 }">
+						  			  <li class="page-item"><a  class="page-link disable"   href="javascript:void(0);">Trang trước</a></li>
+						  		</c:when>
+						  		<c:otherwise>
+						  			 <li class="page-item"><a  class="page-link"  href="/job/apply/${idJob }/${page-1}">Trang trước</a></li>
+						  		</c:otherwise>
+						  	</c:choose>
+						
+						 
+						   <c:forEach var="pageT" begin="1" end="${totalPage }">
+						  	
+						  	<c:choose>
+						  		<c:when test="${page == pageT }">
+						  			<li class="page-item active"><a class="page-link" href="/job/apply/${idJob }/${pageT}">${pageT }</a></li>
+						  		</c:when>
+						  		<c:otherwise>
+						  			 <li class="page-item"><a class="page-link" href="/job/apply/${idJob }/${pageT}">${pageT }</a></li>
+						  		</c:otherwise>
+						  	</c:choose>
+						  </c:forEach>
+						    	<c:choose>
+						  		<c:when test="${page eq totalPage }">
+						  			  <li class="page-item"><a  class="page-link disable"   href="javascript:void(0);">Trang sau</a></li>
+						  		</c:when>
+						  		<c:otherwise>
+						  			 <li class="page-item"><a  class="page-link"  href="/job/apply/${idJob }/${page+1}">Trang sau</a></li>
+						  		</c:otherwise>
+						  	</c:choose>
+						
+						</ul>
 			</div>
 			
 		</div>

@@ -45,9 +45,27 @@ public class JobApplyServiceImpl implements JobApplyService{
 	}
 
 	@Override
-	public List<JobApply> findByJob(Integer id) {
+	public List<JobApply> findByJob(Integer id,int offset, int limit) {
 		// TODO Auto-generated method stub
-		return jobApplyRespository.findByJob(id);
+		return jobApplyRespository.findByJob(id,offset,limit);
+	}
+
+	@Override
+	public int updateCheckStatus(int id) {
+		// TODO Auto-generated method stub
+		return jobApplyRespository.updateCheckStatus(id);
+	}
+
+	@Override
+	public int sumJobApply(int id) {
+		// TODO Auto-generated method stub
+		return jobApplyRespository.sumJobApply(id);
+	}
+
+	@Override
+	public List<JobApply> findJobApply(int id) {
+		// TODO Auto-generated method stub
+		return jobApplyRespository.findJobApply(id);
 	}
 
 
