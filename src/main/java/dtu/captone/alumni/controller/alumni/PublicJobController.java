@@ -51,8 +51,22 @@ public class PublicJobController extends UserInfoHandler {
 	MessageSource messageSource;
 	
 	@ModelAttribute
-	public void majorList(Model model) {
+	public void majorList(Model model,HttpSession session) {
 		List<Major> majorList = majorService.findAll();
+		Member member = (Member) session.getAttribute("userInfo");
+		int sumJob = jobService.sumJobEnable();
+		int sumUserPost=0;
+		int sumApply =0;
+		if(jobService.getJobListByMajor(member.getId()).size() >0)  {
+			sumUserPost = jobService.getJobListByMajor(member.getId()).size();
+		}
+		if(jobService.getJobListByMajor(member.getId()).size()>0) {
+			sumApply = jobApplyService.sumJobApply(member.getId());
+		}
+		
+		model.addAttribute("sumJob", sumJob);
+		model.addAttribute("sumUserPost", sumUserPost);
+		model.addAttribute("sumApply", sumApply);
 		model.addAttribute("majorList", majorList);
 	}
 
@@ -120,7 +134,7 @@ public class PublicJobController extends UserInfoHandler {
 	}
 	
 	@PostMapping("/apply/{id}")
-	public String apply(@PathVariable int id,@RequestParam("cvfile") MultipartFile cvUpload,HttpSession session,HttpServletRequest request) throws IllegalStateException, IOException {
+	public String apply(@PathVariable int id,@RequestParam("cvfile") MultipartFile cvUpload,HttpSession session,HttpServletRequest request,RedirectAttributes rd) throws IllegalStateException, IOException {
 		Member member = isUserLogin(session);
 		Job job = jobService.findById(id);
 		String cv = FileUtil.upload(cvUpload, request);
@@ -128,7 +142,16 @@ public class PublicJobController extends UserInfoHandler {
 		
 		System.out.println(jobApply);
 		JobApply jobApplyAdd = jobApplyService.save(jobApply);
-		return "redirect:/job/index";
+		if(jobApply!=null) {
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("apply_success", null, Locale.getDefault()));
+			return "redirect:/job/apply-me";
+		} else {
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("apply_error", null, Locale.getDefault()));
+			return "redirect:/job/detail/"+id;
+		}
+		
 	}
 	
 	@GetMapping("/user-post")
@@ -138,6 +161,7 @@ public class PublicJobController extends UserInfoHandler {
 		}
 		Member member = isUserLogin(session);
 		List<Job> jobListByAuthor = jobService.findByAuthorId(member.getId());
+		System.out.println(jobListByAuthor.size());
 		model.addAttribute("jobList", jobListByAuthor);
 		return "public.job.userpost";
 	}
@@ -200,9 +224,10 @@ public class PublicJobController extends UserInfoHandler {
 		List<JobApply> applyList = jobApplyService.findByJob(id, offset, CommonConstants.LIMIT_PAGE_JOB_APPLY);
 		String jobName = jobService.findById(id).getPosition() + " - "+jobService.findById(id).getCompanyName();
 		
-		int totalRow = jobApplyService.sumJobApply(id);
+		int totalRow = jobApplyService.sumJobApply(isUserLogin(session).getId());
 		int totalPage = (int)Math.ceil((float)totalRow / CommonConstants.LIMIT_PAGE_JOB_APPLY);
 		model.addAttribute("totalPage", totalPage);
+		System.out.println(totalPage);
 		model.addAttribute("sumApply", totalRow);
 		model.addAttribute("page", page);
 		model.addAttribute("jobName", jobName);
@@ -232,7 +257,15 @@ public class PublicJobController extends UserInfoHandler {
 		List<JobApply> jobApply = jobApplyService.findJobApply(member.getId());
 		model.addAttribute("jobApply", jobApply);
 		return "public.job.ungtuyen";
-		
+	}
+	
+	@PostMapping("/search")
+	public String search(@RequestParam("search") String search,Model model) {
+		List<Job> jobListSearch = jobService.getJobListSearch("%"+search+"%", "%"+search+"%");
+		model.addAttribute("jobList", jobListSearch);
+		model.addAttribute("countSearch", jobListSearch.size());
+		model.addAttribute("searchText", search);
+		return "public.job.index";
 	}
 
 

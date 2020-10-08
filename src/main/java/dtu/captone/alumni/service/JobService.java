@@ -28,6 +28,8 @@ public interface JobService {
 	
 	List<Job> getJobListEnable();
 	
+	List<Job> getJobListSearch(String position,String companyName);
+	
 	List<Job> getJobListByMajor(int majorId);
 	
 	

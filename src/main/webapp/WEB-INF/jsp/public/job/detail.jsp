@@ -11,7 +11,7 @@
 				<ul>
 					<a href="/job/index">
 						<li class="category-list"><span class="category-span">Tất
-								cả công việc</span> <span class="category-count">${total }</span></li>
+								cả công việc</span> <span class="category-count">${sumJob }</span></li>
 					</a>
 
 					<div style="margin: 0; padding: 15px 0 18px;">
@@ -27,12 +27,11 @@
 
 
 					</div>
-					<li class="category-list"><span class="category-span">Tôi
-							ứng tuyển</span> <span class="category-count">0</span></li>
-				<li  class="category-list"><span class="category-span"><a style="text-decoration: none;"
-											onclick="return loading();" href="/job/user-post">Tôi đăng tuyển</a></span>
-								</li>
-
+					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
+											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${sumApply }</span></li>
+					<li class="category-list"><span class="category-span"><a
+							style="text-decoration: none;" onclick="return loading();"
+							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${sumUserPost }</span></li>
 				</ul>
 			</div>
 

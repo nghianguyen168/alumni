@@ -9,29 +9,27 @@
 			<div class="danh-muc">
 				<div class="sub-title">DANH MỤC VIỆC LÀM</div>
 				<ul>
-				<a href="/job/index">
-					<li class="category-list"><span class="category-span">Tất
-							cả công việc</span> <span class="category-count">${total }</span></li>
-				</a>
-					
+					<a href="/job/index">
+						<li class="category-list"><span class="category-span">Tất
+								cả công việc</span> <span class="category-count">${sumJob }</span></li>
+					</a>
+
 					<div style="margin: 0; padding: 15px 0 18px;">
 						<c:if test="${not empty majorList }">
 							<c:forEach items="${majorList }" var="major">
-
-								<li><label> <span class="span-career"><a onclick="return loading();" href="/job/major/${major.id }">${major.majorName}</a></span>
+								<li><label> <span class="span-career"><a
+											onclick="return loading();" href="/job/major/${major.id }">${major.majorName}</a></span>
 								</label></li>
-								
 							</c:forEach>
 						</c:if>
 
 
 					</div>
-					<li class="category-list"><span class="category-span">Tôi
-							đăng tuyển</span> <span class="category-count">0</span></li>
-					<li  class="category-list"><span class="category-span"><a style="text-decoration: none;"
-											onclick="return loading();" href="/job/user-post">Tôi đăng tuyển</a></span>
-								</li>
-
+					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
+											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${sumApply }</span></li>
+					<li class="category-list"><span class="category-span"><a
+							style="text-decoration: none;" onclick="return loading();"
+							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${sumUserPost }</span></li>
 				</ul>
 			</div>
 
@@ -126,9 +124,13 @@
 					</form>
 				</div>
 				<div>
-						<form>
+				<div style="float: left;">
+					<a style="border: solid 2px red; width: 200px; height: 40px; text-align: center; margin: auto; padding: 10px;" href="">Đăng ký nhận email</a>
+				</div>
+				<div style="float: right: ;">
+					<form action="/job/search" method="post">
 					  <div class="input-group" style="width: 50%; float: right; margin-bottom: 20px;">
-					    <input type="text" class="form-control" placeholder="Tìm kiếm tin tuyển dụng...">
+					    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm tin tuyển dụng...">
 					    <div class="input-group-btn">
 					      <button class="btn btn-default" type="submit">
 					        <i class="glyphicon glyphicon-search"></i>
@@ -136,11 +138,26 @@
 					    </div>
 					  </div>
 					</form>
-				
+				</div>
 				</div>
 				<div></div>
 				<br>
 				<br>
+				<c:if test="${searchText ne null }">
+					
+					<c:choose>
+						<c:when test="${countSearch gt 0 }">
+						<div class="alert alert-success" role="alert">
+							Có <strong>${countSearch } </strong> Công việc <strong> ${searchText } </strong> bạn cần tìm!</div>
+						</c:when>
+						<c:otherwise>
+							<div class="alert alert-danger" role="alert">
+							  Không tìm thấy kết quả cho <strong>${searchText }</strong>
+							</div>
+						</c:otherwise>
+					</c:choose>
+						
+				</c:if>
 				
 				<div class="job-list">
 					<c:if test="${not empty jobList }">
@@ -149,7 +166,7 @@
 							<div class="current-tab">
 								<div class="job-tab ">
 									<div class="name-job ">
-										<span class="font-medium ">${job.position }</span> | <span>Công
+										<span class="font-medium ">${job.position }</span> | <span>
 											${job.companyName }</span> <span>
 										</span>
 									</div>

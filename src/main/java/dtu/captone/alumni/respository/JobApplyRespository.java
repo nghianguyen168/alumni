@@ -27,7 +27,7 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	@Query(value = "SELECT * FROM job_apply WHERE job_id = ? LIMIT ?,?",nativeQuery = true)
 	List<JobApply> findByJob(Integer id,int offset,int limit);
 	
-	@Query(value = "SELECT * FROM job_apply WHERE member_id=?",nativeQuery = true)
+	@Query(value = "SELECT * FROM job_apply WHERE member_id=? ORDER BY id DESC",nativeQuery = true)
 	List<JobApply> findJobApply(int id);
 	
 	
@@ -41,7 +41,7 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	@Transactional
 	public int updateCheckStatus(int job_id);
 	
-	@Query(value = "SELECT count(id) FROM job_apply WHERE job_id=?",nativeQuery = true)
+	@Query(value = "SELECT count(id) FROM job_apply WHERE member_id=? ",nativeQuery = true)
     public int sumJobApply(int id);
 	
 	

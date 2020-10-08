@@ -95,4 +95,10 @@ public class JobServiceImpl implements JobService {
 		// TODO Auto-generated method stub
 		return jobRespository.updateViews(id);
 	}
+
+	@Override
+	public List<Job> getJobListSearch(String position, String companyName) {
+		// TODO Auto-generated method stub
+		return jobRespository.getJobListSearch(position, companyName);
+	}
 }

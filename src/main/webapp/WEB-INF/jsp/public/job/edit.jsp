@@ -9,29 +9,29 @@
 			<div class="danh-muc">
 				<div class="sub-title">DANH MỤC VIỆC LÀM</div>
 				<ul>
-				<a href="/job/index">
-					<li class="category-list"><span class="category-span">Tất
-							cả công việc</span> <span class="category-count">${total }</span></li>
-				</a>
-					
+					<a href="/job/index">
+						<li class="category-list"><span class="category-span">Tất
+								cả công việc</span> <span class="category-count">${sumJob }</span></li>
+					</a>
+
 					<div style="margin: 0; padding: 15px 0 18px;">
 						<c:if test="${not empty majorList }">
 							<c:forEach items="${majorList }" var="major">
 
-								<li><label> <span class="span-career"><a onclick="return loading();" href="/job/major/${major.id }">${major.majorName}</a></span>
+								<li><label> <span class="span-career"><a
+											onclick="return loading();" href="/job/major/${major.id }">${major.majorName}</a></span>
 								</label></li>
-								
+
 							</c:forEach>
 						</c:if>
 
 
 					</div>
-					<li class="category-list"><span class="category-span">Tôi
-							đăng tuyển</span> <span class="category-count">0</span></li>
-					<li  class="category-list"><span class="category-span"><a style="text-decoration: none;"
-											onclick="return loading();" href="/job/user-post">Tôi đăng tuyển</a></span>
-								</li>
-
+					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
+											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${sumApply }</span></li>
+					<li class="category-list"><span class="category-span"><a
+							style="text-decoration: none;" onclick="return loading();"
+							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${sumUserPost }</span></li>
 				</ul>
 			</div>
 

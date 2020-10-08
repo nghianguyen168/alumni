@@ -44,6 +44,10 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	@Query(value = "SELECT * FROM job WHERE enable = 1 AND major_id = ? ORDER BY id DESC ",nativeQuery = true)
 	List<Job> getJobListByMajor(int majorId);
 	
+	@Query(value = "SELECT * FROM job WHERE enable = 1 AND position Like ? OR company_name Like ? ORDER BY id DESC",nativeQuery = true)
+	List<Job> getJobListSearch(String position,String company_name);
+	
+	
 	
 	/*
 	 * @Query(value = "SELECT * FROM job WHERE author_id=?",nativeQuery = true)
