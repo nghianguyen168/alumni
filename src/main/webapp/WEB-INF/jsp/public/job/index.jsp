@@ -124,9 +124,71 @@
 					</form>
 				</div>
 				<div>
-				<div style="float: left;">
-					<a style="border: solid 2px red; width: 200px; height: 40px; text-align: center; margin: auto; padding: 10px;" href="">Đăng ký nhận email</a>
+				<div style="float: left; margin-top: 5px;">
+					<a data-toggle="modal" data-target="#dangkythongbaojob" style="border: solid 1px red; width: 200px; height: 40px; text-align: center; margin: auto; padding: 10px; text-decoration: none;" href=""><i style="color: red;" class="fa fa-bell-o" aria-hidden="true"></i> Đăng ký nhận email</a>
+				<div class="modal fade" id="dangkythongbaojob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+				  aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header text-center">
+				        <h4 ><strong>Đăng ký nhận thông báo việc làm</strong></h4>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <form action="">
+				      <div class="modal-body mx-3">
+				     
+				
+				        <div class="md-form mb-4">
+				           <i class="fa fa-envelope" aria-hidden="true"></i>
+				          <label data-error="wrong" data-success="right" for="defaultForm-email">Nhập địa chỉ email bạn muốn nhận thông báo</label>
+				          <input type="email" required="required" class="form-control"  id="mail-followJob" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+				        
+				        </div>
+				        <br>
+				        <div id="messgae-follow">
+				        
+				        </div>
+				
+				      </div>
+				      <div id="btn_followJob" class="modal-footer d-flex justify-content-center">
+				        <a type="button" href=" javascript:void(0);"  class="btn btn-default"><Strong>Đăng ký</Strong></a>
+				      </div>
+				      </form>
+				    </div>
+				  </div>
 				</div>
+				<script type="text/javascript">
+								
+								$(document).on('click','#btn_followJob,#btn_followJob',function(e){
+												var email = $('#mail-followJob').val();
+												if(email ===''){
+													alert('Bạn chưa nhập địa chỉ email!');
+													return;
+												} 
+												$.ajax({
+													url: '${pageContext.request.contextPath}/job/follow',
+												type : 'POST',
+												cache : false,
+												data : {
+													//(key , value)
+													email : email
+												},
+												success : function(response) {
+													$('#messgae-follow').html("<div class=\"alert alert-success\" role=\"alert\">\r\n" + 
+															"Đăng ký nhận thông báo bài đăng tuyển dụng thành công!\r\n" + 
+															"</div>");
+												},
+												error : function(response) {
+													alert('Có lỗi xảy ra');
+												}
+											});
+											return false;
+										});
+										
+								</script>	
+			</div>
 				<div style="float: right: ;">
 					<form action="/job/search" method="post">
 					  <div class="input-group" style="width: 50%; float: right; margin-bottom: 20px;">
@@ -255,10 +317,11 @@
 						</c:forEach>
 					</c:if>
 					
+					
 <p class="totop"> 
     <a href="#top">Back to top</a> 
 </p>
-<div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:3"><img src='/resources/templates/loading8.gif' width="100" height="100" /></div>
+
  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
   <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
     <script src="/resources/templates/public/js/loading.js"></script>

@@ -6,6 +6,7 @@
 		<div class="logo-dtu">
 				<a href="/home"><img src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
 		</div>
+		
 		<c:choose>
 				<c:when test="${userInfo ne null }">
 				<div class="profile-infor">

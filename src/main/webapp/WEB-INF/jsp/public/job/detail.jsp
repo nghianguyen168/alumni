@@ -171,7 +171,7 @@
 								<div style="padding-left: 35px; padding-bottom: 5px;">
 									<form action="/job/apply/${job.id }" method="post" enctype="multipart/form-data">
 										<label for="myfile">Chọn files:</label> <input type="file" 
-											id="cvfile" name="cvfile" ><br>
+											id="cvfile" name="cvfile" required><br>
 										<div class="apply-1">
 											<button class="apply-2" id="uploadButton" type="next" >APPLY</button>
 										</div>
