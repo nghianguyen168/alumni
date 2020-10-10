@@ -52,22 +52,25 @@ public class PublicJobController extends UserInfoHandler {
 	
 	@ModelAttribute
 	public void majorList(Model model,HttpSession session) {
-		List<Major> majorList = majorService.findAll();
-		Member member = (Member) session.getAttribute("userInfo");
-		int sumJob = jobService.sumJobEnable();
-		int sumUserPost=0;
-		int sumApply =0;
-		if(jobService.getJobListByMajor(member.getId()).size() >0)  {
-			sumUserPost = jobService.getJobListByMajor(member.getId()).size();
-		}
-		if(jobService.getJobListByMajor(member.getId()).size()>0) {
-			sumApply = jobApplyService.sumJobApply(member.getId());
+		if (isUserLogin(session) != null) {
+			List<Major> majorList = majorService.findAll();
+			Member member = (Member) session.getAttribute("userInfo");
+			int sumJob = jobService.sumJobEnable();
+			int sumUserPost=0;
+			int sumApply =0;
+			if(jobService.getJobListByMajor(member.getId()).size() >0)  {
+				sumUserPost = jobService.getJobListByMajor(member.getId()).size();
+			}
+			if(jobService.getJobListByMajor(member.getId()).size()>0) {
+				sumApply = jobApplyService.sumJobApply(member.getId());
+			}
+			
+			model.addAttribute("sumJob", sumJob);
+			model.addAttribute("sumUserPost", sumUserPost);
+			model.addAttribute("sumApply", sumApply);
+			model.addAttribute("majorList", majorList);
 		}
 		
-		model.addAttribute("sumJob", sumJob);
-		model.addAttribute("sumUserPost", sumUserPost);
-		model.addAttribute("sumApply", sumApply);
-		model.addAttribute("majorList", majorList);
 	}
 
 	@GetMapping({"/index","/index/{page}"})

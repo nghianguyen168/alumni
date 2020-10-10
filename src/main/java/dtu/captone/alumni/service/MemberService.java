@@ -24,4 +24,6 @@ public interface MemberService {
 	Page<Member> findByHomwtown(String hometown,Pageable pageable);
 	
 	Page<Member> getListByTypeEnable(int type,Pageable pageable);
+	
+	List<Member> findAllEnable();
 }

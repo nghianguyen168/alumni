@@ -42,7 +42,7 @@ header .login-align {
     padding: 0px 0px;
 }
 
-header .container div ul li {
+header .container>div>ul>li {
     line-height: 90px;
     display: inline;
 }

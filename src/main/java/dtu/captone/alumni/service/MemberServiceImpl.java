@@ -91,4 +91,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.findByMemberType(member_type);
 	}
 
+	@Override
+	public List<Member> findAllEnable() {
+		// TODO Auto-generated method stub
+		return memberRespository.findAllEnable();
+	}
+
 }

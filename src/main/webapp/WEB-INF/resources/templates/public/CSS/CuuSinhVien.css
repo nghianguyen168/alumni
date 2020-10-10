@@ -41,7 +41,7 @@ header .login-align {
     padding: 0px 0px;
 }
 
-header .container div ul li {
+header .container>div>ul>li {
     line-height: 90px;
     display: inline;
 }
@@ -205,7 +205,7 @@ header .container>div>ul>li>a:hover {
 }
 
 .chia4>div {
-    border: 1px solid black;
+    border: 1px solid #d4cece;
 }
 
 .avatar {
@@ -253,12 +253,12 @@ header .container>div>ul>li>a:hover {
     text-align: center;
     font-size: 15px;
     vertical-align: middle;
-    color: blue;
+    color: #31708f;
 }
 
 .add-network:hover {
     background-color: #bcbcbc;
-    color: #16237e;
+    color: #31708f;
     cursor: pointer;
 }
 

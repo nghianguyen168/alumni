@@ -31,7 +31,7 @@ public class MemberType implements Serializable {
 
 	@NotNull
 	@Column(name = "type_name")
-	private String type_name;
+	private String typeName;
 	
 	
 }

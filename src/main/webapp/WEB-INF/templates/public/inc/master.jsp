@@ -19,6 +19,8 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/CSS/jobview.css">
 <link rel="stylesheet" type="text/css"
+	href="/resources/templates/public/CSS/CuuSinhVien.css">
+<link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/loading-bar.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/loading-bar.min.css">

@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 a:link {
@@ -27,12 +27,13 @@ header .container {
     justify-content: space-between;
     flex-flow: row wrap;
 }
-.infor-font{
-	 vertical-align: middle ;
+
+.infor-font {
+    vertical-align: middle;
 }
 
 header .container>div {
-    width: calc((100% - 0px) / 2);
+    /* width: calc((100% - 0px) / 2); */
 }
 
 header .login-align {
@@ -45,7 +46,7 @@ header .login-align {
     padding: 0px 0px;
 }
 
-header .container div ul li {
+header .container>div>ul>li {
     line-height: 90px;
     display: inline;
 }
@@ -105,7 +106,6 @@ header .container>div>ul>li>a:hover {
     color: white;
     text-decoration: none;
 }
-
 
 #background {
     height: 660px;
@@ -535,92 +535,101 @@ footer ul li:nth-child(4) a {
         text-align: center;
     }
 }
+
 #slider {
-  position: relative;
-  overflow: hidden;
-  margin: 20px auto 0 auto;
-  border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
 }
 
 #slider ul {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  height: 200px;
-  list-style: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    list-style: none;
 }
 
 #slider ul li {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 500px;
-  height: 300px;
-  background: #ccc;
-  text-align: center;
-  line-height: 300px;
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 300px;
+    background: #ccc;
+    text-align: center;
+    line-height: 300px;
 }
 
-a.control_prev, a.control_next {
-  position: absolute;
-  top: 40%;
-  z-index: 999;
-  display: block;
-  padding: 4% 3%;
-  width: auto;
-  height: auto;
-  background: #2a2a2a;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  opacity: 0.8;
-  cursor: pointer;
+a.control_prev,
+a.control_next {
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    width: auto;
+    height: auto;
+    background: #2a2a2a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.8;
+    cursor: pointer;
 }
 
-a.control_prev:hover, a.control_next:hover {
-  opacity: 1;
-  -webkit-transition: all 0.2s ease;
+a.control_prev:hover,
+a.control_next:hover {
+    opacity: 1;
+    -webkit-transition: all 0.2s ease;
 }
 
 a.control_prev {
-  border-radius: 0 2px 2px 0;
+    border-radius: 0 2px 2px 0;
 }
 
 a.control_next {
-  right: 0;
-  border-radius: 2px 0 0 2px;
+    right: 0;
+    border-radius: 2px 0 0 2px;
 }
 
 .slider_option {
-  position: relative;
-  margin: 10px auto;
-  width: 160px;
-  font-size: 18px;
+    position: relative;
+    margin: 10px auto;
+    width: 160px;
+    font-size: 18px;
 }
 
-.current-tab:hover{
-	background-color: #afbdbfd4;
+.current-tab:hover {
+    background-color: #afbdbfd4;
 }
+
 .totop {
     position: fixed;
     bottom: 10px;
     right: 20px;
 }
+
 .totop a {
     display: none;
 }
-a, a:visited {
+
+a,
+a:visited {
     color: #33739E;
     text-decoration: none;
     display: block;
-    margin: 10px 0;
+    /* margin: 10px 0; */
 }
+
 a:hover {
     text-decoration: none;
 }
+
 #loadMore {
     padding: 10px;
     text-align: center;
@@ -635,14 +644,43 @@ a:hover {
     -moz-transition: all 600ms ease-in-out;
     -o-transition: all 600ms ease-in-out;
 }
+
 #loadMore:hover {
     background-color: #fff;
     color: #33739E;
 }
 
+
+/*profile*/
+
+#profile {
+    padding-top: 25px;
+    background-color: rgb(245, 245, 245);
+}
+
+#profile .chia2-profile {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+#profile .danh-muc-profile {
+    width: calc(33.33333333% - 16px);
+    margin: 8px;
+}
+
+.shadow {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.profile-information {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .profile-infor {
     padding: 8px 0px;
-  
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -664,6 +702,142 @@ a:hover {
     cursor: pointer;
 }
 
+.contact {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.expertise {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.profile {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.basic-information {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.network {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.summnary {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.educational-level {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.expertise-work {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.contact-infor {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 7%;
+}
+
+.new-icon {
+    margin-left: 0px !important;
+    margin-right: 12px;
+}
+
+.team-avatar {
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-top: 20px;
+}
+
+.danh-muc-profile>ul>div>li {
+    padding: 15px 24px;
+}
+
+.danh-muc-profile>ul>div>li:hover {
+    color: #005497;
+    cursor: pointer;
+}
+
+.danh-muc-profile>ul>div>li>label:hover {
+    color: #005497;
+    cursor: pointer;
+}
+
+.category-list:hover {
+    cursor: pointer;
+    border-left: 3px solid #F06523;
+}
+
+.sub-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 300 !important;
+}
+
+.category-list {
+    font-size: 16px !important;
+    margin-bottom: 8px;
+    border-left: 3px solid #E0E0E0;
+    background-color: rgb(224, 224, 224) !important;
+    font-weight: bold;
+}
+
+.category-span {
+    padding: 15px 24px;
+    display: inline-block;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3em;
+    white-space: nowrap;
+    text-align: -webkit-match-parent;
+    font-weight: bold;
+}
+
+.comment-avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.category-count {
+    padding: 15px 10px;
+    display: inline-block;
+    float: right;
+    color: rgb(117, 117, 117) !important;
+}
+
+#profile .dang-tin-profile {
+    width: calc(66.66666666% - 16px);
+    margin: 8px;
+}
+
+
+/*hết profile*/
+p {
+	margin: 0px;
+}
 .material-icons {
     padding: 7px;
     padding-left: 12px;
@@ -677,34 +851,37 @@ a:hover {
 .menu-item>div>ul {
     display: block;
 }
-.menu-item{
-	z-index: 3;
+
+.menu-item {
+    position: relative;
+    display: inline-block;
+    z-index: 5;
 }
+
 .dropbtn {
     border: none;
     cursor: pointer;
 }
 
-.menu-item {
-    position: relative;
-    display: inline-block;
-}
-
 .dropdown-content {
     display: none;
-    /* position: absolute; */
     background-color: #f9f9f9;
-    min-width: 70px;
+    min-width: 60px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    width: 150%;
+}
+
+.dropdown-content>ul>li {
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-content ul li a {
     color: black;
-    padding: 2px 1px;
+    padding: 8px 0px;
     text-decoration: none;
     display: block;
-    line-height: 40px;
     padding-left: 5px;
 }
 
@@ -717,6 +894,26 @@ a:hover {
 }
 
 .menu-item:hover .dropbtn {
-    background-color: #0000ff;
+    background-color: white;
     text-align: center;
+}
+
+.style-p {
+    line-height: 15px;
+    font-size: 15px;
+    overflow: hidden;
+    padding-right: 5px;
+    display: block;
+    width: 100px;
+    min-width: 75%;
+    margin: 0px;
+}
+
+@media screen and (max-width: 739px) {
+    #profile .danh-muc-profile {
+        width: calc(100% - 16px);
+    }
+    #profile .dang-tin-profile {
+        width: calc(100% - 16px);
+    }
 }
