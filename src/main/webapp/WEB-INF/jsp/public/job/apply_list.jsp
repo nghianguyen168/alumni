@@ -45,7 +45,7 @@
 					<div>
 						<div style="float: left;">
 							<br>
-							<h5 style="font-weight: bold; margin-left: 10px; ">Có ${sumApply} ứng viên apply vào job "<span style="color: #33739E"><i>${jobName }</i></span> "!</h5>
+							<h5 style="font-weight: bold; margin-left: 10px; ">Có ${applyList.size()} ứng viên apply vào job "<span style="color: #33739E"><i>${jobName }</i></span> "!</h5>
 							<br>
 						</div>
 						<div style="float: right;">

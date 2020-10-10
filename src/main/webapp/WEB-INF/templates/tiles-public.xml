@@ -65,6 +65,7 @@
 	</definition>
 	
 	
+<<<<<<< HEAD
 	<definition name="public.profile.index" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/profile/profile.jsp"></put-attribute>
@@ -76,6 +77,15 @@
 			value="/WEB-INF/jsp/public/member/index.jsp"></put-attribute>
 	</definition>
 	
+=======
+		
+	<definition name="public.profile.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/profile/index.jsp"></put-attribute>
+	</definition>
+	
+	
+>>>>>>> 362b32b5395550382094702250b2bd383cefa469
 	
 	
 	

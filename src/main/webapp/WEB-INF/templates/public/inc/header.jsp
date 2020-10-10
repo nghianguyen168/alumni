@@ -7,6 +7,7 @@
 			<a href="/home"><img
 				src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
 		</div>
+<<<<<<< HEAD
 
 		<div class="profile-infor">
 			<div class="profile-infor2">
@@ -144,6 +145,10 @@
 			</div>
 
 			<%-- <c:choose>
+=======
+		
+		<c:choose>
+>>>>>>> 362b32b5395550382094702250b2bd383cefa469
 				<c:when test="${userInfo ne null }">
 				<div class="profile-infor">
                 <div class="profile-infor2" style="margin-left: 40%;">

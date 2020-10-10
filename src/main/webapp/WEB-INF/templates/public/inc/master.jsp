@@ -71,8 +71,24 @@
 		<!-- footer đặt ở đây -->
 		<tiles:insertAttribute name="footer" />
 	</footer>
-
-
+	<div id="wait"
+		style="display: none;background: #e9e9e9;  position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.5; text-align: center;">
+		   <div id="loading-img" ></div>
+		<!-- <img src='/resources/templates/loading8.gif' width="100" height="100" style="margin:auto;" /> -->
+		<style>
+			#loading-img {
+			    background: url(/resources/templates/loading8.gif) center center no-repeat;
+			    background-size:100px 100px;
+			    height: 100%;
+			    z-index: 10;
+			}
+		</style>
+	</div>
+	<div id="wait"
+		style="background: #e9e9e9; display: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.5; text-align: center;">
+		<img src='/resources/templates/loading8.gif'
+			style="height: 100px; margin-top: 20%; left: 47%; padding: 2px; z-index: 3" />
+	</div>
 </body>
 
 

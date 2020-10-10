@@ -24,11 +24,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
+import dtu.captone.alumni.domain.FollowJob;
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.domain.JobApply;
 import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.security.UserInfoHandler;
+import dtu.captone.alumni.service.FollowJobService;
 import dtu.captone.alumni.service.JobApplyService;
 import dtu.captone.alumni.service.JobService;
 import dtu.captone.alumni.service.MajorService;
@@ -49,6 +51,9 @@ public class PublicJobController extends UserInfoHandler {
 
 	@Autowired
 	MessageSource messageSource;
+	
+	@Autowired
+	private FollowJobService followJobService;
 	
 	@ModelAttribute
 	public void majorList(Model model,HttpSession session) {
@@ -269,6 +274,19 @@ public class PublicJobController extends UserInfoHandler {
 		model.addAttribute("countSearch", jobListSearch.size());
 		model.addAttribute("searchText", search);
 		return "public.job.index";
+	}
+	
+	@PostMapping("/follow")
+	public @ResponseBody String followJob(@RequestParam("email") String email) {
+		FollowJob follow = new FollowJob(0, email);
+		System.out.println(email);
+		FollowJob followJob = followJobService.save(follow);
+		if(followJob!=null) {
+			return "ok";
+		} else {
+			return null;
+		}
+		
 	}
 
 

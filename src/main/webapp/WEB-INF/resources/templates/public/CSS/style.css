@@ -898,6 +898,7 @@ p {
     text-align: center;
 }
 
+<<<<<<< HEAD
 .style-p {
     line-height: 15px;
     font-size: 15px;
@@ -916,4 +917,15 @@ p {
     #profile .dang-tin-profile {
         width: calc(100% - 16px);
     }
+=======
+.waiting-load{
+ background: #e9e9e9;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1.0;
+>>>>>>> 362b32b5395550382094702250b2bd383cefa469
 }
