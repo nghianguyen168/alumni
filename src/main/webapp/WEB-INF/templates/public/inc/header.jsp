@@ -7,7 +7,6 @@
 			<a href="/home"><img
 				src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
 		</div>
-<<<<<<< HEAD
 
 		<div class="profile-infor">
 			<div class="profile-infor2">

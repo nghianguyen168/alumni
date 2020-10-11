@@ -898,7 +898,6 @@ p {
     text-align: center;
 }
 
-<<<<<<< HEAD
 .style-p {
     line-height: 15px;
     font-size: 15px;
@@ -927,5 +926,265 @@ p {
     bottom: 0;
     left: 0;
     opacity: 1.0;
->>>>>>> 362b32b5395550382094702250b2bd383cefa469
+
+}
+#profile {
+    padding-top: 25px;
+    background-color: rgb(245, 245, 245);
+}
+
+#profile .chia2-profile {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+#profile .danh-muc-profile {
+    width: calc(33.33333333% - 16px);
+    margin: 8px;
+}
+
+.shadow {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.profile-information {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-infor {
+    padding: 8px 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 18px;
+    display: flex;
+}
+
+.profile-infor>div {
+    display: flex;
+    position: relative;
+}
+
+.profile-infor2 {
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.profile-infor2:hover {
+    cursor: pointer;
+}
+
+.contact {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.expertise {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.profile {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.basic-information {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.network {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.summnary {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.educational-level {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.expertise-work {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.contact-infor {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 7%;
+}
+
+.new-icon {
+    margin-left: 0px !important;
+    margin-right: 12px;
+}
+
+.team-avatar {
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-top: 20px;
+}
+
+.danh-muc-profile>ul>div>li {
+    padding: 15px 24px;
+}
+
+.danh-muc-profile>ul>div>li:hover {
+    color: #005497;
+    cursor: pointer;
+}
+
+.danh-muc-profile>ul>div>li>label:hover {
+    color: #005497;
+    cursor: pointer;
+}
+
+.category-list:hover {
+    cursor: pointer;
+    border-left: 3px solid #F06523;
+}
+
+.sub-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 300 !important;
+}
+
+.category-list {
+    font-size: 16px !important;
+    margin-bottom: 8px;
+    border-left: 3px solid #E0E0E0;
+    background-color: rgb(224, 224, 224) !important;
+    font-weight: bold;
+}
+
+.category-span {
+    padding: 15px 24px;
+    display: inline-block;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3em;
+    white-space: nowrap;
+    text-align: -webkit-match-parent;
+    font-weight: bold;
+}
+
+.comment-avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.category-count {
+    padding: 15px 10px;
+    display: inline-block;
+    float: right;
+    color: rgb(117, 117, 117) !important;
+}
+
+#profile .dang-tin-profile {
+    width: calc(66.66666666% - 16px);
+    margin: 8px;
+}
+
+
+/*hết profile*/
+
+.material-icons {
+    padding: 7px;
+    padding-left: 12px;
+}
+
+.material-icons:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+.menu-item>div>ul {
+    display: block;
+}
+
+.menu-item {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 60px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 150%;
+}
+
+.dropdown-content>ul>li {
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content ul li a {
+    color: black;
+    padding: 8px 0px;
+    text-decoration: none;
+    display: block;
+    padding-left: 5px;
+}
+
+.dropdown-content ul li a:hover {
+    background-color: #f1f1f1;
+}
+
+.menu-item:hover .dropdown-content {
+    display: block;
+}
+
+.menu-item:hover .dropbtn {
+    background-color: white;
+    text-align: center;
+}
+
+.style-p {
+    line-height: 15px;
+    font-size: 15px;
+    overflow: hidden;
+    padding-right: 5px;
+    display: block;
+    width: 100px;
+    min-width: 75%;
+}
+
+@media screen and (max-width: 739px) {
+    #profile .danh-muc-profile {
+        width: calc(100% - 16px);
+    }
+    #profile .dang-tin-profile {
+        width: calc(100% - 16px);
+    }
 }

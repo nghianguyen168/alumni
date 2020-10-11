@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="career">
+    <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
+<!DOCTYPE html>
+  <!-- bắt đầu profile -->
+    <div id="profile">
         <div class="container">
-            <div class="chia2">
-                <div class="danh-muc">
+            <div class="chia2-profile">
+                <div class="danh-muc-profile">
                     <div class="profile-information shadow" style="background-color: white;">
+                    <img class="team-avatar" src="/resources/uploads/${member.avatar}" alt="">
                         <div class="overflow">
-                            <img class="team-avatar" src="IMAGE/IMG/thanhha.jpg" alt="">
-                            <div class="change">
+                           <!--  <div class="change">
                                 <div style="font-size: 12px;">Change</div>
                                 <input type="file" name="pic" accept="image/*" id="eventPicChangengf" ngf-select="uploadImagesprofilePic($file)">
-                            </div>
+                            </div> -->
 
                         </div>
 
                         <div style="padding-bottom: 20px; padding-top: 5px;">
-                            <div class="font-18 mdl-typography--font-medium ng-binding" style="display: inline; font-weight: bold;">Lê Thanh Hà</div>
+                            <div class="font-18 mdl-typography--font-medium ng-binding" style="display: inline; font-weight: bold;">${member.firstName } ${member.lastName }</div>
                             <a href="">
                                 <span class="material-icons" style="font-size: 19px; color: blue;">edit</span>
                             </a>
-                            <div>Student, Tốt nghiệp năm 2020</div>
+                            <div>${member.memberType.typeName }, Tốt nghiệp năm ${member.yearGreduate }</div>
                         </div>
                     </div>
 
@@ -37,7 +40,7 @@
                                     email
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>lethanhha@gmail.com</span>
+                                    <span>${member.email }</span>
                                 </div>
                             </div>
                             <div class="profile-info">
@@ -45,7 +48,7 @@
                                     phone
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>+84 929626702</span>
+                                    <span>${member.phone }</span>
                                 </div>
                             </div>
                             <div class="profile-info">
@@ -53,13 +56,13 @@
                                     location_on
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>Thanh Khê, Tp. Đà Nẵng</span>
+                                    <span>${member.addressNow }</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="expertise shadow" style="background-color: white;">
+                  <!--   <div class="expertise shadow" style="background-color: white;">
                         <div style="padding: 1px 16px;">
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
                                     info
@@ -72,7 +75,7 @@
                             <span style="color: rgb(117,117,117) !important;"> Social media marketing, </span>
                             <span style="color: rgb(117,117,117) !important;"> Team Building Skills</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="basic-information shadow" style="background-color: white;">
                         <div style="padding: 1px 16px;">
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
@@ -88,23 +91,16 @@
                                     location_on
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>Đà Nẵng</span>
+                                    <span>${member.addressNow }</span>
                                 </div>
                             </div>
-                            <div class="profile-info">
-                                <span class="material-icons new-icon">
-                                    home
-                                    </span>
-                                <div style="display:inline-block;vertical-align:top;">
-                                    <span>Liên Chiểu, Đà Nẵng</span>
-                                </div>
-                            </div>
+                          
                             <div class="profile-info">
                                 <span class="material-icons new-icon">
                                     cake
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>21 - 08 -1997</span>
+                                    <span>${member.dateOfBirth }</span>
                                 </div>
                             </div>
                             <div class="profile-info">
@@ -112,7 +108,7 @@
                                    wc
                                     </span>
                                 <div style="display:inline-block;vertical-align:top;">
-                                    <span>Nam</span>
+                                    <span>${member.gender }</span>
                                 </div>
                             </div>
                             <div class="profile-info">
@@ -130,8 +126,8 @@
 
                 </div>
 
-                <div class="dang-tin">
-                    <div class="summnary shadow" style="background-color: white;">
+                <div class="dang-tin-profile">
+                   <!--  <div class="summnary shadow" style="background-color: white;">
                         <div style="padding: 1px 16px;">
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
                                 assignment_turned_in
@@ -144,7 +140,7 @@
                             <span style="color: rgb(117,117,117) !important;"> Social media marketing, </span>
                             <span style="color: rgb(117,117,117) !important;"> Team Building Skills</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="educational-level shadow" style="background-color: white;">
                         <div style="padding: 1px 16px;">
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
@@ -154,10 +150,11 @@
                             <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
-                            <div style="margin-bottom: 12px; font-weight: bold">Duy Tan University</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;">Công nghệ phần mềm CMU</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;">2017 - 2021</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;">Đại học chính quy</div>
+                            <div style="margin-bottom: 12px; font-weight: bold"><strong>Đại học:</strong> Duy Tan University</div>
+                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Chuyên ngành:</strong> ${member.major.majorName }</div>
+                              <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khoa:</strong> ${member.trainning_system.training_system_name}</div>
+                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khóa:</strong> ${member.yearParticipate } - ${member.yearGreduate }</div>
+                          
 
                         </div>
                     </div>
@@ -170,10 +167,24 @@
                             <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
-                            <div style="margin-bottom: 12px; font-weight: bold">Python Developer</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px; color: orange;">Enlab Software Company</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;">2022 - Present</div>
+							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Công ty hiện tại:</strong> ${member.workAt }</div>
 
+                        </div>
+
+                    </div>
+                    
+                    <div class="expertise-work shadow" style="background-color: white;">
+                        <div style="padding: 1px 16px;">
+                            <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
+                                work
+                                    </span>
+                            <span style="vertical-align: 4px;">Giới thiệu bản thân</span>
+                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
+                        </div>
+                        <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
+							 <div style="padding-top: 4px; padding-bottom: 5px;">
+							 	<p>${member.decription }</p>
+							 </div>
 
                         </div>
 
@@ -184,4 +195,4 @@
             </div>
 
         </div>
-      </div>
+    </div>

@@ -12,8 +12,5 @@ public class PublicProfileController {
 	public String index() {
 		return "public.profile.index";
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 362b32b5395550382094702250b2bd383cefa469
+	
 }
