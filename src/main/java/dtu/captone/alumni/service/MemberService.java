@@ -25,5 +25,5 @@ public interface MemberService {
 	
 	Page<Member> getListByTypeEnable(int type,Pageable pageable);
 	
-	List<Member> findAllEnable();
+	List<Member> findAllEnable(int id);
 }

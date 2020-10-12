@@ -69,8 +69,6 @@
 												var img =  $('#jobactive-${job.id } img').attr("src");
 												
 												var idjob = ${job.id}
-												
-									
 												$.ajax({
 													url: '${pageContext.request.contextPath}/admin/job/active',
 												type : 'POST',

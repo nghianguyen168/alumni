@@ -18,16 +18,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -36,7 +32,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Member  implements Serializable {
+public class Member implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -151,6 +147,11 @@ public class Member  implements Serializable {
 
 	public void removeRole(Role role) {
 		this.roles.remove(role);
+	}
+
+	public Member(Integer id) {
+		super();
+		this.id = id;
 	}
 
 

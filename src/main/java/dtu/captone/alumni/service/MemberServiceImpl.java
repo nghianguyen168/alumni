@@ -92,9 +92,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<Member> findAllEnable() {
+	public List<Member> findAllEnable(int id) {
 		// TODO Auto-generated method stub
-		return memberRespository.findAllEnable();
+		return memberRespository.findAllEnable(id);
 	}
 
 }

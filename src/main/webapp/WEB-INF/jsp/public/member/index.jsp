@@ -65,12 +65,42 @@
                                         <div class="overflow">${member.addressNow}</div>
                                     </div>
                                 </div>
-                                <div class="add-network">
+                                <div class="add-network" id="add-friend-${member.id }">
                                     <i class="fa fa-user-plus"></i>
                                     <span>THÊM BẠN BÈ</span>
                                 </div>
                             </div>
                         </div>
+                        <script type="text/javascript">
+								
+								$(document).on('click','#add-friend-${member.id },add-friend-${member.id }',function(e){
+										
+												
+												var id = ${member.id}
+									
+												$.ajax({
+													url: '${pageContext.request.contextPath}/network/add-friend',
+												type : 'POST',
+												cache : false,
+												data : {
+													//(key , value)
+												
+													 id : id
+												},
+												success : function(response) {
+												$('#add-friend-${member.id}').html("<i class=\"fa fa-check\" aria-hidden=\"true\"></i>\r\n" + 
+														"				                                    <span>Đã gửi yêu cầu</span>");
+													
+													
+												},
+												error : function(response) {
+													alert('Có lỗi xảy ra');
+												}
+											});
+											return false;
+										});
+										
+								</script>	
                         
                     	</c:forEach>
                     </c:if>

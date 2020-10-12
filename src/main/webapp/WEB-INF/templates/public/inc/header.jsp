@@ -9,11 +9,25 @@
 		</div>
 
 		<div class="profile-infor">
-			<div class="profile-infor2">
-				<a href=""><img src="IMAGE/IMG/thanhha.jpg" alt=""
-					class="comment-avatar"> <span style="vertical-align: super;">Lê
-						Thanh Hà</span></a>
-			</div>
+		<c:choose>
+			<c:when test="${userInfo ne null }">
+				
+                <div class="profile-infor2" style="margin-left: 40%;">
+                    <a href=""><img src="/resources/uploads/${userInfo.avatar }" alt="" class="comment-avatar">
+                        <span style="vertical-align: middle ;">${userInfo.firstName } ${userInfo.lastName}</span></a>
+                </div>
+               </c:when>
+				<c:otherwise>
+				<div class="login-align">
+					<ul>
+						<li class="login"><a href="/login">log in</a></li>
+						<li class="regiatration"><a href="/Login/register.html">register</a>
+						</li>
+						<div id="avatarLogin"></div>
+					</ul>
+				</div>
+				</c:otherwise>
+			</c:choose>
 			<div>
 
 				<div class="menu-item">
@@ -27,38 +41,21 @@
 								<p href="" style="text-align: center; color: red; padding: 5px;">Thông
 									báo</p>
 							</li>
+							<c:if test="${not empty newRequestFriendList }">
+								<c:forEach items="${newRequestFriendList }" var="add">
 							<li style="display: inline;"><a
 								href="https://www.google.com.vn/">
-									<div style="float: left; padding: 5px;">
+									<!-- <div style="float: left; padding: 5px;">
 										<img src="IMAGE/IMG/thanhha.jpg" class="comment-avatar" alt="">
-									</div>
+									</div> -->
 									<p style="float: right; overflow: hidden;">
-									<p class="style-p" style="color: blue; padding-top: 9px;">Mai
-										9h nhậu nha</p> <!-- <p class="style-p"><br></p> -->
-									<p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p>
+									<p class="style-p" style="color: blue; padding-top: 9px;">${add.member.firstName } ${add.member.lastName} đã gửi yêu cầu kết bạn</p> <!-- <p class="style-p"><br></p> -->
+									<!-- <p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p> -->
 									</p>
 							</a></li>
+								</c:forEach>
+							</c:if>
 
-							<li style="display: inline;"><a href="#">
-									<div style="float: left; padding: 5px;">
-										<img src="IMAGE/IMG/thanhha.jpg" class="comment-avatar" alt="">
-									</div>
-									<p style="float: right; overflow: hidden;">
-									<p class="style-p" style="color: blue; padding-top: 9px;">Mai
-										9h nhậu nha</p>
-									<p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p>
-									</p>
-							</a></li>
-							<li style="display: inline;"><a href="#">
-									<div style="float: left; padding: 5px;">
-										<img src="IMAGE/IMG/thanhha.jpg" class="comment-avatar" alt="">
-									</div>
-									<p style="float: right; overflow: hidden;">
-									<p class="style-p" style="color: blue; padding-top: 9px;">Thay
-										đổi giao diện website</p>
-									<p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p>
-									</p>
-							</a></li>
 							<li><a href=""
 								style="text-align: center; color: red; border-top: 1px solid rgba(0, 0, 0, 0.1);">Xem
 									thêm</a></li>
@@ -129,7 +126,7 @@
 					<div class="dropdown-content">
 						<ul>
 							<li><a href="" style="line-height: 30px;">Thiết lập</a></li>
-							<li><a href="" style="line-height: 30px;">Thông tin của
+							<li><a href="/pr" style="line-height: 30px;">Thông tin của
 									tôi</a></li>
 							<li><a href="" style="line-height: 30px;">Các mối quan
 									hệ của tôi</a></li>
@@ -364,7 +361,7 @@
 			<li><a href="">Sự Kiện</a></li>
 			<li><a href="/job/index">Nghề nghiệp</a></li>
 			<li><a href="Nhom.html">Cộng Đồng</a></li>
-			<li><a href="CuuSinhVien.html">Cựu Sinh Viên</a></li>
+			<li><a href="/member/index">Cựu Sinh Viên</a></li>
 			<li><a href="">Thêm</a></li>
 		</ul>
 	</div>

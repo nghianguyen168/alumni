@@ -38,4 +38,6 @@ public interface JobService {
 	int sumJobEnable();
 	
 	int updateViews(int id);
+	
+	
 }

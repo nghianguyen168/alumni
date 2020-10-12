@@ -9,13 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -29,16 +27,19 @@ public class Network  implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-	@Column(name = "member_id")
-	@NotNull
-	private Member member_id;
+	@ManyToOne
+	@JoinColumn(name = "member_id",referencedColumnName = "id",updatable = false)
+	private Member member = new Member();
 
-	@Column(name = "friend_id")
+	@ManyToOne
+	@JoinColumn(name = "friend_id",referencedColumnName = "id",updatable = false)
+	private Member friend = new Member();
+	
+	@Column(name = "status")
 	@NotNull
-	private Member friend_id;
+	private int status;
 
 }
