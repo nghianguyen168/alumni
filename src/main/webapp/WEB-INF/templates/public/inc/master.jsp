@@ -71,25 +71,45 @@
 		<!-- footer đặt ở đây -->
 		<tiles:insertAttribute name="footer" />
 	</footer>
-	<div id="wait"
-		style="display: none;background: #e9e9e9;  position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.5; text-align: center;">
-		   <div id="loading-img" ></div>
-		<!-- <img src='/resources/templates/loading8.gif' width="100" height="100" style="margin:auto;" /> -->
-		<style>
-			#loading-img {
-			    background: url(/resources/templates/loading8.gif) center center no-repeat;
-			    background-size:100px 100px;
-			    height: 100%;
-			    z-index: 10;
-			}
-		</style>
-	</div>
-	<div id="wait"
-		style="background: #e9e9e9; display: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.5; text-align: center;">
-		<img src='/resources/templates/loading8.gif'
-			style="height: 100px; margin-top: 20%; left: 47%; padding: 2px; z-index: 3" />
-	</div>
+	 <div id="wait" style="display:none;width:100%;height:100%; background-color:rgba(0,0,0,0.6);
+  position:absolute;padding: 18% 49%; top:0; z-index:2">
+  <svg style="height: 80px;" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+  <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite"
+      begin="0.1"/>    
+  </circle>
+  <circle fill="#fff" stroke="none" cx="26" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite" 
+      begin="0.2"/>       
+  </circle>
+  <circle fill="#fff" stroke="none" cx="46" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite" 
+      begin="0.3"/>     
+  </circle>
+</svg></div>
 </body>
+<script type="text/javascript">
+				$('.btn-loading').on('click', function() {
+				    var $this = $(this);
+				  $this.button('loading');
+				    setTimeout(function() {
+				       $this.button('reset');
+				   }, 8000);
+				});
 
+</script>
 
 </html>

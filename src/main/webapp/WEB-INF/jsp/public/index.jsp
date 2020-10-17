@@ -109,8 +109,8 @@
 		</div>
 
 	</div>
+	
 
-</div>
 <div id="contact">
 
 	<div id="map" class="container">

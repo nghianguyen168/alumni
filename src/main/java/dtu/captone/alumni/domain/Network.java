@@ -1,6 +1,7 @@
 package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,5 +42,8 @@ public class Network  implements Serializable {
 	@Column(name = "status")
 	@NotNull
 	private int status;
+	
+	@Column(name="sendAt")
+	private Timestamp sendAt;
 
 }

@@ -86,7 +86,35 @@
       </form>
     </div>
   </div>
-  <div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:2"><img src='/resources/templates/loading.gif' width="100" height="100" /></div>
+  <div id="wait" style="display:none;width:100%;height:100%; background-color:rgba(0,0,0,0.6);
+  position:absolute;padding: 18% 49%; top:0; z-index:2">
+  <svg style="height: 80px;" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+  <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite"
+      begin="0.1"/>    
+  </circle>
+  <circle fill="#fff" stroke="none" cx="26" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite" 
+      begin="0.2"/>       
+  </circle>
+  <circle fill="#fff" stroke="none" cx="46" cy="50" r="6">
+    <animate
+      attributeName="opacity"
+      dur="1s"
+      values="0;1;0"
+      repeatCount="indefinite" 
+      begin="0.3"/>     
+  </circle>
+</svg></div>
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/resources/templates/public/login.js"></script>

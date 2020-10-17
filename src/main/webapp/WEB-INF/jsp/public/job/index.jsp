@@ -9,7 +9,7 @@
 			<div class="danh-muc">
 				<div class="sub-title">DANH MỤC VIỆC LÀM</div>
 				<ul>
-					<a href="/job/index">
+					<a href="/job/index" onclick="return loading();"> 
 						<li class="category-list"><span class="category-span">Tất
 								cả công việc</span> <span class="category-count">${sumJob }</span></li>
 					</a>
@@ -194,13 +194,14 @@
 					  <div class="input-group" style="width: 50%; float: right; margin-bottom: 20px;">
 					    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm tin tuyển dụng...">
 					    <div class="input-group-btn">
-					      <button class="btn btn-default" type="submit">
+					      <button class="btn btn-default" type="submit" onclick="return loading();">
 					        <i class="glyphicon glyphicon-search"></i>
 					      </button>
 					    </div>
 					  </div>
 					</form>
-				</div>
+				
+				
 				</div>
 				<div></div>
 				<br>
@@ -322,7 +323,7 @@
     <a href="#top">Back to top</a> 
 </p>
 
-<div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:3"><img src='/resources/templates/loading8.gif' width="100" height="100" /></div>
+
  <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
  
   <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>

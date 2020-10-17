@@ -1,5 +1,7 @@
 package dtu.captone.alumni.controller.alumni;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -30,7 +32,7 @@ public class PublicNetworkController extends UserInfoHandler{
 	
 	@ModelAttribute
 	public void network_new(Model model,HttpSession session) {
-		List<Network> newRequestFriendList = networkService.getNewRequestFriendList(3);
+		List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 		model.addAttribute("newRequestFriendList", newRequestFriendList);
 		
 	}
@@ -42,7 +44,7 @@ public class PublicNetworkController extends UserInfoHandler{
 		System.out.println(friend);
 		Member member = isUserLogin(session);
 		
-		Network network = new Network(null, member, new Member(id), 0);
+		Network network = new Network(null, member, new Member(id), 0,Timestamp.valueOf(LocalDateTime.now()));
 		Network networkAdd = networkService.save(network);
 		if(networkAdd!=null) {
 			return "ok";

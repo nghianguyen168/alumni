@@ -29,11 +29,13 @@ import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.domain.JobApply;
 import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.domain.Network;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.FollowJobService;
 import dtu.captone.alumni.service.JobApplyService;
 import dtu.captone.alumni.service.JobService;
 import dtu.captone.alumni.service.MajorService;
+import dtu.captone.alumni.service.NetworkService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -54,6 +56,18 @@ public class PublicJobController extends UserInfoHandler {
 
 	@Autowired
 	private FollowJobService followJobService;
+	
+	@Autowired
+	private NetworkService networkService;
+	
+	@ModelAttribute
+	public void network_new(Model model,HttpSession session) {
+		if(isUserLogin(session)!=null) {
+			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
+			model.addAttribute("newRequestFriendList", newRequestFriendList);
+		}
+
+	}
 
 	@ModelAttribute
 	public void majorList(Model model, HttpSession session) {

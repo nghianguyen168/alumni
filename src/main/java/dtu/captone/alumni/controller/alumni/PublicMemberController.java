@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,15 @@ public class PublicMemberController extends UserInfoHandler {
 	
 	@Autowired
 	private NetworkService networkService;
+	
+	@ModelAttribute
+	public void network_new(Model model,HttpSession session) {
+		if(isUserLogin(session)!=null) {
+			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
+			model.addAttribute("newRequestFriendList", newRequestFriendList);
+		}
+
+	}
 	
 	@GetMapping("/index")
 	public String index(Model model,HttpSession session) {

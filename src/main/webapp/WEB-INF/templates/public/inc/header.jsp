@@ -30,31 +30,42 @@
 			</c:choose>
 			<div>
 
-				<div class="menu-item">
+				<div   class="menu-item">
 					<div class="dropbtn">
 						<span class="material-icons"> notifications </span>
 
 					</div>
-					<div class="dropdown-content">
-						<ul>
+					<div class="dropdown-content" id="add_friend_noti" >
+						<ul style="width: 400px; ">
 							<li>
-								<p href="" style="text-align: center; color: red; padding: 5px;">Thông
+								<p href="" style="text-align: center; color: #ff0000; padding: 5px;">Thông
 									báo</p>
 							</li>
 							<c:if test="${not empty newRequestFriendList }">
 								<c:forEach items="${newRequestFriendList }" var="add">
-							<li style="display: inline;"><a
+
+							<li  style="display: inline; "><a
 								href="https://www.google.com.vn/">
-									<!-- <div style="float: left; padding: 5px;">
-										<img src="IMAGE/IMG/thanhha.jpg" class="comment-avatar" alt="">
-									</div> -->
+									<%-- <div style="float: left; padding: 5px;" >
+										<img src="/resources/uploads/${add.member.avatar }" class="comment-avatar" alt="">
+									</div> --%>
 									<p style="float: right; overflow: hidden;">
-									<p class="style-p" style="color: blue; padding-top: 9px;">${add.member.firstName } ${add.member.lastName} đã gửi yêu cầu kết bạn</p> <!-- <p class="style-p"><br></p> -->
-									<!-- <p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p> -->
+									<p class="style-p" style="font-size: 10px; padding-top: 9px;"><strong>${add.member.firstName } ${add.member.lastName} </strong> đã gửi yêu cầu kết bạn</p> <!-- <p class="style-p"><br></p> -->
+									<p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p>
 									</p>
 							</a></li>
+							
 								</c:forEach>
 							</c:if>
+
+							<script type="text/javascript">
+                            var auto_refresh = setInterval(
+                            function ()
+                            {
+                            $('#add_friend_noti').load(' #add_friend_noti');
+                            }, 1000); // refresh every 10000 milliseconds
+
+                            </script>
 
 							<li><a href=""
 								style="text-align: center; color: red; border-top: 1px solid rgba(0, 0, 0, 0.1);">Xem
@@ -63,6 +74,7 @@
 					</div>
 
 				</div>
+
 				<div class="menu-item">
 
 					<!-- <span class="material-icons">
@@ -74,7 +86,7 @@
 						<span class="material-icons"> message </span>
 
 					</div>
-					<div class="dropdown-content">
+					<div class="dropdown-content" >
 						<ul>
 							<li>
 								<p href="" style="text-align: center; color: red; padding: 5px;">Tin
@@ -85,7 +97,7 @@
 										<img src="IMAGE/IMG/thanhha.jpg" class="comment-avatar" alt="">
 									</div>
 									<p style="float: right; overflow: hidden;">
-									<p class="style-p" style="color: blue;">Le Thanh Ha</p>
+									<p class="style-p" style="color: blue;">Le Thanh Ha vừa gửi yêu cầu kết bạn</p>
 									<p class="style-p">hello you</p>
 									<p class="style-p" style="font-size: 12px; color: gray;">10-10-2020</p>
 									</p>
@@ -132,12 +144,12 @@
 									hệ của tôi</a></li>
 							<li><a href="" style="line-height: 30px;">Điều khoản sử
 									dụng</a></li>
-							<li><a href="" style="line-height: 30px;">Đăng xuất</a></li>
+							<li><a href="/logout" style="line-height: 30px;">Đăng xuất</a></li>
 						</ul>
 					</div>
 				</div>
 
-
+			
 			</div>
 
 			<%-- <c:choose>
@@ -353,6 +365,7 @@
 
 
 		</div>
+		
 </header>
 <div id="menu">
 	<div class="container">
