@@ -60,7 +60,7 @@
                                    <br>
                                  	<br>
                                     <div>
-                                        <div class="margin-bottom-2 overflow padding-top1">${member.memberType.typeName }, Tốt nghiệp năm ${member.yearGreduate }</div>
+                                        <div class="margin-bottom-2 overflow padding-top1">${member.memberType.typeName }, ${member.k }</div>
                                         <div class="margin-bottom-2 overflow">${member.major.majorName }</div>
                                         <div class="overflow">${member.addressNow}</div>
                                     </div>

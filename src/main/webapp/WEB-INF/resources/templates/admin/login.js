@@ -7,7 +7,7 @@ $(document).ready(function() {
 });
 
 function handleLogin() {
-	$("#wait").css("display", "block");
+	$("#wait").css("display", "flex");
 	var email = $("#dtumail").val();
 	var pwd = $("#pass").val();
 	var data = {

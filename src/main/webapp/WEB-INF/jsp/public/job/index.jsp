@@ -9,7 +9,7 @@
 			<div class="danh-muc">
 				<div class="sub-title">DANH MỤC VIỆC LÀM</div>
 				<ul>
-					<a href="/job/index" onclick="return loading();"> 
+					<a href="/job/index">
 						<li class="category-list"><span class="category-span">Tất
 								cả công việc</span> <span class="category-count">${sumJob }</span></li>
 					</a>
@@ -161,12 +161,27 @@
 				</div>
 				<script type="text/javascript">
 								
+						function validateEmail(email) {
+							  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+							  return re.test(email);
+							}
+
+								
 								$(document).on('click','#btn_followJob,#btn_followJob',function(e){
 												var email = $('#mail-followJob').val();
 												if(email ===''){
-													alert('Bạn chưa nhập địa chỉ email!');
+													$('#messgae-follow').html("<div class=\"alert alert-danger\" role=\"alert\">\r\n" + 
+															"Vui lòng nhập địa chỉ email  nhận thông báo!\r\n" + 
+															"</div>");
 													return;
 												} 
+												if(!validateEmail(email)){
+													$('#messgae-follow').html("<div class=\"alert alert-danger\" role=\"alert\">\r\n" + 
+															"Vui lòng nhập đúng định dạng email!\r\n" + 
+															"</div>");
+													return;
+												}
+												
 												$.ajax({
 													url: '${pageContext.request.contextPath}/job/follow',
 												type : 'POST',
@@ -176,6 +191,7 @@
 													email : email
 												},
 												success : function(response) {
+													
 													$('#messgae-follow').html("<div class=\"alert alert-success\" role=\"alert\">\r\n" + 
 															"Đăng ký nhận thông báo bài đăng tuyển dụng thành công!\r\n" + 
 															"</div>");
@@ -194,14 +210,13 @@
 					  <div class="input-group" style="width: 50%; float: right; margin-bottom: 20px;">
 					    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm tin tuyển dụng...">
 					    <div class="input-group-btn">
-					      <button class="btn btn-default" type="submit" onclick="return loading();">
+					      <button class="btn btn-default" type="submit">
 					        <i class="glyphicon glyphicon-search"></i>
 					      </button>
 					    </div>
 					  </div>
 					</form>
-				
-				
+				</div>
 				</div>
 				<div></div>
 				<br>
@@ -322,7 +337,6 @@
 <p class="totop"> 
     <a href="#top">Back to top</a> 
 </p>
-
 
  <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
  

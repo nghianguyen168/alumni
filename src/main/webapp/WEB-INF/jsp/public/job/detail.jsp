@@ -173,26 +173,19 @@
 										<label for="myfile">Chọn files:</label> <input type="file" 
 											id="cvfile" name="cvfile" required><br>
 										<div class="apply-1">
-											
-											<button class="btn-primary btn-lg" id="uploadButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Submit Order</button>
+											<button class="apply-2" id="uploadButton" type="next" >APPLY</button>
 										</div>
 										<script type="text/javascript">
-										 
 										  $("#cvfile").change(function () {
-											  
-
 										        var fileExtension = ['pdf', 'docx'];
 										        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
 										        	$('#uploadButton').attr('disabled','disabled');
 										            alert("Chỉ châp nhận định dạng : "+fileExtension.join(', '));
 										        } else{
-										        	
 										        	$('#uploadButton').removeAttr('disabled','disabled');
 										        	
 										        }
 										    });
-										 	 
-										  
 										</script>
 									</form>
 								</div>

@@ -10,10 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.Network;
@@ -30,15 +27,6 @@ public class PublicMemberController extends UserInfoHandler {
 	
 	@Autowired
 	private NetworkService networkService;
-	
-	@ModelAttribute
-	public void network_new(Model model,HttpSession session) {
-		if(isUserLogin(session)!=null) {
-			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
-			model.addAttribute("newRequestFriendList", newRequestFriendList);
-		}
-
-	}
 	
 	@GetMapping("/index")
 	public String index(Model model,HttpSession session) {
@@ -62,6 +50,16 @@ public class PublicMemberController extends UserInfoHandler {
 	@GetMapping("/find-by-location")
 	public String findbyLocation() {
 		return "public.member.findByLocation";
+	}
+	
+	
+	@ModelAttribute
+	public void network_new(Model model,HttpSession session) {
+		if(isUserLogin(session)!=null) {
+			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
+			model.addAttribute("newRequestFriendList", newRequestFriendList);
+		}
+		
 	}
 	
 	

@@ -1,7 +1,5 @@
 package dtu.captone.alumni.controller.alumni;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,21 +30,43 @@ public class PublicNetworkController extends UserInfoHandler{
 	
 	@ModelAttribute
 	public void network_new(Model model,HttpSession session) {
-		List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
-		model.addAttribute("newRequestFriendList", newRequestFriendList);
+		if(isUserLogin(session)!=null) {
+			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
+			model.addAttribute("newRequestFriendList", newRequestFriendList);
+		}
 		
 	}
 	
 	@PostMapping("/add-friend")
-	public @ResponseBody String confirmFriend(@RequestParam("id") int id,HttpSession session) {
-		
+	public @ResponseBody String addFriend(@RequestParam("id") int id,HttpSession session) {
 		Member friend = memberService.findById(id);
 		System.out.println(friend);
 		Member member = isUserLogin(session);
-		
-		Network network = new Network(null, member, new Member(id), 0,Timestamp.valueOf(LocalDateTime.now()));
+		Network network = new Network(null, member, new Member(id), 0);
 		Network networkAdd = networkService.save(network);
 		if(networkAdd!=null) {
+			return "ok";
+		} else {
+			return null;
+		}
+	}
+	
+	@PostMapping("/confirm")
+	public @ResponseBody String confirmFriend(@RequestParam("id") int id,HttpSession session) {
+		
+		int confirmFriend = networkService.confirmFriend(id);
+		if(confirmFriend>0) {
+			return "ok";
+		} else {
+			return null;
+		}
+	}
+	
+	@PostMapping("/cancel")
+	public @ResponseBody String cancel_request(@RequestParam("id") int id,HttpSession session) {
+		
+		int confirmFriend = networkService.confirmFriend(id);
+		if(confirmFriend>0) {
 			return "ok";
 		} else {
 			return null;

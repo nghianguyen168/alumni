@@ -122,7 +122,7 @@
 <p class="totop"> 
     <a href="#top">Back to top</a> 
 </p>
-<div id="wait" style="display:none;width:120px;height:120px;position:absolute;top:50%;left:47%;padding:2px;z-index:3"><img src='/resources/templates/loading8.gif' width="100" height="100" /></div>
+
  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
   <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
     <script src="/resources/templates/public/js/loading.js"></script>

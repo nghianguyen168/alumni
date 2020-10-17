@@ -19,6 +19,11 @@ public interface NetworkRespository extends JpaRepository<Network, Integer> {
 	@Transactional
 	int confirmFriend(int id);
 	
+	@Query(value = "DELETE FROM network where id=?",nativeQuery = true)
+	@Modifying(clearAutomatically=true, flushAutomatically = true)
+	@Transactional
+	int cancelRequest(int id);
+	
 	
 	@Query(value = "SELECT * FROM network where friend_id = ? AND status =0 ORDER BY id DESC",nativeQuery = true)
 	List<Network> getNewRequestFriendList(int id);

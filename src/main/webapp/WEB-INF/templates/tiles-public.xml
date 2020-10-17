@@ -70,6 +70,11 @@
 			value="/WEB-INF/jsp/public/profile/profile.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="public.profile.edit" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/profile/edit.jsp"></put-attribute>
+	</definition>
+	
 	
 	<definition name="public.member.index" extends="templates.public">
 		<put-attribute name="content"
@@ -79,11 +84,6 @@
 <definition name="public.member.findByLocation" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/member/findByLocation.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="public.noti" extends="templates.public">
-		<put-attribute name="content"
-			value="/WEB-INF/jsp/public/notification.jsp"></put-attribute>
 	</definition>
 
 	

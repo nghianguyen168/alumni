@@ -33,6 +33,12 @@ public class NetworkServiceImpl implements NetworkService{
 		// TODO Auto-generated method stub
 		return networkRespository.getNewRequestFriendList(id);
 	}
+
+	@Override
+	public int cancelRequest(int id) {
+		// TODO Auto-generated method stub
+		return networkRespository.cancelRequest(id);
+	}
 	
 	
 }

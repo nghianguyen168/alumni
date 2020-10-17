@@ -10,6 +10,7 @@ public interface NetworkService {
 	
 	int confirmFriend(int id);
 	
+	int cancelRequest(int id);
 	
 	List<Network> getNewRequestFriendList(int id);
 }

@@ -24,8 +24,11 @@
 	href="/resources/templates/public/loading-bar.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/templates/public/loading-bar.min.css">
-<link href="/your-path-to-fontawesome/css/fontawesome.css"
+<link href="/resources/templates/public/css/fontawesome.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="/resources/templates/public/popup_noti/css/style-notify.css">
+
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script type=”text/javascript”
@@ -50,6 +53,11 @@
 	src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script data-require="bootstrap@*" data-semver="3.1.1"
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="/resources/templates/public/popup_noti/js/select2.min.js"></script>
+<script src="/resources/templates/public/popup_noti/js/jquery.magnific-popup.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="/resources/templates/public/popup_noti/js/custom.js"></script>	
 <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1"
 	rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
@@ -71,7 +79,7 @@
 		<!-- footer đặt ở đây -->
 		<tiles:insertAttribute name="footer" />
 	</footer>
-	 <div id="wait" style="display:none;width:100%;height:100%; background-color:rgba(0,0,0,0.6);
+	<div id="wait" style="display:none;width:100%;height:100%; background-color:rgba(0,0,0,0.6);
   position:absolute;padding: 18% 49%; top:0; z-index:2">
   <svg style="height: 80px;" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -101,15 +109,19 @@
   </circle>
 </svg></div>
 </body>
+
 <script type="text/javascript">
-				$('.btn-loading').on('click', function() {
-				    var $this = $(this);
-				  $this.button('loading');
-				    setTimeout(function() {
-				       $this.button('reset');
-				   }, 8000);
-				});
+$('.btn-loading').on('click', function() {
+    var $this = $(this);
+  $this.button('loading');
+    setTimeout(function() {
+       $this.button('reset');
+   }, 8000);
+});
+
 
 </script>
+
+
 
 </html>

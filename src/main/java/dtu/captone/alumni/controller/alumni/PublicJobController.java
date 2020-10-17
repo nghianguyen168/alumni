@@ -66,7 +66,7 @@ public class PublicJobController extends UserInfoHandler {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
 		}
-
+		
 	}
 
 	@ModelAttribute
@@ -295,6 +295,9 @@ public class PublicJobController extends UserInfoHandler {
 
 	@PostMapping("/follow")
 	public @ResponseBody String followJob(@RequestParam("email") String email) {
+		/*
+		 * if("".equals(email)) { return "empty_email"; }
+		 */
 		FollowJob follow = new FollowJob(0, email);
 		System.out.println(email);
 		FollowJob followJob = followJobService.save(follow);

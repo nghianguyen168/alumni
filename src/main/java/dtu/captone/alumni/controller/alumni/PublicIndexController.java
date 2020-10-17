@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import dtu.captone.alumni.security.UserInfoHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,12 +17,13 @@ import dtu.captone.alumni.domain.Event;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.Network;
 import dtu.captone.alumni.domain.News;
+import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.EventService;
 import dtu.captone.alumni.service.NetworkService;
 import dtu.captone.alumni.service.NewsService;
 
 @Controller
-public class PublicIndexController extends UserInfoHandler {
+public class PublicIndexController extends UserInfoHandler{
 
 	@Autowired
 	private NewsService newsService;
@@ -56,12 +56,7 @@ public class PublicIndexController extends UserInfoHandler {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
 		}
-
+		
+		
 	}
-	
-	@GetMapping("/noti")
-	public String getNoti() {
-		return "public.noti";
-	}
-	
 }

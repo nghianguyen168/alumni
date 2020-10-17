@@ -70,14 +70,26 @@ public class Member implements Serializable {
 
 	@Column(name = "marital_status")
 	@NotNull
-	private String marital_status;
+	private String maritalStatus;
 
 	@Column(name = "address_now")
 	@NotNull
 	private String addressNow;
 	
+	@Column(name = "position_job")
+	private String positionJob;
+	
+	@Column(name = "company")
+	private String company;
+	
+	@Column(name = "salary")
+	private String salary;
+	
+	@Column(name = "time_start_job")
+	private Date timeStartJob;
+	
+	
 	@Column(name = "work_at")
-	@NotNull
 	private String workAt;
 
 	@Column(name = "email")
@@ -103,22 +115,21 @@ public class Member implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "major_id",referencedColumnName = "id")
 	private Major major = new Major();
+	
+	@ManyToOne
+	@JoinColumn(name = "faculty_id",referencedColumnName = "id")
+	private Faculty faculty = new Faculty();
+	
+	
 
-	@Column(name = "year_participate")
-	@NotNull
-	private int yearParticipate;
-
-	@Column(name = "year_greduate")
-	@NotNull
-	private int yearGreduate;
+	@ManyToOne
+	@JoinColumn(name = "kname_id",referencedColumnName = "id")
+	private Kname kn=new Kname();
 
 	@ManyToOne
 	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
 	private Trainning_system trainning_system = new Trainning_system();
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "edu_level_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_edu_level"))
-	private Edu_level edu_level = new Edu_level();
 	
 	@ManyToOne
 	@JoinColumn(name = "member_type_id",referencedColumnName = "id")

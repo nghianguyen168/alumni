@@ -22,7 +22,8 @@
                             <a href="">
                                 <span class="material-icons" style="font-size: 19px; color: blue;">edit</span>
                             </a>
-                            <div>${member.memberType.typeName }, Tốt nghiệp năm ${member.yearGreduate }</div>
+                            <div><strong>${member.k},Khoa ${member.faculty.facultyName} </strong></div>
+                            <div><strong>${member.memberType.typeName }</strong></div>
                         </div>
                     </div>
 
@@ -152,8 +153,8 @@
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
                             <div style="margin-bottom: 12px; font-weight: bold"><strong>Đại học:</strong> Duy Tan University</div>
                             <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Chuyên ngành:</strong> ${member.major.majorName }</div>
-                              <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khoa:</strong> ${member.trainning_system.training_system_name}</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khóa:</strong> ${member.yearParticipate } - ${member.yearGreduate }</div>
+                              <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khoa:</strong> ${member.faculty.facultyName}</div>
+                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khóa:</strong> ${member.k }</div>
                           
 
                         </div>
@@ -163,16 +164,16 @@
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
                                 work
                                     </span>
-                            <span style="vertical-align: 4px;">Kinh nghiệm làm việc</span>
+                            <span style="vertical-align: 4px;">Công việc hiện tại</span>
                             <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
-							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Công ty hiện tại:</strong> ${member.workAt }</div>
-
+							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Vị trí:</strong> ${member.positionJob }</div>
+							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Công ty:</strong> ${member.company}</div>
+							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Mức lương hiện tại:</strong> ${member.salary }</div>
+							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Địa chỉ làm việc:</strong> ${member.workAt }</div>
                         </div>
-
                     </div>
-                    
                     <div class="expertise-work shadow" style="background-color: white;">
                         <div style="padding: 1px 16px;">
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">

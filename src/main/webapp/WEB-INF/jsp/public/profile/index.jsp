@@ -3,7 +3,6 @@
 <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <!DOCTYPE html>
  <div class="chia2">
-
                 <div class="danh-muc">
                     <div class="profile-information shadow" style="background-color: white;">
                         <div class="overflow">
