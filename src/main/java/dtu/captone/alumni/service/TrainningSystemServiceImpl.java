@@ -33,6 +33,12 @@ public class TrainningSystemServiceImpl implements TrainningSystemService {
 		// TODO Auto-generated method stub
 		 trainningSystemServiceImpl.deleteById(id);
 	}
+
+	@Override
+	public Trainning_system findById(int id) {
+		// TODO Auto-generated method stub
+		return trainningSystemServiceImpl.findById(id);
+	}
 	
 	
 

@@ -112,26 +112,26 @@ public class Member implements Serializable {
 	private String decription;
 	
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "major_id",referencedColumnName = "id")
 	private Major major = new Major();
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "faculty_id",referencedColumnName = "id")
 	private Faculty faculty = new Faculty();
 	
 	
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "kname_id",referencedColumnName = "id")
 	private Kname kn=new Kname();
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
 	private Trainning_system trainning_system = new Trainning_system();
 
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
 	private MemberType memberType = new MemberType();
 	

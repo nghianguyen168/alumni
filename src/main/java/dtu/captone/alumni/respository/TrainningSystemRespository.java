@@ -9,4 +9,5 @@ import dtu.captone.alumni.domain.Trainning_system;
 
 @Repository
 public interface TrainningSystemRespository  extends JpaRepository<Trainning_system, Integer>{
+	Trainning_system findById(int id);
 }

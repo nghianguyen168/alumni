@@ -4,7 +4,13 @@
 <!DOCTYPE html>
   <!-- bắt đầu profile -->
     <div id="profile">
+    
         <div class="container">
+	         <c:if test="${not empty msg}">
+						<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px;">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
+						</div>
+				</c:if>
             <div class="chia2-profile">
                 <div class="danh-muc-profile">
                     <div class="profile-information shadow" style="background-color: white;">
@@ -22,7 +28,7 @@
                             <a href="">
                                 <span class="material-icons" style="font-size: 19px; color: blue;">edit</span>
                             </a>
-                            <div><strong>${member.k},Khoa ${member.faculty.facultyName} </strong></div>
+                            <div><strong>${member.kn.k},Khoa ${member.faculty.facultyName} </strong></div>
                             <div><strong>${member.memberType.typeName }</strong></div>
                         </div>
                     </div>
@@ -154,7 +160,7 @@
                             <div style="margin-bottom: 12px; font-weight: bold"><strong>Đại học:</strong> Duy Tan University</div>
                             <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Chuyên ngành:</strong> ${member.major.majorName }</div>
                               <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khoa:</strong> ${member.faculty.facultyName}</div>
-                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khóa:</strong> ${member.k }</div>
+                            <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Khóa:</strong> ${member.kn.k}</div>
                           
 
                         </div>

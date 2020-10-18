@@ -10,4 +10,5 @@ public interface TrainningSystemService {
 	Trainning_system save(Trainning_system trainning_system);
 	List<Trainning_system> findAll();
 	void deleteById(int id);
+	Trainning_system findById(int id);
 }

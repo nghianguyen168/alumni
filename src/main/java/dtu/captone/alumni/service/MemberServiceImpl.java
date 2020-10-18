@@ -2,6 +2,8 @@ package dtu.captone.alumni.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.save(member);
 		
 	}
+	
 
 	@Override
 	public void delete(Member member) {
@@ -95,6 +98,14 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> findAllEnable(int id) {
 		// TODO Auto-generated method stub
 		return memberRespository.findAllEnable(id);
+	}
+
+
+	@Override
+	@Transactional
+	public Member update(Member member) {
+		// TODO Auto-generated method stub
+		return memberRespository.saveAndFlush(member);
 	}
 
 }

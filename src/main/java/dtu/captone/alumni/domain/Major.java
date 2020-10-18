@@ -31,7 +31,7 @@ public class Major  implements Serializable{
 	 private int id;
 	 
 	 @Column(name = "major_code")
-	 private String majorCode;
+	 private String majorCode;	
 	 
 	 @Column(name = "major_name")
 	 private String majorName;
