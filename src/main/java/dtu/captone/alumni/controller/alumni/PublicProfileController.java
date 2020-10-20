@@ -110,15 +110,23 @@ public class PublicProfileController extends UserInfoHandler{
 		member.setKn(knameService.findById(knId));
 		member.setMemberType(isUserLogin(session).getMemberType());
 		
+		String imageOld = memberService.findById(isUserLogin(session).getId()).getAvatar();
 		
 		System.out.println(member);
 		
-		
-		String avatar = FileUtil.upload(anhdaidien, request);
+		String avatar ="";
+		if("".equals(anhdaidien.getOriginalFilename())) {
+			avatar = imageOld;
+		} else {
+			FileUtil.delete(imageOld, request);
+			avatar = FileUtil.upload(anhdaidien, request);
+		}
 		member.setAvatar(avatar);
 		
 		Member memberEdit = memberService.update(member);
+	
 		if(memberEdit!=null) {
+			request.getSession().setAttribute("userInfo", member);
 			 rd.addFlashAttribute(CommonConstants.MSG,
 						messageSource.getMessage("edit_success", null, Locale.getDefault()));
 				return "redirect:/profile/index";

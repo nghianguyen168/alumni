@@ -1,20 +1,30 @@
 package dtu.captone.alumni.controller.alumni;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.domain.Edu_level;
@@ -136,8 +146,6 @@ public class TestController {
 	public @ResponseBody Edu_level addEdu(@ModelAttribute("edu_level") Edu_level edu_level) {
 		return eduLevelService.save(edu_level);
 	}
-	
-	
 
 	@GetMapping("training/findAll")
 	public @ResponseBody List<Trainning_system> findtraining() {
@@ -161,10 +169,10 @@ public class TestController {
 		return eventService.findAll(PageRequest.of(0, 5, Sort.by("id")));
 	}
 
-	
-	  @PostMapping("job/addd") public @ResponseBody Job
-	  addjob(@ModelAttribute("job") Job Job) { return jobService.save(Job); }
-	 
+	@PostMapping("job/addd")
+	public @ResponseBody Job addjob(@ModelAttribute("job") Job Job) {
+		return jobService.save(Job);
+	}
 
 	@GetMapping("job/findAll")
 	public Page<Job> findAllJob() {
@@ -215,6 +223,34 @@ public class TestController {
 	@GetMapping("member/findAlumni")
 	public @ResponseBody Page<Member> findAlumni() {
 		return memberService.getListByTypeEnable(1, PageRequest.of(0, 5, Sort.by("id")));
+	}
+
+	@RequestMapping(value = "/import-excel", method = RequestMethod.POST)
+	public ResponseEntity<List<Major>> importExcelFile(@RequestParam("file") MultipartFile files) throws IOException {
+		HttpStatus status = HttpStatus.OK;
+		List<Major> productList = new ArrayList<>();
+
+		XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+
+		for (int index = 0; index < worksheet.getPhysicalNumberOfRows(); index++) {
+			if (index > 0) {
+				Major major = new Major();
+
+				XSSFRow row = worksheet.getRow(index);
+				Integer id = (int) row.getCell(0).getNumericCellValue();
+				
+				major.setId(id);
+				major.setMajorCode(row.getCell(1).getStringCellValue());
+				major.setMajorName(row.getCell(2).getStringCellValue());
+				
+
+				productList.add(major);
+			}
+		}
+		/* majorServiceImpl.saveAll(productList); */
+
+		return new ResponseEntity<>(productList, status);
 	}
 
 }

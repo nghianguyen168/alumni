@@ -10,4 +10,6 @@ public interface MajorService {
 	Major findById(int id);
 	List<Major> findAll();
 	
+	List<Major> saveAll(List<Major> majorList);
+	
 }

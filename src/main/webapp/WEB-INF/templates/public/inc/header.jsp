@@ -9,9 +9,9 @@
 		</div>
 
 		<div class="iq-top-navbar">
-			<div class="iq-navbar-custom">
+			<div class="iq-navbar-custom" >
 				<nav class="navbar navbar-expand-lg navbar-light p-0">
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
+					<button   class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent"
 						aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
 					<c:choose>
 					<c:when test="${userInfo ne null }">
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav ml-auto navbar-list">
+						<ul class="navbar-nav ml-auto navbar-list" >
 							<li><a href="profile.html"
 								class="iq-waves-effect d-flex align-items-center"> <img
 									src="/resources/uploads/${userInfo.avatar }" class="img-fluid rounded-circle mr-3"
@@ -30,23 +30,26 @@
 									</div>
 							</a></li>
 
-							<li class="nav-item"><a
-								class="search-toggle iq-waves-effect" href="#"><i
+							<li class="nav-item" ><a
+								class="search-toggle iq-waves-effect" onclick='reloadDIV ();' href=""><i
 									class="ri-group-line"></i></a>
+									<script type="text/javascript">
+										function reloadDIV () {$('#addfriend1').reload())} 
+									</script>
 								<div class="iq-sub-dropdown iq-sub-dropdown-large">
 									<div class="iq-card shadow-none m-0">
 										<div class="iq-card-body p-0 ">
-											<div class="bg-primary p-3">
+											<div class="bg-primary p-3" id="sum_request">
 												<h5 class="mb-0 text-white">
 													Yêu cầu kết bạn<small
 														class="badge badge-light float-right pt-1" style=""><span style="color: red;">${newRequestFriendList.size()}</span></small>
 												</h5>
 											</div>
-											<div class="iq-friend-request">
+											<div class="iq-friend-request" id="addfriend1">
 											<c:if test="${not empty newRequestFriendList }">
 													<c:forEach items="${newRequestFriendList }" var="add">
 												<div
-													class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between" id="request_friend">
+													class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between" id="request_friend_${add.id }">
 													<div class="d-flex align-items-center">
 														<div class="">
 															<img class="avatar-40 rounded" src="/resources/uploads/${add.member.avatar }"
@@ -101,7 +104,9 @@
 																			id : id
 																		},
 																		success : function(response) {
-																			$('#request_friend').load(" #request_friend");
+																			
+																			$('#request_friend_${add.id }').load(" #request_friend_${add.id }");
+																			$('#sum_request').load(" #sum_request");
 																		},
 																		error : function(response) {
 																			alert('Có lỗi xảy ra');

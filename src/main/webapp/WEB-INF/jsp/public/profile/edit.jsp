@@ -4,7 +4,7 @@
  <div id="profile">
         <div class="container">
 <div class="container py-2" style="background-color: white;">
-`````<c:if test="${not empty msg}">
+<c:if test="${not empty msg}">
 					<div class="alert alert-danger fade in alert-dismissible" style="margin-top: 18px;">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
 					</div>
@@ -166,7 +166,7 @@
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Công ty</label>
                     <div class="col-lg-9">
-                        <input class="form-control" name="company" type="text" value="" />
+                        <input class="form-control" name="company" type="text" value="${userInfo.company }" />
                     </div>
                 </div>
                  <div class="form-group row">
@@ -178,13 +178,13 @@
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Mức lương</label>
                     <div class="col-lg-9">
-                        <input class="form-control" name="salary" type="text" value="" />
+                        <input class="form-control" name="salary" type="text" value="${userInfo.salary }" />
                     </div>
                 </div>
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Địa chỉ làm việc</label>
                     <div class="col-lg-9">
-                        <input class="form-control" name="workAt" type="text" value="" />
+                        <input class="form-control" name="workAt" type="text" value="${userInfo.workAt }" />
                     </div>
                 </div>
              	<div class="form-group row">
@@ -202,7 +202,7 @@
            
         </div>
         <div class="col-lg-4 order-lg-0 text-center">
-            <img src="/resources/uploads/${userInfo.avatar }" class="mx-auto img-fluid rounded-circle" alt="avatar" />
+            <img src="/resources/uploads/${userInfo.avatar }" class="comment-avatar-edit"  alt="avatar" />
             <h6 class="my-4">Thay đổi ảnh đại diện</h6>
             <div class="input-group px-xl-4" style="display:flex; ">
                 <div class="custom-file">

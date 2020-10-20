@@ -14,7 +14,9 @@
             <div class="chia2-profile">
                 <div class="danh-muc-profile">
                     <div class="profile-information shadow" style="background-color: white;">
-                    <img class="team-avatar" src="/resources/uploads/${member.avatar}" alt="">
+                    <a href="/resources/uploads/${member.avatar}" data-lightbox="roadtrip">
+                    	<img class="team-avatar" src="/resources/uploads/${member.avatar}" alt="">
+                    </a>
                         <div class="overflow">
                            <!--  <div class="change">
                                 <div style="font-size: 12px;">Change</div>

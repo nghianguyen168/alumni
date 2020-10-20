@@ -41,6 +41,12 @@ public class MajorServiceImpl implements MajorService{
 		// TODO Auto-generated method stub
 		return majorRespository.findAll();
 	}
+
+	@Override
+	public List<Major> saveAll(List<Major> majorList) {
+		// TODO Auto-generated method stub
+		return majorRespository.saveAll(majorList);
+	}
 	
 
 }
