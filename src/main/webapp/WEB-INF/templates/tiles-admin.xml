@@ -81,6 +81,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/admin/member/profile.jsp"></put-attribute>
 	</definition>
+	<definition name="admin.member.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/add.jsp"></put-attribute>
+	</definition>
+	
 	
 	
 	

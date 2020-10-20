@@ -184,6 +184,7 @@
 										        } else{
 										        	$('#uploadButton').removeAttr('disabled','disabled');
 										        	
+										        	
 										        }
 										    });
 										</script>

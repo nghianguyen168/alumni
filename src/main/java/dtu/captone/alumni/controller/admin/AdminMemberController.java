@@ -1,8 +1,14 @@
 package dtu.captone.alumni.controller.admin;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import dtu.captone.alumni.domain.Faculty;
+import dtu.captone.alumni.domain.Kname;
+import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.service.FacultyService;
+import dtu.captone.alumni.service.KnameService;
 import dtu.captone.alumni.service.MemberService;
 
 @Controller
@@ -21,6 +33,12 @@ public class AdminMemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private FacultyService facultyService;
+	
+	@Autowired
+	KnameService knameService;
 	
 	@GetMapping({"/index","/index/{id}"})
 	public String indexGet(Model model,@PathVariable int id) {
@@ -49,6 +67,46 @@ public class AdminMemberController {
 		Member member = memberService.findById(id);
 		model.addAttribute("member", member);
 		return "admin.member.profile";
+	}
+	
+	@GetMapping("add")
+	public String memberadd(Model model) {
+		List<Faculty> facultyList = facultyService.findAll();
+		List<Kname> knamesList = knameService.findAll();
+		
+		model.addAttribute("facultyList", facultyList);
+		model.addAttribute("knamesList", knamesList);
+		return "admin.member.add";
+	}
+	
+	
+	@PostMapping("/add")
+	public String addMemberList(@RequestParam("facultyId") int facultyId,@RequestParam("kId") int kId,@RequestParam("memberList") MultipartFile files) throws IOException {
+		HttpStatus status = HttpStatus.OK;
+		List<Member> memberList = new ArrayList<>();
+
+		XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+
+		for (int index = 0; index < worksheet.getPhysicalNumberOfRows(); index++) {
+			if (index > 0) {
+				Member member = new Member();
+
+				XSSFRow row = worksheet.getRow(index);
+				Integer id = (int) row.getCell(0).getNumericCellValue();
+				
+				
+				major.setId(id);
+				major.setMajorCode(row.getCell(1).getStringCellValue());
+				major.setMajorName(row.getCell(2).getStringCellValue());
+				
+
+				
+			}
+		}
+		
+		return "redirect: /admin/member/index";
+		
 	}
 	
 }

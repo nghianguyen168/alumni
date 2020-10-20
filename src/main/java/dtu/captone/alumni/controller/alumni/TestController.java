@@ -226,7 +226,7 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/import-excel", method = RequestMethod.POST)
-	public ResponseEntity<List<Major>> importExcelFile(@RequestParam("file") MultipartFile files) throws IOException {
+	public String importExcelFile(@RequestParam("file") MultipartFile files) throws IOException {
 		HttpStatus status = HttpStatus.OK;
 		List<Major> productList = new ArrayList<>();
 
@@ -248,9 +248,9 @@ public class TestController {
 				productList.add(major);
 			}
 		}
-		/* majorServiceImpl.saveAll(productList); */
+		 majorServiceImpl.saveAll(productList); 
 
-		return new ResponseEntity<>(productList, status);
+		return "ok";
 	}
 
 }
