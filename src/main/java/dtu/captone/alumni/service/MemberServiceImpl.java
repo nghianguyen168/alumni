@@ -108,4 +108,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.saveAndFlush(member);
 	}
 
+
+	@Override
+	public List<Member> saveAll(List<Member> memberlist) {
+		// TODO Auto-generated method stub
+		return memberRespository.saveAll(memberlist);
+	}
+
 }

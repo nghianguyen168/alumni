@@ -58,7 +58,7 @@ public class Member implements Serializable {
 	private String password;
 
 	@Column(name = "dat_of_birth")
-	private Date dateOfBirth;
+	private java.util.Date dateOfBirth;
 
 	@Column(name = "hometown")
 	@NotNull
@@ -69,7 +69,6 @@ public class Member implements Serializable {
 	private String gender;
 
 	@Column(name = "marital_status")
-	@NotNull
 	private String maritalStatus;
 
 	@Column(name = "address_now")
@@ -93,15 +92,12 @@ public class Member implements Serializable {
 	private String workAt;
 
 	@Column(name = "email")
-	@NotNull
 	private String email;
 
 	@Column(name = "phone")
-	@NotNull
 	private String phone;
 	
 	@Column(name = "avatar")
-	@NotNull
 	private String avatar;
 	
 	@Column(name = "token")
@@ -165,5 +161,6 @@ public class Member implements Serializable {
 		this.id = id;
 	}
 
+	
 
 }

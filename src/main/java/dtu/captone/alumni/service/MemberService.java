@@ -14,6 +14,8 @@ public interface MemberService {
 	
 	Member save(Member member);
 	
+	List<Member> saveAll(List<Member> memberList);
+	
 	Member update(Member member);
 	
 	void delete(Member member);

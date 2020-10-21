@@ -1,9 +1,13 @@
 package dtu.captone.alumni.controller.alumni;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -26,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.domain.Edu_level;
 import dtu.captone.alumni.domain.Event;
@@ -35,7 +41,9 @@ import dtu.captone.alumni.domain.News;
 import dtu.captone.alumni.domain.Trainning_system;
 import dtu.captone.alumni.service.EduLevelService;
 import dtu.captone.alumni.service.EventService;
+import dtu.captone.alumni.service.FacultyService;
 import dtu.captone.alumni.service.JobService;
+import dtu.captone.alumni.service.KnameService;
 import dtu.captone.alumni.service.MajorServiceImpl;
 import dtu.captone.alumni.service.MemberService;
 import dtu.captone.alumni.service.NewsService;
@@ -43,6 +51,12 @@ import dtu.captone.alumni.service.TrainningSystemService;
 
 @RestController
 public class TestController {
+	
+	@Autowired
+	private FacultyService facultyService;
+
+	@Autowired
+	KnameService knameService;
 
 	@Autowired
 	private MajorServiceImpl majorServiceImpl;
@@ -251,6 +265,55 @@ public class TestController {
 		 majorServiceImpl.saveAll(productList); 
 
 		return "ok";
+	}
+	
+	@RequestMapping(value = "/add-member",method = RequestMethod.POST)
+	public ResponseEntity<List<Member>> memberAadd(@RequestParam("file") MultipartFile files,@RequestParam("facultyId") int facultyId, @RequestParam("kId") int kId) throws IOException{
+		HttpStatus status = HttpStatus.OK;
+		List<Member> memberList = new ArrayList<>();
+
+		XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
+		XSSFSheet worksheet = workbook.getSheetAt(0);
+		DataFormatter formater = new DataFormatter();
+		for (int index = 0; index < worksheet.getPhysicalNumberOfRows(); index++) {
+			if (index > 0) {
+				Member member = new Member();
+
+				XSSFRow row = worksheet.getRow(index);
+				Integer id = null;
+
+				member.setFirstName(row.getCell(1).getStringCellValue());
+				member.setLastName(row.getCell(2).getStringCellValue());
+				member.setDateOfBirth(row.getCell(3).getDateCellValue());
+				member.setDtuMail(row.getCell(4).getStringCellValue());
+				member.setEmail(row.getCell(5).getStringCellValue());
+				member.setHometown(row.getCell(6).getStringCellValue());
+				member.setAddressNow(row.getCell(7).getStringCellValue());
+				member.setGender(row.getCell(8).getStringCellValue());
+				
+				/*
+				 * if (row.getCell(9).getCellType() == Cell.CELL_TYPE_STRING)
+				 * member.setPhone(row.getCell(9).getStringCellValue()); else
+				 * member.setPhone(String.valueOf(row.getCell(9).getNumericCellValue()));
+				 */
+				
+				/*
+				 * member.setPhone(NumberToTextConverter.toText(row.getCell(9).
+				 * getNumericCellValue()));
+				 */
+				
+				member.setFaculty(facultyService.findById(id));
+				member.setKn(knameService.findById(id));
+				member.setPassword(Date.valueOf(row.getCell(3).getStringCellValue()).toString().replace("/", ""));
+				member.setEnable(1);
+
+				memberList.add(member);
+			}
+			memberService.saveAll(memberList);
+		}
+		return new ResponseEntity<List<Member>>(memberList, status);
+
+		
 	}
 
 }
