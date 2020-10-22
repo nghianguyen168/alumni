@@ -100,7 +100,7 @@
   <script src="/resources/templates/admin/lib/zabuto_calendar.js"></script>
 
 <!-- Bootstrap 4 -->
-<script src="/resources/templates/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <!-- DataTables -->
 <script src="/resources/templates/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/resources/templates/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -168,6 +168,10 @@
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
   </script>
+  
+ 
+
+
 </body>
 
 </html>

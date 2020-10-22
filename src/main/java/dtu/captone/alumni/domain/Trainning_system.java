@@ -27,15 +27,12 @@ public class Trainning_system  implements Serializable{
 	 @Id
 	 @Column(name = "id")
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @NotNull
 	 private int id;
 	 
 	 @Column(name = "code")
-	 @NotNull
 	 private String code;
 	 
 	 @Column(name = "training_system_name")
-	 @NotNull
 	 private String training_system_name;
 	 	
 

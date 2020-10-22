@@ -34,15 +34,10 @@
               </a>
           </li>
           <li class="sub-menu">
-            <a id="member" href="javascript:;">
+            <a id="member" href="${pageContext.request.contextPath }/admin/member/index">
               <i class="fa fa-desktop"></i>
               <span>Quản Lý Thành Viên</span>
               </a>
-            <ul class="sub">
-              <li id="csv"><a href="${pageContext.request.contextPath }/admin/member/index/1">Cựu Sinh Viên</a></li>
-              <li id="sv"><a href="${pageContext.request.contextPath }/admin/member/index/2">Sinh Viên</a></li>
-              <li id="gv"><a href="${pageContext.request.contextPath }/admin/member/index/3">Giảng Viên</a></li>
-            </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">

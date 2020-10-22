@@ -15,31 +15,31 @@ import dtu.captone.alumni.respository.FacultyRespository;
 public class FacultyServiceImpl implements FacultyService{
 	
 	@Autowired
-	FacultyRespository FacultyRespository;
+	FacultyRespository facultyRespository;
 	
 	@Override
 	public Faculty save(Faculty Faculty) {
 		// TODO Auto-generated method stub
-		return FacultyRespository.save(Faculty);
+		return facultyRespository.save(Faculty);
 	}
 
 	@Override
 	@Transactional
 	public void delelte(int Faculty_id) {
-		FacultyRespository.deleteById(Faculty_id);
+		facultyRespository.deleteById(Faculty_id);
 		
 	}
 
 	@Override
 	public Faculty findById(int id) {
 		// TODO Auto-generated method stub
-		return FacultyRespository.findById(id);
+		return facultyRespository.findById(id);
 	}
 
 	@Override
 	public List<Faculty> findAll() {
 		// TODO Auto-generated method stub
-		return FacultyRespository.findAll();
+		return facultyRespository.findAll();
 	}
 	
 

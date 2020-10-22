@@ -34,7 +34,8 @@
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Date Of Birth</label>
                     <div class="col-lg-9">
-                        <input class="form-control" name="dateOfBirth" type="date" value="${userInfo.dateOfBirth }" />
+                        <input class="form-control"  class="datepicker" name="dateOfBirth" type="date"  value="${userInfo.dateOfBirth }" />
+                        
                     </div>
                 </div>
                 <div class="form-group row">
@@ -213,6 +214,7 @@
             </div>
         </div>
          </form>
+         
     </div>
 </div>
 </div>

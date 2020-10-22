@@ -2,15 +2,19 @@ package dtu.captone.alumni.controller.admin;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +32,7 @@ import dtu.captone.alumni.domain.MemberType;
 import dtu.captone.alumni.service.FacultyService;
 import dtu.captone.alumni.service.KnameService;
 import dtu.captone.alumni.service.MemberService;
+import dtu.captone.alumni.service.MemberTypeService;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -40,13 +45,18 @@ public class AdminMemberController {
 	private FacultyService facultyService;
 
 	@Autowired
-	KnameService knameService;
+	private KnameService knameService;
+	
+	@Autowired
+	private MemberTypeService memberTypeService;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping({ "/index", "/index/{id}" })
-	public String indexGet(Model model, @PathVariable int id) {
-		List<Member> memberList = memberService.findByMemberType(id);
+	public String indexGet(Model model) {
+		List<Member> memberList = memberService.findAll();
 		model.addAttribute("memberList", memberList);
-		model.addAttribute("type", id);
 		System.out.println(memberList);
 		return "admin.member.index";
 	}
@@ -75,14 +85,16 @@ public class AdminMemberController {
 	public String memberadd(Model model) {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knamesList = knameService.findAll();
-
+		List<MemberType> memberTypeList = memberTypeService.findAll();
+		model.addAttribute("memberTypeList", memberTypeList);
 		model.addAttribute("facultyList", facultyList);
 		model.addAttribute("knamesList", knamesList);
 		return "admin.member.add";
 	}
 
 	@PostMapping("/add")
-	public String addMemberList(@RequestParam("facultyId") int facultyId, @RequestParam("kId") int kId,
+	public String addMemberList(@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
+			@RequestParam("memberType") int memberTypeId,
 			@RequestParam("memberList") MultipartFile files) throws IOException {
 		HttpStatus status = HttpStatus.OK;
 		List<Member> memberList = new ArrayList<>();
@@ -99,24 +111,31 @@ public class AdminMemberController {
 
 				member.setFirstName(row.getCell(1).getStringCellValue());
 				member.setLastName(row.getCell(2).getStringCellValue());
-				member.setDateOfBirth(row.getCell(3).getDateCellValue());
+				member.setDateOfBirth(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
 				member.setDtuMail(row.getCell(4).getStringCellValue());
 				member.setEmail(row.getCell(5).getStringCellValue());
 				member.setHometown(row.getCell(6).getStringCellValue());
 				member.setAddressNow(row.getCell(7).getStringCellValue());
 				member.setGender(row.getCell(8).getStringCellValue());
-				/* member.setPhone(formater.formatCellValue(row.getCell(9))); */
-				member.setFaculty(facultyService.findById(id));
-				member.setKn(knameService.findById(id));
-				member.setPassword("hihi");
+				member.setPhone(formater.formatCellValue(row.getCell(9))); 
+				member.setFaculty(facultyService.findById(facultyId));
+				member.setKn(knameService.findById(kId));
+				member.setTrainning_system(null);
+				member.setMajor(null);
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				String password = (formatter.format(new java.sql.Date((row.getCell(3).getDateCellValue().getTime()))).toString()).replace("/", "");
+				member.setPassword(bCryptPasswordEncoder.encode(password));
+				System.out.println(password);
+				
 				member.setEnable(1);
-
+				
+				member.setMemberType(memberTypeService.findById(memberTypeId));
 				memberList.add(member);
 			}
 			memberService.saveAll(memberList);
 		}
 
-		return "redirect: /admin/member/index";
+		return "redirect:/admin/member/index/1";
 
 	}
 

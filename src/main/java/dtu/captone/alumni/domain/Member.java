@@ -58,7 +58,7 @@ public class Member implements Serializable {
 	private String password;
 
 	@Column(name = "dat_of_birth")
-	private java.util.Date dateOfBirth;
+	private Date dateOfBirth;
 
 	@Column(name = "hometown")
 	@NotNull
@@ -112,13 +112,13 @@ public class Member implements Serializable {
 	@JoinColumn(name = "major_id",referencedColumnName = "id")
 	private Major major = new Major();
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "faculty_id",referencedColumnName = "id")
 	private Faculty faculty = new Faculty();
 	
 	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "kname_id",referencedColumnName = "id")
 	private Kname kn=new Kname();
 
@@ -127,7 +127,7 @@ public class Member implements Serializable {
 	private Trainning_system trainning_system = new Trainning_system();
 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
 	private MemberType memberType = new MemberType();
 	

@@ -284,7 +284,7 @@ public class TestController {
 
 				member.setFirstName(row.getCell(1).getStringCellValue());
 				member.setLastName(row.getCell(2).getStringCellValue());
-				member.setDateOfBirth(row.getCell(3).getDateCellValue());
+				/* member.setDateOfBirth(row.getCell(3).getDateCellValue()); */
 				member.setDtuMail(row.getCell(4).getStringCellValue());
 				member.setEmail(row.getCell(5).getStringCellValue());
 				member.setHometown(row.getCell(6).getStringCellValue());

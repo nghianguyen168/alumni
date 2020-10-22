@@ -4,7 +4,7 @@
 
 <div class="row mt">
 	<c:set var="contextPath"
-		value="${pageContext.request.contextPath }/admin/news" />
+		value="${pageContext.request.contextPath }/admin/member" />
 	<div class="col-md-12">
 		<div class="content-panel">
 			<c:if test="${not empty msg}">
@@ -30,7 +30,7 @@
 				<h4>
 					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ THÀNH VIÊN  <i class="fa fa-angle-right"></i>  ${typee }
 						</strong> <a type="button"
-						href="${pageContext.request.contextPath }/admin/news/add"
+						href="${pageContext.request.contextPath }/admin/member/add"
 						class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
 				</h4>
 				<hr>
@@ -46,7 +46,6 @@
 						<th>Chổ ở hiện tại</th>
 						<th>Nơi làm việc hiện tại</th>
 						<th>Số điện thoại</th>
-						<th>Năm tôt nghiệp</th>
 						<th><i class=" fa fa-edit"></i> Status</th>
 						<th></th>
 					</tr>
@@ -59,16 +58,15 @@
 				
 					<tr>
 						<td class="hidden-phone">${member.id }</td>
-						<td><a href="basic_table.html#">${member.firstName }</a></td>
+						<td><a href="">${member.firstName }</a></td>
 						
-						<td>${member.lastName}</td>
+						<td><a href="">${member.lastName}</a></td>
 						<td>${member.dateOfBirth }</td>
 						<td>${member.gender }</td>
 						<td>${member.hometown }</td>
 						<td>${member.addressNow }</td>
 						<td>${member.workAt }</td>
 						<td>${member.phone }</td>
-						<td>${member.yearGreduate }</td>
 							<c:set var="activeImg" value="" />
 							<c:choose >
 								<c:when test="${member.enable eq 1 }">

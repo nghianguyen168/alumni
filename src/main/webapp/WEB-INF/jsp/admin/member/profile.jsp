@@ -8,16 +8,15 @@
                 <div class="right-divider hidden-sm hidden-xs">
                   <h4>${member.dateOfBirth}</h4>
                   <h6>NGÀY SINH</h6>
-                  <h4>${member.yearParticipate }</h4>
-                  <h6>NĂM NHẬP HỌC</h6>
-                  <h4>${member.yearGreduate }</h4>
-                  <h6>NĂM TỐT NGHIỆP</h6>
+                  <h4>${member.kn.k }</h4>
+                  <h6>KHÓA</h6>
+                 
                 </div>
               </div>
               <!-- /col-md-4 -->
               <div class="col-md-4 profile-text">
                 <h3>${member.firstName } ${member.lastName }</h3>
-                <h6>${member.memberType.type_name }</h6>
+                <h6>${member.memberType.typeName }</h6>
                 <p>${member.decription}</p>
                 <br>
                 <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>
@@ -71,6 +70,12 @@
                               <input type="text" placeholder=" " value="${member.dtuMail }" id="c-name" class="form-control" readonly>
                             </div>
                           </div>
+                           <div class="form-group">
+                            <label class="col-lg-2 control-label">Khóa</label>
+                            <div class="col-lg-6">
+                              <input type="text" placeholder=" " value="${member.kn.k }" id="c-name" class="form-control" readonly>
+                            </div>
+                          </div>
                             <div class="form-group">
                             <label class="col-lg-2 control-label">Mật khẩu</label>
                             <div class="col-lg-6">
@@ -89,18 +94,8 @@
                               <input type="text" placeholder=" " value="${member.addressNow }" id="lives-in" class="form-control" readonly>
                             </div>
                           </div>
-                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Năm Nhập Học</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.yearParticipate }" id="c-name" class="form-control" readonly>
-                            </div>
-                          </div>
-                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Năm Tốt Nghiệp</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.yearGreduate }" id="c-name" class="form-control" readonly>
-                            </div>
-                          </div>
+                          
+                        
                            <div class="form-group">
                             <label class="col-lg-2 control-label">Ngành Học</label>
                             <div class="col-lg-6">
