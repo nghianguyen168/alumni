@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -13,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dtu.captone.alumni.constant.CommonConstants;
 import dtu.captone.alumni.domain.Faculty;
 import dtu.captone.alumni.domain.Kname;
 import dtu.captone.alumni.domain.Member;
@@ -49,6 +53,10 @@ public class AdminMemberController {
 	
 	@Autowired
 	private MemberTypeService memberTypeService;
+	
+	@Autowired
+	MessageSource messageSource;
+	
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -95,7 +103,7 @@ public class AdminMemberController {
 	@PostMapping("/add")
 	public String addMemberList(@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
 			@RequestParam("memberType") int memberTypeId,
-			@RequestParam("memberList") MultipartFile files) throws IOException {
+			@RequestParam("memberList") MultipartFile files,RedirectAttributes rd) throws IOException {
 		HttpStatus status = HttpStatus.OK;
 		List<Member> memberList = new ArrayList<>();
 
@@ -113,13 +121,16 @@ public class AdminMemberController {
 				member.setLastName(row.getCell(2).getStringCellValue());
 				member.setDateOfBirth(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
 				member.setDtuMail(row.getCell(4).getStringCellValue());
+			
 				member.setEmail(row.getCell(5).getStringCellValue());
-				member.setHometown(row.getCell(6).getStringCellValue());
-				member.setAddressNow(row.getCell(7).getStringCellValue());
-				member.setGender(row.getCell(8).getStringCellValue());
-				member.setPhone(formater.formatCellValue(row.getCell(9))); 
+				member.setCountry(row.getCell(6).getStringCellValue());
+				member.setHometown(row.getCell(7).getStringCellValue());
+				member.setAddressNow(row.getCell(8).getStringCellValue());
+				member.setGender(row.getCell(9).getStringCellValue());
+				member.setPhone(formater.formatCellValue(row.getCell(10))); 
 				member.setFaculty(facultyService.findById(facultyId));
 				member.setKn(knameService.findById(kId));
+				
 				member.setTrainning_system(null);
 				member.setMajor(null);
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -134,7 +145,9 @@ public class AdminMemberController {
 			}
 			memberService.saveAll(memberList);
 		}
-
+		
+		rd.addFlashAttribute(CommonConstants.MSG,
+				messageSource.getMessage("add_member_success", null, Locale.getDefault()));
 		return "redirect:/admin/member/index/1";
 
 	}

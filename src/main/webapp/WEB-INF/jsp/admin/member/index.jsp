@@ -45,6 +45,8 @@
 						<th>Quê quán</th>
 						<th>Chổ ở hiện tại</th>
 						<th>Nơi làm việc hiện tại</th>
+						<th>Khóa</th>
+						<th>Khoa</th>
 						<th>Số điện thoại</th>
 						<th><i class=" fa fa-edit"></i> Status</th>
 						<th></th>
@@ -63,9 +65,11 @@
 						<td><a href="">${member.lastName}</a></td>
 						<td>${member.dateOfBirth }</td>
 						<td>${member.gender }</td>
-						<td>${member.hometown }</td>
+						<td>${member.hometown },${member.country}</td>
 						<td>${member.addressNow }</td>
 						<td>${member.workAt }</td>
+						<td>${member.kn.k }</td>
+						<td>${member.faculty.facultyName }</td>
 						<td>${member.phone }</td>
 							<c:set var="activeImg" value="" />
 							<c:choose >

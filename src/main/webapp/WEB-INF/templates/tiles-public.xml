@@ -86,6 +86,11 @@
 			value="/WEB-INF/jsp/public/member/findByLocation.jsp"></put-attribute>
 	</definition>
 
+
+<definition name="public.community" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/index.jsp"></put-attribute>
+	</definition>
 	
 	
 </tiles-definitions>

@@ -56,12 +56,63 @@
                         <input class="form-control" name="phone" type="text" value="${userInfo.phone }" />
                     </div>
                 </div>
-                <div class="form-group row">
+              <%--   <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Quê quán</label>
                     <div class="col-lg-9">
-                        <input class="form-control" name="hometown" type="text" value="${userInfo.hometown }" />
+                        <input class="form-control" name="" type="text" value="${userInfo.hometown }" />
                     </div>
-                </div>
+                </div> --%>
+                <c:choose>
+                	<c:when test="${empty userInfo.hometown }">
+                		  <div class="form-group row">
+		                <label class="col-lg-3 col-form-label form-control-label">Chọn khu vực</label>
+		                  <div class="col-lg-9">
+							 <select  onchange="set_country(this,country,hometown)" class="form-control" size="1" name="region">
+							 
+								<option value="" selected="selected">--Chọn khu vực--</option>
+								 <option  size="1" disabled="disabled"  onchange="set_city_state(this,hometown)"></option>
+								<script type="text/javascript">
+								setRegions(this);
+								</script>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+						 <label class="col-lg-3 col-form-label form-control-label">Quốc Gia</label>
+							 <div class="col-lg-9">
+						 		<select name="country"  class="form-control" id="countryhihi" size="1"  disabled="disabled" onchange="set_city_state(this,hometown)"></select>
+							 </div>
+						 </div>
+						 
+						 <div class="form-group row">
+						 <label class="col-lg-3 col-form-label form-control-label">Tỉnh/Thành Phố</label>
+							 <div class="col-lg-9">
+						 		 <select name="hometown" size="1" disabled="disabled" class="form-control" onchange="print_city_state(country,this)"></select>
+							 </div>
+						 </div>
+                	</c:when>
+                	<c:otherwise>
+                		<div class="form-group row" style="display: none;">
+						 <label class="col-lg-3 col-form-label form-control-label">Quốc Gia</label>
+							 <div class="col-lg-9">
+						 		<select name="country"  class="form-control" id="countryhihi" size="1"  >
+						 			<option selected="selected" value="${userInfo.country }"></option>
+						 		</select>
+							 </div>
+						 </div>
+						 
+						 <div class="form-group row" style="display: none;">
+						 <label class="col-lg-3 col-form-label form-control-label">Tỉnh/Thành Phố</label>
+							 <div class="col-lg-9">
+						 		 <select name="hometown" size="1" class="form-control" >
+						 		 	<option selected="selected" value="${userInfo.hometown }"></option>
+						 		 </select>
+							 </div>
+						 </div>
+                	</c:otherwise>
+                </c:choose>
+            
+		
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Địa chỉ hiện tại</label>
                     <div class="col-lg-9">
@@ -200,8 +251,20 @@
                         <button type="submit" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang cập nhật">Cập nhật</button>
                     </div>
                 </div>
+                
+                    <select name="calc_shipping_provinces" required="">
+							  <option value="">Tỉnh / Thành phố</option>
+							</select>
+							<select name="calc_shipping_district" required="">
+							  <option value="">Quận / Huyện</option>
+							</select>
+							<input class="billing_address_1" name="" type="hidden" value="">
+							<input class="billing_address_2" name="" type="hidden" value="">
+     
            
         </div>
+      	
+      
         <div class="col-lg-4 order-lg-0 text-center">
             <img src="/resources/uploads/${userInfo.avatar }" class="comment-avatar-edit"  alt="avatar" />
             <h6 class="my-4">Thay đổi ảnh đại diện</h6>
@@ -215,7 +278,10 @@
         </div>
          </form>
          
+        
+         
     </div>
 </div>
 </div>
 </div>
+

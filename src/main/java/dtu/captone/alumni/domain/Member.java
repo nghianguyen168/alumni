@@ -59,8 +59,13 @@ public class Member implements Serializable {
 
 	@Column(name = "dat_of_birth")
 	private Date dateOfBirth;
+	
 
-	@Column(name = "hometown")
+	@Column(name = "country")
+	@NotNull
+	private String country;
+
+	@Column(name = "province")
 	@NotNull
 	private String hometown;
 
