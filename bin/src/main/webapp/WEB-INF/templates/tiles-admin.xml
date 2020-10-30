@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="templates.admin"
+		template="/WEB-INF/templates/admin/inc/master.jsp">
+		<put-attribute name="navbar"
+			value="/WEB-INF/templates/admin/inc/navbar.jsp" />
+		<put-attribute name="sidebar"
+			value="/WEB-INF/templates/admin/inc/sidebar.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/templates/admin/inc/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="admin.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/index.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="auth.login"
+		template="/WEB-INF/jsp/auth/login.jsp">
+		
+	</definition>
+	
+	<definition name="admin.error"
+		template="/WEB-INF/jsp/auth/error.jsp">
+		
+	</definition>
+	<!-- 	admin-news -->
+	<definition name="admin.news.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.news.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/add.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.news.edit" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/news/edit.jsp"></put-attribute>
+	</definition>
+	<!-- 	ket thuc admin-news -->
+	
+	<!-- 	admin-event -->
+	<definition name="admin.event.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.event.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/add.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.event.edit" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/event/edit.jsp"></put-attribute>
+	</definition>
+	<!-- 	ket thuc admin-event -->
+	
+	<!--  job -->
+	<definition name="admin.job.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/job/index.jsp"></put-attribute>
+	</definition>
+	
+	<!--Group -->
+	<definition name="admin.group.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/group/index.jsp"></put-attribute>
+	</definition>
+	
+	
+	<!--Member -->
+	<definition name="admin.member.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/index.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.member.profile" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/profile.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.member.add" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/member/add.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	
+</tiles-definitions>

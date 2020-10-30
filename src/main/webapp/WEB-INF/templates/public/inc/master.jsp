@@ -55,7 +55,16 @@
 <script src="/resources/templates/public/loading-bar.min.js"></script>
 <script src="/libraries/ckeditor/ckeditor.js"></script>
 <script src="/libraries/ckfinder/ckfinder.js"></script>
- <script src="/resources/templates/public/community/js/js/popper.min.js"></script>
+
+
+<!-- JS notify -->
+<script src="/resources/templates/public/community/js/jquery.min.js"></script>
+<script src="/resources/templates/public/community/js/popper.min.js"></script>
+<script src="/resources/templates/public/community/js/bootstrap.min.js"></script>
+<script src="/resources/templates/public/community/js/select2.min.js"></script>
+<script src="/resources/templates/public/community/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/templates/public/community/js/custom.js"></script>
+ 
      
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -63,10 +72,9 @@
 	src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script data-require="bootstrap@*" data-semver="3.1.1"
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="/resources/templates/public/popup_noti/js/select2.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-<script src="/resources/templates/public/popup_noti/js/custom.js"></script>	
+
 <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1"
 	rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />

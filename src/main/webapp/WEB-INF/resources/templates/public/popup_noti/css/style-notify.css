@@ -248,7 +248,7 @@ a:hover { text-decoration: none; }
 /*---------------------------------------------------------------------
                                 Sidebar
 -----------------------------------------------------------------------*/
-.iq-sidebar { position: fixed; z-index: 999; top: 75px; width: 250px; height: 100%; background: var(--iq-white); transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -webkit-box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); -moz-box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); }
+.iq-sidebar {  z-index: 999; background: var(--iq-white); transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -webkit-box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); -moz-box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1); }
 .iq-sidebar .iq-sidebar-logo { float: none; width: 100%; }
 .iq-sidebar #sidebar-scrollbar { margin-top: 15px; }
 
@@ -1072,9 +1072,9 @@ NOTE: This file contains the styling for responsive Template.
 		body.sidebar-main.right-sidebar-close .iq-footer { width: calc(100vw - 90px);}
 	}
 	@media (min-width:1300px) and (max-width:1499px) {
-		.iq-sidebar { width: 80px; }
-		body.sidebar-main .iq-sidebar { width: 250px; }
-		.iq-sidebar .iq-sidebar-menu .iq-menu li a span, .iq-sidebar-logo a span, .iq-sidebar-menu .iq-menu li a .badge { opacity: 0; display: none; transition: all 0.45s ease 0s; }
+	
+		
+		.iq-sidebar .iq-sidebar-menu .iq-menu li a span, .iq-sidebar-logo a span, .iq-sidebar-menu .iq-menu li a .badge {  transition: all 0.45s ease 0s; }
 		.iq-sidebar .iq-submenu li a { font-size: 0; }
 		body.sidebar-main .iq-sidebar .iq-sidebar-menu .iq-menu li a span, body.sidebar-main .iq-sidebar-logo a span, body.sidebar-main .iq-sidebar-menu .iq-menu li a .badge { opacity: 1; display: block; transition: all 0.45s ease 0s; }
 		.sidebar-main .iq-sidebar .iq-submenu li a { font-size: 14px; }

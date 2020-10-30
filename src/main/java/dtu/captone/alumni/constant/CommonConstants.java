@@ -7,6 +7,8 @@ import static java.util.Arrays.asList;
 public class CommonConstants {
 
 	public static final String DIR_UPLOAD = "WEB-INF/resources/uploads"; 
+	
+	public static final String DIR_UPLOAD_COMMNUNITY = "WEB-INF/resources/comunity/uploads"; 
 
 	public static final String ACTIVE = "1";
 

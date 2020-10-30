@@ -2,10 +2,12 @@ package dtu.captone.alumni.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,11 +34,10 @@ public class Group_Post  implements Serializable{
 	
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "title")
-	@NotNull
 	private String title;
 	
 	@Column(name = "time_post")
@@ -42,12 +45,9 @@ public class Group_Post  implements Serializable{
 	private Timestamp time_post;
 	
 	@Column(name = "media")
-	@NotNull
 	private String media;
 	
-	@Column(name = "file")
-	@NotNull
-	private String file;
+	
 	
 	@Column(name = "sum_like")
 	private int sum_like;
@@ -55,7 +55,7 @@ public class Group_Post  implements Serializable{
 	@Column(name = "sum_comment")
 	private int sum_comment;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
 	private Member member;
 	

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="templates.public.slide"
+		template="/WEB-INF/templates/public/inc/master.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/public/inc/header.jsp" />
+		<put-attribute name="slide"
+			value="/WEB-INF/templates/public/inc/slide.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/templates/public/inc/footer.jsp" />
+	</definition>
+	<definition name="templates.public"
+		template="/WEB-INF/templates/public/inc/master.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/public/inc/header.jsp" />
+		<put-attribute name="slide"
+			value="" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/templates/public/inc/footer.jsp" />
+	</definition>
+	<definition name="public.login"
+		template="/WEB-INF/jsp/public/login.jsp">
+		
+	</definition>
+	
+	
+	<definition name="public.index" extends="templates.public.slide">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/index.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	<definition name="public.job.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/index.jsp"></put-attribute>
+	</definition>
+	<definition name="public.job.detail" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/detail.jsp"></put-attribute>
+	</definition>
+	<definition name="public.job.userpost" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/userpost.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.job.edit" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/edit.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.job.apply" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/apply_list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.job.ungtuyen" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/job/ungtuyen.jsp"></put-attribute>
+	</definition>
+	
+
+	<definition name="public.profile.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/profile/profile.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="public.profile.edit" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/profile/edit.jsp"></put-attribute>
+	</definition>
+	
+	
+	<definition name="public.member.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/member/index.jsp"></put-attribute>
+	</definition>
+
+<definition name="public.member.findByLocation" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/member/findByLocation.jsp"></put-attribute>
+	</definition>
+
+
+<definition name="public.community" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/index.jsp"></put-attribute>
+	</definition>
+	
+	
+</tiles-definitions>
