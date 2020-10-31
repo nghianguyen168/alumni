@@ -48,7 +48,7 @@
       }
 
       // Default if not available
-      if ( ! btnHTML ) btnHTML = '<a href="#" id="loadMore" class="' + cssClass + '__btn">' + btnText + '</a>';
+      if ( ! btnHTML ) btnHTML = '<a href="#" id="loadMore" style="width:20%;" class="' + cssClass + '__btn">' + btnText + '</a>';
 
       // Set $btnHTML as $btnHTML
       $btnHTML = $(btnHTML);

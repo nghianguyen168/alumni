@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/templates/public/community/css/congdong.css">
     <link rel="stylesheet" href="/resources/templates/public/community/css/bootstrap.min.css">
   	<link rel="stylesheet" href="/resources/templates/public/community/css/style-group.css">
+  	
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"

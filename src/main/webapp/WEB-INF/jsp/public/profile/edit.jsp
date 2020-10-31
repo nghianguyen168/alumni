@@ -251,20 +251,7 @@
                         <button type="submit" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang cập nhật">Cập nhật</button>
                     </div>
                 </div>
-                
-                    <select name="calc_shipping_provinces" required="">
-							  <option value="">Tỉnh / Thành phố</option>
-							</select>
-							<select name="calc_shipping_district" required="">
-							  <option value="">Quận / Huyện</option>
-							</select>
-							<input class="billing_address_1" name="" type="hidden" value="">
-							<input class="billing_address_2" name="" type="hidden" value="">
-     
-           
         </div>
-      	
-      
         <div class="col-lg-4 order-lg-0 text-center">
             <img src="/resources/uploads/${userInfo.avatar }" class="comment-avatar-edit"  alt="avatar" />
             <h6 class="my-4">Thay đổi ảnh đại diện</h6>

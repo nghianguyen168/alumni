@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,22 +37,22 @@ public class Comment implements Serializable{
 	
 	@Column(name = "post_id")
 	@NotNull
-	private int post_id;
+	private int postId;
 	
 	@Column(name = "comment")
 	@NotNull
 	private String comment;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
 	private Member member;
 	
 	@Column(name = "time_comment")
 	@NotNull
-	private Timestamp time_comment;
+	private Timestamp timeComment;
 	
 	@Column(name = "parent_id")
 	@NotNull
-	private int parent_id;
+	private int parentId;
 
 }

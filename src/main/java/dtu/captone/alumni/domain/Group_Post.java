@@ -48,6 +48,9 @@ public class Group_Post  implements Serializable{
 	private String media;
 	
 	
+	@Column(name = "file")
+	private String file;
+	
 	
 	@Column(name = "sum_like")
 	private int sum_like;

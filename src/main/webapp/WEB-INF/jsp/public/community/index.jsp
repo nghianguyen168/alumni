@@ -68,6 +68,16 @@
 												  <p id="loaded_n_total"></p>
 												<div id="preview"></div>
                                             </li>
+                                            
+                                            <li class="iq-bg-primary rounded p-2 pointer mr-3">
+                                            <a href="#"></a><img src="/resources/templates/public/community/images/small/07.png" alt="icon" class="img-fluid">
+                                            	<input id="file-dinhkem-input" name="file" type="file"  style="display: none">
+                                            	<label for="file-input" style="cursor: pointer;">Đính kèm file</label>
+                                            	 <progress style="display:none;" id="progressBar" value="0" max="100" style="width:300px;"></progress>
+												  <h3 id="status"></h3>
+												  <p id="loaded_n_total"></p>
+												<div id="preview"></div>
+                                            </li>
                                         <li class="iq-bg-primary rounded p-2 pointer mr-3">
                                             <a href="#"></a><img src="resources/templates/public/community/images/small/08.png" alt="icon" class="img-fluid"> Tag bạn bè</li>
 										
@@ -85,7 +95,7 @@
                                     	  function readAndPreview(file) {
 
                                     	    // Make sure `file.name` matches our extensions criteria
-                                    	    if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                                    	    if (!/\.(jpe?g|png|gif|mp4|mov|avi|wmv|flv)$/i.test(file.name)) {
                                     	      return alert(file.name + " is not an image");
                                     	    } // else...
                                     	    
@@ -154,19 +164,19 @@
                                     </div>
                                     <div class="mt-3">
                                         <p>${post.title }</p>
+                                        <br>
+                                        <a href="/resources/uploads/${post.file }">${post.file }</a>
                                     </div>
                               
                                     <div class="user-post">
                                       	<c:set var="media_array" value="${fn:split(post.media, '|')}" />
-                                      	
-                                  	<c:forEach var="media" items="${media_array }">
-                                  	  <a href="javascript:void();"><img src="/resources/uploads/${media }" alt="post-image" class="img-fluid rounded w-100"></a>
-                                  		<p>${media }</p>
-                                  	</c:forEach>
-                                     
+                                  		<c:forEach var="media" items="${media_array }">
+                                  	 		 <a href="javascript:void();"><img src="/resources/uploads/${media }" alt="post-image" class="img-fluid rounded w-100"></a>
+                                  		</c:forEach>
                                     </div>
                                     
-                               
+                                    
+                                    
                                     <div class="comment-area mt-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="like-block position-relative d-flex align-items-center">
@@ -224,56 +234,93 @@
 
                                         </div>
                                         <hr>
-                                        <ul class="post-comments p-0 m-0">
-                                            <li class="mb-2">
-                                                <div class="d-flex flex-wrap">
-                                                    <div class="user-img">
-                                                        <img src="images/user/02.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid">
-                                                    </div>
-                                                    <div class="comment-data-block ml-3">
-                                                        <h6>Lê Thanh Hà</h6>
-                                                        <p class="mb-0">Lorem ipsum dolor sit amet</p>
-                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
-                                                            <a href="javascript:void();">like</a>
-                                                            <a href="javascript:void();">reply</a>
-
-                                                            <span> 5 min </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex flex-wrap">
-                                                    <div class="user-img">
-                                                        <img src="images/user/03.jpg" alt="userimg" class="avatar-35 rounded-circle img-fluid">
-                                                    </div>
-                                                    <div class="comment-data-block ml-3">
-                                                        <h6>Lê Thanh Hà</h6>
-                                                        <p class="mb-0">Lorem ipsum dolor sit amet</p>
-                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
-                                                            <a href="javascript:void();">like</a>
-                                                            <a href="javascript:void();">reply</a>
-
-                                                            <span> 5 min </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <ul id="post-commnet-${post.id }" class="post-comments p-0 m-0">
+                                        	<c:forEach var="cm" items="${commentService.findByPostId(post.id)}">
+                                        	<div class="current-tab">
+	                                            <li class="mb-2">
+	                                                <div class="d-flex flex-wrap">
+	                                                    <div class="user-img">
+	                                                        <img src="/resources/uploads/${cm.member.avatar}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+	                                                    </div>
+	                                                    <div class="comment-data-block ml-3">
+	                                                        <h5>${cm.member.firstName } ${cm.member.lastName }</h5>
+	                                                        <p  class="mb-0">${cm.comment }</p>
+	                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
+	                                                            <a href="javascript:void();">like</a>
+	                                                            <a href="javascript:void();">reply</a>
+	                                                            <span> 5 min </span>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </li>
+	                                            </div>
+                                           </c:forEach>
                                         </ul>
                                         <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
-                                            <input type="text" class="form-control rounded">
+                                            <input type="text" id="comment-${post.id}" class="form-control rounded">
                                             <div class="comment-attagement d-flex">
                                                 <a href="javascript:void();"><i class="ri-link mr-3"></i></a>
                                                 <a href="javascript:void();"><i class="ri-user-smile-line mr-3"></i></a>
                                                 <a href="javascript:void();"><i class="ri-camera-line mr-3"></i></a>
                                             </div>
+                                           <%--  <input type="button" id="comment_submit_${post.id }" value="Gui"> --%>
                                         </form>
-                                        
+                                        <script type="text/javascript">
+												$('#comment-${post.id}').on('keypress', function(e) {
+												    var code = e.keyCode || e.which;
+												    if(code==13){
+												    	var comment = $('#comment-${post.id}').val();
+														$.ajax({
+															url: '${pageContext.request.contextPath}/community/comment/${post.id}',
+														type : 'POST',
+														cache : false,
+														data : {
+															
+															comment : comment
+														},
+														success : function(response) {
+															$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }"); 
+															$('#comment-${post.id}').val('');
+														},
+														error : function(response) {
+															alert('Có lỗi xảy ra');
+														}
+													});
+													return false;
+												    }
+												});
+								</script>	
                                         
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+							  <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
+							    <script src="/resources/templates/public/js/loading.js"></script>
+							  <!-- <script src="jquery.simpleLoadMore.js"></script> -->
+							  <script>
+							    $('#post-commnet-${post.id }').simpleLoadMore({
+							      item: '.current-tab',
+							      count: 3,
+							      counterInBtn: true,
+							      btnText: 'Xem thêm {showing}/{total}',
+							    });
+							  </script>
+							  <script type="text/javascript">
+							
+							  var _gaq = _gaq || [];
+							  _gaq.push(['_setAccount', 'UA-36251023-1']);
+							  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+							  _gaq.push(['_trackPageview']);
+							
+							  (function() {
+							    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+							    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+							    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+							  })();
+							
+							</script>
 						</c:forEach>
                         
                     </div>
@@ -282,4 +329,6 @@
             </div>
 
         </div>
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
+ 
 </div>
