@@ -199,38 +199,48 @@
                                                     </div>
                                                     <div class="total-like-block ml-2 mr-3">
                                                         <div class="dropdown">
-                                                       	<button style="border: none; background-color: #4caf5000;">
-                                                           <img  alt="" src="/resources/templates/public/love_deactive.png">
-                                                        </button>
-                                                            <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                                                   140 Like
-                                                   </span>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Max Emum</a>
-                                                                <a class="dropdown-item" href="#">Bill Yerds</a>
-                                                                <a class="dropdown-item" href="#">Hap E. Birthday</a>
-                                                                <a class="dropdown-item" href="#">Tara Misu</a>
-                                                                <a class="dropdown-item" href="#">Midge Itz</a>
-                                                                <a class="dropdown-item" href="#">Sal Vidge</a>
-                                                                <a class="dropdown-item" href="#">Other</a>
-                                                            </div>
+                                                        <div id="btn-like-${post.id }" style="display: inline;">
+	                                                       	<a style="border: none; background-color: #4caf5000; float: left;" href="javascript:void(0);">
+	                                                          	<img alt="" src="/resources/templates/public/love_deactive.png">
+	                                                        </a>
+	                                                         <span style="float: left;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+			                                                   140 Like
+			                                                   </span>
+	                                                        </div>
+                                                           
                                                         </div>
                                                     </div>
+                                                    <script type="text/javascript">
+													
+													$(document).on('click','#btn-like-${post.id },#btn-like-${post.id }',function(e){
+															
+																	var img = $('#btn-like-${post.id } img').attr("src");
+																	$.ajax({
+																		url: '${pageContext.request.contextPath}/community/like-post/${post.id}',
+																	type : 'POST',
+																	cache : false,
+																	data : {
+																		//(key , value)
+																		img : img,
+																	},
+																	success : function(response) {
+																		alert('Like thanh cong!');
+																	},
+																	error : function(response) {
+																		alert('Có lỗi xảy ra');
+																	}
+																});
+																return false;
+															});
+															
+													</script>	
                                                 </div>
                                                 <div class="total-comment-block">
                                                     <div class="dropdown">
                                                         <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                                                 20 Comment
                                                 </span>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">Max Emum</a>
-                                                            <a class="dropdown-item" href="#">Bill Yerds</a>
-                                                            <a class="dropdown-item" href="#">Hap E. Birthday</a>
-                                                            <a class="dropdown-item" href="#">Tara Misu</a>
-                                                            <a class="dropdown-item" href="#">Midge Itz</a>
-                                                            <a class="dropdown-item" href="#">Sal Vidge</a>
-                                                            <a class="dropdown-item" href="#">Other</a>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +256,7 @@
 	                                                        <img src="/resources/uploads/${cm.member.avatar}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
 	                                                    </div>
 	                                                    <div class="comment-data-block ml-3">
-	                                                        <h5>${cm.member.firstName } ${cm.member.lastName }</h5>
+	                                                        <h5><strong>${cm.member.firstName } ${cm.member.lastName } </strong></h5>
 	                                                        <p  class="mb-0">${cm.comment }</p>
 	                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
 	                                                            <a href="javascript:void();">like</a>
@@ -255,6 +265,31 @@
 	                                                        </div>
 	                                                    </div>
 	                                                </div>
+	                                               <!--  reply comment -->
+                                               		<div style="margin-left: 50px;">
+	                                                	<ul id="rep-comment-area-${cm.id}" class="post-comments p-0 m-0">
+				                                            <c:forEach var="rep" items="${commentService.findByParentId(cm.id)}">
+				                                            <div class="current-tab-rep">
+					                                            <li>
+					                                                <div class="d-flex flex-wrap">
+					                                                    <div class="user-img">
+					                                                        <img src="/resources/uploads/${rep.member.avatar}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+					                                                    </div>
+					                                                    <div class="comment-data-block ml-3">
+					                                                        <h6><strong>${rep.member.firstName } ${rep.member.lastName } </strong><span> 5 min </span></h6> 
+					                                                        <p class="mb-0">${rep.comment }</p>
+					                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
+					                                                        </div>
+					                                                    </div>
+					                                                </div>
+					                                            </li>
+					                                            </div>
+				                                             </c:forEach>
+				                                        </ul>
+				                                       
+													</div>				
+													  
+				                                        <!--  reply comment -->                                        
 	                                            </li>
 	                                            <div id="rep-comment-${cm.id }" style="display: none;">
 	                                            	 <form style="margin-left: 30px; " class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
@@ -273,6 +308,34 @@
 			                                        	});
 			                                        </script>
 	                                            </div>
+	                                             <script type="text/javascript">
+												$('#reply-comment-${cm.id}').on('keypress', function(e) {
+												    var code = e.keyCode || e.which;
+												    if(code==13){
+												    	var comment = $('#reply-comment-${cm.id}').val();
+												    	if(comment !='' ){
+												    		$.ajax({
+																url: '${pageContext.request.contextPath}/community/rep-comment/${post.id}/${cm.id}',
+															type : 'POST',
+															cache : false,
+															data : {
+																comment : comment
+															},
+															success : function(response) {
+																$('#rep-comment-area-${cm.id }').load(" #rep-comment-area-${cm.id }"); 
+																$('#reply-comment-${cm.id}').val('');
+															},
+															error : function(response) {
+																alert('Có lỗi xảy ra');
+															}
+														});
+														return false;
+													    }
+												    	}});
+												
+														
+								</script>	
+							
                                            </c:forEach>
                                         </ul>
                                         <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
@@ -343,6 +406,8 @@
 							  })();
 							
 							</script>
+							
+						
 						</c:forEach>
                         
                     </div>

@@ -50,7 +50,7 @@
 						</div>
 						<div style="float: right;">
 							<br>
-							<button id="check-apply" style="margin-right: 20px;" type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Đánh dấu đã check</button>
+							<button id="check-apply" style="margin-right: 20px;" type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Đánh dấu đã check tất cả</button>
 							<br>
 							<script type="text/javascript">
 								
@@ -73,6 +73,14 @@
 												success : function(response) {
 													$('#check-apply').html("Đã check!");
 													$('#checkApply-table').load(" #checkApply-table");
+													 swal({
+														    title: 'Check ứng viên thành công!',
+														    /* text: 'Redirecting...', */
+														    icon: 'success',
+														    timer: 2000,
+														    buttons: true,
+														    type: 'success'
+														})
 												},
 												error : function(response) {
 													alert('Có lỗi xảy ra');
@@ -95,6 +103,7 @@
 						      <th scope="col">Apply time</th>
 						      <th scope="col">CV</th>
 						      <th scope="col">Status</th>
+						      <th>Check</th>
 						    </tr>
 						  </thead>
 						  <tbody >
@@ -125,7 +134,42 @@
 							       
 							       	
 							       </td>
+							       <td><button id="check-apply-one-${apply.id }"  type="button" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button></td>
 							    </tr>
+							    <script type="text/javascript">
+								$(document).on('click','#check-apply-one-${apply.id },#check-apply-one-${apply.id }',function(e){
+										
+												var id = ${apply.id}
+									
+												$.ajax({
+													url: '${pageContext.request.contextPath}/job/apply/checked-one',
+												type : 'POST',
+												cache : false,
+												data : {
+													//(key , value)
+													
+													idApply : id
+												},
+												success : function(response) {
+													$('#check-apply-one-${apply.id }').html("Đã check!");
+													$('#checkApply-table').load(" #checkApply-table");
+													 swal({
+														    title: 'Check ứng viên thành công!',
+														    /* text: 'Redirecting...', */
+														    icon: 'success',
+														    timer: 2000,
+														    buttons: true,
+														    type: 'success'
+														})
+												},
+												error : function(response) {
+													alert('Có lỗi xảy ra');
+												}
+											});
+											return false;
+										});
+										
+								</script>	
 						  	</c:forEach>
 						  </c:if>
 						    

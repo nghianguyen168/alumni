@@ -272,6 +272,17 @@ public class PublicJobController extends UserInfoHandler {
 		}
 
 	}
+	@PostMapping("/apply/checked-one")
+	public @ResponseBody String checkApplyOne(@RequestParam("idApply") int id) {
+		
+		int updateCheckStatus = jobApplyService.updateCheckOneStatus(id);
+		if (updateCheckStatus > 0) {
+			return "Cập nhật thành công!";
+		} else {
+			return null;
+		}
+
+	}
 
 	@GetMapping("/apply-me")
 	public String applyOfMe(Model model, HttpSession session) {

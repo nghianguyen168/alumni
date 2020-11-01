@@ -133,7 +133,7 @@
 											</div>
 										</div>
 										<ul>
-											<a class="btn btn-success btn-sm rounded-0"
+											<a class="btn btn-success btn-sm rounded-0" style="margin-top: 10px;"
 												type="button" data-toggle="tooltip" data-placement="top"
 												title="Edit" href="/job/edit/${job.id }">
 												<i class="fa fa-edit"></i>

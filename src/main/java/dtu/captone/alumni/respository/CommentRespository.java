@@ -14,5 +14,6 @@ import dtu.captone.alumni.domain.Major;
 public interface CommentRespository extends JpaRepository<Comment, Integer>,JpaSpecificationExecutor<Major> {
 	List<Comment> findAll();
 	List<Comment> findByPostId(int postId);
+	List<Comment> findByParentId(int parentId);
 	
 }

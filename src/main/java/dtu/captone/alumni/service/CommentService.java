@@ -23,5 +23,7 @@ public interface CommentService {
 	
 	List<Comment> findByPostId(int postId);
 	
+	List<Comment> findByParentId(int parentId);
+	
 	
 }

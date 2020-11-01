@@ -54,4 +54,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentRespository.findByPostId(postId);
 	}
 
+	@Override
+	public List<Comment> findByParentId(int parentId) {
+		// TODO Auto-generated method stub
+		return commentRespository.findByParentId(parentId);
+	}
+
 }

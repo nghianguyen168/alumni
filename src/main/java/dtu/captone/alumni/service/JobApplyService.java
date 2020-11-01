@@ -33,7 +33,10 @@ public interface JobApplyService {
 	
 	int updateCheckStatus(int id);
 	
+	int updateCheckOneStatus(int id);
+	
 	int sumJobApply(int id);
+	
 	
 	/*
 	 * List<Job> getJobListByMajor(int majorId);

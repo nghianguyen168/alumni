@@ -41,6 +41,11 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	@Transactional
 	public int updateCheckStatus(int job_id);
 	
+	@Modifying
+	@Query(value = "UPDATE job_apply SET check_status = 1 WHERE id =?",nativeQuery = true)
+	@Transactional
+	public int updateCheckOneStatus(int job_id);
+	
 	@Query(value = "SELECT count(id) FROM job_apply WHERE member_id=? ",nativeQuery = true)
     public int sumJobApply(int id);
 	

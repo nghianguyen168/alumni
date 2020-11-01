@@ -3,6 +3,7 @@ package dtu.captone.alumni.controller.alumni;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -29,10 +30,12 @@ import org.springframework.web.multipart.MultipartFile;
 import dtu.captone.alumni.domain.Alumni_group;
 import dtu.captone.alumni.domain.Comment;
 import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.LikePost;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.CommentService;
 import dtu.captone.alumni.service.GroupPostService;
 import dtu.captone.alumni.service.GroupService;
+import dtu.captone.alumni.service.LikePostService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -47,6 +50,9 @@ public class PublicCommunityController extends UserInfoHandler {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private  LikePostService likePostService;
 	
 	@ModelAttribute
 	public void sendObjectService(Model model) {
@@ -116,6 +122,31 @@ public class PublicCommunityController extends UserInfoHandler {
 			return "comment ok";
 		return null;
 	}
-
+	
+	@PostMapping("/rep-comment/{pid}/{cid}")
+	public @ResponseBody String replyComment(@PathVariable int pid,@PathVariable int cid,@RequestParam("comment") String comment,HttpSession session) {
+		Comment commentObj = new Comment(0, pid, comment, isUserLogin(session), Timestamp.valueOf(LocalDateTime.now()), cid);
+		Comment commentAdd = commentService.save(commentObj);
+		if(commentAdd!=null) 
+			return "comment ok";
+		return null;
+	}
+	
+	@PostMapping("/like-post/{pid}")
+	public @ResponseBody String likePost(@PathVariable int pid,@RequestParam("img") String img,HttpSession session) {
+		System.out.println(img);
+		if("/resources/templates/public/love_deactive.png".equals(img)) {
+			LikePost likePost = new LikePost(0, pid, isUserLogin(session), Timestamp.valueOf(LocalDateTime.now()));
+			LikePost likePostAdd  = likePostService.save(likePost);
+			if(likePostAdd!=null) 
+				return "ok";
+			return null;
+			
+		} else {
+			likePostService.deleteById(likePostService.findUserLike(isUserLogin(session).getId(), pid).getId());
+			return "ok";
+		}
+		
+	}
 }
 
