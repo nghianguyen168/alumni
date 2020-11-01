@@ -199,6 +199,9 @@
                                                     </div>
                                                     <div class="total-like-block ml-2 mr-3">
                                                         <div class="dropdown">
+                                                       	<button style="border: none; background-color: #4caf5000;">
+                                                           <img  alt="" src="/resources/templates/public/love_deactive.png">
+                                                        </button>
                                                             <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                                                    140 Like
                                                    </span>
@@ -247,12 +250,28 @@
 	                                                        <p  class="mb-0">${cm.comment }</p>
 	                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
 	                                                            <a href="javascript:void();">like</a>
-	                                                            <a href="javascript:void();">reply</a>
+	                                                            <a href="javascript:void();" id="reply-${cm.id }">reply</a>
 	                                                            <span> 5 min </span>
 	                                                        </div>
 	                                                    </div>
 	                                                </div>
 	                                            </li>
+	                                            <div id="rep-comment-${cm.id }" style="display: none;">
+	                                            	 <form style="margin-left: 30px; " class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
+			                                            <input type="text" id="reply-comment-${cm.id}" class="form-control rounded">
+			                                            <div class="comment-attagement d-flex">
+			                                                <a href="javascript:void();"><i class="ri-link mr-3"></i></a>
+			                                                <a href="javascript:void();"><i class="ri-user-smile-line mr-3"></i></a>
+			                                                <a href="javascript:void();"><i class="ri-camera-line mr-3"></i></a>
+			                                            </div>
+			                                           <%--  <input type="button" id="comment_submit_${post.id }" value="Gui"> --%>
+			                                        </form>
+			                                        </div>
+			                                        <script type="text/javascript">
+			                                        $("#reply-${cm.id }").click(function(){
+			                                        	  $("#rep-comment-${cm.id }").show();
+			                                        	});
+			                                        </script>
 	                                            </div>
                                            </c:forEach>
                                         </ul>
@@ -270,25 +289,28 @@
 												    var code = e.keyCode || e.which;
 												    if(code==13){
 												    	var comment = $('#comment-${post.id}').val();
-														$.ajax({
-															url: '${pageContext.request.contextPath}/community/comment/${post.id}',
-														type : 'POST',
-														cache : false,
-														data : {
-															
-															comment : comment
-														},
-														success : function(response) {
-															$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }"); 
-															$('#comment-${post.id}').val('');
-														},
-														error : function(response) {
-															alert('Có lỗi xảy ra');
-														}
-													});
-													return false;
-												    }
-												});
+												    	if(comment !='' ){
+												    		$.ajax({
+																url: '${pageContext.request.contextPath}/community/comment/${post.id}',
+															type : 'POST',
+															cache : false,
+															data : {
+																
+																comment : comment
+															},
+															success : function(response) {
+																$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }"); 
+																$('#comment-${post.id}').val('');
+															},
+															error : function(response) {
+																alert('Có lỗi xảy ra');
+															}
+														});
+														return false;
+													    }
+												    	}});
+												
+														
 								</script>	
                                         
                                     </div>
