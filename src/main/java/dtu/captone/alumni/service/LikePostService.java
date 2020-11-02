@@ -22,4 +22,6 @@ public interface LikePostService {
 	
 	Page<LikePost> findAll(Pageable pageable);
 	List<LikePost> findAll(Sort sort);
+	
+	List<LikePost> findByPostId(int postId);
 }

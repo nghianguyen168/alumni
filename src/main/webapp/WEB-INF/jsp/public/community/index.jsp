@@ -200,14 +200,53 @@
                                                     <div class="total-like-block ml-2 mr-3">
                                                         <div class="dropdown">
                                                         <div id="btn-like-${post.id }" style="display: inline;">
-	                                                       	<a style="border: none; background-color: #4caf5000; float: left;" href="javascript:void(0);">
-	                                                          	<img alt="" src="/resources/templates/public/love_deactive.png">
+                                                        <div style="float: left;">
+	                                                       	<a style="border: none; background-color: #4caf5000; " href="javascript:void(0);">
+	                                                       		<c:choose>
+	                                                       			<c:when test="${likePostService.findUserLike(userInfo.id, post.id) ne null }">
+	                                                       				<img alt="" src="/resources/templates/public/love_active.png">
+	                                                       			</c:when>
+	                                                       			<c:otherwise>
+	                                                       				<img alt="" src="/resources/templates/public/love_deactive.png">
+	                                                       			</c:otherwise>
+	                                                       		</c:choose>
+	                                                          	
 	                                                        </a>
-	                                                         <span style="float: left;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-			                                                   140 Like
-			                                                   </span>
 	                                                        </div>
-                                                           
+	                                                        <%--  <span style="float: left;" class="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> 
+			                                                 &nbsp;${likePostService.findByPostId(post.id).size() } Yêu thích
+			                                                   </span>
+				                                                   <div class="dropdown-menu">
+	                                                                <a class="dropdown-item" href="#">Max Emum</a>
+	                                                                <a class="dropdown-item" href="#">Bill Yerds</a>
+	                                                                <a class="dropdown-item" href="#">Hap E. Birthday</a>
+	                                                                <a class="dropdown-item" href="#">Tara Misu</a>
+	                                                                <a class="dropdown-item" href="#">Midge Itz</a>
+	                                                                <a class="dropdown-item" href="#">Sal Vidge</a>
+	                                                                <a class="dropdown-item" href="#">Other</a>
+	                                                            </div>
+	                                                        </div> --%>
+                                                        <div class="dropdown" style="float: left;">
+                                                            <span  >
+		                                                     &nbsp;${likePostService.findByPostId(post.id).size() } Yêu thích
+		                                                   </span>
+                                                            <div id="droplike-${post.id }" class="dropdown-menu">
+                                                            <c:forEach var="userLike" items="${likePostService.findByPostId(post.id)}">
+                                                            	<a class="dropdown-item" href="#">${userLike.member.firstName} ${userLike.member.lastName}</a>
+                                                            </c:forEach>
+                                                              <!-- <script>
+															    $('#droplike-${post.id }').simpleLoadMore({
+															      item: '.dropdown-item',
+															      count: 1,
+															      counterInBtn: true,
+															      btnText: 'Xem thêm {showing}/{total}',
+															    });
+															  </script> -->
+                                                                
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                         </div>
                                                     </div>
                                                     <script type="text/javascript">
@@ -224,7 +263,8 @@
 																		img : img,
 																	},
 																	success : function(response) {
-																		alert('Like thanh cong!');
+																		$('#btn-like-${post.id }').load(" #btn-like-${post.id }"); 
+																		
 																	},
 																	error : function(response) {
 																		alert('Có lỗi xảy ra');
@@ -235,10 +275,10 @@
 															
 													</script>	
                                                 </div>
-                                                <div class="total-comment-block">
+                                                <div class="total-comment-block" id="sum-comment-${post.id }">
                                                     <div class="dropdown">
                                                         <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                                                20 Comment
+                                                ${commentService.findByPostIdSum(post.id).size()} Bình luận
                                                 </span>
                                                         
                                                     </div>
@@ -249,34 +289,34 @@
                                         <hr>
                                         <ul id="post-commnet-${post.id }" class="post-comments p-0 m-0">
                                         	<c:forEach var="cm" items="${commentService.findByPostId(post.id)}">
-                                        	<div class="current-tab">
+                                        	<div class="tab">
 	                                            <li class="mb-2">
-	                                                <div class="d-flex flex-wrap">
+	                                                <div class="d-flex flex-wrap" style="background-color: #f2f3f5; border-radius: 10px;">
 	                                                    <div class="user-img">
 	                                                        <img src="/resources/uploads/${cm.member.avatar}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
 	                                                    </div>
 	                                                    <div class="comment-data-block ml-3">
-	                                                        <h5><strong>${cm.member.firstName } ${cm.member.lastName } </strong></h5>
-	                                                        <p  class="mb-0">${cm.comment }</p>
+		                                                        <a href="/member/detail/${cm.member.id }">${cm.member.firstName } ${cm.member.lastName }</a>
+		                                                        <p  class="mb-0">${cm.comment }</p>
 	                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
-	                                                            <a href="javascript:void();">like</a>
-	                                                            <a href="javascript:void();" id="reply-${cm.id }">reply</a>
-	                                                            <span> 5 min </span>
+	                                                            <a  style="font-size: 12px;" href="javascript:void();" id="reply-${cm.id }">Trả lời</a>
+	                                                            <span style="font-size: 12px;"> ${cm.timeComment } </span>
+	                                                            
 	                                                        </div>
 	                                                    </div>
 	                                                </div>
 	                                               <!--  reply comment -->
-                                               		<div style="margin-left: 50px;">
-	                                                	<ul id="rep-comment-area-${cm.id}" class="post-comments p-0 m-0">
+                                               		<div id="area-rep-${cm.id }" style="margin-left: 50px;">
+	                                                	<ul id="rep-comment-area-${cm.id}" class="post-rep-comments p-0 m-0">
 				                                            <c:forEach var="rep" items="${commentService.findByParentId(cm.id)}">
-				                                            <div class="current-tab-rep">
-					                                            <li>
+				                                            <div class="aa" style="background-color: #f2f3f5; border-radius: 10px;">
+					                                            <li style="margin-top: 3px;">
 					                                                <div class="d-flex flex-wrap">
 					                                                    <div class="user-img">
-					                                                        <img src="/resources/uploads/${rep.member.avatar}" alt="userimg" class="avatar-35 rounded-circle img-fluid">
+					                                                        <img src="/resources/uploads/${rep.member.avatar}" alt="userimg" class="avatar-30 rounded-circle img-fluid">
 					                                                    </div>
 					                                                    <div class="comment-data-block ml-3">
-					                                                        <h6><strong>${rep.member.firstName } ${rep.member.lastName } </strong><span> 5 min </span></h6> 
+					                                                        <a href="/member/detail/${rep.member.id }">${rep.member.firstName } ${rep.member.lastName }<span> 5 min </span></a> 
 					                                                        <p class="mb-0">${rep.comment }</p>
 					                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
 					                                                        </div>
@@ -284,11 +324,22 @@
 					                                                </div>
 					                                            </li>
 					                                            </div>
+					                                           
 				                                             </c:forEach>
+				                                          
 				                                        </ul>
-				                                       
-													</div>				
-													  
+													</div>		
+													   <script>
+															    $('#rep-comment-area-${cm.id}').simpleLoadMoreRepComment({
+															      item: '.aa',
+															      count: 2,
+															      counterInBtn: false,
+															      btnText: 'Xem thêm {showing}/{total}',
+															    });
+															  </script>
+													
+													
+													   
 				                                        <!--  reply comment -->                                        
 	                                            </li>
 	                                            <div id="rep-comment-${cm.id }" style="display: none;">
@@ -323,7 +374,9 @@
 															},
 															success : function(response) {
 																$('#rep-comment-area-${cm.id }').load(" #rep-comment-area-${cm.id }"); 
+																$('#sum-comment-${post.id }').load(" #sum-comment-${post.id }"); 
 																$('#reply-comment-${cm.id}').val('');
+																
 															},
 															error : function(response) {
 																alert('Có lỗi xảy ra');
@@ -362,7 +415,8 @@
 																comment : comment
 															},
 															success : function(response) {
-																$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }"); 
+																$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }");
+																$('#sum-comment-${post.id }').load(" #sum-comment-${post.id }"); 
 																$('#comment-${post.id}').val('');
 															},
 															error : function(response) {
@@ -386,12 +440,13 @@
 							  <!-- <script src="jquery.simpleLoadMore.js"></script> -->
 							  <script>
 							    $('#post-commnet-${post.id }').simpleLoadMore({
-							      item: '.current-tab',
+							      item: '.tab',
 							      count: 3,
 							      counterInBtn: true,
 							      btnText: 'Xem thêm {showing}/{total}',
 							    });
 							  </script>
+							  
 							  <script type="text/javascript">
 							
 							  var _gaq = _gaq || [];
@@ -416,6 +471,35 @@
             </div>
 
         </div>
+        
         <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
+        <script type="text/javascript">
+        var periods = {
+        		  month: 30 * 24 * 60 * 60 * 1000,
+        		  week: 7 * 24 * 60 * 60 * 1000,
+        		  day: 24 * 60 * 60 * 1000,
+        		  hour: 60 * 60 * 1000,
+        		  minute: 60 * 1000
+        		};
+
+        		function formatTime(timeCreated) {
+        		  var diff = Date.now() - timeCreated;
+
+        		  if (diff > periods.month) {
+        		    // it was at least a month ago
+        		    return Math.floor(diff / periods.month) + "m";
+        		  } else if (diff > periods.week) {
+        		    return Math.floor(diff / periods.week) + "w";
+        		  } else if (diff > periods.day) {
+        		    return Math.floor(diff / periods.day) + "d";
+        		  } else if (diff > periods.hour) {
+        		    return Math.floor(diff / periods.hour) + "h";
+        		  } else if (diff > periods.minute) {
+        		    return Math.floor(diff / periods.minute) + "m";
+        		  }
+        		  return "Just now";
+        		}
+        
+        </script>
  
 </div>

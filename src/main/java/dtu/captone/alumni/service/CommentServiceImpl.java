@@ -60,4 +60,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentRespository.findByParentId(parentId);
 	}
 
+	@Override
+	public List<Comment> findByPostIdSum(int postId) {
+		// TODO Auto-generated method stub
+		return  commentRespository.findByPostIdSum(postId);
+	}
+
 }

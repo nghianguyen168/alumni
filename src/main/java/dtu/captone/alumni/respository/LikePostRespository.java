@@ -1,5 +1,7 @@
 package dtu.captone.alumni.respository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,10 +22,10 @@ public interface LikePostRespository extends JpaRepository<LikePost, Integer> {
 	
 	
 	@Query(value = "SELECT * FROM like_post WHERE author_id=? AND post_id =?", nativeQuery = true)
-    @Modifying(clearAutomatically=true, flushAutomatically = true)
     @Transactional
 	LikePost findUserLike(int authorId,int postId);
 
+	List<LikePost> findByPostId(int postId);
 	/*	
 	 * @Modifying
 	 * 

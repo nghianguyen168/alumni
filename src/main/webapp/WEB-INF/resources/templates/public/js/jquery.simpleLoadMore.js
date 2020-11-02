@@ -120,7 +120,7 @@
   
   $.fn.simpleLoadMoreRepComment = function( options ) {
 	    // Settings.
-	    var settings = $.extend({
+	    var settings = ({
 	      count: 5,
 	      itemsToLoad: 5,
 	      btnHTML: '',
@@ -159,7 +159,7 @@
 	      }
 
 	      // Default if not available
-	      if ( ! btnHTML ) btnHTML = '<a href="#" id="loadMore" style="width:20%;   margin: auto;" class="' + cssClass + '__btn">' + btnText + '</a>';
+	      if ( ! btnHTML ) btnHTML = '<a href="#" id="loadMore1" style="width:20%; background-color:none;">' + btnText + '</a>';
 
 	      // Set $btnHTML as $btnHTML
 	      $btnHTML = $(btnHTML);

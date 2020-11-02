@@ -57,6 +57,7 @@ public class PublicCommunityController extends UserInfoHandler {
 	@ModelAttribute
 	public void sendObjectService(Model model) {
 		model.addAttribute("commentService", commentService);
+		model.addAttribute("likePostService", likePostService);
 	}
 
 	@GetMapping("/index/{id}")
@@ -141,7 +142,6 @@ public class PublicCommunityController extends UserInfoHandler {
 			if(likePostAdd!=null) 
 				return "ok";
 			return null;
-			
 		} else {
 			likePostService.deleteById(likePostService.findUserLike(isUserLogin(session).getId(), pid).getId());
 			return "ok";

@@ -47,4 +47,10 @@ public class LikePostServiceImpl implements LikePostService{
 		return null;
 	}
 
+	@Override
+	public List<LikePost> findByPostId(int postId) {
+		// TODO Auto-generated method stub
+		return likePostRespository.findByPostId(postId);
+	}
+
 }
