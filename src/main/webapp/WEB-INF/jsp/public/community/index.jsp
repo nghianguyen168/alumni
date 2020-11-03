@@ -125,9 +125,9 @@
                             </div>
                         </div>
 
-
+			
 						<c:forEach var="post" items="${groupPostList }">
-							<div class="col-sm-12">
+							<div id="post-${post.id }" class="col-sm-12">
                             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                                 <div class="iq-card-body">
                                     <div class="user-post-data">
@@ -213,6 +213,8 @@
 	                                                          	
 	                                                        </a>
 	                                                        </div>
+	                                                       </div>
+	                                                        
 	                                                        <%--  <span style="float: left;" class="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> 
 			                                                 &nbsp;${likePostService.findByPostId(post.id).size() } Yêu thích
 			                                                   </span>
@@ -226,14 +228,15 @@
 	                                                                <a class="dropdown-item" href="#">Other</a>
 	                                                            </div>
 	                                                        </div> --%>
-                                                        <div class="dropdown" style="float: left;">
+                                                        <div id="sum-like-${post.id }" class="dropdown" style="float: left;">
                                                             <span  >
 		                                                     &nbsp;${likePostService.findByPostId(post.id).size() } Yêu thích
 		                                                   </span>
                                                             <div id="droplike-${post.id }" class="dropdown-menu">
-                                                            <c:forEach var="userLike" items="${likePostService.findByPostId(post.id)}">
-                                                            	<a class="dropdown-item" href="#">${userLike.member.firstName} ${userLike.member.lastName}</a>
-                                                            </c:forEach>
+	                                                            <c:forEach var="userLike" items="${likePostService.findByPostId(post.id)}">
+	                                                            	<a class="dropdown-item" href="#">${userLike.member.firstName} ${userLike.member.lastName}</a>
+	                                                            </c:forEach>
+                                                            
                                                               <!-- <script>
 															    $('#droplike-${post.id }').simpleLoadMore({
 															      item: '.dropdown-item',
@@ -242,13 +245,48 @@
 															      btnText: 'Xem thêm {showing}/{total}',
 															    });
 															  </script> -->
-                                                                
-                                                               
+
+															<div class="text-center">
+															  <a href="javascript:void(0);" onclick="javascript:void(0);" on style="color: white;" class="" data-toggle="modal" data-target="#modalContactForm-${post.id }">Xem thêm</a>
+																
                                                             </div>
                                                         </div>
                                                     </div>
                                                         </div>
                                                     </div>
+                                                      <div class="modal fade" id="modalContactForm-${post.id }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+														  aria-hidden="true">
+														  <div class="modal-dialog" role="document">
+														    <div class="modal-content">
+														      <div class="modal-header text-center">
+														        <h4 class="modal-title w-100 font-weight-bold">Thành viên yêu thích bài viết</h4>
+														        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														          <span aria-hidden="true">&times;</span>
+														        </button>
+														      </div>
+														      
+														      <div class="reaction-box" style="overflow: scroll;" >
+                                                                    <c:forEach var="userL" items="${likePostService.findByPostId(post.id)}">
+                                                                    	 <div class="like-box">
+                                                                    	 <div class="infor-like">
+                                                                            <div style="padding-left:30px;">
+                                                                                <a href=" "><img class="like-avatar" src="/resources/uploads/${userL.member.avatar }"></a>
+                                                                            </div>
+                                                                            <div style="padding-right: 10px;">
+                                                                                <div><a href="/member/detail/${userL.member.id }">${userL.member.firstName } ${userL.member.lastName} </a></div>
+                                                                            </div>
+                                                                            <div style="margin-left: 100px;">
+                                                                                <button type="button" class="btn btn-primary">Thêm bạn bè</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+ 																</c:forEach>
+
+                                                                </div>
+														      
+														    </div>
+														  </div>
+														</div>
                                                     <script type="text/javascript">
 													
 													$(document).on('click','#btn-like-${post.id },#btn-like-${post.id }',function(e){
@@ -264,6 +302,8 @@
 																	},
 																	success : function(response) {
 																		$('#btn-like-${post.id }').load(" #btn-like-${post.id }"); 
+																		$('#sum-like-${post.id }').load(" #sum-like-${post.id }"); 
+																		
 																		
 																	},
 																	error : function(response) {
@@ -332,7 +372,7 @@
 													   <script>
 															    $('#rep-comment-area-${cm.id}').simpleLoadMoreRepComment({
 															      item: '.aa',
-															      count: 2,
+															      count: 5,
 															      counterInBtn: false,
 															      btnText: 'Xem thêm {showing}/{total}',
 															    });
@@ -342,7 +382,7 @@
 													   
 				                                        <!--  reply comment -->                                        
 	                                            </li>
-	                                            <div id="rep-comment-${cm.id }" style="display: none;">
+	                                            <div class="repcomment" id="rep-comment-${cm.id }" style="display: none;">
 	                                            	 <form style="margin-left: 30px; " class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
 			                                            <input type="text" id="reply-comment-${cm.id}" class="form-control rounded">
 			                                            <div class="comment-attagement d-flex">
@@ -360,7 +400,7 @@
 			                                        </script>
 	                                            </div>
 	                                             <script type="text/javascript">
-												$('#reply-comment-${cm.id}').on('keypress', function(e) {
+	                                         	$(document).on('keypress','#reply-comment-${cm.id},#reply-comment-${cm.id}',function(e){
 												    var code = e.keyCode || e.which;
 												    if(code==13){
 												    	var comment = $('#reply-comment-${cm.id}').val();
@@ -391,6 +431,14 @@
 							
                                            </c:forEach>
                                         </ul>
+                                          <script>
+										    $('#post-commnet-${post.id }').simpleLoadMore({
+										      item: '.tab',
+										      count: 5,
+										      counterInBtn: true,
+										      btnText: 'Xem thêm {showing}/{total}',
+										    });
+										  </script>
                                         <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">
                                             <input type="text" id="comment-${post.id}" class="form-control rounded">
                                             <div class="comment-attagement d-flex">
@@ -401,7 +449,7 @@
                                            <%--  <input type="button" id="comment_submit_${post.id }" value="Gui"> --%>
                                         </form>
                                         <script type="text/javascript">
-												$('#comment-${post.id}').on('keypress', function(e) {
+                                        $(document).on('keypress','#comment-${post.id},#comment-${post.id}',function(e){
 												    var code = e.keyCode || e.which;
 												    if(code==13){
 												    	var comment = $('#comment-${post.id}').val();
@@ -411,13 +459,14 @@
 															type : 'POST',
 															cache : false,
 															data : {
-																
 																comment : comment
 															},
 															success : function(response) {
+																$('#comment-${post.id}').val('');																
 																$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }");
 																$('#sum-comment-${post.id }').load(" #sum-comment-${post.id }"); 
-																$('#comment-${post.id}').val('');
+																$('#post-${post.id }').load(" #post-${post.id }"); 
+																
 															},
 															error : function(response) {
 																alert('Có lỗi xảy ra');
@@ -433,19 +482,13 @@
                                     </div>
                                 </div>
                             </div>
+                        
                         </div>
                         
 							  <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
 							    <script src="/resources/templates/public/js/loading.js"></script>
 							  <!-- <script src="jquery.simpleLoadMore.js"></script> -->
-							  <script>
-							    $('#post-commnet-${post.id }').simpleLoadMore({
-							      item: '.tab',
-							      count: 3,
-							      counterInBtn: true,
-							      btnText: 'Xem thêm {showing}/{total}',
-							    });
-							  </script>
+							
 							  
 							  <script type="text/javascript">
 							
@@ -464,7 +507,7 @@
 							
 						
 						</c:forEach>
-                        
+                        </div>
                     </div>
 
                 </div>
