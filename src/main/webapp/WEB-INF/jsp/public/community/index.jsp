@@ -5,7 +5,44 @@
  <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <!DOCTYPE html>
 <div id="group">
+ 
         <div class="container">
+        <script type="text/javascript">
+        function timeDifference(current, previous) {
+            
+            var msPerMinute = 60 * 1000;
+            var msPerHour = msPerMinute * 60;
+            var msPerDay = msPerHour * 24;
+            var msPerMonth = msPerDay * 30;
+            var msPerYear = msPerDay * 365;
+            
+            var elapsed = current - previous;
+            
+            if (elapsed < msPerMinute) {
+                 return Math.round(elapsed/1000) + ' seconds ago';   
+            }
+            
+            else if (elapsed < msPerHour) {
+                 return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+            }
+            
+            else if (elapsed < msPerDay ) {
+                 return Math.round(elapsed/msPerHour ) + ' hours ago';   
+            }
+
+            else if (elapsed < msPerMonth) {
+                 return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+            }
+            
+            else if (elapsed < msPerYear) {
+                 return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+            }
+            
+            else {
+                 return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+            }
+        }
+        </script>
             <div class="chia2">
                 <div class="menu-group">
                     <div style="background-image: url(/resources/templates/public/community/images/bg1.jpg) ; height: 140px;">
@@ -172,8 +209,21 @@
                                             </div>
                                             <div class="media-support-info mt-2">
                                                 <h5 class="mb-0 d-inline-block"><a href="#" class="">${post.member.firstName } ${post.member.lastName}</a></h5>
+												
+                                                <p class="mb-0 text-primary">
+                                                <fmt:parseDate value="${post.time_post}" var="dateObject"
+             							   pattern="yyyy-MM-dd HH:mm:ss" />
+                                                <fmt:formatDate var="year" value="${dateObject}" pattern="yyyy" />
+                                                 <fmt:formatDate var="month" value="${dateObject}" pattern="MM" />
+                                                  <fmt:formatDate var="day" value="${dateObject}" pattern="dd" />
+                                                  
+                                                   <fmt:formatDate var="hour" value="${dateObject}" pattern="HH" />
+                                                    <fmt:formatDate var="minute" value="${dateObject}" pattern="mm" />
+                                                     <fmt:formatDate var="second" value="${dateObject}" pattern="ss" />
+                                                	<script type="text/javascript">
 
-                                                <p class="mb-0 text-primary">${post.time_post}</p>
+                                                	alert(timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0)));                                                	</script>
+                                              </p>
                                             </div>
                                             <div class="iq-card-post-toolbar">
                                                 <div class="dropdown">
@@ -304,53 +354,56 @@
 														      
 														      <div class="reaction-box" style="overflow: scroll;" >
                                                                     <c:forEach var="userL" items="${likePostService.findByPostId(post.id)}">
-                                                                    	 <div class="like-box">
+                                                                    	 <div class="like-box" style="padding: 0px;">
                                                                     	 <div class="infor-like">
-                                                                            <div style="padding-left:30px;">
+                                                                    	 <div style="width: 200px; margin-left: 20px; ">
+                                                                            <div style="float: left;">
                                                                                 <a href=" "><img class="like-avatar" src="/resources/uploads/${userL.member.avatar }"></a>
                                                                             </div>
-                                                                            <div style="padding-right: 10px;">
+                                                                            <div style="padding-right: 10px; float: left; margin-top: 20px;">
                                                                                 <div><a href="/member/detail/${userL.member.id }">${userL.member.firstName } ${userL.member.lastName} </a></div>
                                                                             </div>
-                                                                            <div style="margin-left: 100px;">
-                                                                                <button type="button" class="btn btn-primary">Thêm bạn bè</button>
-                                                                            </div>
+                                                                           </div>
+                                                                            <div style="margin-left: 100px; margin-bottom: 30px; border: none" class="add-network" id="add-friend-${userL.member.id  }">
+											                                    <i class="fa fa-user-plus"></i>
+											                                    <span>THÊM BẠN BÈ</span>
+											                                </div>
                                                                         </div>
                                                                         </div>
+                                                                    <script type="text/javascript">
+								
+																		$(document).on('click','#add-friend-${userL.member.id  },add-friend-${userL.member.id  }',function(e){
+																						var id = ${userL.member.id}
+																			
+																						$.ajax({
+																							url: '${pageContext.request.contextPath}/network/add-friend',
+																						type : 'POST',
+																						cache : false,
+																						data : {
+																							//(key , value)
+																						
+																							 id : id
+																						},
+																						success : function(response) {
+																						$('#add-friend-${userL.member.id }').html("<i class=\"fa fa-check\" aria-hidden=\"true\"></i>\r\n" + 
+																								"				                                    <span>Đã gửi yêu cầu</span>");
+																						},
+																						error : function(response) {
+																							alert('Có lỗi xảy ra');
+																						}
+																					});
+																					return false;
+																				});
+																				
+																		</script>	
  																</c:forEach>
 
                                                                 </div>
-														      
+														       
 														    </div>
 														  </div>
 														</div>
-                                                    <script type="text/javascript">
-													
-													$(document).on('click','#btn-like-${post.id },#btn-like-${post.id }',function(e){
-															
-																	var img = $('#btn-like-${post.id } img').attr("src");
-																	$.ajax({
-																		url: '${pageContext.request.contextPath}/community/like-post/${post.id}',
-																	type : 'POST',
-																	cache : false,
-																	data : {
-																		//(key , value)
-																		img : img,
-																	},
-																	success : function(response) {
-																		$('#btn-like-${post.id }').load(" #btn-like-${post.id }"); 
-																		$('#sum-like-${post.id }').load(" #sum-like-${post.id }"); 
-																		
-																		
-																	},
-																	error : function(response) {
-																		alert('Có lỗi xảy ra');
-																	}
-																});
-																return false;
-															});
-															
-													</script>	
+                                                  
                                                 </div>
                                                 <div class="total-comment-block" id="sum-comment-${post.id }">
                                                     <div class="dropdown">
@@ -553,33 +606,5 @@
         </div>
         
         <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> -->
-        <script type="text/javascript">
-        var periods = {
-        		  month: 30 * 24 * 60 * 60 * 1000,
-        		  week: 7 * 24 * 60 * 60 * 1000,
-        		  day: 24 * 60 * 60 * 1000,
-        		  hour: 60 * 60 * 1000,
-        		  minute: 60 * 1000
-        		};
-
-        		function formatTime(timeCreated) {
-        		  var diff = Date.now() - timeCreated;
-
-        		  if (diff > periods.month) {
-        		    // it was at least a month ago
-        		    return Math.floor(diff / periods.month) + "m";
-        		  } else if (diff > periods.week) {
-        		    return Math.floor(diff / periods.week) + "w";
-        		  } else if (diff > periods.day) {
-        		    return Math.floor(diff / periods.day) + "d";
-        		  } else if (diff > periods.hour) {
-        		    return Math.floor(diff / periods.hour) + "h";
-        		  } else if (diff > periods.minute) {
-        		    return Math.floor(diff / periods.minute) + "m";
-        		  }
-        		  return "Just now";
-        		}
-        
-        </script>
+       
  
-</div>
