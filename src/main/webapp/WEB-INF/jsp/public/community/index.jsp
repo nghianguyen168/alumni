@@ -58,10 +58,10 @@
                                       
                                     </div>
                                     <hr>
-                                    <ul class="post-opt-block d-flex align-items-center list-inline m-0 p-0">
+                                    <ul class="post-opt-block d-flex align-items-center list-inline m-0 p-0" style="float: left;">
                                         <li class="iq-bg-primary rounded p-2 pointer mr-3">
                                             <a href="#"></a><img src="/resources/templates/public/community/images/small/07.png" alt="icon" class="img-fluid">
-                                            	<input id="file-input" name="media" type="file" multiple style="display: none">
+                                            	<input  id="file-input" name="media" type="file" multiple style="display: none" >
                                             	<label for="file-input" style="cursor: pointer;">Ảnh/Video</label>
                                             	 <progress style="display:none;" id="progressBar" value="0" max="100" style="width:300px;"></progress>
 												  <h3 id="status"></h3>
@@ -69,56 +69,91 @@
 												<div id="preview"></div>
                                             </li>
                                             
-                                            <li class="iq-bg-primary rounded p-2 pointer mr-3">
+                                    </ul>
+                                    <ul style="float: left; class="post-opt-block d-flex align-items-center list-inline m-0 p-0">
+                                    	  <li id="dinhkemfile" class="iq-bg-primary rounded p-2 pointer mr-3">
                                             <a href="#"></a><img src="/resources/templates/public/community/images/small/07.png" alt="icon" class="img-fluid">
-                                            	<input id="file-dinhkem-input" name="file" type="file"  style="display: none">
-                                            	<label for="file-input" style="cursor: pointer;">Đính kèm file</label>
+                                            	<input id="file-dinhkem-input" name="file-dinh-kem" type="file"  style="display: none">
+                                            	<label for="file-dinhkem-input" style="cursor: pointer;">Đính kèm file</label>
                                             	 <progress style="display:none;" id="progressBar" value="0" max="100" style="width:300px;"></progress>
 												  <h3 id="status"></h3>
 												  <p id="loaded_n_total"></p>
-												<div id="preview"></div>
+												<div id="preview-dinhkem"></div>
                                             </li>
-                                        <li class="iq-bg-primary rounded p-2 pointer mr-3">
-                                            <a href="#"></a><img src="resources/templates/public/community/images/small/08.png" alt="icon" class="img-fluid"> Tag bạn bè</li>
-										
-
-                                    </ul>
+                                    </ul >
                                     <script type="text/javascript">
-                                    function previewImages() {
+                                    	  $("#file-input").change(function () {	
+        								        var fileExtension = ['jpe?g','png','jpg','gif','mp4','mov','avi','wmv','flv'];
+        								        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+        								           return alert("Chỉ châp nhận định dạng : "+fileExtension.join(', '));
+        								        } else{
+        								        	 var preview = document.querySelector('#preview');
+        	                                    	  
+        	                                    	  if (this.files) {
+        	                                    	    [].forEach.call(this.files, readAndPreview);
+        	                                    	  }
+        	                                    	
 
-                                    	  var preview = document.querySelector('#preview');
+        	                                    	  function readAndPreview(file) {
+        	                                    	    var reader = new FileReader();
+        	                                    	    
+        	                                    	    reader.addEventListener("load", function() {
+        	                                    	      var image = new Image();
+        	                                    	      image.height = 100;
+        	                                    	      image.title  = file.name;
+        	                                    	      image.src    = this.result;
+        	                                    	      preview.appendChild(image);
+        	                                    	    });
+        	                                    	    
+        	                                    	    reader.readAsDataURL(file);
+        	                                    	    
+        	                                    	  }
+
+        								        	
+        								       }
                                     	  
-                                    	  if (this.files) {
-                                    	    [].forEach.call(this.files, readAndPreview);
-                                    	  }
+        								    });
+                                    		document.querySelector('#file-input').addEventListener("change", previewImages);
+                                    		
+                                    		  
 
-                                    	  function readAndPreview(file) {
-
-                                    	    // Make sure `file.name` matches our extensions criteria
-                                    	    if (!/\.(jpe?g|png|gif|mp4|mov|avi|wmv|flv)$/i.test(file.name)) {
-                                    	      return alert(file.name + " is not an image");
-                                    	    } // else...
-                                    	    
-                                    	    var reader = new FileReader();
-                                    	    
-                                    	    reader.addEventListener("load", function() {
-                                    	      var image = new Image();
-                                    	      image.height = 100;
-                                    	      image.title  = file.name;
-                                    	      image.src    = this.result;
-                                    	      preview.appendChild(image);
-                                    	    });
-                                    	    
-                                    	    reader.readAsDataURL(file);
-                                    	    
-                                    	  }
-
-                                    	}
-                                    
-                                    
-
-                                    	document.querySelector('#file-input').addEventListener("change", previewImages);
                                     </script>
+                                    <script>
+                                    $("#file-dinhkem-input").change(function () {
+  								        var fileExtension = ['doc','docx','xlsx','xlsm','pdf'];
+  								        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+  								           return alert("Chỉ châp nhận định dạng : "+fileExtension.join(', '));
+  								        } else{
+  								        	$("#voltaic_holder").css("position", "relative");
+  								        	 var preview = document.querySelector('#preview-dinhkem');
+  	                                    	  
+  	                                    	  if (this.files) {
+  	                                    	    [].forEach.call(this.files, readAndPreview);
+  	                                    	  }
+  	                                    	
+
+  	                                    	  function readAndPreview(file) {
+  	                                    	    var reader = new FileReader();
+  	                                    	    
+  	                                    	    reader.addEventListener("load", function() {
+  	                                    	      var image = new Image();
+  	                                    	      image.height = 100;
+  	                                    	      image.title  = file.name;
+  	                                    	      image.src    = this.result;
+  	                                    	      preview.appendChild(image);
+  	                                    	    });
+  	                                    	    
+  	                                    	    reader.readAsDataURL(file);
+  	                                    	    
+  	                                    	  }
+
+  								        	
+  								       }
+                              	  
+  								    });
+                                    document.querySelector('#file-dinhkem-input').addEventListener("change", previewImages);
+                                    </script>
+                                    
                                 </div>
                                 <button type="submit" class="btn-loading btn btn-primary d-block w-100 mt-3" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang tải lên...">Đăng</button>
 								</form>
@@ -164,16 +199,18 @@
                                     </div>
                                     <div class="mt-3">
                                         <p>${post.title }</p>
-                                        <br>
                                         <a href="/resources/uploads/${post.file }">${post.file }</a>
                                     </div>
-                              
-                                    <div class="user-post">
+                                    <br>
+                                    <c:if test="${not empty post.media }">
+                                    	<div class="user-post">
                                       	<c:set var="media_array" value="${fn:split(post.media, '|')}" />
                                   		<c:forEach var="media" items="${media_array }">
                                   	 		 <a href="javascript:void();"><img src="/resources/uploads/${media }" alt="post-image" class="img-fluid rounded w-100"></a>
                                   		</c:forEach>
                                     </div>
+                                    
+                                    </c:if>
                                     
                                     
                                     

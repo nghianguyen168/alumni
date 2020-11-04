@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -82,19 +83,23 @@ public class PublicCommunityController extends UserInfoHandler {
 
 	@PostMapping("/add/{id}")
 	public String addPost(@PathVariable int id, @RequestParam("title") String title,
-			@RequestParam("file") MultipartFile fileDinhKem,
-			@RequestParam(name = "media", required = false) List<MultipartFile> media,
+		
+			@RequestParam(name = "media", required = false) List<MultipartFile> media,@RequestParam(name="file-dinh-kem",required=false) MultipartFile fileDinhKem,
 			HttpServletRequest servletRequest, HttpSession session) throws IllegalStateException, IOException {
 		if (isUserLogin(session) == null) {
 			return "redirect:/login";
 		} else {
-			List<MultipartFile> files = media;
-			String mediaNames = "";
+			
+			String mediaNames="";
+			String nameFile ="";
 			if (media != null && media.size() > 0) {
-				for (MultipartFile multipartFile : files) {
+				for (MultipartFile multipartFile : media) {
 
 					  String fileName1 = multipartFile.getOriginalFilename();
-					  mediaNames = mediaNames + "|"+fileName1;
+					  if(!"".equals(fileName1)) {
+						  mediaNames = mediaNames + "|"+fileName1;
+					  }
+					
 		                File imageFile = new File(servletRequest.getServletContext().getRealPath("/uploads"), fileName1);
 		                System.out.println(imageFile);
 		                try
@@ -106,10 +111,13 @@ public class PublicCommunityController extends UserInfoHandler {
 		                }
 				}
 			}
-			Group_Post group_Post = new Group_Post(0, title, Timestamp.valueOf(LocalDateTime.now()), mediaNames, "", 0,
-					0, isUserLogin(session), groupService.findById(id));
+			if(fileDinhKem!=null) {
+				 nameFile = FileUtil.upload(fileDinhKem, servletRequest);
+				System.out.println(nameFile);
+			}
+			Group_Post group_Post = new Group_Post(0, title, Timestamp.valueOf(LocalDateTime.now()), mediaNames, nameFile, isUserLogin(session), groupService.findById(id));
 			Group_Post group_PostAdd = groupPostService.save(group_Post);
-
+			
 			return "redirect:/community/index/" + id;
 		}
 

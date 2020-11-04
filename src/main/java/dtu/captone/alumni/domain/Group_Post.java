@@ -51,13 +51,6 @@ public class Group_Post  implements Serializable{
 	@Column(name = "file")
 	private String file;
 	
-	
-	@Column(name = "sum_like")
-	private int sum_like;
-	
-	@Column(name = "sum_comment")
-	private int sum_comment;
-	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
 	private Member member;
