@@ -51,6 +51,7 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="/resources/templates/public/js/slide.js"></script>
 <script src="/resources/templates/public/js/state.js"></script>
+<script src="/resources/templates/public/js/timeago.js"></script>
 <script src="/resources/templates/public/auth.js"></script>
 <script src="/resources/templates/public/loading-bar.js"></script>
 <script src="/resources/templates/public/loading-bar.min.js"></script>

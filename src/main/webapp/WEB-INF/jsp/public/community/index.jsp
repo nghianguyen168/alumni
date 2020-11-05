@@ -7,7 +7,7 @@
 <div id="group">
  
         <div class="container">
-        <script type="text/javascript">
+       <!--  <script type="text/javascript">
         function timeDifference(current, previous) {
             
             var msPerMinute = 60 * 1000;
@@ -19,30 +19,29 @@
             var elapsed = current - previous;
             
             if (elapsed < msPerMinute) {
-                 return Math.round(elapsed/1000) + ' seconds ago';   
+                 return Math.round(elapsed/1000) + ' giây trước';   
             }
-            
             else if (elapsed < msPerHour) {
-                 return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+                 return Math.round(elapsed/msPerMinute) + ' phút trước';   
             }
             
             else if (elapsed < msPerDay ) {
-                 return Math.round(elapsed/msPerHour ) + ' hours ago';   
+                 return Math.round(elapsed/msPerHour ) + ' giờ trước';   
             }
 
             else if (elapsed < msPerMonth) {
-                 return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+                 return 'khoảng ' + Math.round(elapsed/msPerDay) + ' ngày trước';   
             }
             
             else if (elapsed < msPerYear) {
-                 return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+                 return 'khoảng ' + Math.round(elapsed/msPerMonth) + ' tháng trước';   
             }
             
             else {
-                 return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+                 return 'khoảng ' + Math.round(elapsed/msPerYear ) + ' năm trước';   
             }
         }
-        </script>
+        </script> -->
             <div class="chia2">
                 <div class="menu-group">
                     <div style="background-image: url(/resources/templates/public/community/images/bg1.jpg) ; height: 140px;">
@@ -209,9 +208,7 @@
                                             </div>
                                             <div class="media-support-info mt-2">
                                                 <h5 class="mb-0 d-inline-block"><a href="#" class="">${post.member.firstName } ${post.member.lastName}</a></h5>
-												
-                                                <p class="mb-0 text-primary">
-                                                <fmt:parseDate value="${post.time_post}" var="dateObject"
+												      <fmt:parseDate value="${post.time_post}" var="dateObject"
              							   pattern="yyyy-MM-dd HH:mm:ss" />
                                                 <fmt:formatDate var="year" value="${dateObject}" pattern="yyyy" />
                                                  <fmt:formatDate var="month" value="${dateObject}" pattern="MM" />
@@ -220,9 +217,11 @@
                                                    <fmt:formatDate var="hour" value="${dateObject}" pattern="HH" />
                                                     <fmt:formatDate var="minute" value="${dateObject}" pattern="mm" />
                                                      <fmt:formatDate var="second" value="${dateObject}" pattern="ss" />
-                                                	<script type="text/javascript">
-
-                                                	alert(timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0)));                                                	</script>
+                                                <p class="mb-0 text-primary" id="time-${post.id }">
+                                                	<script>
+                                                		/* timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));       */
+                                                        document.getElementById("time-${post.id }").innerHTML = 	timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));  
+                                                	</script>
                                               </p>
                                             </div>
                                             <div class="iq-card-post-toolbar">
@@ -287,7 +286,7 @@
                                                     <div class="total-like-block ml-2 mr-3">
                                                         <div class="dropdown">
                                                         <div id="btn-like-${post.id }" style="display: inline;">
-                                                        <div style="float: left;">
+                                                        <div id="likepost-${post.id }" style="float: left;">
 	                                                       	<a style="border: none; background-color: #4caf5000; " href="javascript:void(0);">
 	                                                       		<c:choose>
 	                                                       			<c:when test="${likePostService.findUserLike(userInfo.id, post.id) ne null }">
@@ -301,7 +300,7 @@
 	                                                        </a>
 	                                                        </div>
 	                                                       </div>
-	                                                        
+	                                                           
 	                                                        <%--  <span style="float: left;" class="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> 
 			                                                 &nbsp;${likePostService.findByPostId(post.id).size() } Yêu thích
 			                                                   </span>
@@ -337,6 +336,32 @@
 															  <a href="javascript:void(0);" onclick="javascript:void(0);" on style="color: white;" class="" data-toggle="modal" data-target="#modalContactForm-${post.id }">Xem thêm</a>
 																
                                                             </div>
+                                                                <script type="text/javascript">
+					
+																		$(document).on('click','#btn-like-${post.id },btn-like-${post.id }',function(e){
+																			var img =  $('#likepost-${post.id } img').attr("src");
+																			
+																						$.ajax({
+																							url: '${pageContext.request.contextPath}/community/like-post/${post.id}',
+																						type : 'POST',
+																						cache : false,
+																						data : {
+																							//(key , value)
+																						img:img
+																							
+																						},
+																						success : function(response) {
+																							$('#likepost-${post.id }').load(" #likepost-${post.id }");
+																							$('#sum-like-${post.id }').load(" #sum-like-${post.id }");
+																						},
+																						error : function(response) {
+																							alert('Có lỗi xảy ra');
+																						}
+																					});
+																					return false;
+																				});
+																				
+																		</script>	
                                                         </div>
                                                     </div>
                                                         </div>
@@ -370,6 +395,7 @@
 											                                </div>
                                                                         </div>
                                                                         </div>
+                                                                    
                                                                     <script type="text/javascript">
 								
 																		$(document).on('click','#add-friend-${userL.member.id  },add-friend-${userL.member.id  }',function(e){
@@ -430,7 +456,20 @@
 		                                                        <p  class="mb-0">${cm.comment }</p>
 	                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
 	                                                            <a  style="font-size: 12px;" href="javascript:void();" id="reply-${cm.id }">Trả lời</a>
-	                                                            <span style="font-size: 12px;"> ${cm.timeComment } </span>
+	                                                            <span style="font-size: 12px;" id="time-comment-${cm.id }"> </span>
+						                                       <fmt:parseDate value="${cm.timeComment}" var="dateObject"
+					             							   pattern="yyyy-MM-dd HH:mm:ss" />
+					                                                <fmt:formatDate var="year" value="${dateObject}" pattern="yyyy" />
+					                                                 <fmt:formatDate var="month" value="${dateObject}" pattern="MM" />
+					                                                  <fmt:formatDate var="day" value="${dateObject}" pattern="dd" />
+					                                                  
+					                                                   <fmt:formatDate var="hour" value="${dateObject}" pattern="HH" />
+					                                                    <fmt:formatDate var="minute" value="${dateObject}" pattern="mm" />
+					                                                     <fmt:formatDate var="second" value="${dateObject}" pattern="ss" />
+                                                	<script>
+                                                		/* timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));       */
+                                                        document.getElementById("time-comment-${cm.id }").innerHTML = 	timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));  
+                                                	</script>
 	                                                            
 	                                                        </div>
 	                                                    </div>
@@ -445,8 +484,9 @@
 					                                                    <div class="user-img">
 					                                                        <img src="/resources/uploads/${rep.member.avatar}" alt="userimg" class="avatar-30 rounded-circle img-fluid">
 					                                                    </div>
+					                                                    
 					                                                    <div class="comment-data-block ml-3">
-					                                                        <a href="/member/detail/${rep.member.id }">${rep.member.firstName } ${rep.member.lastName }<span> 5 min </span></a> 
+					                                                        <p><a style="float: left;" href="/member/detail/${rep.member.id }">${rep.member.firstName } ${rep.member.lastName } </a> <span  style="float: left; fon" id="rep-comment-${rep.id }"> </span></p> 
 					                                                        <p class="mb-0">${rep.comment }</p>
 					                                                        <div class="d-flex flex-wrap align-items-center comment-activity">
 					                                                        </div>
@@ -454,6 +494,20 @@
 					                                                </div>
 					                                            </li>
 					                                            </div>
+					                                             <fmt:parseDate value="${rep.timeComment}" var="dateObject"
+					             							   pattern="yyyy-MM-dd HH:mm:ss" />
+					                                                <fmt:formatDate var="year" value="${dateObject}" pattern="yyyy" />
+					                                                 <fmt:formatDate var="month" value="${dateObject}" pattern="MM" />
+					                                                  <fmt:formatDate var="day" value="${dateObject}" pattern="dd" />
+					                                                  
+					                                                   <fmt:formatDate var="hour" value="${dateObject}" pattern="HH" />
+					                                                    <fmt:formatDate var="minute" value="${dateObject}" pattern="mm" />
+					                                                     <fmt:formatDate var="second" value="${dateObject}" pattern="ss" />
+					                                                <p class="mb-0 text-primary" id="time-${post.id }">
+                                                	<script>
+                                                		/* timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));       */
+                                                        document.getElementById("rep-comment-${rep.id }").innerHTML = "&ensp;"+	timeDifference(new Date(), new Date(${year}, ${month - 1}, ${day}, ${hour}, ${minute}, ${second}, 0));  
+                                                	</script>
 					                                           
 				                                             </c:forEach>
 				                                          
@@ -555,7 +609,7 @@
 																$('#comment-${post.id}').val('');																
 																$('#post-commnet-${post.id }').load(" #post-commnet-${post.id }");
 																$('#sum-comment-${post.id }').load(" #sum-comment-${post.id }"); 
-																$('#post-${post.id }').load(" #post-${post.id }"); 
+															
 																
 															},
 															error : function(response) {

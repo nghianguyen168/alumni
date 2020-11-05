@@ -111,10 +111,10 @@ public class PublicCommunityController extends UserInfoHandler {
 		                }
 				}
 			}
-			if(fileDinhKem!=null) {
+			if(!"".equals(fileDinhKem.getOriginalFilename())) {
 				 nameFile = FileUtil.upload(fileDinhKem, servletRequest);
 				System.out.println(nameFile);
-			}
+			} 
 			Group_Post group_Post = new Group_Post(0, title, Timestamp.valueOf(LocalDateTime.now()), mediaNames, nameFile, isUserLogin(session), groupService.findById(id));
 			Group_Post group_PostAdd = groupPostService.save(group_Post);
 			
