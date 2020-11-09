@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dtu.captone.alumni.domain.Edu_level;
+
 import dtu.captone.alumni.domain.Trainning_system;
-import dtu.captone.alumni.respository.Edu_LevelRespository;
+
 import dtu.captone.alumni.respository.TrainningSystemRespository;
 
 @Service

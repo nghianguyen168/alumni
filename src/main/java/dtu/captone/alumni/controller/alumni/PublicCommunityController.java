@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import dtu.captone.alumni.domain.Alumni_group;
+import dtu.captone.alumni.domain.AlumniGroup;
 import dtu.captone.alumni.domain.Comment;
-import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.GroupPost;
 import dtu.captone.alumni.domain.LikePost;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.CommentService;
@@ -65,15 +65,15 @@ public class PublicCommunityController extends UserInfoHandler {
 	public String community(@PathVariable(required = false, name = "id") Integer groupId, Model model,
 			HttpSession session) {
 		if (isUserLogin(session) == null) {
-			return "redirect:/login";
+			return "redirect:/user/login";
 		} else {
 			if (groupId == null) {
 				groupId = 0;
 			}
-			Page<Group_Post> groupPostPage = groupPostService
+			Page<GroupPost> groupPostPage = groupPostService
 					.findAll(PageRequest.of(0, 100, Sort.by("id").descending()));
-			List<Group_Post> groupPostList = groupPostPage.getContent();
-			Alumni_group alumni_group = groupService.findById(groupId);
+			List<GroupPost> groupPostList = groupPostPage.getContent();
+			AlumniGroup alumni_group = groupService.findById(groupId);
 			model.addAttribute("groupPostList", groupPostList);
 			model.addAttribute("alumni_group", alumni_group);
 			return "public.community";
@@ -115,8 +115,8 @@ public class PublicCommunityController extends UserInfoHandler {
 				 nameFile = FileUtil.upload(fileDinhKem, servletRequest);
 				System.out.println(nameFile);
 			} 
-			Group_Post group_Post = new Group_Post(0, title, Timestamp.valueOf(LocalDateTime.now()), mediaNames, nameFile, isUserLogin(session), groupService.findById(id));
-			Group_Post group_PostAdd = groupPostService.save(group_Post);
+			GroupPost group_Post = new GroupPost(0, title, Timestamp.valueOf(LocalDateTime.now()), mediaNames, nameFile, isUserLogin(session), groupService.findById(id));
+			GroupPost group_PostAdd = groupPostService.save(group_Post);
 			
 			return "redirect:/community/index/" + id;
 		}

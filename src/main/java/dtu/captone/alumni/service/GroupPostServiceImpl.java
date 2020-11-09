@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.GroupPost;
 import dtu.captone.alumni.respository.GroupPostRespository;
 
 @Service
@@ -20,7 +20,7 @@ public class GroupPostServiceImpl implements GroupPostService {
 	private GroupPostRespository groupPostRespository;
 
 	@Override
-	public Group_Post save(Group_Post group_Post) {
+	public GroupPost save(GroupPost group_Post) {
 		// TODO Auto-generated method stub
 		return groupPostRespository.save(group_Post);
 	}
@@ -33,25 +33,25 @@ public class GroupPostServiceImpl implements GroupPostService {
 	 */
 
 	@Override
-	public Group_Post findById(Integer id) {
+	public GroupPost findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Group_Post> findAll(Pageable pageable) {
+	public Page<GroupPost> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return groupPostRespository.findAll(pageable);
 	}
 
 	@Override
-	public List<Group_Post> findAll(Sort sort) {
+	public List<GroupPost> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Group_Post> getNewsListEnable(Pageable pageable) {
+	public Page<GroupPost> getNewsListEnable(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}

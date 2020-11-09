@@ -176,10 +176,13 @@
                         </select>
                     </div>
                 </div>
+                 <c:if test="${userInfo.role.name =='ALUMNI' || userInfo.role.name =='STUDENT' }">
+                
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Ngành học</label>
                     <div class="col-lg-9">
                         <select id="user_time_zone" name="majorId" class="form-control" size="0">
+                          <option value="0"selected>Chọn ngành học</option>
                         <c:forEach var="major" items="${majorList }">
                             <option value="${major.id }">${major.majorName }</option>
                         </c:forEach> 
@@ -208,7 +211,8 @@
                         </select>
                     </div>
                 </div>
-              
+              </c:if>
+               <c:if test="${userInfo.role.name =='ALUMNI' || userInfo.role.name =='TEACHER' }">
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Công việc hiện tại</label>
                     <div class="col-lg-9">
@@ -239,6 +243,8 @@
                         <input class="form-control" name="workAt" type="text" value="${userInfo.workAt }" />
                     </div>
                 </div>
+                </c:if>
+                
              	<div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Mô tả bản thân</label>
                     <div class="col-lg-9">

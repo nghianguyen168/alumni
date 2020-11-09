@@ -62,22 +62,18 @@ public class Member implements Serializable {
 	
 
 	@Column(name = "country")
-	@NotNull
 	private String country;
 
 	@Column(name = "province")
-	@NotNull
 	private String hometown;
 
 	@Column(name = "gender")
-	@NotNull
 	private String gender;
 
 	@Column(name = "marital_status")
 	private String maritalStatus;
 
 	@Column(name = "address_now")
-	@NotNull
 	private String addressNow;
 	
 	@Column(name = "position_job")

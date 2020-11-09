@@ -5,13 +5,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.GroupPost;
 
 @Repository
-public interface GroupPostRespository extends JpaRepository<Group_Post, Integer> {
+public interface GroupPostRespository extends JpaRepository<GroupPost, Integer> {
 	
 	
-	Page<Group_Post> findAll(Pageable pageable);
+	Page<GroupPost> findAll(Pageable pageable);
 	/*
 	 * @Modifying
 	 * 

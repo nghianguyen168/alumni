@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.GroupPost;
 import dtu.captone.alumni.domain.LikePost;
 
 public interface LikePostService {

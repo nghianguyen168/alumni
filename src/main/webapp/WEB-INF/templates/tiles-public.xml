@@ -27,6 +27,9 @@
 		template="/WEB-INF/jsp/public/login.jsp">
 		
 	</definition>
+	<definition name="public.register"
+		template="/WEB-INF/jsp/public/register.jsp">
+	</definition>
 	
 	
 	<definition name="public.index" extends="templates.public.slide">

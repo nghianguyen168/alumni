@@ -7,22 +7,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import dtu.captone.alumni.domain.Group_Post;
+import dtu.captone.alumni.domain.GroupPost;
 
 public interface GroupPostService {
 	
-	Group_Post save(Group_Post group_Post);
+	GroupPost save(GroupPost group_Post);
 	
 	void deleteById(UUID id);
 	
-	Group_Post findById(Integer id);
+	GroupPost findById(Integer id);
 	
 	/* int active(int enable,int id); */
 	
-	Page<Group_Post> findAll(Pageable pageable);
-	List<Group_Post> findAll(Sort sort);
+	Page<GroupPost> findAll(Pageable pageable);
+	List<GroupPost> findAll(Sort sort);
 	
 
 	
-	Page<Group_Post> getNewsListEnable(Pageable pageable);
+	Page<GroupPost> getNewsListEnable(Pageable pageable);
 }

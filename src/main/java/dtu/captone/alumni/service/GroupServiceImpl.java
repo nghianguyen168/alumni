@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import dtu.captone.alumni.domain.Alumni_group;
+import dtu.captone.alumni.domain.AlumniGroup;
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.respository.GroupRespository;
 
@@ -17,7 +17,7 @@ public class GroupServiceImpl implements GroupService {
 	private GroupRespository groupRespository;
 
 	@Override
-	public Alumni_group save(Alumni_group alumni_group) {
+	public AlumniGroup save(AlumniGroup alumni_group) {
 		// TODO Auto-generated method stub
 		return groupRespository.save(alumni_group);
 	}
@@ -29,13 +29,13 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public Alumni_group findById(int id) {
+	public AlumniGroup findById(int id) {
 		// TODO Auto-generated method stub
 		return groupRespository.findById(id);
 	}
 
 	@Override
-	public List<Alumni_group> findAll() {
+	public List<AlumniGroup> findAll() {
 		// TODO Auto-generated method stub
 		return groupRespository.findAll();
 	}

@@ -66,6 +66,7 @@ public class PublicJobController extends UserInfoHandler {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
 		}
+		model.addAttribute("jobService", jobService);
 		
 	}
 
@@ -98,7 +99,7 @@ public class PublicJobController extends UserInfoHandler {
 			page = 1;
 		}
 		if (isUserLogin(session) == null) {
-			return "redirect:/login";
+			return "redirect:/user/login";
 		}
 		System.out.println("job active:" + jobService.sumJobEnable());
 		List<Job> jobList = jobService.getJobListEnable();

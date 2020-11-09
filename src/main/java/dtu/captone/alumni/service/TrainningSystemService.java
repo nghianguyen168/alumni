@@ -2,7 +2,6 @@ package dtu.captone.alumni.service;
 
 import java.util.List;
 
-import dtu.captone.alumni.domain.Edu_level;
 import dtu.captone.alumni.domain.Trainning_system;
 
 public interface TrainningSystemService {

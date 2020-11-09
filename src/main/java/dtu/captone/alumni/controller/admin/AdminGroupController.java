@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import dtu.captone.alumni.domain.Alumni_group;
+import dtu.captone.alumni.domain.AlumniGroup;
 import dtu.captone.alumni.service.GroupService;
 
 
@@ -26,7 +26,7 @@ public class AdminGroupController {
 
 	@GetMapping("/index")
 	public String index(Model model) {
-		List<Alumni_group> groupList = groupService.findAll();
+		List<AlumniGroup> groupList = groupService.findAll();
 		model.addAttribute("groupList", groupList);
 		return "admin.group.index";
 	}

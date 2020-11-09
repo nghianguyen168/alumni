@@ -31,7 +31,7 @@ public class PublicMemberController extends UserInfoHandler {
 	@GetMapping("/index")
 	public String index(Model model,HttpSession session) {
 		if (isUserLogin(session) == null) {
-			return "redirect:/login";
+			return "redirect:/user/login";
 		}
 		
 		List<Member> memberList = memberService.findAllEnable(isUserLogin(session).getId());

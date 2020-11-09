@@ -20,5 +20,9 @@ public class PublicLoginLogoutController {
 		session.removeAttribute("userInfo");
 		return "redirect:/user/login";
 	}
-	
+
+	@GetMapping("/user/register")
+	public String register() {
+		return "public.register";
+	}
 }

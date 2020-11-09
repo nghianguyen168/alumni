@@ -73,7 +73,7 @@ public class PublicProfileController extends UserInfoHandler{
 	@GetMapping("/index")
 	public String index(HttpSession session,Model model) {
 		if (isUserLogin(session) == null) {
-			return "redirect:/login";
+			return "redirect:/user/login";
 		}
 		Member member = memberService.findById(isUserLogin(session).getId());
 		model.addAttribute("member", member);
@@ -84,7 +84,7 @@ public class PublicProfileController extends UserInfoHandler{
 	@GetMapping("/edit")
 	public String editProfile(HttpSession session,Model model) {
 		if (isUserLogin(session) == null) {
-			return "redirect:/login";
+			return "redirect:/user/login";
 		}
 		
 		model.addAttribute("majorList", majorService.findAll());
@@ -96,9 +96,9 @@ public class PublicProfileController extends UserInfoHandler{
 	
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute("member") Member member,
-			@RequestParam("majorId") int majorId,@RequestParam("facultyId") int facultyId,
-			@RequestParam("trainning_system_id") int trainning_system_id,
-			@RequestParam("knId") int knId,@RequestParam("anhdaidien") MultipartFile anhdaidien,HttpServletRequest request,
+			@RequestParam(name = "majorId",required = false,defaultValue = "0") int majorId,@RequestParam("facultyId") int facultyId,
+			@RequestParam(name="trainning_system_id",required = false,defaultValue = "0") int trainning_system_id,
+			@RequestParam(name = "knId",required = false,defaultValue = "0") int knId,@RequestParam("anhdaidien") MultipartFile anhdaidien,HttpServletRequest request,
 			HttpSession session,RedirectAttributes rd) throws IllegalStateException, IOException {
 	
 		member.setPassword(userService.findById(isUserLogin(session).getId()).getPassword());
@@ -109,6 +109,7 @@ public class PublicProfileController extends UserInfoHandler{
 		member.setTrainning_system(trainningSystemService.findById(trainning_system_id));
 		member.setKn(knameService.findById(knId));
 		member.setMemberType(isUserLogin(session).getMemberType());
+		member.setRole(isUserLogin(session).getRole());
 		
 		String imageOld = memberService.findById(isUserLogin(session).getId()).getAvatar();
 		

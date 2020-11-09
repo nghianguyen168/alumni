@@ -31,11 +31,11 @@ public class Network  implements Serializable {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "member_id",referencedColumnName = "id",updatable = false)
+	@JoinColumn(name = "member_id",referencedColumnName = "id")
 	private Member member = new Member();
 
 	@ManyToOne
-	@JoinColumn(name = "friend_id",referencedColumnName = "id",updatable = false)
+	@JoinColumn(name = "friend_id",referencedColumnName = "id")
 	private Member friend = new Member();
 	
 	@Column(name = "status")

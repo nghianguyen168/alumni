@@ -5,20 +5,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,16 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
-import dtu.captone.alumni.domain.Job;
-import dtu.captone.alumni.domain.Edu_level;
 import dtu.captone.alumni.domain.Event;
+import dtu.captone.alumni.domain.Faculty;
+import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.News;
 import dtu.captone.alumni.domain.Trainning_system;
-import dtu.captone.alumni.service.EduLevelService;
 import dtu.captone.alumni.service.EventService;
 import dtu.captone.alumni.service.FacultyService;
 import dtu.captone.alumni.service.JobService;
@@ -67,8 +60,6 @@ public class TestController {
 	@Autowired
 	private NewsService newsService;
 
-	@Autowired
-	private EduLevelService eduLevelService;
 
 	@Autowired
 	private EventService eventService;
@@ -81,7 +72,7 @@ public class TestController {
 
 	@GetMapping("/test")
 	public String test() {
-		Major major = new Major(3, "gfdg", "gdgd");
+		Major major = new Major(3, "gfdg", "gdgd",new Faculty(1, ""));
 		Major major2 = majorServiceImpl.save(major);
 		return "demo";
 	}
@@ -151,15 +142,7 @@ public class TestController {
 		return newsService.getNewsListEnable(PageRequest.of(0, 5, Sort.by("id").descending()));
 	}
 
-	@GetMapping("level/findAll")
-	public @ResponseBody List<Edu_level> findLevel() {
-		return eduLevelService.findAll();
-	}
 
-	@PostMapping("level/add")
-	public @ResponseBody Edu_level addEdu(@ModelAttribute("edu_level") Edu_level edu_level) {
-		return eduLevelService.save(edu_level);
-	}
 
 	@GetMapping("training/findAll")
 	public @ResponseBody List<Trainning_system> findtraining() {
