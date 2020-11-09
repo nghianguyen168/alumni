@@ -10,4 +10,10 @@ public class ErrorController {
 	public String eror() {
 		return "admin.error";
 	}
+	
+	@GetMapping("/error403")
+	public String accessDenine() {
+		return "admin.error.403";
+	}
+
 }

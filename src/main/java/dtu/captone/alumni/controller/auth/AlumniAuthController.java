@@ -1,5 +1,7 @@
 package dtu.captone.alumni.controller.auth;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,7 @@ public class AlumniAuthController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@RequestMapping("/login")
-	public String login() {
-		System.out.println(bCryptPasswordEncoder.encode("123456"));
+	public String login(HttpSession session) {
 		return "auth.login";
 	}
 }

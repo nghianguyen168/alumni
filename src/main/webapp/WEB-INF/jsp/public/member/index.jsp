@@ -33,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="dang-tin" style="background-color: white;">
-                    <div class="banner">
+                    <div class="banner" style="background-color: #428bca;">
                         <div>
                             <span>${memberList.size()} Thành Viên Trong Cộng Đồng</span>
                         </div>

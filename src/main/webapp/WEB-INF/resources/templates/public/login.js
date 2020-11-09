@@ -24,8 +24,8 @@ function handleLogin() {
 			$("#wait").css("display", "none");
      	 	if(result.code == '200') {
      	 		console.log(result);
-     	 		localStorage.setItem("token",result.data.access_token);
-     	 		localStorage.setItem("userInfo",JSON.stringify(result.data));
+     	 		
+     	 		
      	 		window.location = "/home";
      	 		return;
      	 	} 

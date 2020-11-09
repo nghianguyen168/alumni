@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="/admin/member/profile/${userLogin.id }"><img src="/resources/uploads/${userLogin.avatar }" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="/admin/member/profile/${userInfo.id }"><img src="/resources/uploads/${userInfo.avatar }" class="img-circle" width="80"></a></p>
           <a href="javascript:void(0)" class="centered" id="authorLogin"></a>
+          <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'}">
           <li class="mt">
             <a id="home" class="home active" href="${pagecontext.request.contextPath }/admin/index">
               <i class="fa fa-dashboard"></i>
@@ -39,7 +41,16 @@
               <span>Quản Lý Thành Viên</span>
               </a>
           </li>
-          <li class="sub-menu">
+           </c:if>
+            <c:if test="${userInfo.role.name =='ADMIN'}">
+           <li class="sub-menu">
+            <a id="member" href="${pageContext.request.contextPath }/admin/member/admin">
+              <i class="fa fa-desktop"></i>
+              <span>Quản Trị Viên</span>
+              </a>
+          </li>
+          </c:if>
+         <!--  <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-cogs"></i>
               <span>Components</span>
@@ -128,5 +139,5 @@
               <i class="fa fa-map-marker"></i>
               <span>Google Maps </span>
               </a>
-          </li>
+          </li> -->
         </ul>

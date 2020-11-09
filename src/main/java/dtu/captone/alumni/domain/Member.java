@@ -141,6 +141,11 @@ public class Member implements Serializable {
 	private int enable;
 	
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_role"))
+	private Role role = new Role();
+
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<Role>();

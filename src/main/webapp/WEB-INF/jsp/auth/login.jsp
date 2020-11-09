@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -37,11 +38,15 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="javascript:void(0)" method="post">
-        <h2 class="form-login-heading">Đăng Nhập Cùng DTU Alumni</h2>
+      <form class="form-login" action="/auth/login" method="post">
+        <h2 class="form-login-heading">TRANG QUẢN TRỊ DTU ALUMNI</h2>
         <br>
         <div id="message">
-        	
+        	<c:if test="${not empty param['msg'] }">
+	        	<div class="alert alert-danger" role="alert">
+				  Sai tên đăng nhập hoặc mật khẩu!
+				</div>
+        	</c:if>
         </div>
         <div class="login-wrap">
           <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="Dtu Mail" autofocus>
@@ -53,7 +58,7 @@
             <a data-toggle="modal" href="login.html#myModal"> Quên mật khẩu?</a>
             </span>
             </label>
-          <button class="btn btn-theme btn-block"  onclick="return handleLogin();"><i class="fa fa-lock"></i> SIGN IN</button>
+          <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> 
           <hr>
          
           <div class="registration">

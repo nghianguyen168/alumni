@@ -37,7 +37,7 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="javascript:void(0)" method="post">
+      <form class="form-login" method="post" <%-- action="${pageContext.request.contextPath}/user/login --%> action="javascript:void(0);">
         <h2 class="form-login-heading">Đăng Nhập Cùng DTU Alumni</h2>
         <br>
         <div id="message">
@@ -53,7 +53,8 @@
             <a data-toggle="modal" href="login.html#myModal"> Quên mật khẩu?</a>
             </span>
             </label>
-          <button class="btn btn-theme btn-block"  onclick="return handleLogin();"><i class="fa fa-lock"></i> SIGN IN</button>
+         <!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
+          <button class="btn btn-theme btn-block"  onclick="return handleLogin()">ĐĂNG NHẬP</button>
           <hr>
          
           <div class="registration">
@@ -82,6 +83,9 @@
             </div>
           </div>
         </div>
+        <input type="hidden"
+name="${_csrf.parameterName}"
+value="${_csrf.token}"/>
         <!-- modal -->
       </form>
     </div>

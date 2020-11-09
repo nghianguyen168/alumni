@@ -27,21 +27,25 @@
 					</div>
 					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
 											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${sumApply }</span></li>
+					 <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'|| userInfo.role.name =='TEACHER'|| userInfo.role.name =='ALUMNI' }">
 					<li class="category-list"><span class="category-span"><a
 							style="text-decoration: none;" onclick="return loading();"
 							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${sumUserPost }</span></li>
+					</c:if>
 				</ul>
 			</div>
 
-			<div class="dang-tin">
-				<div class="banner">
+			<div class="dang-tin" >
+			 <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'|| userInfo.role.name =='TEACHER'|| userInfo.role.name =='ALUMNI' }">
+				<div class="banner" style="background-color: #346a98;">
+				
 					<div>
 						<p class="biding">Công ty của bạn muốn tuyển dụng? Hãy chia sẻ
 							cơ hội nghề nghiệp với nguồn nhân lực chất lượng của Cộng đồng</p>
 					</div>
 					<div class="button-dang-viec">
 					
-						<button class="dang-viec"
+						<button class="btn btn-secondary" 
 							onclick="document.getElementById('post-job').style.display='block'">
 							<span class="material-icons"> add </span>
 							<p>Đăng một công việc / thực tập</p>
@@ -49,7 +53,7 @@
 						</button>
 					</div>
 
-				</div>
+				</div></c:if>
 				<div id="post-job">
 					<div class="post-job-title">
 						Đăng một công việc/thực tập <a style="float: right; color: white;"

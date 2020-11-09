@@ -322,7 +322,7 @@
 												</div>
 											</a>
 											<div class="d-inline-block w-100 text-center p-3">
-												<a class="bg-primary iq-sign-btn" href="javascript:void(0);" onclick=" return logout();" role="button">Đăng
+												<a class="bg-primary iq-sign-btn" href="/user/logout"  role="button">Đăng
 													xuất<i class="ri-login-box-line ml-2"></i>
 												</a>
 											</div>
@@ -336,8 +336,8 @@
 				<c:otherwise>
 				<div class="login-align" style="margin-top: 10px;">
 				   <ul class="nav navbar-nav navbar-right">
-			        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			        <li><a href="/user/sigup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			        <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			      </ul>
 					<!-- <ul>
 						<li class="login"><a href="/login">log in</a></li>
@@ -366,7 +366,7 @@
 		</ul>
 	</div>
 </div>
-<script>
+<!-- <script>
 	function logout() {
 		$("#wait").css("display", "block");
 		$.ajax({
@@ -377,15 +377,15 @@
 				if (result.code == '200') {
 					localStorage.removeItem("token");
 					localStorage.removeItem("userInfo");
-					window.location = "/login";
+					window.location = "/user/login";
 					return;
 				}
 			},
 			error : function(xhr, status, error) {
 				$("#wait").css("display", "none");
-				window.location = "/login";
+				window.location = "/user/login";
 			}
 		});
 	}
-</script>
+</script> -->
 

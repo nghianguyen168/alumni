@@ -29,9 +29,11 @@
 					</div>
 					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
 											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${sumApply }</span></li>
+					<c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'|| userInfo.role.name =='TEACHER'|| userInfo.role.name =='ALUMNI' }">
 					<li class="category-list"><span class="category-span"><a
 							style="text-decoration: none;" onclick="return loading();"
 							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${sumUserPost }</span></li>
+					</c:if>
 				</ul>
 			</div>
 
