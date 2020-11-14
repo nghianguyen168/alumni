@@ -52,10 +52,10 @@ public class GroupPost  implements Serializable{
 	private String file;
 	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "authorId",referencedColumnName = "id")
+	@JoinColumn(name = "author_id",referencedColumnName = "id")
 	private Member member;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "groupId",referencedColumnName = "id")
+	@JoinColumn(name = "group_id",referencedColumnName = "id")
 	private AlumniGroup alumni_group;
 }

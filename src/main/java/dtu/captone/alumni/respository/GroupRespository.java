@@ -13,7 +13,7 @@ public interface GroupRespository extends JpaRepository<AlumniGroup, Integer> {
 	
 	AlumniGroup findById(int id);
 	
-	@Query(value = "SELECT a.*,(SELECT COUNT(*) FROM group_member AS g WHERE g.group_id = a.id) AS sum_member FROM alumni_group as a",nativeQuery = true)
+	@Query(value = "SELECT a.*,(SELECT COUNT(*) FROM group_member AS g WHERE g.group_id = a.id) AS sumMember FROM alumni_group as a WHERE id <>0 ",nativeQuery = true)
 	List<AlumniGroup> findAll();
 	
 

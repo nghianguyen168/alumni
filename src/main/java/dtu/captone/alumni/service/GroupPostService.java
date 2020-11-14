@@ -22,7 +22,7 @@ public interface GroupPostService {
 	Page<GroupPost> findAll(Pageable pageable);
 	List<GroupPost> findAll(Sort sort);
 	
-
+	List<GroupPost> findByGroup(int group_id);
 	
 	Page<GroupPost> getNewsListEnable(Pageable pageable);
 }

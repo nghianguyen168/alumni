@@ -95,5 +95,10 @@
 			value="/WEB-INF/jsp/public/community/index.jsp"></put-attribute>
 	</definition>
 	
+<definition name="public.group.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/group/index.jsp"></put-attribute>
+	</definition>
+	
 	
 </tiles-definitions>

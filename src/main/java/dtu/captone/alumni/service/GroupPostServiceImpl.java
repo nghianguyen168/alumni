@@ -62,4 +62,10 @@ public class GroupPostServiceImpl implements GroupPostService {
 		
 	}
 
+	@Override
+	public List<GroupPost> findByGroup(int group_id) {
+		// TODO Auto-generated method stub
+		return groupPostRespository.findByGroup(group_id);
+	}
+
 }

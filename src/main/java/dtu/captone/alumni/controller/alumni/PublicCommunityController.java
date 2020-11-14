@@ -70,9 +70,8 @@ public class PublicCommunityController extends UserInfoHandler {
 			if (groupId == null) {
 				groupId = 0;
 			}
-			Page<GroupPost> groupPostPage = groupPostService
-					.findAll(PageRequest.of(0, 100, Sort.by("id").descending()));
-			List<GroupPost> groupPostList = groupPostPage.getContent();
+			
+			List<GroupPost> groupPostList = groupPostService.findByGroup(groupId);
 			AlumniGroup alumni_group = groupService.findById(groupId);
 			model.addAttribute("groupPostList", groupPostList);
 			model.addAttribute("alumni_group", alumni_group);
@@ -155,6 +154,18 @@ public class PublicCommunityController extends UserInfoHandler {
 			return "ok";
 		}
 		
+	}
+	
+	
+	@GetMapping("/group")
+	public String group(Model model,HttpSession session) {
+		if (isUserLogin(session) == null) {
+			return "redirect:/user/login";
+		} else {
+		List<AlumniGroup> groupList = groupService.findAll();
+		model.addAttribute("groupList", groupList);
+		return "public.group.index";
+	}
 	}
 }
 

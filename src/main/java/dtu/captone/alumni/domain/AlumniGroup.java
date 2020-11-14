@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Persistent;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,17 +38,17 @@ public class AlumniGroup  implements Serializable{
 	
 	@Column(name = "group_name")
 	@NotNull
-	private String group_name;
+	private String groupName;
 	
 	@Column(name = "group_decription")
-	private String group_decription;
+	private String groupDecription;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "create_by",referencedColumnName = "id")
 	private Member member;
 	
-	@Transient
-	private int sum_member;
+	@Persistent
+	private int sumMember;
 	
 
 }

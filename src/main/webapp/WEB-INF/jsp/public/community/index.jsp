@@ -45,7 +45,7 @@
             <div class="chia2">
                 <div class="menu-group">
                     <div style="background-image: url(/resources/templates/public/community/images/bg1.jpg) ; height: 140px;">
-                        <p style="text-align: center; padding: 55px 40px; color: white; font-size: 25px;">${alumni_group.group_name }</p>
+                        <p style="text-align: center; padding: 55px 40px; color: white; font-size: 25px;">${alumni_group.groupName }</p>
                     </div>
                     <div class="iq-sidebar">
                         <div id="sidebar-scrollbars">
@@ -55,8 +55,13 @@
                                         <a href="#" class="iq-waves-effect"><i class="ri-newspaper-line"></i><span>Thảo luận</span></a>
                                     </li>
                                     <li>
+                                        <a href="/community/group" class="iq-waves-effect"><i class="fa fa-users" aria-hidden="true"></i><span>Nhóm</span></a>
+                                    </li>
+                                    
+                                    <li>
                                         <a href="#" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
                                     </li>
+                                    
                                     <li>
                                         <a href="#" class="iq-waves-effect"><i class="ri-calendar-event-fill"></i><span>Sự kiện</span></a>
                                     </li>
