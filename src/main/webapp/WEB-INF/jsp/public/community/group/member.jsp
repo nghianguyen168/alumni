@@ -46,8 +46,9 @@
                 </form>
             </div>
             <div class="row">
-             <c:if test="${not empty groupList }">
-             <c:forEach items="${groupList }" var="group">
+             <c:if test="${not empty memberListByGroup }">
+             	<c:forEach var="mem" items="${memberListByGroup }">
+             	
             
                 <div class="col-md-6 col-lg-4">
                     <div class="iq-card">
@@ -56,22 +57,26 @@
                         </div> -->
                         <div class="iq-card-body text-center">
                             <div class="group-icon">
-                                <a href="#"><img src="/resources/templates/public/community/images/page-img/gi-2.jpg" alt="profile-img" class="rounded-circle img-fluid avatar-80" style="margin-top: 60px;"></a>
+                                <a href="#"><img src="/resources/uploads/${mem.member.avatar }" alt="profile-img" class="rounded-circle img-fluid avatar-80" style="margin-top: 60px;"></a>
                             </div>
                             <div class="group-info pt-3 pb-3">
                                 <a href="/community/index/${group.id }">
-                                    <h4>${group.groupName }</h4>
+                                    <h4>${mem.member.firstName } ${mem.member.lastName }</h4>
                                 </a>
                             </div>
                             <div class="group-details d-inline-block pb-3">
                                 <ul class="d-flex align-items-center justify-content-between list-inline m-0 p-0">
                                     <li class="pl-3 pr-3">
-                                        <p class="mb-0">Thành viên</p>
-                                        <h6>${group.sumMember }</h6>
+                                        <p class="mb-0">${mem.member.kn.k },Khoa ${mem.member.faculty.facultyName }</p>
+                                        <h6>${mem.member.memberType.typeName }</h6>
                                     </li>
                                 </ul>
                             </div>
-                            <c:choose>
+                             <div class="add-network" id="join-group_${group.id }">
+		                                    <i class="fa fa-user-plus"></i>
+		                                    <span>KẾT BẠN</span>
+		                              </div>
+                          <%--   <c:choose>
                             	<c:when test="${empty memberGroupService.findByMemberIdAndGroupId(userInfo.id, group.id) }">
 		                            <div class="add-network" id="join-group_${group.id }">
 		                                    <i class="fa fa-user-plus"></i>
@@ -83,39 +88,14 @@
                             		<i class="fa fa-check" aria-hidden="true"></i> <span>Đã tham gia</span>
                             	</div>
                             	</c:otherwise>
-                            </c:choose>
+                            </c:choose> --%>
                           
                         </div>
                     </div>
-                     <script type="text/javascript">
-								
-								$(document).on('click','#join-group_${group.id },join-group_${group.id }',function(e){
-										
-												
-									
-												$.ajax({
-													url: '${pageContext.request.contextPath}/community/group/join/${group.id}',
-												type : 'POST',
-												cache : false,
-												data : {
-													//(key , value)
-												
-												},
-												success : function(response) {
-												$('#join-group_${group.id }').html("<i class=\"fa fa-check\" aria-hidden=\"true\"></i>\r\n" + 
-														"				                                    <span>Đã gửi yêu cầu</span>");
-												},
-												error : function(response) {
-													alert('Có lỗi xảy ra');
-												}
-											});
-											return false;
-										});
-										
-								</script>	
+                    
                 </div>
-                 </c:forEach>
-                </c:if>
+             </c:forEach>
+             </c:if>
                 </div>
             </div>
         </div>

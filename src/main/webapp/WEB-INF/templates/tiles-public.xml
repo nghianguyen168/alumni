@@ -100,5 +100,16 @@
 			value="/WEB-INF/jsp/public/community/group/index.jsp"></put-attribute>
 	</definition>
 	
-	
+	<definition name="public.group.member" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/group/member.jsp"></put-attribute>
+	</definition>
+	<definition name="public.community.chat" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/chat/index.jsp"></put-attribute>
+	</definition>
+	<definition name="public.community.chat.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/community/chat/indexChat.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

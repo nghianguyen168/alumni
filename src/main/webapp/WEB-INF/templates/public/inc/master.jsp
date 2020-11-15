@@ -49,6 +49,8 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
 <script src="/resources/templates/public/js/slide.js"></script>
 <script src="/resources/templates/public/js/state.js"></script>
 <script src="/resources/templates/public/js/timeago.js"></script>

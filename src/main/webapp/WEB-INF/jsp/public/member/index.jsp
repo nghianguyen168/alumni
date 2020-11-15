@@ -74,10 +74,7 @@
                         <script type="text/javascript">
 								
 								$(document).on('click','#add-friend-${member.id },add-friend-${member.id }',function(e){
-										
-												
 												var id = ${member.id}
-									
 												$.ajax({
 													url: '${pageContext.request.contextPath}/network/add-friend',
 												type : 'POST',

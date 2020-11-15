@@ -32,11 +32,14 @@ import dtu.captone.alumni.domain.AlumniGroup;
 import dtu.captone.alumni.domain.Comment;
 import dtu.captone.alumni.domain.GroupPost;
 import dtu.captone.alumni.domain.LikePost;
+import dtu.captone.alumni.domain.MemberGroup;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.CommentService;
 import dtu.captone.alumni.service.GroupPostService;
 import dtu.captone.alumni.service.GroupService;
 import dtu.captone.alumni.service.LikePostService;
+import dtu.captone.alumni.service.MemberGroupService;
+import dtu.captone.alumni.service.MemberService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -55,10 +58,19 @@ public class PublicCommunityController extends UserInfoHandler {
 	@Autowired
 	private  LikePostService likePostService;
 	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private MemberGroupService memberGroupService;
+	
+
+	
 	@ModelAttribute
 	public void sendObjectService(Model model) {
 		model.addAttribute("commentService", commentService);
 		model.addAttribute("likePostService", likePostService);
+		model.addAttribute("memberGroupService", memberGroupService);
 	}
 
 	@GetMapping("/index/{id}")
@@ -166,6 +178,27 @@ public class PublicCommunityController extends UserInfoHandler {
 		model.addAttribute("groupList", groupList);
 		return "public.group.index";
 	}
+	}
+	@PostMapping("/group/join/{id}")
+	public @ResponseBody String joinGroup(@PathVariable int id,HttpSession session) {
+		MemberGroup memberGroup = new MemberGroup(0, memberService.findById(isUserLogin(session).getId()), groupService.findById(id));
+		MemberGroup memberGroupJoin = memberGroupService.save(memberGroup);
+		if(memberGroupJoin!=null)
+			return "ok";
+		return null;
+	}
+	
+	@GetMapping("/group/member/{id}")
+	public String memberGroup(@PathVariable int id,Model model) {
+		List<MemberGroup> memberListByGroup = memberGroupService.findByGroup(id);
+		System.out.println(memberListByGroup.size());
+		model.addAttribute("memberListByGroup", memberListByGroup);
+		return "public.group.member";
+	}
+	
+	@GetMapping("/chat")
+	public String chat() {
+		return "public.community.chat";
 	}
 }
 

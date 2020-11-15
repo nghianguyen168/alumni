@@ -25,6 +25,7 @@ import dtu.captone.alumni.exception.ResourceNotFoundException;
 import dtu.captone.alumni.model.ResponseMessage;
 
 
+
 @ControllerAdvice(annotations = RestController.class)
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 

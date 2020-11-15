@@ -59,7 +59,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="#" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
+                                        <a href="/community/group/member/${alumni_group.id }" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
                                     </li>
                                     
                                     <li>
