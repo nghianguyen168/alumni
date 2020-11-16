@@ -8,7 +8,7 @@
 				src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
 		</div>
 
-		<div class="iq-top-navbar">
+		<div class="iq-top-navbar" style="z-index: 5">
 			<div class="iq-navbar-custom" >
 				<nav class="navbar navbar-expand-lg navbar-light p-0">
 					<button   class="navbar-toggler" type="button" data-toggle="collapse"
@@ -20,7 +20,7 @@
 					<c:choose>
 					<c:when test="${userInfo ne null }">
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav ml-auto navbar-list" >
+						<ul class="navbar-nasv ml-auto navbar-list" >
 							<li><a href="profile.html"
 								class="iq-waves-effect d-flex align-items-center"> <img
 									src="/resources/uploads/${userInfo.avatar }" class="img-fluid rounded-circle mr-3"
@@ -262,9 +262,7 @@
 										</div>
 									</div>
 								</div></li>
-						</ul>
-						<ul class="navbar-list">
-							<li><a href="#"
+													<li><a href="#"
 								class="search-toggle iq-waves-effect d-flex align-items-center">
 									<i class="ri-arrow-down-s-fill"></i>
 
@@ -330,6 +328,7 @@
 									</div>
 								</div></li>
 						</ul>
+						
 					</div>
 		               
                </c:when>

@@ -19,5 +19,7 @@ public interface MemberGroupRespository extends JpaRepository<MemberGroup, Integ
 	@Query(value = "SELECT * FROM member_group where group_id=?",nativeQuery = true)
 	List<MemberGroup> findByGroup(int group_id);
 	
+	
+	
 
 }

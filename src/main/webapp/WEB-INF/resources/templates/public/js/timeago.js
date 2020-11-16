@@ -20,14 +20,14 @@
             }
 
             else if (elapsed < msPerMonth) {
-                 return '' + Math.round(elapsed/msPerDay) + ' ngày';   
+                 return '' + Math.round(elapsed/msPerDay) + ' ngày trước';   
             }
             
             else if (elapsed < msPerYear) {
-                 return '' + Math.round(elapsed/msPerMonth) + ' tháng';   
+                 return '' + Math.round(elapsed/msPerMonth) + ' tháng trước';   
             }
             
             else {
-                 return '' + Math.round(elapsed/msPerYear ) + ' năm';   
+                 return '' + Math.round(elapsed/msPerYear ) + ' năm trước';   
             }
         }

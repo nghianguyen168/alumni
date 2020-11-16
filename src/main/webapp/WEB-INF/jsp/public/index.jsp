@@ -21,7 +21,7 @@
 						<div>
 						<fmt:parseDate value="${news.createAt }" pattern="yyyy-MM-dd HH:mm" var="time"/>
 							<div class="date"><fmt:formatDate value="${time}"  pattern="dd-MM-yyyy HH:mm a"/></div>
-							<a href="#">${newsName }</a>
+							<a href="#"><strong>${news.newsName }</strong></a>
 							<div>
 								<div>${news.decription }</div>
 

@@ -106,26 +106,7 @@
 <script src="/resources/templates/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="/resources/templates/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/resources/templates/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var unique_id = $.gritter.add({
-        // (string | mandatory) the heading of the notification
-        title: 'Welcome to Dashio!',
-        // (string | mandatory) the text inside the notification
-        text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Developed by <a href="http://alvarez.is" target="_blank" style="color:#4ECDC4">Alvarez.is</a>.',
-        // (string | optional) the image to display on the left
-        image: 'img/ui-sam.jpg',
-        // (bool | optional) if you want it to fade out on its own or just sit there
-        sticky: false,
-        // (int | optional) the time you want it to be alive for before fading out
-        time: 8000,
-        // (string | optional) the class name you want to apply to that specific message
-        class_name: 'my-sticky-class'
-      });
-
-      return false;
-    });
-  </script>
+  
   <script type="application/javascript">
     $(document).ready(function() {
       $("#date-popover").popover({

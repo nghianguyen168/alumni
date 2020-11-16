@@ -19,9 +19,7 @@
                                      <li class="active">
                                         <a href="/community/group" class="iq-waves-effect"><i class="fa fa-users" aria-hidden="true"></i><span>Nhóm</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
-                                    </li>
+                                   
                                     <li>
                                         <a href="#" class="iq-waves-effect"><i class="ri-calendar-event-fill"></i><span>Sự kiện</span></a>
                                     </li>
@@ -67,7 +65,7 @@
                                 <ul class="d-flex align-items-center justify-content-between list-inline m-0 p-0">
                                     <li class="pl-3 pr-3">
                                         <p class="mb-0">Thành viên</p>
-                                        <h6>${group.sumMember }</h6>
+                                        <strong>${memberGroupService.findByGroup(group.id).size() }</strong>
                                     </li>
                                 </ul>
                             </div>

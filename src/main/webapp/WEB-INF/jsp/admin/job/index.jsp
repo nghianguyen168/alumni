@@ -27,7 +27,9 @@
 						<th class="hidden-phone"><i class="fa fa-question-circle"></i>
 							Tên công ty
 							</th>
+						<th><i class=""></i>Vị trí tuyển dụng</th>
 						<th><i class=""></i>Ngày đăng</th>
+						
 						<th><i class=""></i>Hạn nộp</th>
 						<th><i class=""></i>Mức lương</th>
 						<th><i class=""></i>Địa chỉ</th>
@@ -44,6 +46,7 @@
 					<tr>
 						<td class="hidden-phone">${job.id }</td>
 						<td><a href="basic_table.html#">${job.companyName}</a></td>
+						<td><a href="basic_table.html#">${job.position}</a></td>
 						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.postedOn }" /></td>
 						<td><fmt:formatDate type="both" pattern="dd-MM-yyyy"  value="${job.deadlineApply }" /></td>
 						<td>${job.salary }</td>

@@ -16,11 +16,11 @@
                                     <li >
                                         <a href="/community/index/0" class="iq-waves-effect"><i class="ri-newspaper-line"></i><span>Cộng đồng DTU</span></a>
                                     </li>
-                                     <li class="active">
+                                     <li >
                                         <a href="/community/group" class="iq-waves-effect"><i class="fa fa-users" aria-hidden="true"></i><span>Nhóm</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
+                                    <li class="active">
+                                        <a href="/community/group/member/${alumni_group.id }" class="iq-waves-effect"><i class="ri-group-line"></i><span>Thành viên</span></a>
                                     </li>
                                     <li>
                                         <a href="#" class="iq-waves-effect"><i class="ri-calendar-event-fill"></i><span>Sự kiện</span></a>

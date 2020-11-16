@@ -229,12 +229,12 @@
 					
 					<c:choose>
 						<c:when test="${countSearch gt 0 }">
-						<div class="alert alert-success" role="alert">
-							Có <strong>${countSearch } </strong> Công việc <strong> ${searchText } </strong> bạn cần tìm!</div>
+						<div class="alert alert-success" style="width: 100%;" role="alert">
+							Có <strong>&ensp;${countSearch } </strong>&ensp; Công việc <strong> &ensp;"${searchText}" </strong>&ensp; bạn cần tìm!</div>
 						</c:when>
 						<c:otherwise>
-							<div class="alert alert-danger" role="alert">
-							  Không tìm thấy kết quả cho <strong>${searchText }</strong>
+							<div class="alert alert-danger" role="alert" style="width: 100%;">
+							  Không tìm thấy kết quả cho <strong>&ensp;"${searchText }"</strong>
 							</div>
 						</c:otherwise>
 					</c:choose>

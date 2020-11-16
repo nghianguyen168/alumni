@@ -94,7 +94,9 @@
 	</div>
 
 	<!-- Ở slide ở đây-->
+	<div>
 	<tiles:insertAttribute name="slide" />
+	</div>
 	<section id="main-content">
 		<!-- main content đặt ở đây -->
 		<tiles:insertAttribute name="content" />
