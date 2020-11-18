@@ -38,11 +38,22 @@
 	</definition>
 	
 	
+	<definition name="public.news.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/news/index.jsp"></put-attribute>
+	</definition>
+	<definition name="public.news.detail" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/news/detail.jsp"></put-attribute>
+	</definition>
+	
 	
 	<definition name="public.job.index" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/job/index.jsp"></put-attribute>
 	</definition>
+	
+	
 	<definition name="public.job.detail" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/job/detail.jsp"></put-attribute>
@@ -108,6 +119,8 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/community/chat/index.jsp"></put-attribute>
 	</definition>
+	
+	
 	<definition name="public.community.chat.index" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/community/chat/indexChat.jsp"></put-attribute>

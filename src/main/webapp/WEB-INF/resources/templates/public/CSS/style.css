@@ -1194,3 +1194,22 @@ p {
         width: calc(100% - 16px);
     }
 }
+.news-detail>h2 {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 19px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0 15px 0;
+    margin-bottom: 10px;
+}
+
+.news-recent>h3 {
+    background: #c7383e url(https://cdn.duytan.edu.vn/news/Themes/images/dream.png) 10px center no-repeat;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: left;
+    padding: 10px 0 10px 47px;
+    font-size: 14pt;
+    margin-top: 0px;
+    padding-right: 4px;
+}

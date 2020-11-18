@@ -24,4 +24,8 @@ public interface NewsService {
 
 	
 	Page<News> getNewsListEnable(Pageable pageable);
+	
+	List<News> findNewsNew(int id);
+	
+	List<News> findNewsList();
 }

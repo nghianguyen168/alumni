@@ -356,7 +356,7 @@
 <div id="menu">
 	<div class="container ">
 		<ul class="navbar">
-			<li><a href="">Tin Tức</a></li>
+			<li><a href="/news/index">Tin Tức</a></li>
 			<li><a href="">Sự Kiện</a></li>
 			<li><a href="/job/index">Nghề nghiệp</a></li>
 			<li><a href="/community/index/0">Cộng Đồng</a></li>

@@ -174,9 +174,21 @@
 									<form action="/job/apply/${job.id }" method="post" enctype="multipart/form-data">
 										<label for="myfile">Chọn files:</label> <input type="file" 
 											id="cvfile" name="cvfile" required><br>
-										<div class="apply-1">
-											<button class="apply-2" id="uploadButton" type="next" >APPLY</button>
-										</div>
+										<fmt:formatDate var="nows" value="${now}" type="both" pattern="dd-MM-yyyy" /> 
+										<c:choose>
+											<c:when test="${job.deadlineApply gt now  }">
+											<div class="apply-1">
+											
+												<button class="apply-2 btn btn-info" id="uploadButton" type="next" >APPLY</button>
+											</div>
+											</c:when>
+											<c:otherwise>	
+												<div class="alert alert-danger" role="alert">
+												  Đã hết hạn ứng tuyển cho công việc này!
+												</div>
+											</c:otherwise>
+										</c:choose>
+										
 										<script type="text/javascript">
 										  $("#cvfile").change(function () {
 										        var fileExtension = ['pdf', 'docx'];

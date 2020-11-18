@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import dtu.captone.alumni.auth.service.UserService;
 import dtu.captone.alumni.domain.Event;
@@ -25,44 +27,28 @@ import dtu.captone.alumni.service.NetworkService;
 import dtu.captone.alumni.service.NewsService;
 
 @Controller
-public class PublicIndexController extends UserInfoHandler {
+@RequestMapping("/news")
+public class PublicNewsController extends UserInfoHandler {
 
 	@Autowired
 	private NewsService newsService;
 
-	@Autowired
-	private EventService eventService;
-
-	@Autowired
-	private NetworkService networkService;
-
-	@Autowired
-	private UserService userService;
-
-	@GetMapping("/home")
-	public String home(Model model, HttpSession session) {
-		
-		
-		session.setAttribute("userInfo", isUserLogin(session));
-		
 	
-		List<News> newsList = newsService.findNewsList();
-		Page<Event> eventPage = eventService.getNewsListEnable(PageRequest.of(0, 3, Sort.by("id").descending()));
-		List<Event> eventList = eventPage.getContent();
-		Member member = (Member) session.getAttribute("userInfo");
-		System.out.println(member);
-		System.out.println(newsList.size());
+	@GetMapping("/index")
+	public String newsIndex(Model model, HttpSession session) {
+		List<News> newsList = newsService.findAll(Sort.by("id").descending());
 		model.addAttribute("newsList", newsList);
-		model.addAttribute("eventList", eventList);
-		return "public.index";
+		return "public.news.index";
+	}
+	
+	@GetMapping("/detail/{id}")
+	public String detailNews(@PathVariable int id,Model model) {
+		News news = newsService.findById(id);
+		List<News> newsListRelated = newsService.findNewsNew(id);
+		model.addAttribute("newsListRelated", newsListRelated);
+		model.addAttribute("news", news);
+		return "public.news.detail";
+		
 	}
 
-	@ModelAttribute
-	public void network_new(Model model, HttpSession session) {
-		if (isUserLogin(session) != null) {
-			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
-			model.addAttribute("newRequestFriendList", newRequestFriendList);
-		}
-
-	}
 }

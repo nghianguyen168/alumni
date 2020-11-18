@@ -1,5 +1,7 @@
 package dtu.captone.alumni.respository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -25,5 +27,11 @@ public interface NewsRespository extends JpaRepository<News, Integer>{
 	
 	@Query(value = "SELECT * FROM news WHERE enable = 1",nativeQuery = true)
 	Page<News> getNewsListEnable(Pageable pageable);
+	
+	@Query(value = "SELECT * FROM news WHERE id<>? AND enable=1 ORDER BY id DESC LIMIT 5",nativeQuery = true)
+	List<News> findNewsNew(int id);
+	
+	@Query(value = "SELECT * FROM news WHERE enable=1 ORDER BY id DESC LIMIT 10",nativeQuery = true)
+	List<News> findNewsList();
 	
 }

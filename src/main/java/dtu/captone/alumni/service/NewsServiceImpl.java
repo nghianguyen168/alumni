@@ -58,6 +58,18 @@ public class NewsServiceImpl implements NewsService {
 		return newsRespository.findAll(sort);
 	}
 
+	@Override
+	public List<News> findNewsNew(int id) {
+		// TODO Auto-generated method stub
+		return newsRespository.findNewsNew(id);
+	}
+
+	@Override
+	public List<News> findNewsList() {
+		// TODO Auto-generated method stub
+		return newsRespository.findNewsList();
+	}
+
 	
 	
 }

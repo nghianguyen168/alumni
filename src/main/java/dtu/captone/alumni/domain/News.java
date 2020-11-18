@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,14 +33,13 @@ public class News {
 	private String newsName;
 
 	@Column(name = "picture")
-	@NotNull
 	private String picture;
 
-	@Column(name = "decription")
+	@Column(name = "decription",columnDefinition="TEXT")
 	@NotNull
 	private String decription;
 
-	@Column(name = "detail")
+	@Column(name = "detail",columnDefinition="TEXT")
 	private String detail;
 	
 	@Column(name = "createAt")
@@ -50,5 +47,8 @@ public class News {
 
 	@Column(name = "enable")
 	private int enable;
+	
+	
+	
 
 }
