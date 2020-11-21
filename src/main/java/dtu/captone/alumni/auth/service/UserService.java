@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
+import dtu.captone.alumni.chat.DTOs.NotificationDTO;
 import dtu.captone.alumni.domain.Member;
 
 public interface UserService {
@@ -35,4 +36,6 @@ public interface UserService {
     Member updateLastUsed(String name);
 
     Member findByToken(String token);
+    
+    public void notifyUser(Member recipientUser, NotificationDTO notification);
 }

@@ -109,6 +109,8 @@ public class Member implements Serializable {
 	private String decription;
 	
 	
+	
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "major_id",referencedColumnName = "id")
 	private Major major = new Major();
@@ -145,6 +147,9 @@ public class Member implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<Role>();
+	
+	 private Boolean isPresent;
+
 
 	public Set<Role> getRoles() {
 		return roles;

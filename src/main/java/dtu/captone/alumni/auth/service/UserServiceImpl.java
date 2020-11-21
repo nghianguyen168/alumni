@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dtu.captone.alumni.chat.DTOs.NotificationDTO;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.respository.MemberRespository;
 import dtu.captone.alumni.service.MemberService;
@@ -18,6 +20,10 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service("userService")
 public class UserServiceImpl implements UserService {
+	
+	  @Autowired
+	  private SimpMessagingTemplate simpMessagingTemplate;
+	  
 	
     @Autowired
     private MemberRespository memberRespository;
@@ -98,4 +104,15 @@ public class UserServiceImpl implements UserService {
 		}
 		return memberRespository.findByEmailAndPassword(mail, password);
 	}
+	
+
+	  public void notifyUser(Member recipientUser, NotificationDTO notification) {
+	    if (recipientUser.getEnable()==1) {
+	      simpMessagingTemplate
+	        .convertAndSend("/topic/user.notification." + recipientUser.getId(), notification);
+	    } else {
+	      System.out.println("sending email notification to " + recipientUser.getFirstName()+" "+recipientUser.getLastName());
+	      // TODO: send email
+	    }
+	  }
 }
