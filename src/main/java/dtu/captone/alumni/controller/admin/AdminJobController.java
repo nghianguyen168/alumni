@@ -1,7 +1,14 @@
 package dtu.captone.alumni.controller.admin;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -18,7 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
 import dtu.captone.alumni.domain.Job;
+import dtu.captone.alumni.export.JobPostExport;
 import dtu.captone.alumni.service.JobService;
+import javassist.expr.NewArray;
 
 
 @Controller
@@ -32,10 +41,16 @@ public class AdminJobController {
 	MessageSource messageSource;
 	
 	@GetMapping("/index")
-	public String index(Model model) {
-		List<Job> listJob = jobService.findAll(Sort.by("id"));
+	public String index(Model model,HttpSession session) {
+		if(session.getAttribute("userInfo")==null) {
+			return "redirect:/auth/login";
+		} else {
+		
+		List<Job> listJob = jobService.findAll(Sort.by("id").descending());
 		model.addAttribute("listJob", listJob);
 		return "admin.job.index";
+		
+		}
 	}
 	
 	@PostMapping("/active") 
@@ -57,5 +72,22 @@ public class AdminJobController {
 		rd.addFlashAttribute(CommonConstants.MSG, messageSource.getMessage("del_success", null, Locale.getDefault()));
 		return "redirect:/admin/job/index";
 	}
+	
+	@GetMapping("/export")
+	public void expoxtRepostJob(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=job_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+       
+        List<Job> jobListPost = jobService.findAll(Sort.by("id").descending());
+         
+        JobPostExport excelExporter = new JobPostExport(jobListPost);
+         
+        excelExporter.export(response);    
+    }  
 	
 }

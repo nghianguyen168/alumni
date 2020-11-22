@@ -19,6 +19,7 @@
 					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ VIỆC LÀM
 						ALUMNI</strong> 
 				</h4>
+				<a type="button" class="btn btn-info" href="/admin/job/export">Xuất báo cáo</a>
 				<hr>
 				
 				<thead>
