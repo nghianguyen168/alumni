@@ -66,7 +66,10 @@ public class PublicJobController extends UserInfoHandler {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
 		}
+		
 		model.addAttribute("jobService", jobService);
+		model.addAttribute("jobApplyService", jobApplyService);
+		
 		
 	}
 

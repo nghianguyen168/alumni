@@ -1,5 +1,4 @@
 package dtu.captone.alumni.domain;
-
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
@@ -31,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Member implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +40,10 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "student_id")
+	@NotNull
+	private Long studentId;
+
 	@Column(name = "first_name")
 	@NotNull
 	private String firstName;
@@ -48,18 +51,17 @@ public class Member implements Serializable {
 	@Column(name = "last_name")
 	@NotNull
 	private String lastName;
-	
+
 	@Column(name = "dtuMail")
 	@NotNull
 	private String dtuMail;
-	
+
 	@Column(name = "password")
 	@NotNull
 	private String password;
 
 	@Column(name = "dat_of_birth")
 	private Date dateOfBirth;
-	
 
 	@Column(name = "country")
 	private String country;
@@ -75,20 +77,19 @@ public class Member implements Serializable {
 
 	@Column(name = "address_now")
 	private String addressNow;
-	
+
 	@Column(name = "position_job")
 	private String positionJob;
-	
+
 	@Column(name = "company")
 	private String company;
-	
+
 	@Column(name = "salary")
 	private String salary;
-	
+
 	@Column(name = "time_start_job")
 	private Date timeStartJob;
-	
-	
+
 	@Column(name = "work_at")
 	private String workAt;
 
@@ -97,59 +98,49 @@ public class Member implements Serializable {
 
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "avatar")
 	private String avatar;
-	
+
 	@Column(name = "token")
 	private String token;
-	
-	
+
 	@Column(name = "decription")
 	private String decription;
-	
-	
-	
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "major_id",referencedColumnName = "id")
+	@JoinColumn(name = "major_id", referencedColumnName = "id")
 	private Major major = new Major();
-	
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "faculty_id",referencedColumnName = "id")
-	private Faculty faculty = new Faculty();
-	
-	
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "kname_id",referencedColumnName = "id")
-	private Kname kn=new Kname();
+	@JoinColumn(name = "faculty_id", referencedColumnName = "id")
+	private Faculty faculty = new Faculty();
+
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "kname_id", referencedColumnName = "id")
+	private Kname kn = new Kname();
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "trainning_system_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
+	@JoinColumn(name = "trainning_system_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
 	private Trainning_system trainning_system = new Trainning_system();
 
-	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_type_id",referencedColumnName = "id")
+	@JoinColumn(name = "member_type_id", referencedColumnName = "id")
 	private MemberType memberType = new MemberType();
-	
+
 	@Column(name = "enable")
 	@NotNull
 	private int enable;
-	
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "role_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "FK_t_member_role"))
+	@JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_t_member_role"))
 	private Role role = new Role();
 
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<Role>();
-	
-	 private Boolean isPresent;
 
+	private Boolean isPresent;
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -171,7 +162,5 @@ public class Member implements Serializable {
 		super();
 		this.id = id;
 	}
-
-	
 
 }

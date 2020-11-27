@@ -11,19 +11,19 @@
 
 
 <div class="mySlides SlideShow" >
-  <img src="/resources/uploads/slide01.jpg" style="width:100%; height: 600px;">
+  <img src="/resources/uploads/slide01.png" style="width:100%; height: 600px;">
   
 </div>
 
 
 <div class="mySlides SlideShow" >
-  <img src="/resources/uploads/slide02.jpg" style="width:100%; height: 600px;">
+  <img src="/resources/uploads/slide02.png" style="width:100%; height: 600px;">
   
 </div>
 
 
 <div class="mySlides SlideShow" >
-  <img src="/resources/uploads/slide02.jpg" style="width:100%; height: 600px;">
+  <img src="/resources/uploads/slide02.png" style="width:100%; height: 600px;">
   
 </div>
 

@@ -358,10 +358,10 @@
 		<ul class="navbar">
 			<li><a href="/news/index">Tin Tức</a></li>
 			<li><a href="">Sự Kiện</a></li>
-			<li><a href="/job/index">Nghề nghiệp</a></li>
+			<li><a href="/job/index">Việc làm</a></li>
 			<li><a href="/community/index/0">Cộng Đồng</a></li>
 			<li><a href="/member/index">Cựu Sinh Viên</a></li>
-			<li><a href="">Thêm</a></li>
+			<li><a href="/home#contact">Liên hệ</a></li>
 		</ul>
 	</div>
 </div>

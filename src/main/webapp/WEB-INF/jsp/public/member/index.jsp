@@ -7,17 +7,30 @@
             <div class="chia2">
                 <div class="danh-muc">
                     <div class="sub-title">BỘ LỌC</div>
+                    <form action="/member/search" method="post">
+                    <div class="md-form mt-0">
+					  <input class="form-control" type="text" placeholder="Tìm theo tên..." aria-label="Search">
+					</div>
+					<input type="submit" 
+				       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+				       tabindex="-1" />
+					<br>
+					</form>
                     <ul>
-                        <li class="category-list">
-                            <span class="category-span">Tìm kiếm theo</span>
-                        </li>
-
+                    	
                         <li class="category-list">
                             <span class="category-span">Năm tham gia</span>
                         </li>
                         <li class="category-list">
                             <span class="category-span">Năm tốt nghiệp</span>
+                           
                         </li>
+                        <select class="browser-default custom-select custom-select-lg mb-3">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
                         <li class="category-list">
                             <span class="category-span">Ngành</span>
                         </li>
