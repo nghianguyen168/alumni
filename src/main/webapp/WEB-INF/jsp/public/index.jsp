@@ -119,12 +119,26 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 					<div>
 
 						<div>
+						<img
+							style="width: 100%; object-fit: cover; height: 150px;"
+							src="/resources/uploads/${event.image }">
 							<p>
 								<a href="#">${event.event_name }</a>
 							</p>
-						
-
-							<div class="past-event">Past Event</div>
+							<%-- <fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd" var="start"/>
+								<c:choose >
+											
+											<c:when test="${start gt now }">
+													<c:set var="event_status" value="Sắp diễn ra"/>
+													<div class="job-status-open" style="color: white;">${ event_status }</div>
+											</c:when>
+											<c:otherwise>
+												<c:set var="event_status" value="Đã kết thúc"/>
+													<div class="job-status-close" style="color: white;">${ event_status }</div>
+											</c:otherwise>
+								</c:choose> --%>
+										
+							
 							<%-- <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss"
 								value="${event.time_start}" var="start" />
 							<fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss"
@@ -132,8 +146,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 							<%-- <fmt:parseDate value="${event.time_start}" var="start" type="date" pattern="dd/MM/yyyy HH:mm:ss a" /> --%>
 							<%-- <fmt:formatDate type="both"  dateStyle="short" pattern="dd/MM/yyyy"
 								value="${event.time_start}" /> --%>
-
-
+							
 
 							<div class="time">
 							<fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd HH:mm" var="start"/>

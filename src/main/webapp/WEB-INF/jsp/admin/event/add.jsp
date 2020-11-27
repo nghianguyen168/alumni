@@ -9,20 +9,25 @@
                   <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Tên Sự kiện</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="event_name" type="text" />
+                      <input class=" form-control" id="firstname" name="event_name" type="text" required="required"/>
                     </div>
                   </div>
-            	
+            	 <div class="form-group">
+                  <label for="firstname" class="control-label col-lg-2">Hình ảnh mô tả</label>
+                  <div class="col-lg-10">
+                    <input type="file" class=" form-control"  class="default" name="hinhanh"/>
+                  </div>
+                </div>
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian bắt đầu:</label>
                     <div class="col-lg-10 col-sm-9">
-				    <input class="form-control"  name="time_start" type="datetime-local" value="" id="example-datetime-local-input">
+				    <input class="form-control"  name="time_start" type="datetime-local" value="" id="example-datetime-local-input" required="required">
 				  </div>
                   </div>
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian kết thúc:</label>
                     <div class="col-lg-10 col-sm-9">
-					    <input class="form-control" name="time_end" type="datetime-local" value="" id="example-datetime-local-input">
+					    <input class="form-control" name="time_end" type="datetime-local" value="" id="example-datetime-local-input" required="required">
 					  </div>
                   </div>
                    <div class="form-group ">

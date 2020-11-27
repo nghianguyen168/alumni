@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import dtu.captone.alumni.DTOs.JobChart;
 import dtu.captone.alumni.domain.Job;
 
 
@@ -40,6 +41,9 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	
 	@Query(value = "SELECT * FROM job WHERE enable = 1 ORDER BY id DESC",nativeQuery = true)
 	List<Job> getJobEnable();
+	
+	@Query(value = "SELECT j.id,m.major_name AS majorName,count(*) AS count from job AS j inner join major AS m where j.major_id=m.id group by m.id",nativeQuery = true)
+	List<JobChart> getJobForChart();
 	
 	@Query(value = "SELECT * FROM job WHERE enable = 1 AND major_id = ? ORDER BY id DESC ",nativeQuery = true)
 	List<Job> getJobListByMajor(int majorId);

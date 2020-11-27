@@ -68,6 +68,12 @@
 			value="/WEB-INF/jsp/admin/job/index.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.job.chart" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/job/chart.jsp"></put-attribute>
+	</definition>
+
+	
 	<!--Group -->
 	<definition name="admin.group.index" extends="templates.admin">
 		<put-attribute name="content"

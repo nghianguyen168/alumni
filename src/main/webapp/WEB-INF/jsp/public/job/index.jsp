@@ -284,12 +284,12 @@
 										<c:choose >
 											
 											<c:when test="${job.deadlineApply gt now }">
-													<c:set var="job_status" value="Open"/>
-													<div class="job-status-open ">${job_status }</div>
+													<c:set var="job_status" value="Đang tuyển"/>
+													<div class="job-status-open" tyle="color: white;">${job_status }</div>
 											</c:when>
 											<c:otherwise>
-												<c:set var="job_status" value="Closed"/>
-												<div class="job-status-close ">${job_status }</div>
+												<c:set var="job_status" value="Đã kết thúc"/>
+												<div class="job-status-close " style="color: white;">${job_status }</div>
 											</c:otherwise>
 										</c:choose>
 											

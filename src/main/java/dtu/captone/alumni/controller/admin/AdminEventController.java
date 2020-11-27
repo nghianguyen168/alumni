@@ -1,11 +1,13 @@
 package dtu.captone.alumni.controller.admin;
 
 import java.util.Date;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.base.AbstractController;
@@ -32,6 +35,7 @@ import dtu.captone.alumni.domain.Event;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.EventService;
+import dtu.captone.alumni.utils.FileUtil;
 import dtu.captone.alumni.utils.PaginationUtils;
 
 @Controller
@@ -57,18 +61,24 @@ public class AdminEventController extends AbstractController{
 
 	@GetMapping({ "/index", "/index/{page}" })
 	public String index(ModelMap model, @PathVariable(required = false, name = "page") Integer page,HttpSession session,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization) {
-		if (page == null) {
-			page = 1;
+		
+		if(session.getAttribute("userInfo")==null) {
+			return "redirect:/auth/login";
+		}else {
+			if (page == null) {
+				page = 1;
+			}
+			
+			
+			System.out.println("user:"+session.getAttribute("userInfo"));
+			
+			
+			int offset = PaginationUtils.getOffset(page);
+			List<Event> eventList = eventService.findAll(Sort.by("id").descending());
+			model.addAttribute("eventList", eventList);
+			return "admin.event.index";
 		}
 		
-		
-		System.out.println("user:"+session.getAttribute("userInfo"));
-		
-		
-		int offset = PaginationUtils.getOffset(page);
-		List<Event> eventList = eventService.findAll(Sort.by("id").descending());
-		model.addAttribute("eventList", eventList);
-		return "admin.event.index";
 	}
 
 	@GetMapping("/add")
@@ -77,10 +87,11 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@PostMapping("add")
-	public String addevent(@ModelAttribute("event") Event event, RedirectAttributes rd) throws ParseException {
+	public String addevent(@RequestParam("hinhanh") MultipartFile hinhanh,@ModelAttribute("event") Event event, RedirectAttributes rd,HttpServletRequest request) throws ParseException, IllegalStateException, IOException {
+		String picture = FileUtil.upload(hinhanh, request);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+		event.setImage(picture);
 		Event eventSave = eventService.save(event);
-		
 		if (eventSave != null) {
 			rd.addFlashAttribute(CommonConstants.MSG,
 					messageSource.getMessage("add_success", null, Locale.getDefault()));
@@ -104,13 +115,20 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@PostMapping("/edit/{id}")
-	public String editEvent(@PathVariable int id, @ModelAttribute("new") Event event, RedirectAttributes rd) {
-
+	public String editEvent(@RequestParam("hinhanh") MultipartFile hinhanh,@PathVariable int id, @ModelAttribute("new") Event event, RedirectAttributes rd,HttpServletRequest request) throws IllegalStateException, IOException {
+		String picture="";
+		System.out.println("hinh anh:"+hinhanh.getOriginalFilename());
+		String image_old = eventService.findById(id).getImage();
 		int enable = eventService.findById(id).getEnable();
-
+		if("".equals(hinhanh.getOriginalFilename())) {
+			picture=image_old;
+		} else {
+			FileUtil.delete(image_old, request);
+			picture =FileUtil.upload(hinhanh, request);
+		}
 		event.setId(id);
 		event.setEnable(enable);
-
+		event.setImage(picture);
 		Event updateEvent = eventService.save(event);
 		if (updateEvent != null) {
 			rd.addFlashAttribute(CommonConstants.MSG,

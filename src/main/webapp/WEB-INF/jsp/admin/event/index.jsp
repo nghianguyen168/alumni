@@ -6,16 +6,18 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }/admin/news" />
 	<div class="col-md-12">
 		<div class="content-panel">
-		<c:if test="${not empty msg}">
-					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px;">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
-					</div>
-				</c:if>
+		
 			<table id="event-table" class="table table-striped table-advance table-hover">
 				<h4>
 					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ SỰ KIỆN</strong>
 					<a type="button" href="${pageContext.request.contextPath }/admin/event/add" class="btn btn-success" style="margin-left: 20px;">Thêm tin mới</a>
 				</h4>
+				
+				<c:if test="${not empty msg}">
+					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px; width: 50%;margin: 0 auto;">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
+					</div>
+				</c:if>
 				<hr>
 				
 				<thead>
@@ -29,6 +31,7 @@
 							Kêt thúc</th>
 						<th class="hidden-phone"><i class="fa fa-question-circle"></i>
 							Địa điêm</th>
+						<th>Hình ảnh mô tả</th>
 						<th><i class="fa fa-bookmark"></i> Mô tả</th>
 						<th><i class=" fa fa-edit"></i> Status</th>
 						<th></th>
@@ -47,6 +50,15 @@
 							<td>${event.time_end}</td>
 							
 							<td>${event.place}</td>
+							<c:choose>
+								<c:when test="${not empty event.image}">
+									<td><img style="width: 200px;height: 160px;" src="/resources/uploads/${event.image }"></td>
+								</c:when>
+								<c:otherwise>
+									<td><img style="width: 200px;height: 160px;" src="/resources/uploads/no-image.jpg"></td>
+								</c:otherwise>
+							</c:choose>
+							
 							<td>${event.decription}</a></td>
 							<c:choose >
 								<c:when test="${event.enable eq 1 }">

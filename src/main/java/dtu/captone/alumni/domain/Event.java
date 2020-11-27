@@ -39,6 +39,9 @@ public class Event   implements Serializable{
 	@NotNull
 	private String decription;
 	
+	@Column(name = "image")
+	private String image;
+	
 	@Column(name = "time_start")
 	@NotNull
 	private String time_start;

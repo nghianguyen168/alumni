@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import dtu.captone.alumni.DTOs.JobChart;
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.respository.JobRespository;
 
@@ -100,5 +101,11 @@ public class JobServiceImpl implements JobService {
 	public List<Job> getJobListSearch(String position, String companyName) {
 		// TODO Auto-generated method stub
 		return jobRespository.getJobListSearch(position, companyName);
+	}
+
+	@Override
+	public List<JobChart> getJobForChart() {
+		// TODO Auto-generated method stub
+		return jobRespository.getJobForChart();
 	}
 }

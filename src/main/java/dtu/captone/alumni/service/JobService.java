@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import dtu.captone.alumni.DTOs.JobChart;
 import dtu.captone.alumni.domain.Job;
 
 public interface JobService {
@@ -38,6 +39,8 @@ public interface JobService {
 	int sumJobEnable();
 	
 	int updateViews(int id);
+	
+	List<JobChart> getJobForChart();
 	
 	
 }

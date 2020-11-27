@@ -11,18 +11,20 @@
 
 
 <div class="mySlides SlideShow" >
-  <img src="https://i.pinimg.com/originals/d4/bc/c4/d4bcc46e371e194b20854acd1ba3a86b.jpg" style="width:100%; height: 600px;">
+  <img src="/resources/uploads/slide01.jpg" style="width:100%; height: 600px;">
   
 </div>
 
-<div class="mySlides SlideShow">
-  <img src="https://i.pinimg.com/originals/39/44/6e/39446e759a1d7caf1582b346f53e1945.png" style="width:100%; height: 600px;">
- 
+
+<div class="mySlides SlideShow" >
+  <img src="/resources/uploads/slide02.jpg" style="width:100%; height: 600px;">
+  
 </div>
 
-<div class="mySlides SlideShow">
-  <img src="https://i.pinimg.com/originals/96/e7/da/96e7dadf45e4b1ec6349388406597d96.jpg" style="width:100%; height: 600px;">
- 
+
+<div class="mySlides SlideShow" >
+  <img src="/resources/uploads/slide02.jpg" style="width:100%; height: 600px;">
+  
 </div>
 
 <!-- <button class="w3-button display-left1" onclick="plusDivs(-1)">&#10094;</button>

@@ -13,6 +13,14 @@
                       <input class=" form-control" id="firstname" value="${event.event_name }" name="event_name" type="text" />
                     </div>
                   </div>
+                  <div class="form-group">
+                  <label for="lastname" class="control-label col-lg-2">Hình ảnh mô tả</label>
+                  <div class="col-md-4">
+                    <input class="form-control" type="file" class="default" name="hinhanh"/>
+                    <br>
+                    <img style="width: 50%;height: 50%;" alt="" src="${pageContext.request.contextPath }/resources/uploads/${event.image}">
+                  </div>
+                </div>
             	
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian bắt đầu:</label>

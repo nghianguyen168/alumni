@@ -3,9 +3,12 @@ package dtu.captone.alumni.controller.admin;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dtu.captone.alumni.DTOs.JobChart;
 import dtu.captone.alumni.constant.CommonConstants;
 import dtu.captone.alumni.domain.Job;
 import dtu.captone.alumni.export.JobPostExport;
@@ -45,7 +49,6 @@ public class AdminJobController {
 		if(session.getAttribute("userInfo")==null) {
 			return "redirect:/auth/login";
 		} else {
-		
 		List<Job> listJob = jobService.findAll(Sort.by("id").descending());
 		model.addAttribute("listJob", listJob);
 		return "admin.job.index";
@@ -89,5 +92,35 @@ public class AdminJobController {
          
         excelExporter.export(response);    
     }  
+	
+	@GetMapping("/chart")
+	public String viewChart(Model model) {
+		   List<Job> jobListPost = jobService.findAll(Sort.by("id").descending());
+		 Map<Object,Object> map = null;
+		 List<List<Map<Object,Object>>> list = new ArrayList<List<Map<Object,Object>>>();
+		 List<Map<Object,Object>> dataPoints1 = new ArrayList<Map<Object,Object>>();
+		 for(Job job:jobListPost) {
+			 map = new HashMap<Object,Object>(); map.put("label", "18 yrs and Under"); map.put("y", 7);dataPoints1.add(map);
+		 }
+			
+			map = new HashMap<Object,Object>(); map.put("x", 1485887400000L); map.put("y", 6);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1488306600000L); map.put("y", 6);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1490985000000L); map.put("y", 9);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1493577000000L); map.put("y", 11);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1496255400000L); map.put("y", 14);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1498847400000L); map.put("y", 17);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1501525800000L); map.put("y", 18);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1504204200000L); map.put("y", 17);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1506796200000L); map.put("y", 15);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1509474600000L); map.put("y", 12);dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("x", 1512066600000L); map.put("y", 9);dataPoints1.add(map);
+	 
+			list.add(dataPoints1);
+			model.addAttribute("dataPointsList", list);
+	 
+			List<JobChart> listhihi = jobService.getJobForChart();
+			System.out.println(listhihi.size());
+		return "admin.job.chart";
+	}
 	
 }
