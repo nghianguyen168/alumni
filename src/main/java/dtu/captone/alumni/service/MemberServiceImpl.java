@@ -115,4 +115,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.saveAll(memberlist);
 	}
 
+
+	@Override
+	public List<Member> findByKname(int id) {
+		// TODO Auto-generated method stub
+		return memberRespository.findByKname(id);
+	}
+
 }

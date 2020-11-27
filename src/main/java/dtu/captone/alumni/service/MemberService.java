@@ -34,4 +34,6 @@ public interface MemberService {
 	Page<Member> getListByTypeEnable(int type,Pageable pageable);
 	
 	List<Member> findAllEnable(int id);
+	
+	List<Member> findByKname(int id);
 }
