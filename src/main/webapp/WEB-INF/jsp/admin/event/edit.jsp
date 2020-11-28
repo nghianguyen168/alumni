@@ -10,7 +10,7 @@
                   <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Tên Sự kiện</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" value="${event.event_name }" name="event_name" type="text" />
+                      <input class=" form-control" id="firstname" value="${event.eventName }" name="eventName" type="text" />
                     </div>
                   </div>
                   <div class="form-group">
@@ -26,13 +26,13 @@
                     <label for="lastname" class="control-label col-lg-2">Thời gian bắt đầu:</label>
                     <div class="col-lg-10 col-sm-9">
                   
-				    <input class="form-control"  name="time_start" type="datetime-local" value="${event.time_start}" id="example-datetime-local-input">
+				    <input class="form-control"  name="timeStart" type="datetime-local" value="${event.timeStart}" id="example-datetime-local-input">
 				  </div>
                   </div>
                   <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Thời gian kết thúc:</label>
                     <div class="col-lg-10 col-sm-9">
-					    <input class="form-control" name="time_end" type="datetime-local" value="${event.time_end}" id="example-datetime-local-input">
+					    <input class="form-control" name="timeEnd" type="datetime-local" value="${event.timeEnd}" id="example-datetime-local-input">
 					  </div>
                   </div>
                    <div class="form-group ">

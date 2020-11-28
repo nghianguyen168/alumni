@@ -33,7 +33,7 @@ public class Event   implements Serializable{
 	
 	@Column(name = "event_name")
 	@NotNull
-	private String event_name;
+	private String eventName;
 	
 	@Column(name = "decription")
 	@NotNull
@@ -44,11 +44,11 @@ public class Event   implements Serializable{
 	
 	@Column(name = "time_start")
 	@NotNull
-	private String time_start;
+	private String timeStart;
 	
 	@Column(name = "time_end")
 	@NotNull
-	private String time_end;
+	private String timeEnd;
 	
 	@Column(name = "place")
 	@NotNull

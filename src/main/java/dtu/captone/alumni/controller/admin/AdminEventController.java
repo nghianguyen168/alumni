@@ -106,10 +106,10 @@ public class AdminEventController extends AbstractController{
 	@GetMapping({ "/edit", "/edit/{id}" })
 	public String editGet(@PathVariable int id, Model model) {
 		Event event = eventService.findById(id);
-		String time_start = event.getTime_start().replaceAll("\\s+", "T");
-		String time_end = event.getTime_end().replaceAll("\\s+", "T");
-		event.setTime_start(time_start);
-		event.setTime_end(time_end);
+		String time_start = event.getTimeStart().replaceAll("\\s+", "T");
+		String time_end = event.getTimeEnd().replaceAll("\\s+", "T");
+		event.setTimeStart(time_start);
+		event.setTimeEnd(time_end);
 		model.addAttribute("event", event);
 		return "admin.event.edit";
 	}

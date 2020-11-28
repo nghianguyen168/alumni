@@ -123,7 +123,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 							style="width: 100%; object-fit: cover; height: 150px;"
 							src="/resources/uploads/${event.image }">
 							<p>
-								<a href="#">${event.event_name }</a>
+								<a href="/event/detail/${event.id }">${event.eventName }</a>
 							</p>
 							<%-- <fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd" var="start"/>
 								<c:choose >
@@ -149,7 +149,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 							
 
 							<div class="time">
-							<fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd HH:mm" var="start"/>
+							<fmt:parseDate value="${event.timeStart }" pattern="yyyy-MM-dd HH:mm" var="start"/>
 							
 								<div>
 									<strong>Bắt đầu:</strong>
@@ -158,7 +158,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 										<fmt:formatDate value="${start}"  pattern="dd-MM-yyyy HH:mm a"/>
 								</div>
 							
-							<fmt:parseDate value="${event.time_end }" pattern="yyyy-MM-dd HH:mm" var="end"/>
+							<fmt:parseDate value="${event.timeEnd }" pattern="yyyy-MM-dd HH:mm" var="end"/>
 								<div>
 									<strong>Kết thúc:</strong>
 									<%-- <fmt:formatDate type="both" dateStyle="short" timeStyle="short"

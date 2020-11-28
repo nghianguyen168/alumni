@@ -42,12 +42,12 @@
 						<c:forEach items="${eventList }" var="event">
 							<tr>
 							<td class="hidden-phone">${event.id }</td>
-							<td><a href="basic_table.html#">${event.event_name}</a></td>
+							<td><a href="basic_table.html#">${event.eventName}</a></td>
 							<%-- <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_start}" var="start" />
 							<fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${event.time_end}" var="end" /> --%>
 							
-							<td>${event.time_start}</td>
-							<td>${event.time_end}</td>
+							<td>${event.timeStart}</td>
+							<td>${event.timeEnd}</td>
 							
 							<td>${event.place}</td>
 							<c:choose>

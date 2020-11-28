@@ -281,8 +281,8 @@
 										<c:set var="job_status" value=""/>
 										
 										<div>
+										
 										<c:choose >
-											
 											<c:when test="${job.deadlineApply gt now }">
 													<c:set var="job_status" value="Đang tuyển"/>
 													<div class="job-status-open" tyle="color: white;">${job_status }</div>

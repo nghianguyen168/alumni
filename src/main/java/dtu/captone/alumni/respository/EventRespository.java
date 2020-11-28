@@ -1,5 +1,7 @@
 package dtu.captone.alumni.respository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -27,5 +29,8 @@ public interface EventRespository extends JpaRepository<Event, Integer>,JpaSpeci
 	
 	@Query(value = "SELECT * FROM event WHERE enable = 1",nativeQuery = true)
 	Page<Event> getNewsListEnable(Pageable pageable);
+	
+	@Query(value = "SELECT * FROM event WHERE time_start > Now() and enable=1 AND id <> ? LIMIT 4",nativeQuery = true)
+	List<Event> findCommingSoon(int id);
 	
 }

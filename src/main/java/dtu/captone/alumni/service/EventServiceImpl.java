@@ -59,4 +59,10 @@ public class EventServiceImpl implements EventService {
 		return eventRespository.findAll(sort);
 	}
 
+	@Override
+	public List<Event> findCommingSoon(int id) {
+		// TODO Auto-generated method stub
+		return eventRespository.findCommingSoon(id);
+	}
+
 }

@@ -24,4 +24,6 @@ public interface EventService {
 	List<Event> findAll(Sort sort);
 	
 	Page<Event> getNewsListEnable(Pageable pageable);
+	
+	List<Event> findCommingSoon(int id);
 }
