@@ -21,7 +21,8 @@
                             <span onclick="return myFunction();" class="category-span">Khóa</span>
                         </li>
                        
-                         <select id="khoa-select" style="display: none;" class="browser-default custom-select custom-select-lg mb-3" >
+                       <form action="/member/search" method="post">
+                         <select id="khoa-select" name="khoa" style="display: none;" class="browser-default custom-select custom-select-lg mb-3" onchange="this.form.submit()">
 						  <option selected>--Chọn khóa học--</option>
 						 <c:if test="${not empty knameService.findAll() }">
 						 	<c:forEach items="${knameService.findAll() }" var="kn">
@@ -30,46 +31,14 @@
 						 	 </c:forEach>
 						  </c:if>
 						</select>
-							
+						</form>	
 						<script>
 						
 						function myFunction() {
 						  document.getElementById("khoa-select").style.display = "block";
 						}
 						</script>
-                        <script type="text/javascript">
-								$(document).on('change','#khoa-select,#khoa-select',function(e){
-												
-												$.ajax({
-													url: '${pageContext.request.contextPath}/member/search',
-												type : 'POST',
-												cache : false,
-												data : {
-													//(key , value)
-													
-													k : $(this).val();
-												},
-												success : function(response) {
-													/* $('#check-apply').html("Đã check!");
-													$('#checkApply-table').load(" #checkApply-table");
-													 swal({
-														    title: 'Check ứng viên thành công!',
-														
-														    icon: 'success',
-														    timer: 2000,
-														    buttons: true,
-														    type: 'success'
-														}) */
-													alert('success');
-												},
-												error : function(response) {
-													alert('Có lỗi xảy ra');
-												}
-											});
-											return false;
-										});
-										
-						</script>	  
+                       
                        
                         <li class="category-list">
                             <span class="category-span">Ngành</span>

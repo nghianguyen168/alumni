@@ -37,10 +37,10 @@ public class PublicMemberController extends UserInfoHandler {
 	
 	List<Member> memberList = null;
 	
-	@ModelAttribute
-	public void memberL(Model model) {
-		model.addAttribute("memberList", memberList);
-	}
+	/*
+	 * @ModelAttribute public void memberL(Model model) {
+	 * model.addAttribute("memberList", memberList); }
+	 */
 	
 	@GetMapping("/index")
 	public String index(Model model,HttpSession session) {
@@ -50,7 +50,7 @@ public class PublicMemberController extends UserInfoHandler {
 		
 		 memberList = memberService.findAllEnable(isUserLogin(session).getId());
 		System.out.println(memberList.size());
-		model.addAttribute("memberList", memberList);
+		model.addAttribute("memberList", memberList); 
 		return "public.member.index";
 	}
 	
@@ -79,11 +79,12 @@ public class PublicMemberController extends UserInfoHandler {
 	}
 	
 	@PostMapping("/search")
-	public @ResponseBody List<Member> searchMember(@RequestParam("k") int kid) {
+	public String searchMember(@RequestParam(name = "khoa",required = false) int kid,Model model) {
 		System.out.println(kid);
 		System.out.println(memberService.findByKname(kid));
 		memberList = memberService.findByKname(kid);
-		return memberService.findByKname(kid);
+		model.addAttribute("memberList", memberService.findByKname(kid)); 
+		return "public.member.index";
 		
 	}
 	

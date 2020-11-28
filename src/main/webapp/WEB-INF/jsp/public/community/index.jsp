@@ -250,7 +250,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-3">
+                                    <div style="margin-left: 10px;" class="mt-3">
                                         <p>${post.title }</p>
                                         <a href="/resources/uploads/${post.file }">${post.file }</a>
                                     </div>
@@ -260,9 +260,123 @@
                                       	<c:set var="media_array" value="${fn:split(post.media, '|')}" />
                                   		<c:forEach var="media" items="${media_array }">
                                   	 		 <a href="javascript:void();">
-                                  	 		 <img src="/resources/uploads/${media }" id="myImg-${media}"  alt="post-image" class="img-fluid rounded w-100"></a>
-                                  	 		
-										
+                                  	 		 <img src="/resources/uploads/${media }" id="myImg-${media}"  alt="post-image" class="anh-com  rounded w-100 img-fluid scale mb-2"></a>
+                                  	 		<div id="myModal-${post.id }" class="modal1">
+
+											  <!-- The Close Button -->
+											  <span id="close-img">&times;</span>
+											<button class="close"  onclick="closeImg()">&times;</button>
+											  <!-- Modal Content (The Image) -->
+											  <img class="modal-content1" id="img-${media }">
+											
+											  <!-- Modal Caption (Image Text) -->
+											  <div id="caption"></div>
+											</div>
+												<style>
+											.anh-com {
+											  border-radius: 5px;
+											  cursor: pointer;
+											  transition: 0.3s;
+											}
+											
+											.anh-com:hover {opacity: 0.7;}
+											
+											/* The Modal (background) */
+											.modal1 {
+											  display: none; /* Hidden by default */
+											  position: fixed; /* Stay in place */
+											  z-index: 1; /* Sit on top */
+											  padding-top: 100px; /* Location of the box */
+											  left: 0;
+											  top: 0;
+											  width: 100%; /* Full width */
+											  height: 100%; /* Full height */
+											  overflow: auto; /* Enable scroll if needed */
+											  background-color: rgb(0,0,0); /* Fallback color */
+											  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+											}
+											
+											/* Modal Content (Image) */
+											.modal-content1 {
+											  margin: auto;
+											  display: block;
+											  width: 80%;
+											  max-width: 700px;
+											}
+											
+											/* Caption of Modal Image (Image Text) - Same Width as the Image */
+											#caption {
+											  margin: auto;
+											  display: block;
+											  width: 80%;
+											  max-width: 700px;
+											  text-align: center;
+											  color: #ccc;
+											  padding: 10px 0;
+											  height: 150px;
+											}
+											
+											/* Add Animation - Zoom in the Modal */
+											.modal-content1, #caption {
+											  animation-name: zoom;
+											  animation-duration: 0.6s;
+											}
+											
+											@keyframes zoom {
+											  from {transform:scale(0)}
+											  to {transform:scale(1)}
+											}
+											
+											/* The Close Button */
+											.close {
+											  position: absolute;
+											  top: 15px;
+											  right: 35px;
+											  color: #f1f1f1;
+											  font-size: 40px;
+											  font-weight: bold;
+											  transition: 0.3s;
+											}
+											
+											.close:hover,
+											.close:focus {
+											  color: #bbb;
+											  text-decoration: none;
+											  cursor: pointer;
+											}
+											
+											/* 100% Image Width on Smaller Screens */
+											@media only screen and (max-width: 700px){
+											  .modal-content {
+											    width: 100%;
+											  }
+											}
+											</style>
+											
+											<script>
+											var modal = document.getElementById("myModal-${post.id }");
+
+											// Get the image and insert it inside the modal - use its "alt" text as a caption
+											var img = document.getElementById("myImg-${media}");
+											var modalImg = document.getElementById("img-${media }");
+											var captionText = document.getElementById("caption");
+											img.onclick = function(){
+											  modal.style.display = "block";
+											  modalImg.src = this.src;
+											  captionText.innerHTML = this.alt;
+											}
+
+											
+											</script>	
+											
+											<script>
+											function closeImg() {
+												  var x = document.getElementById("myModal-${post.id }");
+												  
+												    x.style.display = "none";
+												
+												}
+											</script>									
                                   		</c:forEach>
                                     </div>
                                     

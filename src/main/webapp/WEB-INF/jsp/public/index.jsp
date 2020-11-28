@@ -122,9 +122,9 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 						<img
 							style="width: 100%; object-fit: cover; height: 150px;"
 							src="/resources/uploads/${event.image }">
-							<p>
-								<a href="/event/detail/${event.id }">${event.eventName }</a>
-							</p>
+							<div>
+								<a style="font-size: 18px;" href="/event/detail/${event.id }">${event.eventName }</a>
+							</div>
 							<%-- <fmt:parseDate value="${event.time_start }" pattern="yyyy-MM-dd" var="start"/>
 								<c:choose >
 											
