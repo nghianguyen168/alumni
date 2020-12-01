@@ -122,4 +122,19 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.findByKname(id);
 	}
 
+	@Override
+	public List<Member> findByMajor(int id) {
+		return memberRespository.findByMajor(id);
+	}
+
+	@Override
+	public List<Member> findByType(int id) {
+		return memberRespository.findByType(id);
+	}
+
+	@Override
+	public List<Member> findByNameSearch(String name) {
+		return memberRespository.findByNameSearch(name);
+	}
+
 }

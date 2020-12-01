@@ -314,7 +314,7 @@
 												<div>
 													<span style="font-size: 12px;" class=" ">Đăng lúc
 														<td><i><fmt:formatDate type="both"
-																	pattern="dd-MM-yyyy  HH:mm a" value="${job.postedOn }" /></i>
+																	pattern="dd-MM-yyyy" value="${job.postedOn }" /></i>
 													</span>
 													
 												</div>

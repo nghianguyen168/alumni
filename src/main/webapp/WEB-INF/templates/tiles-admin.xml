@@ -79,6 +79,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/admin/group/index.jsp"></put-attribute>
 	</definition>
+
+	<definition name="admin.contact.index" extends="templates.admin">
+		<put-attribute name="content"
+					   value="/WEB-INF/jsp/admin/contact/index.jsp"></put-attribute>
+	</definition>
 	
 	
 	<!--Member -->

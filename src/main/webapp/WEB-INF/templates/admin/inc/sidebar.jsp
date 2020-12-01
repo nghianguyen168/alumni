@@ -3,6 +3,8 @@
 <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="/admin/member/profile/${userInfo.id }"><img src="/resources/uploads/${userInfo.avatar }" class="img-circle" width="80"></a></p>
+            <a href="/admin/member/profile/${userInfo.id }" style="margin-left: 51px;,text-align: center;color: white;">${userInfo.firstName} ${userInfo.lastName}</a>
+            <p style="text-align: center;color: white">${userInfo.role.name}</p>
           <a href="javascript:void(0)" class="centered" id="authorLogin"></a>
           <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'}">
           <li class="mt">
@@ -14,7 +16,7 @@
             <li>
             <a id="news" href="${pagecontext.request.contextPath }/admin/news/index">
               <i class="fa fa-newspaper-o"></i>
-              <span>Quảng lý tin tức</span>
+              <span>Quản lý tin tức</span>
               </a>
           </li>
             <li>
@@ -42,14 +44,23 @@
               </a>
           </li>
            </c:if>
-            <c:if test="${userInfo.role.name =='ADMIN'}">
+    <c:if test="${userInfo.role.name =='ADMIN'}">
            <li class="sub-menu">
-            <a id="member" href="${pageContext.request.contextPath }/admin/member/admin">
+            <a id="adminstraitor" href="${pageContext.request.contextPath }/admin/member/admin">
               <i class="fa fa-desktop"></i>
               <span>Quản Trị Viên</span>
               </a>
           </li>
           </c:if>
+    <c:if test="${userInfo.role.name =='ADMIN'}">
+        <li class="sub-menu">
+            <a id="contact-user" href="${pageContext.request.contextPath }/admin/contact/index">
+                <i class="fa fa-desktop"></i>
+                <span>Liên Hệ</span>
+            </a>
+        </li>
+    </c:if>
+
          <!--  <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-cogs"></i>

@@ -36,4 +36,10 @@ public interface MemberService {
 	List<Member> findAllEnable(int id);
 	
 	List<Member> findByKname(int id);
+
+	List<Member> findByMajor(int id);
+
+	List<Member> findByType(int id);
+
+	List<Member> findByNameSearch(String name);
 }

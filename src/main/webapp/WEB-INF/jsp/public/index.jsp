@@ -62,7 +62,7 @@
                 </c:forEach>
                 </c:if>
                 <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev" >
-                <span style="background-color: #ccc;" class="carousel-control-prev-icon" aria-hidden="true"></span">
+                <span style="background-color: #ccc;" class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span style="background-color: #ccc;"  class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
@@ -229,25 +229,61 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 		</div>
 
 		<div class="contact-1of-2">
-			<form>
+			<form action="" id="contact-form">
 				<div class="two-col ">
 					<div>
-						<label for="name ">Họ tên của bạn</label> <input type="name "
-							name="name " id="name ">
+						<label >Họ tên của bạn</label> <input type="name " required
+							name="name" id="name_contact">
 					</div>
 					<div>
-						<label for="email ">địa chỉ email</label> <input type="email "
-							name="email " id="email ">
+						<label>địa chỉ email</label> <input type="email " required
+							name="email" id="email_contact">
 					</div>
 				</div>
 				<div>
 					<label for="message ">Lời nhắn</label>
-					<textarea id="message " name="message " rows="10 "></textarea>
+					<textarea id="message_contact" name="message" rows="10 " required></textarea>
 				</div>
-				<div>
-					<button type="submit ">Gửi Ý kiến</button>
+				<div id="send_note_sub">
+					<button  type="button"  href=" javascript:void(0);" >Gửi Ý kiến</button>
 				</div>
+
 			</form>
+			<script type="text/javascript">
+				$(document).on('click','#send_note_sub,#send_note_sub',function(e){
+					var contactName = $('#name_contact').val();
+					var email = $('#email_contact').val();
+					var message = $('#message_contact').val();
+					$.ajax({
+						url: '${pageContext.request.contextPath}/contact',
+						type : 'POST',
+						cache : false,
+						data : {
+							//(key , value)
+
+							contactName : contactName,
+							email:email,
+							message:message
+						},
+						success : function(response) {
+							$('#contact-form').load(" #contact-form");
+							swal({
+								title: 'Gửi liên hệ thành công!',
+								/* text: 'Redirecting...', */
+								icon: 'success',
+								buttons: true,
+								type: 'success'
+							})
+
+
+						},
+						error : function(response) {
+							alert('Có lỗi xảy ra');
+						}
+					});
+					return false;
+				});
+			</script>
 		</div>
 
 	</div>

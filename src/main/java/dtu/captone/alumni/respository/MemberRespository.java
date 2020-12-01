@@ -65,6 +65,15 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 
 	@Query(nativeQuery = true, value = "SELECT * from member where dtuMail = ? AND password = ?")
 	Member findByEmailAndPassword(String dtu_mail, String password);
+
+	@Query(value = "SELECT * FROM member WHERE enable = 1 AND major_id = ? ORDER BY id DESC",nativeQuery = true)
+	List<Member> findByMajor(int id);
+
+	@Query(value = "SELECT * FROM member WHERE enable = 1 AND member_type_id  = ? ORDER BY id DESC",nativeQuery = true)
+	List<Member> findByType(int id);
+
+	@Query(value = "SELECT * FROM member WHERE enable = 1 AND Concat(first_name,last_name) LIKE ? ORDER BY id DESC",nativeQuery = true)
+	List<Member> findByNameSearch(String name);
 	
 	
 }

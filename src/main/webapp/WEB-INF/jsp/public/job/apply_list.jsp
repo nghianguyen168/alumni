@@ -124,7 +124,7 @@
 							      <td> <a style="display: inline; text-decoration: none" href="mailto: ${job.member.dtuMail}">${apply.member.dtuMail}</a></td>
 							      <td><a style="display: inline; text-decoration: none" href="mailto: ${job.member.email}">${apply.member.email}</a></td>
 							      <td class="timeApply"><fmt:formatDate type="both"
-																	pattern="dd-MM-yyyy  HH:mm a" value="${apply.applyOn}" /></td>
+																	pattern="dd-MM-yyyy" value="${apply.applyOn}" /></td>
 							     
 							      <td ><a href="/resources/uploads/${apply.cv}">${apply.cv}</a>
 							       </td>

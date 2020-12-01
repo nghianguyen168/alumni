@@ -32,7 +32,7 @@
 					 <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'|| userInfo.role.name =='TEACHER'|| userInfo.role.name =='ALUMNI' }">
 						<li class="category-list"><span class="category-span"><a
 							style="text-decoration: none;" onclick="return loading();"
-							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">>${jobService.findByAuthorId(userInfo.id).size() } }</span></li>
+							href="/job/user-post">Tôi đăng tuyển</a></span></span> <span class="category-count">${jobService.findByAuthorId(userInfo.id).size() }</span></li>
 					</c:if>
 				</ul>
 			</div>
@@ -141,7 +141,7 @@
 											</div>
 											<div>
 												<span class=" ">Đăng tuyển lúc:  <fmt:formatDate type="both"
-																	pattern="dd-MM-yyyy  HH:mm a" value="${job.postedOn}" /> </span>
+																	pattern="dd-MM-yyyy" value="${job.postedOn}" /> </span>
 											</div>
 										</div>
 									</div>
