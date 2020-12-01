@@ -70,7 +70,6 @@ public class PublicJobController extends UserInfoHandler {
 		model.addAttribute("jobService", jobService);
 		model.addAttribute("jobApplyService", jobApplyService);
 		
-		
 	}
 
 	@ModelAttribute

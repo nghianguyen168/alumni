@@ -108,4 +108,10 @@ public class JobServiceImpl implements JobService {
 		// TODO Auto-generated method stub
 		return jobRespository.getJobForChart();
 	}
+
+	@Override
+	public List<Job> getListByMonth(int month) {
+		// TODO Auto-generated method stub
+		return jobRespository.getJobListByMonth(month);
+	}
 }

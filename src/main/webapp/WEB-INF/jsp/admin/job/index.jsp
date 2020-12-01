@@ -35,6 +35,7 @@
 						<th><i class=""></i>Mức lương</th>
 						<th><i class=""></i>Địa chỉ</th>
 						<th><i class=""></i>Người đăng</th>
+						<th>Tổng số Apply</th>
 						<th><i class=""></i> Status</th>
 						<th></th>
 					</tr>
@@ -53,6 +54,7 @@
 						<td>${job.salary }</td>
 						<td>${job.location }</td>
 						<td>${job.member.firstName} ${job.member.lastName }</td>
+						<td><strong> ${jobApplyService.findByJob(job.id).size()}</strong></td>
 						<c:choose >
 								<c:when test="${job.enable eq 1 }">
 									<c:set var="activeImg" value="on.png" />

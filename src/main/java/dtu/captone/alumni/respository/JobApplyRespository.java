@@ -27,6 +27,9 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	@Query(value = "SELECT * FROM job_apply WHERE job_id = ? ORDER BY id DESC LIMIT ?,?",nativeQuery = true)
 	List<JobApply> findByJob(Integer id,int offset,int limit);
 	
+	@Query(value = "SELECT * FROM job_apply WHERE job_id = ?",nativeQuery = true)
+	List<JobApply> findByJob(Integer id);
+	
 	@Query(value = "SELECT * FROM job_apply WHERE member_id=? ORDER BY id DESC",nativeQuery = true)
 	List<JobApply> findJobApply(int id);
 	

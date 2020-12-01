@@ -25,6 +25,8 @@ public interface JobApplyService {
 	
 	List<JobApply> findByJob(Integer id,int offset,int limit);
 	
+	List<JobApply> findByJob(Integer id);
+	
 	List<JobApply> findAll(Sort sort);
 	
 	List<JobApply> findJobApply(int id);

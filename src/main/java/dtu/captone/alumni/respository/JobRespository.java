@@ -48,9 +48,11 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	@Query(value = "SELECT * FROM job WHERE enable = 1 AND major_id = ? ORDER BY id DESC ",nativeQuery = true)
 	List<Job> getJobListByMajor(int majorId);
 	
+	@Query(value = "SELECT * FROM job WHERE Month(posted_on) = ? AND year(now())=year(posted_on) ",nativeQuery = true)
+	List<Job> getJobListByMonth(int month);
+	
 	@Query(value = "SELECT * FROM job WHERE enable = 1 AND position Like ? OR company_name Like ? ORDER BY id DESC",nativeQuery = true)
 	List<Job> getJobListSearch(String position,String company_name);
-	
 	
 	
 	/*
@@ -67,6 +69,7 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	@Query(value = "UPDATE job SET views = views+1 WHERE id=? ",nativeQuery = true)
 	@Transactional
 	public int updateViews(int id);
+	
 	
 
 }

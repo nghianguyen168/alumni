@@ -80,7 +80,6 @@ public class JobPostExport {
 	            createCell(row, columnCount++, job.getPosition(), style);
 	            createCell(row, columnCount++, job.getSalary(), style);
 	            createCell(row, columnCount++, job.getMajor().getMajorName(), style);
-	            createCell(row, columnCount++, job.getMember().getFirstName()+" "+ job.getMember().getLastName(), style);
 	             
 	        }
 	    }

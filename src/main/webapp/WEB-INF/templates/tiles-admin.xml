@@ -100,6 +100,12 @@
 			value="/WEB-INF/jsp/admin/member/add.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="chart.index" extends="templates.admin">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/admin/chart/job_chart.jsp"></put-attribute>
+	</definition>
+	
+	
 	
 	
 	

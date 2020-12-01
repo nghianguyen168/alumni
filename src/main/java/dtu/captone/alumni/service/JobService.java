@@ -42,5 +42,7 @@ public interface JobService {
 	
 	List<JobChart> getJobForChart();
 	
+	List<Job> getListByMonth(int month);
+	
 	
 }

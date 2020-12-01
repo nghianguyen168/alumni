@@ -74,5 +74,11 @@ public class JobApplyServiceImpl implements JobApplyService{
 		return jobApplyRespository.updateCheckOneStatus(id);
 	}
 
+	@Override
+	public List<JobApply> findByJob(Integer id) {
+		// TODO Auto-generated method stub
+		return jobApplyRespository.findByJob(id);
+	}
+
 
 }
