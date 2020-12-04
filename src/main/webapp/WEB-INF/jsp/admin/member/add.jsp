@@ -7,6 +7,7 @@
 			<i class="fa fa-angle-right"></i> THÊM THÀNH VIÊN
 		</h4>
 		<div class="form-panel">
+			<h5>><strong>Thêm thành viên theo danh sách <strong></h5>
 			<div class="form">
 				<form class="cmxform form-horizontal style-form"
 					enctype="multipart/form-data" id="signupForm" method="post"
@@ -88,7 +89,12 @@
 
 					</div>
 
+					<c:if test="${param.err ne null}">
+						<div class="alert alert-danger" style="width: 25%;margin-left: 10%;" role="alert">
+							Tệp không phù hợp! Vui lòng chọn đúng định dạng format theo hướng dẫn!
+						</div>
 
+					</c:if>
 
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">

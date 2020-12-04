@@ -1,6 +1,9 @@
 package dtu.captone.alumni.controller.admin;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import dtu.captone.alumni.auth.service.UserService;
 import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.service.ChartService;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -21,8 +25,11 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ChartService canvasjsChartService;
+	
 	@GetMapping("/index")
-	public String index(HttpSession session, Principal principal) {
+	public String index(HttpSession session, Principal principal,Model model) {
 		
 		String dtuMail="";
 		try {
@@ -33,8 +40,9 @@ public class AdminController {
 			// TODO: handle exception
 			return "redirect:/auth/login";
 		}
-		
-		
+		List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData();
+		model.addAttribute("dataPointsList", canvasjsDataList);
+System.out.println(LocalDateTime.now().getMonthValue());
 		return "admin.index";
 	}
 }

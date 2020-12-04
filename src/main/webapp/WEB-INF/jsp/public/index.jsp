@@ -244,8 +244,11 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 					<label for="message ">Lời nhắn</label>
 					<textarea id="message_contact" name="message" rows="10 " required></textarea>
 				</div>
+                <div id="messgae-follow">
+
+                </div>
 				<div id="send_note_sub">
-					<button  type="button"  href=" javascript:void(0);" >Gửi Ý kiến</button>
+					<button  type="button" class="y_kien_button"  href=" javascript:void(0);" >Gửi Ý kiến</button>
 				</div>
 
 			</form>
@@ -254,7 +257,15 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 					var contactName = $('#name_contact').val();
 					var email = $('#email_contact').val();
 					var message = $('#message_contact').val();
-					$.ajax({
+
+                    if(email ==='' | contactName ==='' | message ===''){
+                        $('#messgae-follow').html("<div class=\"alert alert-danger\" role=\"alert\">\r\n" +
+                            "Vui lòng nhập đầy đủ thông tin liên hệ!\r\n" +
+                            "</div>");
+                        return;
+                    }
+
+                    $.ajax({
 						url: '${pageContext.request.contextPath}/contact',
 						type : 'POST',
 						cache : false,

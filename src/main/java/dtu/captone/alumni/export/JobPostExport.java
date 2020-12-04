@@ -18,6 +18,7 @@ import dtu.captone.alumni.domain.Job;
 public class JobPostExport {
 	private XSSFWorkbook workbook;
 	private XSSFSheet sheet;
+	private XSSFSheet sheet2;
 	private List<Job> jobListPost;
 	
 	 public JobPostExport(List<Job> jobListPost) {
@@ -27,7 +28,6 @@ public class JobPostExport {
 	 
 	 private void writeHeaderLine() {
 		 sheet = workbook.createSheet("JobApply");
-	         
 	        Row row = sheet.createRow(0);
 	         
 	        CellStyle style = workbook.createCellStyle();
@@ -45,8 +45,23 @@ public class JobPostExport {
 	        createCell(row, 6, "Mức lương", style);
 	        createCell(row, 7, "Chuyên ngành", style);
 	        createCell(row, 8, "Người đăng", style);
-	         
-	    }
+
+		 sheet2 = workbook.createSheet("Sum");
+		 Row row1 = sheet2.createRow(0);
+
+		 CellStyle style1 = workbook.createCellStyle();
+		 XSSFFont font1 = workbook.createFont();
+		 font.setBold(true);
+		 font.setFontHeight(16);
+		 style.setFont(font);
+
+		 createCell(row1, 0, "Mã", style);
+		 createCell(row1, 1, "Tổng", style);
+		 createCell(row1, 2, "hihi", style);
+
+
+
+	 }
 	 
 	 private void createCell(Row row, int columnCount, Object value, CellStyle style) {
 	        sheet.autoSizeColumn(columnCount);

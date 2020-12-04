@@ -116,7 +116,7 @@ public class AdminMemberController {
 
 				XSSFRow row = worksheet.getRow(index);
 				Integer id = 0;
-
+				try{
 				member.setFirstName(row.getCell(1).getStringCellValue());
 				member.setLastName(row.getCell(2).getStringCellValue());
 				member.setDateOfBirth(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
@@ -137,13 +137,22 @@ public class AdminMemberController {
 				String password = (formatter.format(new java.sql.Date((row.getCell(3).getDateCellValue().getTime()))).toString()).replace("/", "");
 				member.setPassword(bCryptPasswordEncoder.encode(password));
 				System.out.println(password);
-				
+				} catch (NullPointerException e){
+					return "redirect:/admin/member/add";
+				}
 				member.setEnable(1);
 				
 				member.setMemberType(memberTypeService.findById(memberTypeId));
 				memberList.add(member);
 			}
-			memberService.saveAll(memberList);
+
+		memberService.saveAll(memberList);
+
+
+
+
+
+
 		}
 		
 		rd.addFlashAttribute(CommonConstants.MSG,
