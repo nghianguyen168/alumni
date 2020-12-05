@@ -41,7 +41,6 @@ public class Member implements Serializable {
 	private Integer id;
 
 	@Column(name = "student_id")
-	@NotNull
 	private Long studentId;
 
 	@Column(name = "first_name")

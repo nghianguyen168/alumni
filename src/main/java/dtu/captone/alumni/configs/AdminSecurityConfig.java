@@ -78,8 +78,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 					.usernameParameter("dtumail")
 					.passwordParameter("pass").failureUrl("/auth/login?msg=err").loginProcessingUrl("/auth/login")
 					.defaultSuccessUrl("/admin/index").and()
-					.logout().logoutUrl("/auth/logout")
-						.logoutSuccessUrl("/admin/index").invalidateHttpSession(true)
+					.logout().logoutUrl("/auth/logout").logoutSuccessUrl("/admin/index").invalidateHttpSession(true)
 					 .deleteCookies("JSESSIONID").and().exceptionHandling()
 					 .accessDeniedPage("/error403").and();
 					

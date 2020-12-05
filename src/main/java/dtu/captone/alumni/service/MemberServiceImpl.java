@@ -115,6 +115,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.saveAll(memberlist);
 	}
 
+	@Override
+	public Member findByStudentId(Long studentId) {
+		return memberRespository.findByStudentID(studentId);
+	}
+
 
 	@Override
 	public List<Member> findByKname(int id) {

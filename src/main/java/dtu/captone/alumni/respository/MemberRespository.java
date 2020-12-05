@@ -22,6 +22,9 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	Page<Member> findAll(Specification<Member> spec, Pageable pageable);
 
 	List<Member> findAll(Specification<Member> spec);
+
+	@Query(value = "SELECT * FROM member WHERE student_id = ?",nativeQuery = true)
+	Member findByStudentID(Long studentId);
 	
 	@Query(value = "UPDATE member SET enable = ? WHERE id = ?",nativeQuery = true)
 	@Modifying(clearAutomatically=true, flushAutomatically = true)
@@ -29,6 +32,7 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	int active(int active,int id);
 	
 	Member findById(int id);
+
 	Page<Member> findByHometown(String hometown,Pageable pageable);
 	
 	@Query(value = "SELECT * FROM member WHERE member_type_id = ?",nativeQuery = true)

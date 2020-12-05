@@ -68,7 +68,7 @@ public class Job implements Serializable {
 	@Column(name = "decription")
 	private String decription;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId",referencedColumnName = "id")
 	private Member member = new Member();
 	

@@ -15,6 +15,8 @@ public interface MemberService {
 	Member save(Member member);
 	
 	List<Member> saveAll(List<Member> memberList);
+
+	Member findByStudentId(Long studentId);
 	
 	Member update(Member member);
 	

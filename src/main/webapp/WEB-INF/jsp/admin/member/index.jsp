@@ -32,7 +32,16 @@
 						</strong> <a type="button"
 						href="${pageContext.request.contextPath }/admin/member/add"
 						class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Thêm thành viên<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Thêm theo thành viên</a></li>
+							<li><a href="${pageContext.request.contextPath }/admin/member/add">Thêm theo danh dách</a></li>
+
+						</ul>
+					</div>
 				</h4>
+
 				<hr>
 				
 				<thead>
@@ -40,6 +49,7 @@
 						<th><i class="fa fa-bullhorn"></i> ID</th>
 						<th>First Name</th>
 						<th>Last Name</th>
+						<th>MSSV</th>
 						<th>Ngày sinh</th>
 						<th>Giới tính</th>
 						<th>Quê quán</th>
@@ -63,6 +73,7 @@
 						<td><a href="">${member.firstName }</a></td>
 						
 						<td><a href="">${member.lastName}</a></td>
+						<td>${member.studentId}</td>
 						<td>${member.dateOfBirth }</td>
 						<td>${member.gender }</td>
 						<td>${member.hometown },${member.country}</td>

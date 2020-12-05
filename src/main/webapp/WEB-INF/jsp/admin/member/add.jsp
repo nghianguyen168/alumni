@@ -89,12 +89,12 @@
 
 					</div>
 
-					<c:if test="${param.err ne null}">
-						<div class="alert alert-danger" style="width: 25%;margin-left: 10%;" role="alert">
-							Tệp không phù hợp! Vui lòng chọn đúng định dạng format theo hướng dẫn!
-						</div>
+						<c:if test="${param.err ne null}">
+							<div class="alert alert-danger" style="width: 25%;margin-left: 17%;" role="alert">
+								Tệp không phù hợp! Vui lòng chọn đúng định dạng format theo hướng dẫn!
+							</div>
 
-					</c:if>
+						</c:if>
 
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">

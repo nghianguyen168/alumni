@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import dtu.captone.alumni.auth.service.RoleService;
+import dtu.captone.alumni.domain.*;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -29,10 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
-import dtu.captone.alumni.domain.Faculty;
-import dtu.captone.alumni.domain.Kname;
-import dtu.captone.alumni.domain.Member;
-import dtu.captone.alumni.domain.MemberType;
 import dtu.captone.alumni.service.FacultyService;
 import dtu.captone.alumni.service.KnameService;
 import dtu.captone.alumni.service.MemberService;
@@ -56,6 +54,9 @@ public class AdminMemberController {
 	
 	@Autowired
 	MessageSource messageSource;
+
+	@Autowired
+	private RoleService roleService;
 	
 	
 	@Autowired
@@ -104,6 +105,7 @@ public class AdminMemberController {
 	public String addMemberList(@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
 			@RequestParam("memberType") int memberTypeId,
 			@RequestParam("memberList") MultipartFile files,RedirectAttributes rd) throws IOException {
+		List<Long> studentIdDuplicate = new ArrayList<>();
 		HttpStatus status = HttpStatus.OK;
 		List<Member> memberList = new ArrayList<>();
 
@@ -117,28 +119,39 @@ public class AdminMemberController {
 				XSSFRow row = worksheet.getRow(index);
 				Integer id = 0;
 				try{
+
+				if(memberService.findByStudentId((long) row.getCell(4).getNumericCellValue())==null){
+					studentIdDuplicate.add((long) row.getCell(4).getNumericCellValue());
+					continue;
+					}
 				member.setFirstName(row.getCell(1).getStringCellValue());
 				member.setLastName(row.getCell(2).getStringCellValue());
 				member.setDateOfBirth(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
-				member.setDtuMail(row.getCell(4).getStringCellValue());
+				member.setStudentId(((long) row.getCell(4).getNumericCellValue()));
+				member.setDtuMail(row.getCell(5).getStringCellValue());
 			
-				member.setEmail(row.getCell(5).getStringCellValue());
-				member.setCountry(row.getCell(6).getStringCellValue());
-				member.setHometown(row.getCell(7).getStringCellValue());
-				member.setAddressNow(row.getCell(8).getStringCellValue());
-				member.setGender(row.getCell(9).getStringCellValue());
-				member.setPhone(formater.formatCellValue(row.getCell(10))); 
+				member.setEmail(row.getCell(6).getStringCellValue());
+				member.setCountry(row.getCell(7).getStringCellValue());
+				member.setHometown(row.getCell(8).getStringCellValue());
+				member.setAddressNow(row.getCell(9).getStringCellValue());
+				member.setGender(row.getCell(10).getStringCellValue());
+				member.setPhone(formater.formatCellValue(row.getCell(11)));
+
+
 				member.setFaculty(facultyService.findById(facultyId));
 				member.setKn(knameService.findById(kId));
-				
+
+				Role role  = roleService.findById(memberTypeId);
+				member.setRole(role);
 				member.setTrainning_system(null);
 				member.setMajor(null);
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 				String password = (formatter.format(new java.sql.Date((row.getCell(3).getDateCellValue().getTime()))).toString()).replace("/", "");
 				member.setPassword(bCryptPasswordEncoder.encode(password));
 				System.out.println(password);
-				} catch (NullPointerException e){
-					return "redirect:/admin/member/add";
+				} catch (Exception e){
+					e.printStackTrace();
+					return "redirect:/admin/member/add?err=true";
 				}
 				member.setEnable(1);
 				
@@ -148,15 +161,12 @@ public class AdminMemberController {
 
 		memberService.saveAll(memberList);
 
-
-
-
-
-
 		}
 		
 		rd.addFlashAttribute(CommonConstants.MSG,
 				messageSource.getMessage("add_member_success", null, Locale.getDefault()));
+
+		System.out.println(studentIdDuplicate);
 		return "redirect:/admin/member/index/1";
 
 	}
