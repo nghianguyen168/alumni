@@ -125,6 +125,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
 var xValue;
 var yValue;
 
+
+
+
 <c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">
 	<c:forEach items="${dataPoints}" var="dataPoint">
 		xValue = parseInt("${dataPoint.x}");
@@ -138,52 +141,50 @@ var yValue;
 
 chart.render();
 
+	var dps = [[]];
+	var chart1 = new CanvasJS.Chart("chartContainerCircle", {
+		theme: "light2", // "light1", "dark1", "dark2"
+		exportEnabled: true,
+		animationEnabled: true,
+		title: {
+			text: "Biểu đồ tỷ lệ tuyển dụng theo ngành"
+		},
+		data: [{
+			type: "pie",
+			showInLegend: "true",
+			legendText: "{label}",
+			yValueFormatString: "#,###\"%\"",
+			indexLabelFontSize: 16,
+			indexLabel: "{label} - {y}",
+			dataPoints: dps[0]
+		}]
+	});
+
+	var yValue;
+	var label;
+
+	<c:forEach items="${canvasjsDataListCirlceMajor}" var="dataPoints" varStatus="loop">
+	<c:forEach items="${dataPoints}" var="dataPoint">
+	yValue = parseFloat("${dataPoint.y}");
+	label = "${dataPoint.label}";
+	dps[parseInt("${loop.index}")].push({
+		label : label,
+		y : yValue,
+	});
+	</c:forEach>
+	</c:forEach>
+
+	chart1.render();
+
+
+
 }
 </script>
 	<br>
-	<div id="chartContainer" style="height: 370px; width: 50%;"></div>
-
-<script type="text/javascript">
-	window.onload = function() {
-
-		var dps1 = [[]];
-		var chart1 = new CanvasJS.Chart("chartContainerCircle", {
-			theme: "light2", // "light1", "dark1", "dark2"
-			exportEnabled: true,
-			animationEnabled: true,
-			title: {
-				text: "Biểu đồ tỷ lệ tuyển dụng theo ngày"
-			},
-			data: [{
-				type: "pie",
-				showInLegend: "true",
-				legendText: "{label}",
-				yValueFormatString: "#,###\"%\"",
-				indexLabelFontSize: 16,
-				indexLabel: "{label} - {y}",
-				dataPoints: dps[0]
-			}]
-		});
-
-		var yValue;
-		var label;
-
-		<c:forEach items="${canvasjsDataListCirlceMajor}" var="dataPoints" varStatus="loop">
-		<c:forEach items="${dataPoints}" var="dataPoint">
-		yValue = parseFloat("${dataPoint.y}");
-		label = "${dataPoint.label}";
-		dps1[parseInt("${loop.index}")].push({
-			label : label,
-			y : yValue,
-		});
-		</c:forEach>
-		</c:forEach>
-
-		chart1.render();
-	}
-</script>
-<div id="chartContainerCircle" style="height: 370px; width: 50%;"></div>
-
+<div>
+	<div id="chartContainer" style="height: 370px; width: 50%; float: left;"></div>
+	<div id="chartContainerCircle" style="height: 370px; width: 50%; float: right;"></div>
+</div>
 
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 

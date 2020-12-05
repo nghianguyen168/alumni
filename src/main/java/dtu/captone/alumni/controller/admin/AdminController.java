@@ -84,7 +84,9 @@ public class AdminController {
 		System.out.println(LocalDateTime.now().getMonthValue());
 
 		List<List<Map<Object, Object>>> canvasjsDataListCirlceMajor = canvasjsChartService.getCanvasjsDataListCircleMajor();
+		System.out.println(canvasjsDataList);
 		model.addAttribute("canvasjsDataListCirlceMajor", canvasjsDataListCirlceMajor);
+
 
 		return "admin.index";
 	}

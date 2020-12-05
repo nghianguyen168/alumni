@@ -51,7 +51,7 @@ public class CanvasjsChartData {
 
 		List<Major> majorList = majorService.findAll();
 		for(Major major:majorList){
-			map = new HashMap<Object,Object>(); map.put("label", major.getMajorName()); map.put("y", jobService.getJobListBYear( Calendar.getInstance().get(Calendar.YEAR),major.getId()));dataPoints1.add(map);
+			map = new HashMap<Object,Object>(); map.put("label", major.getMajorName()); map.put("y", jobService.getJobListBYear( Calendar.getInstance().get(Calendar.YEAR),major.getId()).size());dataPoints1.add(map);
 		}
 		list.add(dataPoints1);
 		return list;

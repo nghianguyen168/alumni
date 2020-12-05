@@ -7,48 +7,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 window.onload = function() {
- 
-var dps = [[]];
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light2", // "light1", "dark1", "dark2"
-	animationEnabled: false,
-	title: {
-		text: "Biểu đồ công việc từ alumni"
-	},
-	axisX: {
-		valueFormatString: "MMM"
-	},
-	axisY: {
-		title: "Tổng số công việc",
-		includeZero: true,
-		suffix: " "
-	},
-	data: [{
-		type: "line",
-		xValueType: "dateTime",
-		xValueFormatString: "MMM",
-		yValueFormatString: "#,##0 Job",
-		dataPoints: dps[0]
-	}]
-});
- 
-var xValue;
-var yValue;
- 
-<c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">	
+	var dps = [[]];
+	var chart = new CanvasJS.Chart("chartContainer", {
+		theme: "light2", // "light1", "dark1", "dark2"
+		exportEnabled: true,
+		animationEnabled: true,
+		title: {
+			text: "Monthly Expenses"
+		},
+		data: [{
+			type: "pie",
+			showInLegend: "true",
+			legendText: "{label}",
+			yValueFormatString: "#,###\"%\"",
+			indexLabelFontSize: 16,
+			indexLabel: "{label} - {y}",
+			dataPoints: dps[0]
+		}]
+	});
+
+	var yValue;
+	var label;
+
+	<c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">
 	<c:forEach items="${dataPoints}" var="dataPoint">
-		xValue = parseInt("${dataPoint.x}");
-		yValue = parseFloat("${dataPoint.y}");
-		dps[parseInt("${loop.index}")].push({
-			x : xValue,
-			y : yValue
-		});		
-	</c:forEach>	
-</c:forEach> 
- 
-chart.render();
- 
+	yValue = parseFloat("${dataPoint.y}");
+	label = "${dataPoint.label}";
+	dps[parseInt("${loop.index}")].push({
+		label : label,
+		y : yValue,
+	});
+	</c:forEach>
+	</c:forEach>
+
+	chart.render();
 }
+ 
+
 </script>
 </head>
 <body>
