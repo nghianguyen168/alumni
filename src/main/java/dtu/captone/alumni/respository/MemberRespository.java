@@ -49,7 +49,8 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	
 	@Query(value = "SELECT * FROM member WHERE member_type_id = ? AND enable = 1",nativeQuery = true)
 	Page<Member> getListByTypeEnable(int type,Pageable page);
-	
+
+
 	@Query(value = "SELECT * FROM member WHERE member_type_id = ? ",nativeQuery = true)
 	Page<Member> getListByType(int type,Pageable page);
 	

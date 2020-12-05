@@ -22,8 +22,11 @@
 								style="width: 30%;">
 								<option value="0">--Chọn kiểu thành viên--</option>
 								<c:if test="${not empty memberTypeList}">
+									
 									<c:forEach var="type" items="${memberTypeList }">
-										<option value="${type.id }">${type.typeName }</option>
+										<c:if test="${type.typeName ne 'Manager'}">
+											<option value="${type.id }">${type.typeName }</option>
+										</c:if>
 									</c:forEach>
 								</c:if>
 							</select> <br>

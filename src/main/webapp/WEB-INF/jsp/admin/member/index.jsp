@@ -7,13 +7,7 @@
 		value="${pageContext.request.contextPath }/admin/member" />
 	<div class="col-md-12">
 		<div class="content-panel">
-			<c:if test="${not empty msg}">
-				<div class="alert alert-success fade in alert-dismissible"
-					style="margin-top: 18px;">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close"
-						title="close">×</a> <strong>${msg}</strong>
-				</div>
-			</c:if>
+
 			<table id="member-table" class="table table-bordered table-striped table-condensed">
 			<c:set var="typee" value="" />
 			<c:choose>
@@ -32,15 +26,25 @@
 						</strong> <a type="button"
 						href="${pageContext.request.contextPath }/admin/member/add"
 						class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
-					<div class="dropdown">
+					<%--<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Thêm thành viên<span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<li><a href="#">Thêm theo thành viên</a></li>
 							<li><a href="${pageContext.request.contextPath }/admin/member/add">Thêm theo danh dách</a></li>
 
 						</ul>
-					</div>
+					</div>--%>
 				</h4>
+				<c:if test="${not empty msg}">
+					<div  class="alert alert-success fade in alert-dismissible"
+						 style="margin-top: 18px;width: 30%; margin: 0 auto;">
+						<a href="#" class="close" data-dismiss="alert"
+						   title="close">×</a> <span> Thêm <strong> ${sumRecord- sizeDup} </strong>  thành viên thành công <br>
+						<span style="color: #cb2020;"><strong>${sizeDup} </strong> thành viên đã tồn tại!</span>
+						</span>
+
+					</div>
+				</c:if>
 
 				<hr>
 				

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import dtu.captone.alumni.domain.JobApply;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,9 +21,11 @@ public class JobPostExport {
 	private XSSFSheet sheet;
 	private XSSFSheet sheet2;
 	private List<Job> jobListPost;
+	private List<JobApply> applyList;
 	
-	 public JobPostExport(List<Job> jobListPost) {
+	 public JobPostExport(List<Job> jobListPost,List<JobApply> applyList) {
 	        this.jobListPost = jobListPost;
+	        this.applyList = applyList;
 	        workbook = new XSSFWorkbook();
 	    }
 	 
@@ -55,9 +58,12 @@ public class JobPostExport {
 		 font.setFontHeight(16);
 		 style.setFont(font);
 
-		 createCell(row1, 0, "Mã", style);
-		 createCell(row1, 1, "Tổng", style);
-		 createCell(row1, 2, "hihi", style);
+		 createCell(row1, 0, "ID", style);
+		 createCell(row1, 1, "Tên công việc", style);
+		 createCell(row1, 2, "Công ty", style);
+		 /*createCell(row1, 3, "Người đăng bài", style);*/
+		 createCell(row1, 4, "CV", style);
+		 createCell(row1, 5, "Người nộp đơn", style);
 
 
 
@@ -97,6 +103,17 @@ public class JobPostExport {
 	            createCell(row, columnCount++, job.getMajor().getMajorName(), style);
 	             
 	        }
+			 int rowCount1 = 1;
+	        for(JobApply jobApply:applyList){
+				Row row1 = sheet2.createRow(rowCount1++);
+				int columnCount1 = 0;
+				createCell(row1,columnCount1++,jobApply.getId(),style);
+				createCell(row1,columnCount1++,jobApply.getJob().getPosition(),style);
+				createCell(row1,columnCount1++,jobApply.getJob().getCompanyName(),style);
+				/*createCell(row1,columnCount1++,"hihi",style);*/
+				createCell(row1,columnCount1++,jobApply.getCv(),style);
+				createCell(row1,columnCount1++,jobApply.getMember().getFirstName()+" "+jobApply.getMember().getLastName(),style);
+			}
 	    }
 	 
 	  public void export(HttpServletResponse response) throws IOException {

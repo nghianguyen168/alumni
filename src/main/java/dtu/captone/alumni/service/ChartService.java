@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface ChartService {
 	List<List<Map<Object, Object>>> getCanvasjsChartData();
+
+	List<List<Map<Object,Object>>> getCanvasjsDataListCircleMajor();
 }

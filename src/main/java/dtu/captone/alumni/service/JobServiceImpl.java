@@ -114,4 +114,13 @@ public class JobServiceImpl implements JobService {
 		// TODO Auto-generated method stub
 		return jobRespository.getJobListByMonth(month);
 	}
+
+	@Override
+	public List<Job> getJobListByMonthAndMajor(int month, int major_id) {
+		return jobRespository.getJobListByMonthAndMajor(month,major_id);
+	}
+	@Override
+	public List<Job> getJobListBYear(int year, int major_id) {
+		return jobRespository.getJobListBYear(year,major_id);
+	}
 }

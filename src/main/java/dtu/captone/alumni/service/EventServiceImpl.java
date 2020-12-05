@@ -65,4 +65,9 @@ public class EventServiceImpl implements EventService {
 		return eventRespository.findCommingSoon(id);
 	}
 
+	@Override
+	public List<Event> findByMonth(int month) {
+		return eventRespository.findByMonth(month);
+	}
+
 }

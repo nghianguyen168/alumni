@@ -20,4 +20,9 @@ public class CanvasjsChartServiceImpl implements ChartService{
 		return canvasjsChartDao.getCanvasjsDataList();
 	}
 
+	@Override
+	public List<List<Map<Object, Object>>> getCanvasjsDataListCircleMajor() {
+		return canvasjsChartDao.getCanvasjsDataListCircleMajor();
+	}
+
 }

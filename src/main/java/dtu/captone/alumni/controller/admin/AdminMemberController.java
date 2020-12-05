@@ -102,7 +102,7 @@ public class AdminMemberController {
 	}
 
 	@PostMapping("/add")
-	public String addMemberList(@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
+	public String addMemberList(Model model,@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
 			@RequestParam("memberType") int memberTypeId,
 			@RequestParam("memberList") MultipartFile files,RedirectAttributes rd) throws IOException {
 		List<Long> studentIdDuplicate = new ArrayList<>();
@@ -167,7 +167,15 @@ public class AdminMemberController {
 				messageSource.getMessage("add_member_success", null, Locale.getDefault()));
 
 		System.out.println(studentIdDuplicate);
-		return "redirect:/admin/member/index/1";
+		System.out.println(studentIdDuplicate.size());
+		model.addAttribute("studentIdDuplicate",studentIdDuplicate);
+		model.addAttribute("sizeDup",studentIdDuplicate.size());
+		model.addAttribute("sumRecord",worksheet.getPhysicalNumberOfRows() - 1);
+		List<Member> memberList1 = memberService.findAll();
+		model.addAttribute("memberList", memberList1);
+		System.out.println(memberList);
+		model.addAttribute("msg","success");
+		return "admin.member.index";
 
 	}
 

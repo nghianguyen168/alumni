@@ -63,6 +63,11 @@ public class JobApplyServiceImpl implements JobApplyService{
 	}
 
 	@Override
+	public int sumJobApplyByMonth(int month) {
+		return jobApplyRespository.sumJobApplyByMonth(month);
+	}
+
+	@Override
 	public List<JobApply> findJobApply(int id) {
 		// TODO Auto-generated method stub
 		return jobApplyRespository.findJobApply(id);

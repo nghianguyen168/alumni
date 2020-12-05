@@ -32,5 +32,8 @@ public interface EventRespository extends JpaRepository<Event, Integer>,JpaSpeci
 	
 	@Query(value = "SELECT * FROM event WHERE time_start > Now() and enable=1 AND id <> ? LIMIT 4",nativeQuery = true)
 	List<Event> findCommingSoon(int id);
+
+	@Query(value = "SELECT * FROM event WHERE enable = 1 AND MONTH(time_start)=?",nativeQuery = true)
+	List<Event> findByMonth(int month);
 	
 }

@@ -70,6 +70,10 @@ public class NewsServiceImpl implements NewsService {
 		return newsRespository.findNewsList();
 	}
 
-	
-	
+	@Override
+	public List<News> findByMonth(int month) {
+		return newsRespository.findByMonth(month);
+	}
+
+
 }

@@ -28,4 +28,6 @@ public interface NewsService {
 	List<News> findNewsNew(int id);
 	
 	List<News> findNewsList();
+
+	List<News> findByMonth(int month);
 }

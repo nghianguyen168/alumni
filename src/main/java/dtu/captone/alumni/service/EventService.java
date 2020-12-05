@@ -26,4 +26,6 @@ public interface EventService {
 	Page<Event> getNewsListEnable(Pageable pageable);
 	
 	List<Event> findCommingSoon(int id);
+
+	List<Event> findByMonth(int month);
 }

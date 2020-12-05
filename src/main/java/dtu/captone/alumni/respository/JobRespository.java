@@ -50,7 +50,15 @@ public interface JobRespository extends JpaRepository<Job, Integer>{
 	
 	@Query(value = "SELECT * FROM job WHERE Month(posted_on) = ? AND year(now())=year(posted_on) ",nativeQuery = true)
 	List<Job> getJobListByMonth(int month);
-	
+
+	@Query(value = "SELECT * FROM job WHERE Month(posted_on) = ? AND year(now())=year(posted_on) AND major_id=?",nativeQuery = true)
+	List<Job> getJobListByMonthAndMajor(int month,int major_id);
+
+	@Query(value = "SELECT * FROM job WHERE year(posted_on)=? AND major_id=?",nativeQuery = true)
+	List<Job> getJobListBYear(int year,int major_id);
+
+
+
 	@Query(value = "SELECT * FROM job WHERE enable = 1 AND position Like ? OR company_name Like ? ORDER BY id DESC",nativeQuery = true)
 	List<Job> getJobListSearch(String position,String company_name);
 	

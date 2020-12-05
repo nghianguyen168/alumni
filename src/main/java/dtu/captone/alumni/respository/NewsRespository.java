@@ -33,5 +33,8 @@ public interface NewsRespository extends JpaRepository<News, Integer>{
 	
 	@Query(value = "SELECT * FROM news WHERE enable=1 ORDER BY id DESC LIMIT 10",nativeQuery = true)
 	List<News> findNewsList();
+
+	@Query(value = "SELECT * FROM news WHERE enable = 1 AND MONTH(createAt)=?",nativeQuery = true)
+	List<News> findByMonth(int month);
 	
 }

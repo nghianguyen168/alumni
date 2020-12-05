@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.domain.JobApply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Sort;
@@ -98,8 +99,9 @@ public class AdminJobController {
         response.setHeader(headerKey, headerValue);
        
         List<Job> jobListPost = jobService.findAll(Sort.by("id").descending());
+        List<JobApply> jobApplyList = jobApplyService.findAll(Sort.by("id").descending());
          
-        JobPostExport excelExporter = new JobPostExport(jobListPost);
+        JobPostExport excelExporter = new JobPostExport(jobListPost,jobApplyList);
          
         excelExporter.export(response);    
     }  

@@ -43,6 +43,10 @@ public interface JobService {
 	List<JobChart> getJobForChart();
 	
 	List<Job> getListByMonth(int month);
+
+	List<Job> getJobListByMonthAndMajor(int month,int major_id);
+
+	List<Job> getJobListBYear(int year,int major_id);
 	
 	
 }

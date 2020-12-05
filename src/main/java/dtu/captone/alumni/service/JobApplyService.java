@@ -38,6 +38,8 @@ public interface JobApplyService {
 	int updateCheckOneStatus(int id);
 	
 	int sumJobApply(int id);
+
+	public int sumJobApplyByMonth(int month);
 	
 	
 	/*

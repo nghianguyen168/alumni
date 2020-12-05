@@ -1,10 +1,9 @@
 package dtu.captone.alumni.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import dtu.captone.alumni.domain.Major;
+import dtu.captone.alumni.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +17,11 @@ public class CanvasjsChartData {
 
 	@Autowired
 	private JobService jobService;
+
+	@Autowired
+	private MajorService majorService;;
+
+
 	
  
 	public  List<List<Map<Object, Object>>> getCanvasjsDataList() {
@@ -38,5 +42,20 @@ public class CanvasjsChartData {
 		map = new HashMap<Object,Object>(); map.put("x", 1512066600000L); map.put("y", jobService.getListByMonth(12).size());dataPoints1.add(map);
 		list.add(dataPoints1);
 		return list;
+	}
+
+	public List<List<Map<Object,Object>>> getCanvasjsDataListCircleMajor(){
+		Map<Object,Object> map = null;
+		List<List<Map<Object,Object>>> list = new ArrayList<List<Map<Object,Object>>>();
+		List<Map<Object,Object>> dataPoints1 = new ArrayList<Map<Object,Object>>();
+
+		List<Major> majorList = majorService.findAll();
+		for(Major major:majorList){
+			map = new HashMap<Object,Object>(); map.put("label", major.getMajorName()); map.put("y", jobService.getJobListBYear( Calendar.getInstance().get(Calendar.YEAR),major.getId()));dataPoints1.add(map);
+		}
+		list.add(dataPoints1);
+		return list;
+
+
 	}
 }                        
