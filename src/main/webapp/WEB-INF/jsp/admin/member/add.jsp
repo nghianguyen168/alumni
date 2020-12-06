@@ -48,22 +48,7 @@
 
 								</select> <br>
 							</div>
-							<div id="student_major" style="display: none;">
-								<label for="firstname" class="control-label col-lg-2">Chọn
-									Khoa</label>
-								<div class="col-lg-10">
-									<select class=" form-control" name="majorId"
-											style="width: 30%;">
-										<option value="0">-- Chọn ngành --</option>
-										<c:if test="${not empty majorList}">
-											<c:forEach var="major" items="${majorList }">
-												<option value="${major.id }">${major.majorName }</option>
-											</c:forEach>
 
-										</c:if>
-
-									</select> <br>
-								</div>
 
 							<label for="firstname" class="control-label col-lg-2">Chọn
 								Khóa</label>
@@ -88,11 +73,9 @@
 								var id = $("#memberType").val();
 								if (id == 2 || id == 1) {
 									$('#student_alumni').show();
-									$('#student_major').show();
 								} else {
 									$('#student_alumni').hide();
 								}
-
 							});
 						</script>
 

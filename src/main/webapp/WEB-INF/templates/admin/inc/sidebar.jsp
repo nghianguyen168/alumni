@@ -22,7 +22,7 @@
             <li>
             <a id="event" href="${pagecontext.request.contextPath }/admin/event/index">
               <i class="fa fa-calendar-o"></i>
-              <span>Quản Lý Sự Kiện</span>
+              <span>Quảng Lý Sự Kiện</span>
               </a>
           </li>
            <li>
