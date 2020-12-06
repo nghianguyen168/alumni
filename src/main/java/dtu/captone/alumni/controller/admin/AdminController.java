@@ -86,7 +86,7 @@ public class AdminController {
 		List<List<Map<Object, Object>>> canvasjsDataListCirlceMajor = canvasjsChartService.getCanvasjsDataListCircleMajor();
 		System.out.println(canvasjsDataList);
 		model.addAttribute("canvasjsDataListCirlceMajor", canvasjsDataListCirlceMajor);
-		model.addAttribute("sumJob",jobService.findAll(Sort.by("id")).size());
+
 
 		return "admin.index";
 	}

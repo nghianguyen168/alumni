@@ -111,7 +111,7 @@ public class PublicMemberController extends UserInfoHandler {
 		}
 		if(nameSearch!=null){
 
-			List<Member> memberList = memberService.findByNameSearch("%"+nameSearch+"%",nameSearch);
+			List<Member> memberList = memberService.findByNameSearch("%"+nameSearch+"%");
 			model.addAttribute("memberList",memberList);
 			model.addAttribute("nameSearch",nameSearch);
 			model.addAttribute("searchSize",memberList.size());
