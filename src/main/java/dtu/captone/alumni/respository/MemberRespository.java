@@ -77,8 +77,8 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	@Query(value = "SELECT * FROM member WHERE enable = 1 AND member_type_id  = ? ORDER BY id DESC",nativeQuery = true)
 	List<Member> findByType(int id);
 
-	@Query(value = "SELECT * FROM member WHERE enable = 1 AND Concat(first_name,last_name) LIKE ? ORDER BY id DESC",nativeQuery = true)
-	List<Member> findByNameSearch(String name);
+	@Query(value = "SELECT * FROM member WHERE enable = 1 AND Concat(first_name,' ',last_name) LIKE ? OR Concat(first_name,' ',last_name)=?  ORDER BY id DESC",nativeQuery = true)
+	List<Member> findByNameSearch(String name,String name2);
 	
 	
 }

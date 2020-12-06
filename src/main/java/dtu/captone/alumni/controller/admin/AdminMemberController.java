@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.domain.*;
+import dtu.captone.alumni.service.*;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -31,10 +32,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
-import dtu.captone.alumni.service.FacultyService;
-import dtu.captone.alumni.service.KnameService;
-import dtu.captone.alumni.service.MemberService;
-import dtu.captone.alumni.service.MemberTypeService;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -57,6 +54,9 @@ public class AdminMemberController {
 
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private MajorService majorService;
 	
 	
 	@Autowired
@@ -95,14 +95,17 @@ public class AdminMemberController {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knamesList = knameService.findAll();
 		List<MemberType> memberTypeList = memberTypeService.findAll();
+		List<Major> majorList = majorService.findAll();
 		model.addAttribute("memberTypeList", memberTypeList);
 		model.addAttribute("facultyList", facultyList);
 		model.addAttribute("knamesList", knamesList);
+		model.addAttribute("majorList",majorList);
 		return "admin.member.add";
 	}
 
 	@PostMapping("/add")
-	public String addMemberList(Model model,@RequestParam(required = false,name = "facultyId") int facultyId, @RequestParam(required = false,name = "kId") int kId,
+	public String addMemberList(Model model,@RequestParam(required = false,name = "facultyId") int facultyId,
+								@RequestParam("majorId") int majorId,@RequestParam(required = false,name = "kId") int kId,
 			@RequestParam("memberType") int memberTypeId,
 			@RequestParam("memberList") MultipartFile files,RedirectAttributes rd) throws IOException {
 		List<Long> studentIdDuplicate = new ArrayList<>();
@@ -120,7 +123,7 @@ public class AdminMemberController {
 				Integer id = 0;
 				try{
 
-				if(memberService.findByStudentId((long) row.getCell(4).getNumericCellValue())==null){
+				if(memberService.findByStudentId((long) row.getCell(4).getNumericCellValue())!=null){
 					studentIdDuplicate.add((long) row.getCell(4).getNumericCellValue());
 					continue;
 					}
@@ -140,6 +143,7 @@ public class AdminMemberController {
 
 				member.setFaculty(facultyService.findById(facultyId));
 				member.setKn(knameService.findById(kId));
+				member.setMajor(majorService.findById(majorId));
 
 				Role role  = roleService.findById(memberTypeId);
 				member.setRole(role);

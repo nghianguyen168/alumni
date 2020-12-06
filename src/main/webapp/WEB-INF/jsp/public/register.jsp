@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +45,7 @@
       *********************************************************************************************************************************************************** -->
 	<div id="login-page">
 		<div class="container">
-			<form class="form-login" style="max-width: 600px;" method="post"<%-- action="${pageContext.request.contextPath}/user/login --%>">
+			<form class="form-login" style="max-width: 600px;" method="post"  action="/user/register">
 				<h2 class="form-login-heading">Đăng Ký Thành Viên DTU Alumni</h2>
 				<br>
 				<div id="message"></div>
@@ -55,41 +56,105 @@
 						<div class="col-sm-10">
 							<input type="text" class="form-control" name="dtumail"
 								id="dtumail" placeholder="Dtu Mail" autofocus>
+
+							<span><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Email cá nhân:</strong></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="email" required
+								   id="email" placeholder="Dtu Mail" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Họ và tên lót:</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="dtumail"
-								id="dtumail" placeholder="Họ và tên lót" autofocus>
+							<input type="text" class="form-control" name="firstName" required
+								id="firstName" placeholder="Họ và tên lót" autofocus>
 						</div>
 					</div>
+
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Tên :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="dtumail"
-								id="dtumail" placeholder="Tên" autofocus>
+							<input type="text" class="form-control" name="lastName" required
+								id="lastName" placeholder="Tên" autofocus>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Mã số sinh viên:</strong></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="studentId"
+								   id="studentId" required placeholder="Mã số sinh viên" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Ngày Sinh :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="dtumail"
-								id="dtumail" placeholder="Ngày Sinh" autofocus>
+							<input type="date" required class="form-control" name="dateOfBirth"
+								id="dateOfBirth" placeholder="Ngày Sinh" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>DTU
-								Mail :</strong></label>
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Số điện thoại :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="dtumail"
-								id="dtumail" placeholder="Dtu Mail" autofocus>
+							<input type="text" required class="form-control" name="phone"
+								   id="phone" placeholder="Ngày Sinh" autofocus>
 						</div>
 					</div>
 
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Khóa :</strong></label>
+						<div class="col-sm-10">
+							<select class="form-control"  id="kname" name="knameId"> required
+								<option value="0">--Chọn khóa--</option>
+								<c:if test="${not empty knameList}">
+									<c:forEach var="kn" items="${knameList }">
+										<option value="${kn.id }">${kn.k }</option>
+									</c:forEach>
+
+								</c:if>
+							</select>
+						</div>
+							<br>
+					</div>
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Khoa :</strong></label>
+						<div class="col-sm-10">
+							<select class=" form-control"  id="faculty" name="facultyId" required>
+								<option value="0">--Chọn khoa--</option>
+								<c:if test="${not empty facultyList}">
+									<c:forEach var="f" items="${facultyList }">
+										<option value="${f.id }">${f.facultyName}</option>
+									</c:forEach>
+
+								</c:if>
+							</select>
+						</div>
+							<br>
+					</div>
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Ngành học:</strong></label>
+						<div class="col-sm-10">
+							<select class=" form-control" name="majorId" id="major" required
+										>
+								<option value="0">--Chọn ngành học--</option>
+								<c:if test="${not empty majorList}">
+									<c:forEach var="major" items="${majorList }">
+										<option value="${major.id }">${major.majorName}</option>
+									</c:forEach>
+
+								</c:if>
+							</select>
+						</div>
+						<br>
+					</div>
+
+
 					<!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
 					<button class="btn btn-theme btn-block"
-						onclick="return handleLogin()">ĐĂNg KÝ</button>
+						type="submit">ĐĂNG KÝ</button>
 					<hr>
 
 

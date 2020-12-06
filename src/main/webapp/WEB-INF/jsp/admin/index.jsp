@@ -141,7 +141,7 @@ var yValue;
 
 chart.render();
 
-	var dps = [[]];
+	var dps1 = [[]];
 	var chart1 = new CanvasJS.Chart("chartContainerCircle", {
 		theme: "light2", // "light1", "dark1", "dark2"
 		exportEnabled: true,
@@ -156,7 +156,7 @@ chart.render();
 			yValueFormatString: "#,###\"%\"",
 			indexLabelFontSize: 16,
 			indexLabel: "{label} - {y}",
-			dataPoints: dps[0]
+			dataPoints: dps1[0]
 		}]
 	});
 
@@ -167,9 +167,9 @@ chart.render();
 	<c:forEach items="${dataPoints}" var="dataPoint">
 	yValue = parseFloat("${dataPoint.y}");
 	label = "${dataPoint.label}";
-	dps[parseInt("${loop.index}")].push({
+	dps1[parseInt("${loop.index}")].push({
 		label : label,
-		y : yValue,
+		y : (yValue/${sumJob})*100
 	});
 	</c:forEach>
 	</c:forEach>
