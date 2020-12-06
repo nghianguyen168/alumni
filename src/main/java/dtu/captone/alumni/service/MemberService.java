@@ -43,5 +43,5 @@ public interface MemberService {
 
 	List<Member> findByType(int id);
 
-	List<Member> findByNameSearch(String name);
+	List<Member> findByNameSearch(String name,String name2);
 }

@@ -138,8 +138,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<Member> findByNameSearch(String name) {
-		return memberRespository.findByNameSearch(name);
+	public List<Member> findByNameSearch(String name,String name2) {
+		return memberRespository.findByNameSearch(name,name2);
 	}
 
 }
