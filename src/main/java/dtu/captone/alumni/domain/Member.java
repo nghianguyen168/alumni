@@ -52,11 +52,9 @@ public class Member implements Serializable {
 	private String lastName;
 
 	@Column(name = "dtuMail")
-	@NotNull
 	private String dtuMail;
 
 	@Column(name = "password")
-	@NotNull
 	private String password;
 
 	@Column(name = "dat_of_birth")
@@ -123,7 +121,7 @@ public class Member implements Serializable {
 	@JoinColumn(name = "trainning_system_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_t_member_trainning_system"))
 	private Trainning_system trainning_system = new Trainning_system();
 
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_type_id", referencedColumnName = "id")
 	private MemberType memberType = new MemberType();
 

@@ -48,14 +48,19 @@
 			<form class="form-login" style="max-width: 600px;" method="post"  action="/user/register">
 				<h2 class="form-login-heading">Đăng Ký Thành Viên DTU Alumni</h2>
 				<br>
+				<c:if test="${not empty memberExist}">
+					<div class="alert alert-danger" role="alert">
+						Tài khoản với mã số sinh viên này đã tồn tại!
+					</div>
+				</c:if>
 				<div id="message"></div>
 				<div class="login-wrap">
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>DTU
 								Mail :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="dtumail"
-								id="dtumail" placeholder="Dtu Mail" autofocus>
+							<input type="text" class="form-control" value="${memberExist.dtuMail}" name="dtuMail"
+								id="dtumail1" placeholder="Dtu Mail" autofocus>
 
 							<span><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
 						</div>
@@ -63,14 +68,14 @@
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Email cá nhân:</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="email" required
-								   id="email" placeholder="Dtu Mail" autofocus>
+							<input type="text" value="${memberExist.email}" class="form-control" name="email" required
+								   id="email" placeholder="Email cá nhân" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Họ và tên lót:</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="firstName" required
+							<input type="text" value="${memberExist.firstName}" class="form-control" name="firstName" required
 								id="firstName" placeholder="Họ và tên lót" autofocus>
 						</div>
 					</div>
@@ -78,28 +83,42 @@
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Tên :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="lastName" required
+							<input type="text" value="${memberExist.lastName}" class="form-control" name="lastName" required
 								id="lastName" placeholder="Tên" autofocus>
 						</div>
 					</div>
+
+					<div class="form-group row">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Giới tính :</strong></label>
+						<div class="col-sm-10">
+							<select class="form-control"  id="gender" name="gender"> required
+
+										<option value="0">--Nam/Nữ--</option>
+										<option value="Nam">Nam</option>
+										<option value="Nữ">Nữ</option>
+							</select>
+						</div>
+						<br>
+					</div>
+
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Mã số sinh viên:</strong></label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="studentId"
+							<input type="text" value="${memberExist.studentId}" class="form-control" name="studentId"
 								   id="studentId" required placeholder="Mã số sinh viên" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Ngày Sinh :</strong></label>
 						<div class="col-sm-10">
-							<input type="date" required class="form-control" name="dateOfBirth"
+							<input type="date" value="${memberExist.dateOfBirth}" required class="form-control" name="dateOfBirth"
 								id="dateOfBirth" placeholder="Ngày Sinh" autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Số điện thoại :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" required class="form-control" name="phone"
+							<input type="text" value="phone" required class="form-control" name="phone"
 								   id="phone" placeholder="Ngày Sinh" autofocus>
 						</div>
 					</div>

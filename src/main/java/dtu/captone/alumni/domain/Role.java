@@ -27,7 +27,6 @@ public class Role {
     private int id;
 	
 	@Column(name="name")
-	@NotNull
     private String name;
 	
 }

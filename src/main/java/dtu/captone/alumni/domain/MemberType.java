@@ -29,7 +29,6 @@ public class MemberType implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull
 	@Column(name = "type_name")
 	private String typeName;
 	

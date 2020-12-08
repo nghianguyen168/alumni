@@ -30,8 +30,11 @@
 	<definition name="public.register"
 		template="/WEB-INF/jsp/public/register.jsp">
 	</definition>
-	
-	
+	<definition name="public.register.success"
+				template="/WEB-INF/jsp/public/register_success.jsp">
+	</definition>
+
+
 	<definition name="public.index" extends="templates.public.slide">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/index.jsp"></put-attribute>
