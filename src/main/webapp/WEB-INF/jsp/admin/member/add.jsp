@@ -24,7 +24,7 @@
 								<c:if test="${not empty memberTypeList}">
 									
 									<c:forEach var="type" items="${memberTypeList }">
-										<c:if test="${type.typeName ne 'Manager'}">
+										<c:if test="${type.typeName ne 'ADMIN'  && type.typeName ne 'MANAGER'}">
 											<option value="${type.id }">${type.typeName }</option>
 										</c:if>
 									</c:forEach>
@@ -48,7 +48,8 @@
 
 								</select> <br>
 							</div>
-							<div id="student_major" style="display: none;">
+
+							<div id="student_major" style="">
 								<label for="firstname" class="control-label col-lg-2">Chọn
 									Khoa</label>
 								<div class="col-lg-10">
@@ -65,6 +66,7 @@
 									</select> <br>
 								</div>
 
+								<div id="student_k" >
 							<label for="firstname" class="control-label col-lg-2">Chọn
 								Khóa</label>
 							<div class="col-lg-10">
@@ -82,16 +84,19 @@
 							</div>
 
 						</div>
+							</div>
 
 						<script type="text/javascript">
 							$("select").change(function() {
 								var id = $("#memberType").val();
-								if (id == 2 || id == 1) {
+
+								if (id != 2 && id != 1) {
 									$('#student_alumni').show();
 									$('#student_major').show();
 								} else {
 									$('#student_alumni').hide();
 								}
+
 
 							});
 						</script>
@@ -108,7 +113,7 @@
 						</div>
 
 					</div>
-
+					</div>
 						<c:if test="${param.err ne null}">
 							<div class="alert alert-danger" style="width: 25%;margin-left: 17%;" role="alert">
 								Tệp không phù hợp! Vui lòng chọn đúng định dạng format theo hướng dẫn!

@@ -26,6 +26,8 @@
 						</strong> <a type="button"
 						href="${pageContext.request.contextPath }/admin/member/add"
 						class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
+
+
 					<%--<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Thêm thành viên<span class="caret"></span></button>
 						<ul class="dropdown-menu">

@@ -11,6 +11,7 @@ import java.util.Random;
 import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.domain.*;
 import dtu.captone.alumni.service.*;
+import dtu.captone.alumni.utils.RandomString;
 import dtu.captone.alumni.utils.SendGmailUtil;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -191,7 +192,10 @@ public class AdminMemberController {
 		int validMember = memberService.active(1,idMember);
 		if(validMember > 0){
 			Member member = memberService.findById(idMember);
-			String passwordNew =member.getLastName()+(new Random().nextInt(9999)+1000);
+			int numberOfCharactor = 8;
+			RandomString rand = new RandomString();
+
+			String passwordNew =rand.randomAlphaNumeric(numberOfCharactor);
 			member.setPassword(new BCryptPasswordEncoder().encode(passwordNew)+"!");
 			Member memberUpdate = memberService.save(member);
 			String message ="Cảm ơn bạn đã quan tâm đến Cộng đồng sinh viên khoa đào tạo quốc tế"+
@@ -204,5 +208,10 @@ public class AdminMemberController {
 			return "ok";
 		}
 		return null;
+	}
+
+	@GetMapping("/type-add")
+	public String typeAdd(){
+		return "admin.member.typeadd";
 	}
 }
