@@ -6,10 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.domain.*;
 import dtu.captone.alumni.service.*;
+import dtu.captone.alumni.utils.SendGmailUtil;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -183,4 +185,24 @@ public class AdminMemberController {
 
 	}
 
+	@PostMapping("/valid")
+	public @ResponseBody String validMember(@RequestParam("idMember") int idMember){
+
+		int validMember = memberService.active(1,idMember);
+		if(validMember > 0){
+			Member member = memberService.findById(idMember);
+			String passwordNew =member.getLastName()+(new Random().nextInt(9999)+1000);
+			member.setPassword(new BCryptPasswordEncoder().encode(passwordNew)+"!");
+			Member memberUpdate = memberService.save(member);
+			String message ="Cảm ơn bạn đã quan tâm đến Cộng đồng sinh viên khoa đào tạo quốc tế"+
+					"\nThông tin đăng ký tài khoản  của bản đã được duyệt thành công!"+
+					"\nUsername:" +member.getDtuMail()+
+					"\nPassword:"+passwordNew;
+
+			SendGmailUtil.sendGmail(member.getEmail(),"Approve_Account",message);
+			System.out.println(passwordNew);
+			return "ok";
+		}
+		return null;
+	}
 }

@@ -4,11 +4,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Null;
 
 import dtu.captone.alumni.auth.service.RoleService;
-import dtu.captone.alumni.domain.Faculty;
-import dtu.captone.alumni.domain.Kname;
-import dtu.captone.alumni.domain.Major;
-import dtu.captone.alumni.domain.Member;
+import dtu.captone.alumni.domain.*;
 import dtu.captone.alumni.service.*;
+import dtu.captone.alumni.utils.SendGmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +37,9 @@ public class PublicLoginLogoutController {
 	private RoleService roleService;
 
 	@Autowired
+	private MemberTypeService memberTypeService;
+
+	@Autowired
 	private TrainningSystemService trainningSystemService;
 
 	@GetMapping("/user/login")
@@ -57,23 +58,29 @@ public class PublicLoginLogoutController {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knameList = knameService.findAll();
 		List<Major> majorList = majorService.findAll();
+		List<MemberType> memberTypeList = memberTypeService.findAll();
 
+		System.out.println("typesize_"+memberTypeList.size());
 		model.addAttribute("facultyList",facultyList);
 		model.addAttribute("knameList",knameList);
 		model.addAttribute("majorList",majorList);
+		model.addAttribute("memberTypeList",memberTypeList);
 		return "public.register";
 	}
 	@PostMapping("/user/register")
 	public String registerPost(Model model,@ModelAttribute("member") Member member, @RequestParam("facultyId") int facultyId,
 							   @RequestParam("majorId") int majorId,
-							   @RequestParam("knameId") int knameId) {
+							   @RequestParam("knameId") int knameId,
+							   @RequestParam("typeId") int typeId) {
 		member.setMajor(majorService.findById(majorId));
 		member.setFaculty(facultyService.findById(facultyId));
 		member.setKn(knameService.findById(knameId));
 		member.setTrainning_system(trainningSystemService.findById(1));
 		member.setId(null);
-		member.setRole(roleService.findById(4));
-
+		member.setEnable(2);
+		member.setMemberType(memberTypeService.findById(typeId));
+		member.setRole(roleService.findById(typeId));
+		//2 - waiting aprove
 		Member isExist = memberService.findByStudentId(member.getStudentId());
 
 		if (isExist != null) {
@@ -84,6 +91,7 @@ public class PublicLoginLogoutController {
 			Member memberSave = memberService.save(member);
 			System.out.println("save:" + memberSave);
 			if (memberSave != null) {
+
 				return "redirect:/user/register/success";
 			} else {
 				return "public.register";

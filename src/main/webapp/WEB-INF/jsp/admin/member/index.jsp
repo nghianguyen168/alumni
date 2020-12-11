@@ -62,7 +62,8 @@
 						<th>Khóa</th>
 						<th>Khoa</th>
 						<th>Số điện thoại</th>
-						<th><i class=" fa fa-edit"></i> Status</th>
+						<th><i class=" fa fa-edit"></i>Trạng thái</th>
+						<th><i class=" fa fa-edit"></i>Xác nhận</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -91,17 +92,71 @@
 								<c:when test="${member.enable eq 1 }">
 									<c:set var="activeImg" value="on.png" />
 								</c:when>
+
 								<c:otherwise>
 									<c:set var="activeImg" value="off.png" />
 								</c:otherwise>
 							</c:choose>
-							<td id="active_member">
-								<div  id="memberactive-${member.id }" >
-									<a  href="javascript:void(0)"><img style="width: 40px;" src="/resources/uploads/${activeImg}"></a>
-								</div>
-								
-								
+							<td id="active_member-${member.id}" style="text-align: center;">
+
+								<c:choose >
+									<c:when test="${member.enable eq 2 }">
+
+										<span class="label label-warning label-mini">Mới</span>
+									</c:when>
+									<c:otherwise>
+										<div  id="memberactive-${member.id }" >
+											<a  href="javascript:void(0)"><img style="width: 40px;" src="/resources/uploads/${activeImg}"></a>
+										</div>
+									</c:otherwise>
+								</c:choose>
+
 							</td>
+
+							<td style="text-align: center;">
+								<c:if test="${member.enable eq 2 }">
+									<div  id="xacnhan-${member.id}" >
+										<a <%--onclick="validMember(${member.id});"--%>  href="javascript:void(0)" type="button" class="btn btn-primary btn-sm" style="font-size: 70%; margin-top: 7px;" id=""><i class="fa fa-check-square-o" aria-hidden="true"></i> Xác nhận</a>
+									</div>
+										</c:if>
+								<script type="text/javascript">
+
+									$(document).on('click','#xacnhan-${member.id},#xacnhan-${member.id}',function(e){
+
+
+
+												$.ajax({
+													url: '${pageContext.request.contextPath}/admin/member/valid',
+													type : 'POST',
+													cache : false,
+													data : {
+														//(key , value)
+
+														idMember : ${member.id}
+													},
+													success : function(response) {
+
+														$('#active_member-${member.id}').load(" #active_member-${member.id}");
+														$('#memberactive-${member.id }').load(" #memberactive-${member.id }");
+														swal({
+															title: 'Check ứng viên thành công!',
+															/* text: 'Redirecting...', */
+															icon: 'success',
+															timer: 2000,
+															buttons: true,
+															type: 'success'
+														})
+													},
+													error : function(response) {
+														alert('Có lỗi xảy ra');
+													}
+												});
+										return false;
+									});
+
+								</script>
+							</td>
+
 							<script type="text/javascript">
 								
 								$(document).on('click','#memberactive-${member.id },#memberactive-${member.id }',function(e){
@@ -169,3 +224,38 @@ document.getElementById("home").classList.remove('active');
 	
 	
 </script>
+<%--<script type="text/javascript">
+	function validMember(id){
+
+			var id = ${apply.id}
+
+					$.ajax({
+						url: '${pageContext.request.contextPath}/admin/member/valid',
+						type : 'POST',
+						cache : false,
+						data : {
+							//(key , value)
+
+							idMember : id
+						},
+						success : function(response) {
+
+							$('#active_member-${id}').load(" #active_member-${id}");
+							/*$('#checkApply-table').load(" #checkApply-table");*/
+							swal({
+								title: 'Check ứng viên thành công!',
+								/* text: 'Redirecting...', */
+								icon: 'success',
+								timer: 2000,
+								buttons: true,
+								type: 'success'
+							})
+						},
+						error : function(response) {
+							alert('Có lỗi xảy ra');
+						}
+					});
+			return false;
+
+	}
+</script>--%>
