@@ -32,6 +32,9 @@ public interface JobApplyService {
 	List<JobApply> findJobApply(int id);
 	
 	void deleteByJob_id(int id);
+
+	void deleteByMemberId(int id);
+
 	
 	int updateCheckStatus(int id);
 	

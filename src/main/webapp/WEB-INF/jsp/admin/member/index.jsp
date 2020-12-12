@@ -22,12 +22,37 @@
 				</c:when>
 			</c:choose>
 				<h4>
-					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ THÀNH VIÊN  <i class="fa fa-angle-right"></i>  ${typee }
-						</strong> <a type="button"
-						href="${pageContext.request.contextPath }/admin/member/add"
-						class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
+					<div style="display: inline;">
+						<strong><i class="fa fa-angle-right"></i> QUẢN LÝ THÀNH VIÊN  <i class="fa fa-angle-right"></i>  ${memberTypeService.findById(typeId).typeName }
+							</strong> <a type="button"
+							href="${pageContext.request.contextPath }/admin/member/type-add"
+							class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
+						<div style="float: right;">
+								<form action="/admin/member/search" method="post" style="float: right; margin-left: 200px;" >
+									<select id="type-select" name="type_id"
+										class="browser-default custom-select custom-select-lg mb-3"
+										onchange="this.form.submit()">
+										<option value="0">-- Chọn kiểu thành viên --</option>
+										<c:if test="${not empty memberTypeService.findAll()}">
+											<c:forEach items="${memberTypeService.findAll() }" var="memberType">
+												<c:if test="${memberType.typeName !='ADMIN'}">
+													<c:choose>
+														<c:when test="${typeId == memberType.id}">
+															<option selected value="${memberType.id }">${memberType.typeName }</option>
+														</c:when>
+														<c:otherwise>
+															<option  value="${memberType.id }">${memberType.typeName }</option>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
 
+											</c:forEach>
+										</c:if>
+									</select>
 
+							</form>
+					</div>
+					</div>
 					<%--<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Thêm thành viên<span class="caret"></span></button>
 						<ul class="dropdown-menu">
@@ -37,7 +62,7 @@
 						</ul>
 					</div>--%>
 				</h4>
-				<c:if test="${not empty msg}">
+				<c:if test="${not empty msg1}">
 					<div  class="alert alert-success fade in alert-dismissible"
 						 style="margin-top: 18px;width: 30%; margin: 0 auto;">
 						<a href="#" class="close" data-dismiss="alert"
@@ -47,7 +72,11 @@
 
 					</div>
 				</c:if>
-
+				<c:if test="${not empty msg}">
+					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px; width: 30%;margin-left: 30%;	">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
+					</div>
+				</c:if>
 				<hr>
 				
 				<thead>
@@ -56,8 +85,11 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>MSSV</th>
+						<th>Kiểu thành viên</th>
 						<th>Ngày sinh</th>
 						<th>Giới tính</th>
+						<th>DTU Mail</th>
+						<th>Email Cá Nhân</th>
 						<th>Quê quán</th>
 						<th>Chổ ở hiện tại</th>
 						<th>Nơi làm việc hiện tại</th>
@@ -81,8 +113,11 @@
 						
 						<td><a href="">${member.lastName}</a></td>
 						<td>${member.studentId}</td>
+						<td>${member.memberType.typeName}</td>
 						<td>${member.dateOfBirth }</td>
 						<td>${member.gender }</td>
+						<td>${member.dtuMail}</td>
+						<td>${member.email }</td>
 						<td>${member.hometown },${member.country}</td>
 						<td>${member.addressNow }</td>
 						<td>${member.workAt }</td>
@@ -189,11 +224,27 @@
 										
 								</script>	
 						
-						<td><a style="margin-top: 10px;" href="${pageContext.request.contextPath }/admin/member/profile/${member.id}" type="button"
-							class="btn btn-primary btn-xs"> <i class="fa fa-pencil"></i>
-						</a> <a style="margin-top: 10px" type="button"
-							class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i>
-						</a></td>
+						<td>
+
+								<c:choose>
+								<c:when test="${userInfo.role.name =='MANAGER' && (userInfo.id ==member.id) }">
+									<a style="margin-top: 10px;" href="${pageContext.request.contextPath }/admin/member/profile/${member.id}" type="button"
+									class="btn btn-primary btn-xs"> <i class="fa fa-pencil"></i>
+									</a> <a style="margin-top: 10px" type="button" href="/admin/member/del/${member.id}" nclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');"
+										class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i>
+									</a>
+								</c:when>
+									<c:when test="${userInfo.role.name =='ADMIN'}">
+										<a style="margin-top: 10px;" href="${pageContext.request.contextPath }/admin/member/profile/${member.id}" type="button"
+										   class="btn btn-primary btn-xs"> <i class="fa fa-pencil"></i>
+										</a> <a style="margin-top: 10px" type="button" href="/admin/member/del/${member.id}" nclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');"
+												class="btn btn-danger btn-xs"> <i class="fa fa-trash-o "></i>
+									</a>
+									</c:when>
+
+								</c:choose>
+
+						</td>
 					</tr>
 					
 					</c:forEach>

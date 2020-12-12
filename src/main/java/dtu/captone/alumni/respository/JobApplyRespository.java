@@ -38,6 +38,11 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 	@Query(value = "DELETE FROM job_apply WHERE job_id = ? ",nativeQuery = true)
 	@Transactional
 	public void deleteByJob_Id(int job_id);
+
+	@Modifying
+	@Query(value = "DELETE FROM job_apply WHERE member_id = ? ",nativeQuery = true)
+	@Transactional
+	public void deleteByMemberId(int member);
 	
 	@Modifying
 	@Query(value = "UPDATE job_apply SET check_status = 1 WHERE job_id =?",nativeQuery = true)

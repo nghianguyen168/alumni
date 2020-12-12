@@ -11,7 +11,7 @@
 			<div class="form">
 				<form class="cmxform form-horizontal style-form"
 					enctype="multipart/form-data" id="signupForm" method="post"
-					action="${pageContext.request.contextPath }/admin/member/add">
+					action="${pageContext.request.contextPath }/admin/member/add-one">
 
 					<div class="form-group " >
 
@@ -19,9 +19,7 @@
 								Mail :</strong></label>
 							<div class="col-sm-10">
 								<input type="dtuMail" class="form-control" value="" name="dtuMail" style="width: 30%;"
-									   id="dtumail1" placeholder="Dtu Mail" autofocus>
-
-								<span><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
+									   id="dtumail1" placeholder="Dtu Mail" autofocus required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -182,6 +180,19 @@
 						</div>
 					</div>
 					<hr>
+					<script type="text/javascript">
+
+						$("#add_member_list").click(function () {
+							var btn = $(this);
+							btn.button('loading');
+							var resetButton = function () {
+								btn.button('reset');
+							};
+							window.setTimeout(resetButton, 6000);
+						});
+
+
+					</script>
 
 
 

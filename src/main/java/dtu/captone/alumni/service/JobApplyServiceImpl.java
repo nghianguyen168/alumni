@@ -45,6 +45,11 @@ public class JobApplyServiceImpl implements JobApplyService{
 	}
 
 	@Override
+	public void deleteByMemberId(int id) {
+		jobApplyRespository.deleteByMemberId(id);
+	}
+
+	@Override
 	public List<JobApply> findByJob(Integer id,int offset, int limit) {
 		// TODO Auto-generated method stub
 		return jobApplyRespository.findByJob(id,offset,limit);

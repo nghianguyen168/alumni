@@ -25,12 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,7 +56,8 @@ public class AdminMemberController {
 	@Autowired
 	private MajorService majorService;
 
-
+	@Autowired
+	private JobApplyService jobApplyService;
 	
 	
 	@Autowired
@@ -69,6 +65,7 @@ public class AdminMemberController {
 
 	@GetMapping({ "/index", "/index/{id}" })
 	public String indexGet(Model model) {
+		model.addAttribute("memberTypeService",memberTypeService);
 		List<Member> memberList = memberService.findAll();
 		model.addAttribute("memberList", memberList);
 		System.out.println(memberList);
@@ -183,7 +180,7 @@ public class AdminMemberController {
 		List<Member> memberList1 = memberService.findAll();
 		model.addAttribute("memberList", memberList1);
 		System.out.println(memberList);
-		model.addAttribute("msg","success");
+		model.addAttribute("msg1","success");
 		return "admin.member.index";
 
 	}
@@ -230,5 +227,66 @@ public class AdminMemberController {
 		model.addAttribute("majorList",majorList);
 		model.addAttribute("memberTypeList",memberTypeList);
 		return "admin.member.addone";
+	}
+
+	@PostMapping("/add-one")
+	public String addOnePost(@ModelAttribute("member") Member member,@RequestParam("facultyId") int facultyId,
+							 @RequestParam(name = "majorId",required = false) Integer majorId,
+							 @RequestParam(name = "knameId",required = false) Integer knameId,
+							 @RequestParam("typeId") int typeId,RedirectAttributes rd){
+		Faculty faculty = facultyService.findById(facultyId);
+		member.setFaculty(faculty);
+		if(majorId!=null){
+			Major major = majorService.findById(majorId);
+			member.setMajor(major);
+		}
+		if(knameId!=null){
+			Kname kname = knameService.findById(knameId);
+			member.setKn(kname);
+		}
+		MemberType memberType= memberTypeService.findById(typeId);
+		member.setMemberType(memberType);
+		member.setRole(roleService.findById(typeId));
+
+		RandomString rand = new RandomString();
+		int numberOfCharactor = 8;
+		String passwordNew =rand.randomAlphaNumeric(numberOfCharactor);
+		member.setPassword(new BCryptPasswordEncoder().encode(passwordNew));
+		Member memberAddOne = memberService.save(member);
+		if(memberAddOne!=null){
+			String message ="Cảm ơn bạn đã quan tâm đến Cộng đồng sinh viên khoa đào tạo quốc tế"+
+					"\nThông tin đăng ký tài khoản  của bản đã được duyệt thành công!"+
+					"\nUsername:" +member.getDtuMail()+
+					"\nPassword:"+passwordNew;
+
+			SendGmailUtil.sendGmail(member.getEmail(),"Approve_Account",message);
+			/*SendGmailUtil.sendGmail(member.getDtuMail(),"Approve_Account",message);*/
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("add-member-success", null, Locale.getDefault()));
+			return "redirect:/admin/member/index";
+		} else {
+			return "admin.member.addone";
+		}
+
+	}
+
+	@GetMapping("/del/{id}")
+	public String delMember(@PathVariable int id,RedirectAttributes rd){
+		jobApplyService.deleteByMemberId(id);
+		memberService.delete(id);
+		rd.addFlashAttribute(CommonConstants.MSG,
+				messageSource.getMessage("del-member-success", null, Locale.getDefault()));
+		return "redirect:/admin/member/index";
+	}
+
+	@PostMapping("search")
+	public String memberSearchAdmin(@RequestParam("type_id") int typeId,Model model){
+		List<Member> memberByType = memberService.findByType(typeId);
+		model.addAttribute("memberTypeService",memberTypeService);
+
+		model.addAttribute("memberList", memberByType);
+		model.addAttribute("typeId",typeId);
+		return "admin.member.index";
+
 	}
 }

@@ -8,8 +8,8 @@
         </h4>
         <div class="form-panel" style="height: 210px;">
             <div style="text-align: center;margin-top: 50px;">
-                <button type="submit" id="add_member_list" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang xử lý"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Thêm 1 Thành Viên</button>
-                <button type="submit" id="add_member_list" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang xử lý"><i class="fa fa-list" aria-hidden="true"></i> Thêm Theo Danh Sách (Excel)</button>
+                <a type="submit" href="/admin/member/add-one" id="" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang xử lý"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Thêm 1 Thành Viên</a>
+                <a type="submit" href="/admin/member/add" id="" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang xử lý"><i class="fa fa-list" aria-hidden="true"></i> Thêm Theo Danh Sách (Excel)</a>
             </div>
             </div>
 
