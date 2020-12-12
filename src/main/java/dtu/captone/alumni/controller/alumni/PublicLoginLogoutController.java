@@ -80,6 +80,10 @@ public class PublicLoginLogoutController {
 		member.setEnable(2);
 		member.setMemberType(memberTypeService.findById(typeId));
 		member.setRole(roleService.findById(typeId));
+
+		if("".equals(member.getDtuMail())){
+			member.setDtuMail(member.getEmail());
+		}
 		//2 - waiting aprove
 		Member isExist = memberService.findByStudentId(member.getStudentId());
 
@@ -101,5 +105,6 @@ public class PublicLoginLogoutController {
 	}
 
 	@GetMapping("/user/register/success")
-	public String successRegister(){return "public.register.success";}
+	public String successRegister(){
+		return "public.register.success";}
 }

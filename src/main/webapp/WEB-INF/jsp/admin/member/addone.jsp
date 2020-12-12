@@ -59,13 +59,7 @@
 						<br>
 					</div>
 
-					<div class="form-group row">
-						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Mã số sinh viên:</strong></label>
-						<div class="col-sm-10">
-							<input type="text" value="${memberExist.studentId}" class="form-control" name="studentId" minlength="9" maxlength="10" style="width: 30%;"
-								   id="studentId" placeholder="Mã số sinh viên" autofocus>
-						</div>
-					</div>
+
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Ngày Sinh :</strong></label>
 						<div class="col-sm-10">
@@ -76,15 +70,15 @@
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Số điện thoại :</strong></label>
 						<div class="col-sm-10">
-							<input type="text" value="phone" required class="form-control" name="phone" style="width: 30%;"
-								   id="phone" placeholder="Ngày Sinh" autofocus>
+							<input type="text" value="" required class="form-control" name="phone" style="width: 30%;"
+								   id="phone" placeholder="Số điện thoại" autofocus>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Kiểu thành viên :</strong></label>
 						<div class="col-sm-10">
-							<select class="form-control"  id="membertype" name="typeId" required style="width: 30%;">
+							<select class="form-control"  id="membertype_re" name="typeId" required style="width: 30%;">
 								<option value="0">--Bạn là....--</option>
 								<c:if test="${not empty memberTypeList}">
 									<c:forEach var="type" items="${memberTypeList }">
@@ -101,8 +95,33 @@
 						<br>
 					</div>
 
+					<script type="text/javascript">
+						$("select").change(function() {
+							var id = parseInt($("#memberType_re").val());
 
-					<div class="form-group row">
+							if (id === 3){
+								$("#faculty_re").show();
+							}
+							if(id=2){
+								$("#mssv_re").hide();
+								$("#faculty_re").hide();
+								$("#major_re").hide();
+								$("#khoa_re").hide();
+							}
+
+
+						});
+					</script>
+
+
+					<div class="form-group row" style="display: none;" id="mssv_re">
+						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Mã số sinh viên:</strong></label>
+						<div class="col-sm-10">
+							<input type="text" value="${memberExist.studentId}" class="form-control" name="studentId" minlength="9" maxlength="10" style="width: 30%;"
+								   id="studentId" placeholder="Mã số sinh viên" autofocus>
+						</div>
+					</div>
+					<div class="form-group row" id="khoa_re" style="display: none;">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Khóa :</strong></label>
 						<div class="col-sm-10">
 							<select class="form-control"  id="kname" name="knameId" required style="width: 30%;">
@@ -117,7 +136,7 @@
 						</div>
 						<br>
 					</div>
-					<div class="form-group row">
+					<div class="form-group row" id="faculty_re" style="display: none;">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Khoa :</strong></label>
 						<div class="col-sm-10">
 							<select class=" form-control"  id="faculty" name="facultyId" required style="width: 30%;">
@@ -132,7 +151,7 @@
 						</div>
 						<br>
 					</div>
-					<div class="form-group row">
+					<div class="form-group row" id="major_re" style="display: none;">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Ngành học:</strong></label>
 						<div class="col-sm-10">
 							<select class=" form-control" name="majorId" id="major" required style="width: 30%;">
@@ -147,7 +166,6 @@
 						</div>
 						<br>
 					</div>
-
 
 					<!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
 					<button class="btn btn-theme btn-block"

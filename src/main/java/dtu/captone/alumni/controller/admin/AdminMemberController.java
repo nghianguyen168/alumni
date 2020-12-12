@@ -60,6 +60,8 @@ public class AdminMemberController {
 
 	@Autowired
 	private MajorService majorService;
+
+
 	
 	
 	@Autowired
@@ -216,7 +218,17 @@ public class AdminMemberController {
 	}
 	
 	@GetMapping("/add-one")
-	public String addOne(){
+	public String addOne(Model model){
+		List<Faculty> facultyList = facultyService.findAll();
+		List<Kname> knameList = knameService.findAll();
+		List<Major> majorList = majorService.findAll();
+		List<MemberType> memberTypeList = memberTypeService.findAll();
+
+		System.out.println("typesize_"+memberTypeList.size());
+		model.addAttribute("facultyList",facultyList);
+		model.addAttribute("knameList",knameList);
+		model.addAttribute("majorList",majorList);
+		model.addAttribute("memberTypeList",memberTypeList);
 		return "admin.member.addone";
 	}
 }
