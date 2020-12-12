@@ -214,4 +214,9 @@ public class AdminMemberController {
 	public String typeAdd(){
 		return "admin.member.typeadd";
 	}
+	
+	@GetMapping("/add-one")
+	public String addOne(){
+		return "admin.member.addone";
+	}
 }
