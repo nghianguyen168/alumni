@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import dtu.captone.alumni.domain.ChatMessage;
 
-/**
- * Created by rajeevkumarsingh on 24/07/17.
- */
+
 @Controller
 public class ChatController {
 	

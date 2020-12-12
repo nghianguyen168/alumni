@@ -51,7 +51,7 @@
 
 							<div id="student_major" style="">
 								<label for="firstname" class="control-label col-lg-2">Chọn
-									Khoa</label>
+									Ngành</label>
 								<div class="col-lg-10">
 									<select class=" form-control" name="majorId"
 											style="width: 30%;">
@@ -90,11 +90,14 @@
 							$("select").change(function() {
 								var id = $("#memberType").val();
 
-								if (id != 2 && id != 1) {
+								if (id != 2 || id != 1) {
 									$('#student_alumni').show();
 									$('#student_major').show();
 								} else {
 									$('#student_alumni').hide();
+								}
+								if(id == 3){
+									$('#student_major').hide();
 								}
 
 

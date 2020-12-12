@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlumniGroup  implements Serializable{
-	
+
 	 private static final long serialVersionUID = 1L;
 	 
 	@Id
@@ -43,12 +43,10 @@ public class AlumniGroup  implements Serializable{
 	@Column(name = "group_decription")
 	private String groupDecription;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "create_by",referencedColumnName = "id")
 	private Member member;
-	
-	@Persistent
-	private int sumMember;
-	
+
+
 
 }

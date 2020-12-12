@@ -6,17 +6,19 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }/admin/group" />
 	<div class="col-md-12">
 		<div class="content-panel">
-		<c:if test="${not empty msg}">
-					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px;">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
-					</div>
-				</c:if>
+
 			<table class="table table-striped table-advance table-hover">
 				<h4>
 					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ GROUP</strong>
-					<a type="button" href="${pageContext.request.contextPath }/admin/job/add" class="btn btn-success" style="margin-left: 20px;">Tạo Group</a>
+					<a type="button" href="${pageContext.request.contextPath }/admin/group/add" class="btn btn-success" style="margin-left: 20px;">Tạo Group</a>
 				</h4>
+				<c:if test="${not empty msg}">
+					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px; width: 30%;margin-left: 30%;	">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
+					</div>
+				</c:if>
 				<hr>
+
 				<div class="row-fluid">
 					<div class="span6">
 						<div id="hidden-table-info_length" class="dataTables_length">

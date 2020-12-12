@@ -62,8 +62,8 @@ public class JobPostExport {
 		 createCell(row1, 1, "Tên công việc", style);
 		 createCell(row1, 2, "Công ty", style);
 		 /*createCell(row1, 3, "Người đăng bài", style);*/
-		 createCell(row1, 4, "CV", style);
-		 createCell(row1, 5, "Người nộp đơn", style);
+		 createCell(row1, 3, "CV", style);
+		 createCell(row1, 4, "Người nộp đơn", style);
 
 
 

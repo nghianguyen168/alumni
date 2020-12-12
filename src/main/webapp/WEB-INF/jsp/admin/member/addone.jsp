@@ -18,7 +18,7 @@
 							<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>DTU
 								Mail :</strong></label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" value="" name="dtuMail" style="width: 30%;"
+								<input type="dtuMail" class="form-control" value="" name="dtuMail" style="width: 30%;"
 									   id="dtumail1" placeholder="Dtu Mail" autofocus>
 
 								<span><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
@@ -82,7 +82,7 @@
 								<option value="0">--Bạn là....--</option>
 								<c:if test="${not empty memberTypeList}">
 									<c:forEach var="type" items="${memberTypeList }">
-										<c:if test="${type.typeName !='ADMIN' && type.typeName !='MANAGER'}" >
+										<c:if test="${type.typeName !='ADMIN'}" >
 											<option value="${type.id }">${type.typeName}</option>
 										</c:if>
 
@@ -97,16 +97,19 @@
 
 					<script type="text/javascript">
 						$("select").change(function() {
-							var id = parseInt($("#memberType_re").val());
+							var id = $("#membertype_re").val();
 
-							if (id === 3){
-								$("#faculty_re").show();
-							}
-							if(id=2){
-								$("#mssv_re").hide();
-								$("#faculty_re").hide();
-								$("#major_re").hide();
-								$("#khoa_re").hide();
+							if(id == 3 || id==2){
+								$('#faculty_re').show();
+								$('#mssv_re').hide();
+								$('#major_re').hide();
+								$('#khoa_re').hide();
+							};
+							if(id == 4 || id==5) {
+								$('#mssv_re').show();
+								$('#faculty_re').show();
+								$('#major_re').show();
+								$('#khoa_re').show();
 							}
 
 
@@ -168,12 +171,18 @@
 					</div>
 
 					<!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
-					<button class="btn btn-theme btn-block"
-							type="submit">ĐĂNG KÝ</button>
+
+					<div class="form-group">
+						<div class="col-lg-offset-2 col-lg-10">
+
+							<button type="submit" id="add_member_list" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang xử lý">Thêm</button>
+							<button onclick="window.history.go(-1); return false;"  class="btn btn-theme04" type="button">Cancel</button>
+
+
+						</div>
+					</div>
 					<hr>
 
-
-			</div>
 
 
 				</form>
