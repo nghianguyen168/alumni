@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,10 @@ public class PublicMemberController extends UserInfoHandler {
 	@Autowired
 	private MajorService majorService;
 
+
 	@Autowired
-	private MemberTypeService memberTypeService;
-	
+	private RoleService roleService;
+
 
 	
 
@@ -81,7 +83,7 @@ public class PublicMemberController extends UserInfoHandler {
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
 			model.addAttribute("knameService", knameService);
 			model.addAttribute("majorService",majorService);
-			model.addAttribute("memberTypeService",memberTypeService);
+			model.addAttribute("roleService",roleService);
 		}
 		
 	}
@@ -89,7 +91,7 @@ public class PublicMemberController extends UserInfoHandler {
 	@PostMapping("/search")
 	public String searchMember(@RequestParam(name = "khoa",required = false) Integer kid,
 			@RequestParam(name="major_id",required = false) Integer major_id,
-			@RequestParam(name = "type_id",required = false) Integer type_id,
+			@RequestParam(name = "role_id",required = false) Integer role_id,
 			@RequestParam(name = "nameSearch",required = false) String nameSearch,Model model) {
 		if(kid!=null){
 			List<Member> memberList = memberService.findByKname(kid);
@@ -103,8 +105,8 @@ public class PublicMemberController extends UserInfoHandler {
 			model.addAttribute("searchSize",memberList.size());
 			return "public.member.index";
 		}
-		if(type_id!=null){
-			List<Member> memberList = memberService.findByType(type_id);
+		if(role_id!=null){
+			List<Member> memberList = memberService.findByRole(role_id);
 			model.addAttribute("memberList",memberList);
 			model.addAttribute("searchSize",memberList.size());
 			return "public.member.index";

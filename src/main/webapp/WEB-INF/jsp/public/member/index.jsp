@@ -76,14 +76,14 @@ onchange="this.form.submit()">
         <span onclick="return typeSelect();" class="category-span">Kiểu thành viên</span>
         </li>
         <form action="/member/search" method="post">
-        <select id="type-select" name="type_id" style="display: none;"
+        <select id="type-select" name="role_id" style="display: none;"
         class="browser-default custom-select custom-select-lg mb-3"
         onchange="this.form.submit()">
             <option value="0">-- Chọn kiểu thành viên --</option>
-        <c:if test="${not empty memberTypeService.findAll()}">
-            <c:forEach items="${memberTypeService.findAll() }" var="memberType">
-                <c:if test="${memberType.typeName !='Admin'}">
-                    <option value="${memberType.id }">${memberType.typeName }</option>
+        <c:if test="${not empty roleService.findAll()}">
+            <c:forEach items="${roleService.findAll() }" var="role">
+                <c:if test="${memberType.typeName !='ADMIN'}">
+                    <option value="${role.id }">${role.name }</option>
                 </c:if>
 
             </c:forEach>
@@ -124,7 +124,7 @@ onchange="this.form.submit()">
                             <br>
                             <br>
                             <div>
-                                <div class="margin-bottom-2 overflow padding-top1">${member.memberType.typeName }, ${member.kn.k }</div>
+                                <div class="margin-bottom-2 overflow padding-top1">${member.role.name }, ${member.kn.k }</div>
                                 <div class="margin-bottom-2 overflow">${member.major.majorName }</div>
                                 <div class="overflow">${member.addressNow}</div>
                             </div>

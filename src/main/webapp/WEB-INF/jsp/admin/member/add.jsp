@@ -18,14 +18,14 @@
 						<label for="firstname" class="control-label col-lg-2">Chọn
 							kiểu thành viên</label>
 						<div class="col-lg-10">
-							<select class=" form-control" name="memberType" id="memberType"
+							<select class=" form-control" name="roleId" id="memberType"
 								style="width: 30%;">
 								<option value="0">--Chọn kiểu thành viên--</option>
-								<c:if test="${not empty memberTypeList}">
+								<c:if test="${not empty rolesList}">
 									
-									<c:forEach var="type" items="${memberTypeList }">
-										<c:if test="${type.typeName ne 'ADMIN'  && type.typeName ne 'MANAGER'}">
-											<option value="${type.id }">${type.typeName }</option>
+									<c:forEach var="role" items="${rolesList }">
+										<c:if test="${role.name ne 'ADMIN'  && role.name ne 'MANAGER'}">
+											<option value="${role.id }">${role.name }</option>
 										</c:if>
 									</c:forEach>
 								</c:if>

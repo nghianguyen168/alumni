@@ -23,25 +23,25 @@
 			</c:choose>
 				<h4>
 					<div style="display: inline;">
-						<strong><i class="fa fa-angle-right"></i> QUẢN LÝ THÀNH VIÊN  <i class="fa fa-angle-right"></i>  ${memberTypeService.findById(typeId).typeName }
+						<strong><i class="fa fa-angle-right"></i> QUẢN LÝ THÀNH VIÊN  <i class="fa fa-angle-right"></i>  ${roleService.findById(typeId).getName() }
 							</strong> <a type="button"
 							href="${pageContext.request.contextPath }/admin/member/type-add"
 							class="btn btn-success" style="margin-left: 20px;">Thêm Thành Viên</a>
 						<div style="float: right;">
 								<form action="/admin/member/search" method="post" style="float: right; margin-left: 200px;" >
-									<select id="type-select" name="type_id"
+									<select id="type-select" name="role_id"
 										class="browser-default custom-select custom-select-lg mb-3"
 										onchange="this.form.submit()">
 										<option value="0">-- Chọn kiểu thành viên --</option>
-										<c:if test="${not empty memberTypeService.findAll()}">
-											<c:forEach items="${memberTypeService.findAll() }" var="memberType">
-												<c:if test="${memberType.typeName !='ADMIN'}">
+										<c:if test="${not empty roleService.findAll()}">
+											<c:forEach items="${roleService.findAll() }" var="role">
+												<c:if test="${role.name !='ADMIN'}">
 													<c:choose>
-														<c:when test="${typeId == memberType.id}">
-															<option selected value="${memberType.id }">${memberType.typeName }</option>
+														<c:when test="${typeId == role.id}">
+															<option selected value="${role.id }">${role.name }</option>
 														</c:when>
 														<c:otherwise>
-															<option  value="${memberType.id }">${memberType.typeName }</option>
+															<option  value="${role.id }">${role.name }</option>
 														</c:otherwise>
 													</c:choose>
 												</c:if>
@@ -113,7 +113,7 @@
 						
 						<td><a href="">${member.lastName}</a></td>
 						<td>${member.studentId}</td>
-						<td>${member.memberType.typeName}</td>
+						<td>${member.role.name}</td>
 						<td>${member.dateOfBirth }</td>
 						<td>${member.gender }</td>
 						<td>${member.dtuMail}</td>

@@ -133,8 +133,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public List<Member> findByRole(int role_id) {
+		return memberRespository.findByRole(role_id);
+	}
+
+	@Override
 	public List<Member> findByType(int id) {
 		return memberRespository.findByType(id);
+	}
+
+	@Override
+	public List<Member> findByRoleAll(int role_id) {
+		return memberRespository.findByRoleAll(role_id);
 	}
 
 	@Override

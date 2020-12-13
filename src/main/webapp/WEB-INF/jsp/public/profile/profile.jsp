@@ -27,11 +27,9 @@
 
                         <div style="padding-bottom: 20px; padding-top: 5px;">
                             <div class="font-18 mdl-typography--font-medium ng-binding" style="display: inline; font-weight: bold;">${member.firstName } ${member.lastName }</div>
-                            <a href="">
-                                <span class="material-icons" style="font-size: 19px; color: blue;">edit</span>
-                            </a>
+
                             <div><strong>${member.kn.k},Khoa ${member.faculty.facultyName} </strong></div>
-                            <div><strong>${member.memberType.typeName }</strong></div>
+                            <div><strong>${member.role.name }</strong></div>
                         </div>
                     </div>
 
@@ -40,8 +38,8 @@
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
                                     info
                                     </span>
-                            <span style="vertical-align: 4px;">Contact Information</span>
-                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
+                            <span style="vertical-align: 4px;">Thông tin liên hệ</span>
+
                         </div>
                         <div class="contact-infor">
                             <div class="profile-info">
@@ -90,8 +88,8 @@
                             <span class="material-icons" style="text-align: center; font-size: 20px; padding: 10px; color: #005497;">
                                     info
                                     </span>
-                            <span style="vertical-align: 4px;">Basic Information</span>
-                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
+                            <span style="vertical-align: 4px;">Thông tin cơ bản</span>
+
                         </div>
                         <div class="contact-infor">
 
@@ -156,7 +154,7 @@
                                 school
                                     </span>
                             <span style="vertical-align: 4px;">Trình độ giáo dục</span>
-                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
+
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
                             <div style="margin-bottom: 12px; font-weight: bold"><strong>Đại học:</strong> Duy Tan University</div>
@@ -173,7 +171,6 @@
                                 work
                                     </span>
                             <span style="vertical-align: 4px;">Công việc hiện tại</span>
-                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
 							 <div style="padding-top: 4px; padding-bottom: 5px;"><strong>Vị trí:</strong> ${member.positionJob }</div>
@@ -188,7 +185,6 @@
                                 work
                                     </span>
                             <span style="vertical-align: 4px;">Giới thiệu bản thân</span>
-                            <a href="" style="color: orange; float: right; padding: 10px;">Edit</a>
                         </div>
                         <div style="padding: 20px 7%;    border-top: 1px solid rgba(0, 0, 0, 0.1);">
 							 <div style="padding-top: 4px; padding-bottom: 5px;">

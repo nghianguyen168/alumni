@@ -44,8 +44,7 @@ public class AdminMemberController {
 	@Autowired
 	private KnameService knameService;
 	
-	@Autowired
-	private MemberTypeService memberTypeService;
+
 	
 	@Autowired
 	MessageSource messageSource;
@@ -65,7 +64,7 @@ public class AdminMemberController {
 
 	@GetMapping({ "/index", "/index/{id}" })
 	public String indexGet(Model model) {
-		model.addAttribute("memberTypeService",memberTypeService);
+		model.addAttribute("roleService",roleService);
 		List<Member> memberList = memberService.findAll();
 		model.addAttribute("memberList", memberList);
 		System.out.println(memberList);
@@ -96,9 +95,9 @@ public class AdminMemberController {
 	public String memberadd(Model model) {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knamesList = knameService.findAll();
-		List<MemberType> memberTypeList = memberTypeService.findAll();
 		List<Major> majorList = majorService.findAll();
-		model.addAttribute("memberTypeList", memberTypeList);
+		List<Role> rolesList = roleService.findAll();
+		model.addAttribute("rolesList", rolesList);
 		model.addAttribute("facultyList", facultyList);
 		model.addAttribute("knamesList", knamesList);
 		model.addAttribute("majorList",majorList);
@@ -108,7 +107,7 @@ public class AdminMemberController {
 	@PostMapping("/add")
 	public String addMemberList(Model model,@RequestParam(required = false,name = "facultyId") int facultyId,
 								@RequestParam("majorId") int majorId,@RequestParam(required = false,name = "kId") int kId,
-			@RequestParam("memberType") int memberTypeId,
+			@RequestParam("roleId") int roleId,
 			@RequestParam("memberList") MultipartFile files,RedirectAttributes rd) throws IOException {
 		List<Long> studentIdDuplicate = new ArrayList<>();
 		HttpStatus status = HttpStatus.OK;
@@ -147,7 +146,7 @@ public class AdminMemberController {
 				member.setKn(knameService.findById(kId));
 				member.setMajor(majorService.findById(majorId));
 
-				Role role  = roleService.findById(memberTypeId);
+				Role role  = roleService.findById(roleId);
 				member.setRole(role);
 				member.setTrainning_system(null);
 				member.setMajor(null);
@@ -161,7 +160,7 @@ public class AdminMemberController {
 				}
 				member.setEnable(1);
 				
-				member.setMemberType(memberTypeService.findById(memberTypeId));
+
 				memberList.add(member);
 			}
 
@@ -219,13 +218,13 @@ public class AdminMemberController {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knameList = knameService.findAll();
 		List<Major> majorList = majorService.findAll();
-		List<MemberType> memberTypeList = memberTypeService.findAll();
 
-		System.out.println("typesize_"+memberTypeList.size());
+		List<Role> rolesList = roleService.findAll();
+
 		model.addAttribute("facultyList",facultyList);
 		model.addAttribute("knameList",knameList);
 		model.addAttribute("majorList",majorList);
-		model.addAttribute("memberTypeList",memberTypeList);
+		model.addAttribute("rolesList",rolesList);
 		return "admin.member.addone";
 	}
 
@@ -233,7 +232,7 @@ public class AdminMemberController {
 	public String addOnePost(@ModelAttribute("member") Member member,@RequestParam("facultyId") int facultyId,
 							 @RequestParam(name = "majorId",required = false) Integer majorId,
 							 @RequestParam(name = "knameId",required = false) Integer knameId,
-							 @RequestParam("typeId") int typeId,RedirectAttributes rd){
+							 @RequestParam("roleId") int roleId,RedirectAttributes rd){
 		Faculty faculty = facultyService.findById(facultyId);
 		member.setFaculty(faculty);
 		if(majorId!=null){
@@ -244,9 +243,8 @@ public class AdminMemberController {
 			Kname kname = knameService.findById(knameId);
 			member.setKn(kname);
 		}
-		MemberType memberType= memberTypeService.findById(typeId);
-		member.setMemberType(memberType);
-		member.setRole(roleService.findById(typeId));
+
+		member.setRole(roleService.findById(roleId));
 
 		RandomString rand = new RandomString();
 		int numberOfCharactor = 8;
@@ -280,12 +278,13 @@ public class AdminMemberController {
 	}
 
 	@PostMapping("search")
-	public String memberSearchAdmin(@RequestParam("type_id") int typeId,Model model){
-		List<Member> memberByType = memberService.findByType(typeId);
-		model.addAttribute("memberTypeService",memberTypeService);
+	public String memberSearchAdmin(@RequestParam("role_id") int roleId,Model model){
+		List<Member> memberByRole = memberService.findByRoleAll(roleId);
 
-		model.addAttribute("memberList", memberByType);
-		model.addAttribute("typeId",typeId);
+		model.addAttribute("roleService",roleService);
+
+		model.addAttribute("memberList", memberByRole);
+		model.addAttribute("typeId",roleId);
 		return "admin.member.index";
 
 	}

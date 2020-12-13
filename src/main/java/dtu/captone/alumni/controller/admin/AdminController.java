@@ -7,8 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import dtu.captone.alumni.domain.MemberType;
-import dtu.captone.alumni.domain.News;
 import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -31,8 +29,7 @@ public class AdminController {
 	@Autowired
 	private ChartService canvasjsChartService;
 
-	@Autowired
-	private MemberTypeService memberTypeService;
+
 
 	@Autowired
 	private MemberService memberService;
@@ -55,7 +52,6 @@ public class AdminController {
 	@ModelAttribute
 	public void addService(Model model){
 		model.addAttribute("memberService",memberService);
-		model.addAttribute("memberTypeService",memberTypeService);
 		model.addAttribute("majorService",majorService);
 		model.addAttribute("jobService",jobService);
 		model.addAttribute("jobApplyService",jobApplyService);

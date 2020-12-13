@@ -68,14 +68,17 @@
                                 <ul class="d-flex align-items-center justify-content-between list-inline m-0 p-0">
                                     <li class="pl-3 pr-3">
                                         <p class="mb-0">${mem.member.kn.k },Khoa ${mem.member.faculty.facultyName }</p>
-                                        <h6>${mem.member.memberType.typeName }</h6>
+                                        <h6>${mem.member.role.name }</h6>
                                     </li>
                                 </ul>
                             </div>
-                             <div class="add-network" id="join-group_${group.id }">
-		                                    <i class="fa fa-user-plus"></i>
-		                                    <span>KẾT BẠN</span>
-		                              </div>
+                            <c:if test="${userInfo.id != mem.id}">
+                                <div class="add-network" id="join-group_${group.id }">
+                                    <i class="fa fa-user-plus"></i>
+                                    <span>KẾT BẠN</span>
+                                </div>
+                            </c:if>
+
                           <%--   <c:choose>
                             	<c:when test="${empty memberGroupService.findByMemberIdAndGroupId(userInfo.id, group.id) }">
 		                            <div class="add-network" id="join-group_${group.id }">

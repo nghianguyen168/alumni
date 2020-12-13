@@ -34,7 +34,9 @@ public interface MemberService {
 	Page<Member> findByHomwtown(String hometown,Pageable pageable);
 	
 	Page<Member> getListByTypeEnable(int type,Pageable pageable);
-	
+
+
+
 	List<Member> findAllEnable(int id);
 	
 	List<Member> findByKname(int id);
@@ -42,6 +44,10 @@ public interface MemberService {
 	List<Member> findByMajor(int id);
 
 	List<Member> findByType(int id);
+
+	List<Member> findByRoleAll(int role_id);
+
+	List<Member> findByRole(int role_id);
 
 	List<Member> findByNameSearch(String name,String name2);
 }

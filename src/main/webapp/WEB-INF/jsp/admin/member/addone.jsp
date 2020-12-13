@@ -76,12 +76,12 @@
 					<div class="form-group row">
 						<label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Kiểu thành viên :</strong></label>
 						<div class="col-sm-10">
-							<select class="form-control"  id="membertype_re" name="typeId" required style="width: 30%;">
-								<option value="0">--Bạn là....--</option>
-								<c:if test="${not empty memberTypeList}">
-									<c:forEach var="type" items="${memberTypeList }">
-										<c:if test="${type.typeName !='ADMIN'}" >
-											<option value="${type.id }">${type.typeName}</option>
+							<select class="form-control"  id="membertype_re" name="roleId" required style="width: 30%;">
+								<option value="0">--Chọn kiểu thành viên--</option>
+								<c:if test="${not empty rolesList}">
+									<c:forEach var="role" items="${rolesList }">
+										<c:if test="${role.name !='ADMIN'}" >
+											<option value="${role.id }">${role.name}</option>
 										</c:if>
 
 

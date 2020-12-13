@@ -87,7 +87,7 @@
 									</div>
 									<div class="md-form" style="margin-top: 10px;">
 										<label for="company">Vị trí tuyển dụng</label> <br> <input
-											class="form-control" required type="text" id="company"
+											class="form-control" required type="text" id=""
 											name="position" placeholder="Vị trí tuyển dụng">
 									</div>
 
@@ -98,17 +98,17 @@
 							<div>
 								<div class="md-form" style="margin-top: 10px;">
 									<label for="company">Địa điểm</label> <br> <input
-										class="form-control" required type="text" id="company"
+										class="form-control" required type="text" id=""
 										name="location" placeholder="Địa điểm làm việc">
 								</div>
 								<div class="md-form" style="margin-top: 14px;">
 									<label for="company">Hạn tuyển dụng</label> <br> <input
-										class="form-control" required type="date" id="company"
+										class="form-control" required type="date" id=""
 										name="deadlineApply" placeholder="Hạn tuyển dụng">
 								</div>
 								<div class="md-form" style="margin-top: 10px;">
 									<label for="company">Mức lương</label> <br> <input
-										class="form-control" required type="text" id="company"
+										class="form-control" required type="text" id=""
 										name="salary" placeholder="Mức lương">
 								</div>
 							</div>

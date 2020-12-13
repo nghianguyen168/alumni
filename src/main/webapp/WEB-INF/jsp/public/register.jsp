@@ -129,9 +129,9 @@
                         <select class="form-control"  id="membertype" name="typeId"> required
                             <option value="0">--Bạn là....--</option>
                             <c:if test="${not empty memberTypeList}">
-                                <c:forEach var="type" items="${memberTypeList }">
-                                    <c:if test="${type.typeName !='ADMIN' && type.typeName !='MANAGER'}" >
-                                        <option value="${type.id }">${type.typeName}</option>
+                                <c:forEach var="role" items="${memberTypeList }">
+                                    <c:if test="${role.name !='ADMIN' && role.name !='MANAGER'}" >
+                                        <option value="${role.id }">${role.name}</option>
                                     </c:if>
 
 

@@ -36,8 +36,6 @@ public class PublicLoginLogoutController {
 	@Autowired
 	private RoleService roleService;
 
-	@Autowired
-	private MemberTypeService memberTypeService;
 
 	@Autowired
 	private TrainningSystemService trainningSystemService;
@@ -58,7 +56,7 @@ public class PublicLoginLogoutController {
 		List<Faculty> facultyList = facultyService.findAll();
 		List<Kname> knameList = knameService.findAll();
 		List<Major> majorList = majorService.findAll();
-		List<MemberType> memberTypeList = memberTypeService.findAll();
+		List<Role> memberTypeList = roleService.findAll();
 
 		System.out.println("typesize_"+memberTypeList.size());
 		model.addAttribute("facultyList",facultyList);
@@ -78,7 +76,6 @@ public class PublicLoginLogoutController {
 		member.setTrainning_system(trainningSystemService.findById(1));
 		member.setId(null);
 		member.setEnable(2);
-		member.setMemberType(memberTypeService.findById(typeId));
 		member.setRole(roleService.findById(typeId));
 
 		if("".equals(member.getDtuMail())){

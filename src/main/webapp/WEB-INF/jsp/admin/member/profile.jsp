@@ -16,7 +16,7 @@
               <!-- /col-md-4 -->
               <div class="col-md-4 profile-text">
                 <h3>${member.firstName } ${member.lastName }</h3>
-                <h6>${member.memberType.typeName }</h6>
+                <h6>${member.role.name }</h6>
                 <p>${member.decription}</p>
                 <br>
                 <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>

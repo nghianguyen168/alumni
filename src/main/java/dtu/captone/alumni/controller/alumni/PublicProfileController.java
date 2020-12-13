@@ -108,7 +108,6 @@ public class PublicProfileController extends UserInfoHandler{
 		member.setFaculty(facultyService.findById(facultyId));
 		member.setTrainning_system(trainningSystemService.findById(trainning_system_id));
 		member.setKn(knameService.findById(knId));
-		member.setMemberType(isUserLogin(session).getMemberType());
 		member.setRole(isUserLogin(session).getRole());
 		
 		String imageOld = memberService.findById(isUserLogin(session).getId()).getAvatar();
