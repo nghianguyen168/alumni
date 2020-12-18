@@ -31,6 +31,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/admin/member")
 public class AdminMemberController {
@@ -63,12 +65,17 @@ public class AdminMemberController {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping({ "/index", "/index/{id}" })
-	public String indexGet(Model model) {
-		model.addAttribute("roleService",roleService);
-		List<Member> memberList = memberService.findAll();
-		model.addAttribute("memberList", memberList);
-		System.out.println(memberList);
-		return "admin.member.index";
+	public String indexGet(Model model,HttpSession session) {
+		System.out.println(((Member) session.getAttribute("userInfo")).getRole().getId());
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		} else {
+			model.addAttribute("roleService", roleService);
+			List<Member> memberList = memberService.findAll();
+			model.addAttribute("memberList", memberList);
+			System.out.println(memberList);
+			return "admin.member.index";
+		}
 	}
 
 	@PostMapping("/active")
@@ -85,23 +92,31 @@ public class AdminMemberController {
 	}
 
 	@GetMapping("/profile/{id}")
-	public String profile(@PathVariable int id, Model model) {
-		Member member = memberService.findById(id);
-		model.addAttribute("member", member);
-		return "admin.member.profile";
+	public String profile(@PathVariable int id, Model model,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			Member member = memberService.findById(id);
+			model.addAttribute("member", member);
+			return "admin.member.profile";
+		}
 	}
 
 	@GetMapping("add")
-	public String memberadd(Model model) {
-		List<Faculty> facultyList = facultyService.findAll();
-		List<Kname> knamesList = knameService.findAll();
-		List<Major> majorList = majorService.findAll();
-		List<Role> rolesList = roleService.findAll();
-		model.addAttribute("rolesList", rolesList);
-		model.addAttribute("facultyList", facultyList);
-		model.addAttribute("knamesList", knamesList);
-		model.addAttribute("majorList",majorList);
-		return "admin.member.add";
+	public String memberadd(Model model, HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		} else {
+			List<Faculty> facultyList = facultyService.findAll();
+			List<Kname> knamesList = knameService.findAll();
+			List<Major> majorList = majorService.findAll();
+			List<Role> rolesList = roleService.findAll();
+			model.addAttribute("rolesList", rolesList);
+			model.addAttribute("facultyList", facultyList);
+			model.addAttribute("knamesList", knamesList);
+			model.addAttribute("majorList", majorList);
+			return "admin.member.add";
+		}
 	}
 
 	@PostMapping("/add")
@@ -209,23 +224,31 @@ public class AdminMemberController {
 	}
 
 	@GetMapping("/type-add")
-	public String typeAdd(){
-		return "admin.member.typeadd";
+	public String typeAdd(HttpSession session) {
+		if (session.getAttribute("userInfo") == null) {
+			return "redirect:/auth/login";
+		} else {
+			return "admin.member.typeadd";
+		}
 	}
 	
 	@GetMapping("/add-one")
-	public String addOne(Model model){
-		List<Faculty> facultyList = facultyService.findAll();
-		List<Kname> knameList = knameService.findAll();
-		List<Major> majorList = majorService.findAll();
+	public String addOne(Model model,HttpSession session){
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			List<Faculty> facultyList = facultyService.findAll();
+			List<Kname> knameList = knameService.findAll();
+			List<Major> majorList = majorService.findAll();
 
-		List<Role> rolesList = roleService.findAll();
+			List<Role> rolesList = roleService.findAll();
 
-		model.addAttribute("facultyList",facultyList);
-		model.addAttribute("knameList",knameList);
-		model.addAttribute("majorList",majorList);
-		model.addAttribute("rolesList",rolesList);
-		return "admin.member.addone";
+			model.addAttribute("facultyList", facultyList);
+			model.addAttribute("knameList", knameList);
+			model.addAttribute("majorList", majorList);
+			model.addAttribute("rolesList", rolesList);
+			return "admin.member.addone";
+		}
 	}
 
 	@PostMapping("/add-one")
@@ -269,12 +292,16 @@ public class AdminMemberController {
 	}
 
 	@GetMapping("/del/{id}")
-	public String delMember(@PathVariable int id,RedirectAttributes rd){
-		jobApplyService.deleteByMemberId(id);
-		memberService.delete(id);
-		rd.addFlashAttribute(CommonConstants.MSG,
-				messageSource.getMessage("del-member-success", null, Locale.getDefault()));
-		return "redirect:/admin/member/index";
+	public String delMember(@PathVariable int id,RedirectAttributes rd,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			jobApplyService.deleteByMemberId(id);
+			memberService.delete(id);
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("del-member-success", null, Locale.getDefault()));
+			return "redirect:/admin/member/index";
+		}
 	}
 
 	@PostMapping("search")

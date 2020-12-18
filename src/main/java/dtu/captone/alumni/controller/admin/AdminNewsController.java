@@ -54,23 +54,32 @@ public class AdminNewsController extends AbstractController{
 	private UserInfoHandler userInfoHandler;
 	
 	@GetMapping({"/index","/index/{page}"})
-	public String index(ModelMap model,@PathVariable(required = false, name = "page") Integer page,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization,HttpServletRequest request) {
-		if (page == null) {
-			page = 1;
+	public String index(ModelMap model,@PathVariable(required = false, name = "page") Integer page,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization,HttpServletRequest request,HttpSession session) {
+
+		if(session.getAttribute("userInfo")==null) {
+			return "redirect:/auth/login";
+		}else {
+			if (page == null) {
+				page = 1;
+			}
+
+			Member member = currentUser(authorization);
+			System.out.println(member);
+
+			int offset = PaginationUtils.getOffset(page);
+			List<News> newsList = newsService.findAll(Sort.by("id").descending());
+			model.addAttribute("newsList", newsList);
+			return "admin.news.index";
 		}
-		
-		Member member = currentUser(authorization);
-		System.out.println(member);
-		
-		int offset = PaginationUtils.getOffset(page);
-		List<News> newsList = newsService.findAll(Sort.by("id").descending());
-		model.addAttribute("newsList", newsList);
-		return "admin.news.index";
 	}
 	
 	@GetMapping("/add")
-	public String add() {
-		return "admin.news.add";
+	public String add(HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			return "admin.news.add";
+		}
 	}
 	
 	@PostMapping("add")
@@ -92,10 +101,14 @@ public class AdminNewsController extends AbstractController{
 	}
 	
 	@GetMapping({"/edit","/edit/{id}"})
-	public String editGet(@PathVariable int id,Model model) {
-		News news = newsService.findById(id);
-		model.addAttribute("news", news);
-		return "admin.news.edit";
+	public String editGet(@PathVariable int id,Model model,HttpSession session) {
+		if(session.getAttribute("userInfo")==null  ) {
+			return "redirect:/auth/login";
+		}else {
+			News news = newsService.findById(id);
+			model.addAttribute("news", news);
+			return "admin.news.edit";
+		}
 	}
 	
 	@PostMapping("/edit/{id}")
@@ -128,11 +141,15 @@ public class AdminNewsController extends AbstractController{
 	
 	
 	@GetMapping("/del/{id}")
-	public String delNews(@PathVariable int id,RedirectAttributes rd) {
-		newsService.deleteById(id);
-		rd.addFlashAttribute(CommonConstants.MSG,
-				messageSource.getMessage("del_success", null, Locale.getDefault()));
-		return "redirect:/admin/news/index";
+	public String delNews(@PathVariable int id,RedirectAttributes rd,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			newsService.deleteById(id);
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("del_success", null, Locale.getDefault()));
+			return "redirect:/admin/news/index";
+		}
 		
 	}
 	

@@ -82,7 +82,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 					 .deleteCookies("JSESSIONID").and().exceptionHandling()
 					 .accessDeniedPage("/error403").and();
 					
-			  http.authorizeRequests().antMatchers("/admin/*").access("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')");
+			  http.authorizeRequests().antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')");
 			  http.authorizeRequests().antMatchers("/admin/adm/*").access("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')");
 			 
 		 

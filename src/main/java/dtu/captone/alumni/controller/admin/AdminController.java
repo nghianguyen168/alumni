@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -21,7 +22,7 @@ import dtu.captone.alumni.domain.Member;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class AdminController {
+public class AdminController extends UserInfoHandler {
 	
 	@Autowired
 	private UserService userService;
@@ -64,7 +65,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/index")
-	public String index(HttpSession session, Principal principal,Model model) {
+	public String index(HttpSession session, Principal principal,Model model){
 		
 		String dtuMail="";
 		try {

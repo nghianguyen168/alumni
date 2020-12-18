@@ -40,7 +40,7 @@ import dtu.captone.alumni.utils.PaginationUtils;
 
 @Controller
 @RequestMapping("/admin/event")
-public class AdminEventController extends AbstractController{
+public class AdminEventController extends AbstractController {
 
 	@Autowired
 	MessageSource messageSource;
@@ -61,8 +61,7 @@ public class AdminEventController extends AbstractController{
 
 	@GetMapping({ "/index", "/index/{page}" })
 	public String index(ModelMap model, @PathVariable(required = false, name = "page") Integer page,HttpSession session,@RequestHeader(value = "Authorization", required = false, defaultValue = "") String authorization) {
-		
-		if(session.getAttribute("userInfo")==null) {
+		if(session.getAttribute("userInfo")==null ) {
 			return "redirect:/auth/login";
 		}else {
 			if (page == null) {
@@ -82,8 +81,12 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@GetMapping("/add")
-	public String addGet() {
-		return "admin.event.add";
+	public String addGet(HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			return "admin.event.add";
+		}
 	}
 
 	@PostMapping("add")
@@ -104,14 +107,18 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@GetMapping({ "/edit", "/edit/{id}" })
-	public String editGet(@PathVariable int id, Model model) {
-		Event event = eventService.findById(id);
-		String time_start = event.getTimeStart().replaceAll("\\s+", "T");
-		String time_end = event.getTimeEnd().replaceAll("\\s+", "T");
-		event.setTimeStart(time_start);
-		event.setTimeEnd(time_end);
-		model.addAttribute("event", event);
-		return "admin.event.edit";
+	public String editGet(@PathVariable int id, Model model,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			Event event = eventService.findById(id);
+			String time_start = event.getTimeStart().replaceAll("\\s+", "T");
+			String time_end = event.getTimeEnd().replaceAll("\\s+", "T");
+			event.setTimeStart(time_start);
+			event.setTimeEnd(time_end);
+			model.addAttribute("event", event);
+			return "admin.event.edit";
+		}
 	}
 
 	@PostMapping("/edit/{id}")
@@ -143,10 +150,14 @@ public class AdminEventController extends AbstractController{
 	}
 
 	@GetMapping("/del/{id}")
-	public String delEvent(@PathVariable int id, RedirectAttributes rd) {
-		eventService.deleteById(id);
-		rd.addFlashAttribute(CommonConstants.MSG, messageSource.getMessage("del_success", null, Locale.getDefault()));
-		return "redirect:/admin/event/index";
+	public String delEvent(@PathVariable int id, RedirectAttributes rd,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			eventService.deleteById(id);
+			rd.addFlashAttribute(CommonConstants.MSG, messageSource.getMessage("del_success", null, Locale.getDefault()));
+			return "redirect:/admin/event/index";
+		}
 	}
 
 	@PostMapping("/active") 

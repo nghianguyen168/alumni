@@ -33,15 +33,23 @@ public class AdminGroupController {
 	private GroupService groupService;
 
 	@GetMapping("/index")
-	public String index(Model model) {
-		List<AlumniGroup> groupList = groupService.findAll();
-		model.addAttribute("groupList", groupList);
-		return "admin.group.index";
+	public String index(Model model,HttpSession session) {
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			List<AlumniGroup> groupList = groupService.findAll();
+			model.addAttribute("groupList", groupList);
+			return "admin.group.index";
+		}
 	}
 
 	@GetMapping("/add")
-	public String add(){
-		return "admin.group.add";
+	public String add(HttpSession session){
+		if(session.getAttribute("userInfo")==null ) {
+			return "redirect:/auth/login";
+		}else {
+			return "admin.group.add";
+		}
 	}
 
 	@PostMapping("/add")

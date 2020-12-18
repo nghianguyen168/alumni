@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dtu.captone.alumni.domain.JobApply;
+import dtu.captone.alumni.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Sort;
@@ -58,7 +59,7 @@ public class AdminJobController {
 	
 	@GetMapping("/index")
 	public String index(Model model,HttpSession session) {
-		if(session.getAttribute("userInfo")==null) {
+		if(session.getAttribute("userInfo")==null ) {
 			return "redirect:/auth/login";
 		} else {
 		List<Job> listJob = jobService.findAll(Sort.by("id").descending());
