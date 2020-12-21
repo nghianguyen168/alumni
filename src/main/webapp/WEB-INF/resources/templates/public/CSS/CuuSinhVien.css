@@ -72,33 +72,6 @@ header .container>div>ul>li>a:hover {
     background-color: #2020ff;
 }
 
-#menu {
-    height: 65px;
-    background-color: #D9291D;
-}
-
-#menu .container ul li {
-    line-height: 60px;
-    display: inline;
-}
-
-#menu .container ul li a {
-    display: inline-block;
-    height: 30px;
-    line-height: 26px;
-    padding: 0px 12px;
-    margin: 0px auto;
-    border-radius: 5px;
-    color: #ffffff;
-    text-transform: uppercase;
-    border: 2px solid transparent;
-    margin-left: 72px;
-}
-
-#menu .container ul li a:hover {
-    border-color: white;
-    color: white;
-}
 
 
 /*career*/

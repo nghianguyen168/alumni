@@ -1,3 +1,8 @@
+.break-wrap {
+    max-width: 152px;
+    overflow-wrap: break-word;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -77,28 +82,7 @@ header .container>div>ul>li>a:hover {
     background-color: #D9291D;
 }
 
-#menu .container ul li {
-    line-height: 60px;
-    display: inline;
-}
 
-#menu .container ul li a {
-    display: inline-block;
-    height: 30px;
-    line-height: 26px;
-    padding: 0px 12px;
-    margin: 0px auto;
-    border-radius: 5px;
-    color: #ffffff;
-    text-transform: uppercase;
-    border: 2px solid transparent;
-    margin-left: 72px;
-}
-
-#menu .container ul li a:hover {
-    border-color: white;
-    color: white;
-}
 
 
 /*career*/
@@ -364,16 +348,16 @@ form {
     line-height: 28px;
     padding: 0px 12px;
     border-radius: 30px;
-    color: #0000a0;
+    color: #901A12;
     text-transform: uppercase;
     border: 2px solid transparent;
     margin-left: 10px;
-    border-color: #0000a0;
+    border-color: #901A12;
     display: inline-block;
 }
 
 .chia2-2>ul>li>a:hover {
-    background-color: #0000a0;
+    background-color: #901A12;
     color: white;
 }
 

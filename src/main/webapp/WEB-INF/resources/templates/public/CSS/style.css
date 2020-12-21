@@ -84,7 +84,7 @@ header .container>div>ul>li>a:hover {
 }
 
 #menu .container ul li {
-    line-height: 60px;
+    line-height: 50px !important;
     display: inline;
 }
 
@@ -98,13 +98,17 @@ header .container>div>ul>li>a:hover {
     color: #ffffff;
     text-transform: uppercase;
     border: 2px solid transparent;
-    margin-left: 72px;
+	text-decoration: none !important;
+}
+
+#menu .container ul li.active a{
+	border-color: white;
+    color: white;
 }
 
 #menu .container ul li a:hover {
     border-color: white;
     color: white;
-    text-decoration: none;
 }
 
 #background {
@@ -135,7 +139,7 @@ header .container>div>ul>li>a:hover {
 }
 
 #news .container .chia2 h2 {
-    color: #0000a0;
+    color: #901A12;
 }
 
 #news .container .chia2 ul li a {
@@ -147,13 +151,14 @@ header .container>div>ul>li>a:hover {
     text-transform: uppercase;
     border: 2px solid transparent;
     margin-left: 10px;
-    border-color: #0000a0;
-    color: #0000a0;
+    border-color: #901A12;
+    color: #901A12;
     display: inline-block;
+    margin-top: 10px;
 }
 
 #news .container .chia2 ul li a:hover {
-    background-color: #0000a0;
+    background-color: #901A12;
     color: white;
 }
 
@@ -223,7 +228,7 @@ header .container>div>ul>li>a:hover {
 }
 
 #event .container .chia2 h2 {
-    color: #0000a0;
+    color: #901A12;
 }
 
 #event .container .chia2 ul li a {
@@ -235,13 +240,13 @@ header .container>div>ul>li>a:hover {
     text-transform: uppercase;
     border: 2px solid transparent;
     margin-left: 10px;
-    border-color: #0000a0;
-    color: #0000a0;
+    border-color: #901A12;
+    color: #901A12;
     display: inline-block;
 }
 
 #event .container .chia2 ul li a:hover {
-    background-color: #0000a0;
+    background-color: #901A12;
     color: white;
 }
 
@@ -297,11 +302,12 @@ header .container>div>ul>li>a:hover {
     padding-top: 0px;
     padding-bottom: 50px;
     position: relative;
+    padding-top: 15px;
 }
 
 #contact h2 {
     text-transform: uppercase;
-    color: #0000a0;
+    color: #901A12;
     max-width: 1170px;
     margin: 1px auto;
     padding: 14px 0px;
@@ -391,7 +397,7 @@ header .container>div>ul>li>a:hover {
 }
 
 #contact-info form div button {
-    background-color: #23b7a4;
+    background-color: #901A12;
     border: none;
     text-transform: uppercase;
     color: white;
@@ -404,7 +410,7 @@ header .container>div>ul>li>a:hover {
 }
 
 #contact-info form div button:hover {
-    background-color: #2020ff;
+        opacity: 0.8;
 }
 
 #contact-info .icon1 {
@@ -413,6 +419,7 @@ header .container>div>ul>li>a:hover {
 
 #contact-info .icon1 span {
     margin-right: 5px;
+    margin-top: -6px;
 }
 
 footer {

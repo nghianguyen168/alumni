@@ -11,12 +11,10 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword"
           content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>DTU-Alumni:Login</title>
+    <title>Register</title>
 
     <!-- Favicons -->
-    <link href="/resources/templates/admin/img/favicon.png" rel="icon">
-    <link href="/resources/templates/admin/img/apple-touch-icon.png"
-          rel="apple-touch-icon">
+	<link rel="shortcut icon" type="image/png" href="/resources/templates/public/IMAGE/HEADER/favicon.png"/>
 
     <!-- Bootstrap core CSS -->
     <link
@@ -46,7 +44,7 @@
 <div id="login-page">
     <div class="container">
         <form class="form-login" style="max-width: 600px;" method="post"  action="/user/register">
-            <h2 class="form-login-heading">Đăng Ký Thành Viên DTU Alumni</h2>
+            <h2 class="form-login-heading">Đăng Ký Thành Viên</h2>
             <br>
             <c:if test="${not empty memberExist}">
                 <div class="alert alert-danger" role="alert">

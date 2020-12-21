@@ -121,12 +121,12 @@
 						  		<tr>
 							      <th scope="row" >${stt.index+1 }</th>
 							      <td>${apply.member.firstName } ${apply.member.lastName }</td>
-							      <td> <a style="display: inline; text-decoration: none" href="mailto: ${job.member.dtuMail}">${apply.member.dtuMail}</a></td>
-							      <td><a style="display: inline; text-decoration: none" href="mailto: ${job.member.email}">${apply.member.email}</a></td>
-							      <td class="timeApply"><fmt:formatDate type="both"
+							      <td class="break-wrap"> <a style="display: inline; text-decoration: none" href="mailto: ${job.member.dtuMail}">${apply.member.dtuMail}</a></td>
+							      <td class="break-wrap"><a style="display: inline; text-decoration: none" href="mailto: ${job.member.email}">${apply.member.email}</a></td>
+							      <td class="timeApply break-wrap"><fmt:formatDate type="both"
 																	pattern="dd-MM-yyyy" value="${apply.applyOn}" /></td>
 							     
-							      <td ><a href="/resources/uploads/${apply.cv}">${apply.cv}</a>
+							      <td class="break-wrap"><a href="/resources/uploads/${apply.cv}">${apply.cv}</a>
 							       </td>
 							       <td >
 							       <c:choose>

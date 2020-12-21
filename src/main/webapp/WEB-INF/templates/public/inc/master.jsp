@@ -9,6 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" type="image/png" href="/resources/templates/public/IMAGE/HEADER/favicon.png"/>
 <link
 	href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,vietnamese'
 	rel='stylesheet' type='text/css'>

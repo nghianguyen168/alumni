@@ -9,11 +9,10 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>DTU-Alumni:Login</title>
+  <title>Login</title>
 
   <!-- Favicons -->
-  <link href="/resources/templates/admin/img/favicon.png" rel="icon">
-  <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link rel="shortcut icon" type="image/png" href="/resources/templates/public/IMAGE/HEADER/favicon.png"/>
 
   <!-- Bootstrap core CSS -->
   <link href="/resources/templates/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +37,7 @@
   <div id="login-page">
     <div class="container">
       <form class="form-login" method="post" <%-- action="${pageContext.request.contextPath}/user/login --%> action="javascript:void(0);">
-        <h2 class="form-login-heading">Đăng Nhập Cùng DTU Alumni</h2>
+        <h2 class="form-login-heading">Đăng Nhập</h2>
         <br>
         <div id="message">
         	
@@ -47,10 +46,12 @@
           <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="Dtu Mail" autofocus>
           <br>
           <input type="password" class="form-control" id="pass" name="pass" placeholder="Mật khẩu">
-          <label class="checkbox">
-            <input  type="checkbox" value="remember-me"> Ghi nhớ đăng nhập
+          <label class="checkbox" style="margin-left: 20px !important;">
+            <input  type="checkbox" value="remember-me" > Ghi nhớ đăng nhập
             <span class="pull-right">
-            <a data-toggle="modal"  href="/user/forgot-password"> Quên mật khẩu?</a>
+
+            <a data-toggle="modal" data-target="#myModal1"> Quên mật khẩu?</a> <!-- login.html#myModal -->
+
             </span>
             </label>
          <!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
@@ -64,6 +65,7 @@
               </a>
           </div>
         </div>
+       <!--  aria-hidden="true" -->
         <!-- Modal -->
 
         <input type="hidden"

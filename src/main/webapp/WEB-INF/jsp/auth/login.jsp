@@ -10,11 +10,10 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>DTU-Alumni:Login</title>
+  <title>Admin: Login</title>
 
   <!-- Favicons -->
-  <link href="/resources/templates/admin/img/favicon.png" rel="icon">
-  <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link rel="shortcut icon" type="image/png" href="/resources/templates/public/IMAGE/HEADER/favicon.png"/>
 
   <!-- Bootstrap core CSS -->
   <link href="/resources/templates/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +38,7 @@
   <div id="login-page">
     <div class="container">
       <form class="form-login" action="/auth/login" method="post">
-        <h2 class="form-login-heading">TRANG QUẢN TRỊ DTU ALUMNI</h2>
+        <h2 class="form-login-heading">ĐĂNG NHẬP TRANG QUẢN TRỊ</h2>
         <br>
         <div id="message">
         	<c:if test="${not empty param['msg'] }">
@@ -52,21 +51,13 @@
           <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="Dtu Mail" autofocus>
           <br>
           <input type="password" class="form-control" id="pass" name="pass" placeholder="Mật khẩu">
-          <label class="checkbox">
+          <label class="checkbox" style="margin-left: 20px !important;">
             <input  type="checkbox" value="remember-me"> Ghi nhớ đăng nhập
-            <span class="pull-right">
-            <a data-toggle="modal" href="login.html#myModal"> Quên mật khẩu?</a>
-            </span>
+           
             </label>
-          <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> 
-          <hr>
-         
-          <div class="registration">
-            Bạn chưa có tài khoản DTU-Alumni?<br/>
-            <a class="" href="#">
-              Đăng ky tài khoản DTU-Alumni
-              </a>
-          </div>
+          <input class="btn btn-theme btn-block" type="submit" value="ĐĂNG NHẬP"> 
+          
+       
         </div>
         <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">

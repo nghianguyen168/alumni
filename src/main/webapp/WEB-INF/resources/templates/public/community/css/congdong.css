@@ -75,29 +75,18 @@ header .container>div>ul>li>a:hover {
     margin-left: 10px;
     background-color: #2020ff;
 }
-
+header .container>div>ul>li>a :active {
+    border-color: white !important;
+    color: white !important;
+    text-decoration: none !important;
+}
 #menu {
     height: 65px;
     background-color: #901a12;
 }
 
-#menu .container ul li {
-    line-height: 60px;
-    display: inline;
-}
 
-#menu .container ul li a {
-    display: inline-block;
-    height: 30px;
-    line-height: 26px;
-    padding: 0px 12px;
-    margin: 0px auto;
-    border-radius: 5px;
-    color: #ffffff;
-    text-transform: uppercase;
-    border: 2px solid transparent;
-    margin-left: 72px;
-}
+
 
 #menu .container ul li a:hover {
     border-color: white;
@@ -188,7 +177,7 @@ header .container>div>ul>li>a:hover {
 
 .banner {
     overflow: initial;
-    min-height: 122px;
+    min-height: 63px !important;
     background: url(../IMAGE//CAREER/bg2.jpg) center center / cover no-repeat;
     padding-bottom: 20px;
     background-color: rgb(224, 224, 224);
@@ -361,23 +350,7 @@ form {
     width: calc((100% - 0px) /2);
 }
 
-.chia2-2>ul>li>a {
-    height: 30px;
-    line-height: 28px;
-    padding: 0px 12px;
-    border-radius: 30px;
-    color: #0000a0;
-    text-transform: uppercase;
-    border: 2px solid transparent;
-    margin-left: 10px;
-    border-color: #0000a0;
-    display: inline-block;
-}
 
-.chia2-2>ul>li>a:hover {
-    background-color: #0000a0;
-    color: white;
-}
 
 .infor {
     display: inline-block

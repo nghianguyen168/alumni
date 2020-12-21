@@ -16,7 +16,7 @@
             <li>
             <a id="news" href="${pagecontext.request.contextPath }/admin/news/index">
               <i class="fa fa-newspaper-o"></i>
-              <span>Quản lý tin tức</span>
+              <span>Quản Lý Tin Tức</span>
               </a>
           </li>
             <li>
@@ -28,13 +28,13 @@
            <li>
             <a id="job"	 href="${pagecontext.request.contextPath }/admin/job/index">
               <i class="fa fa-calendar-o"></i>
-              <span>Job Từ Doanh Nghiệp</span>
+              <span>Quản Lý Việc Làm</span>
               </a>
           </li>
            <li>
             <a id="group"	 href="${pagecontext.request.contextPath }/admin/group/index">
               <i class="fa fa-calendar-o"></i>
-              <span>Quản lý Group</span>
+              <span>Quản Lý Nhóm</span>
               </a>
           </li>
           <li class="sub-menu">
@@ -56,7 +56,7 @@
         <li class="sub-menu">
             <a id="contact-user" href="${pageContext.request.contextPath }/admin/contact/index">
                 <i class="fa fa-desktop"></i>
-                <span>Liên Hệ</span>
+                <span>Đóng Góp Ý Kiến</span>
             </a>
         </li>
     </c:if>
