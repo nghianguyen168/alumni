@@ -30,7 +30,7 @@ public class JobPostExport {
 	    }
 	 
 	 private void writeHeaderLine() {
-		 sheet = workbook.createSheet("JobApply");
+		 sheet = workbook.createSheet("Danh sách tuyển dụng");
 	        Row row = sheet.createRow(0);
 	         
 	        CellStyle style = workbook.createCellStyle();
@@ -49,7 +49,7 @@ public class JobPostExport {
 	        createCell(row, 7, "Chuyên ngành", style);
 	        createCell(row, 8, "Người đăng", style);
 
-		 sheet2 = workbook.createSheet("Sum");
+		 sheet2 = workbook.createSheet("Danh sách ứng tuyển");
 		 Row row1 = sheet2.createRow(0);
 
 		 CellStyle style1 = workbook.createCellStyle();

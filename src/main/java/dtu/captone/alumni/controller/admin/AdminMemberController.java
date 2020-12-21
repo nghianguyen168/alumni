@@ -71,6 +71,7 @@ public class AdminMemberController {
 			return "redirect:/auth/login";
 		} else {
 			model.addAttribute("roleService", roleService);
+			model.addAttribute("knameService",knameService);
 			List<Member> memberList = memberService.findAll();
 			model.addAttribute("memberList", memberList);
 			System.out.println(memberList);
@@ -281,7 +282,7 @@ public class AdminMemberController {
 					"\nPassword:"+passwordNew;
 
 			SendGmailUtil.sendGmail(member.getEmail(),"Approve_Account",message);
-			/*SendGmailUtil.sendGmail(member.getDtuMail(),"Approve_Account",message);*/
+			SendGmailUtil.sendGmail(member.getDtuMail(),"Approve_Account",message);
 			rd.addFlashAttribute(CommonConstants.MSG,
 					messageSource.getMessage("add-member-success", null, Locale.getDefault()));
 			return "redirect:/admin/member/index";

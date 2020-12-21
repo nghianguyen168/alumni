@@ -15,7 +15,14 @@
                 <div class="danh-muc-profile">
                     <div class="profile-information shadow" style="background-color: white;">
                     <a href="/resources/uploads/${member.avatar}" data-lightbox="roadtrip">
-                    	<img class="team-avatar" src="/resources/uploads/${member.avatar}" alt="">
+                        <c:choose>
+                            <c:when test="${not empty member.avatar}">
+                                <img class="team-avatar" href="" src="/resources/uploads/${member.avatar }">
+                            </c:when>
+                            <c:otherwise>
+                                <img  class="team-avatar" href="" src="/resources/uploads/no-avatar.png">
+                            </c:otherwise>
+                        </c:choose>
                     </a>
                         <div class="overflow">
                            <!--  <div class="change">

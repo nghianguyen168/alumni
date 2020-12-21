@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.security.UserInfoHandler;
 import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,9 @@ public class AdminController extends UserInfoHandler {
 	@Autowired
 	private EventService eventService;
 
+	@Autowired
+	private RoleService roleService;
+
 	@ModelAttribute
 	public void addService(Model model){
 		model.addAttribute("memberService",memberService);
@@ -58,9 +62,7 @@ public class AdminController extends UserInfoHandler {
 		model.addAttribute("jobApplyService",jobApplyService);
 		model.addAttribute("newsService",newsService);
 		model.addAttribute("eventService",eventService);
-
-
-
+		model.addAttribute("roleService",roleService);
 
 	}
 	

@@ -1,6 +1,8 @@
 package dtu.captone.alumni.controller.admin;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 
@@ -87,6 +89,8 @@ public class AdminNewsController extends AbstractController{
 		String picture = FileUtil.upload(hinhanh, request);
 		news.setPicture(picture);
 		 System.out.println(news.getNewsName());
+
+		 news.setCreateAt(Timestamp.valueOf(LocalDateTime.now()));
 		 News newsadd = newsService.save(news);
 		 if(newsadd!=null) {
 			 rd.addFlashAttribute(CommonConstants.MSG,

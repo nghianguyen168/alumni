@@ -4,8 +4,8 @@
 <header>
 	<div class="container">
 		<div class="logo-dtu">
-			<a href="/home"><img
-				src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
+			<a href="/home"><img style="width: 30%;"
+				src="/resources/templates/public/IMAGE/HEADER/logoit.png"></a>
 		</div>
 
 		<div class="iq-top-navbar" style="z-index: 5">
@@ -21,7 +21,7 @@
 					<c:when test="${userInfo ne null }">
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nasv ml-auto navbar-list" >
-							<li><a href="profile.html"
+							<li><a href="/profile/edit"
 								class="iq-waves-effect d-flex align-items-center"> <img
 									src="/resources/uploads/${userInfo.avatar }" class="img-fluid rounded-circle mr-3"
 									alt="user">
@@ -138,58 +138,30 @@
 										<div class="iq-card-body p-0 ">
 											<div class="bg-primary p-3">
 												<h5 class="mb-0 text-white">
-													Thông báo<small class="badge  badge-light float-right pt-1">4</small>
+													Thông báo<small class="badge  badge-light float-right pt-1"><span style="color: red;">${eventService.findCommingSoon(0).size()}</span></small>
 												</h5>
 											</div>
-											<a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="images/user/01.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">lê Thanh Hà</h6>
-														<small class="float-right font-size-12">Bây giờ</small>
-														<p class="mb-0">lê Thanh Hà</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="images/user/02.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Mai nhậu nha</h6>
-														<small class="float-right font-size-12">10/10/2020</small>
-														<p class="mb-0">Lê Thanh Hà</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="images/user/02.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Mai nhậu nha</h6>
-														<small class="float-right font-size-12">10/10/2020</small>
-														<p class="mb-0">Lê Thanh Hà</p>
-													</div>
-												</div>
-											</a> <a href="#" class="iq-sub-card">
-												<div class="media align-items-center">
-													<div class="">
-														<img class="avatar-40 rounded" src="images/user/02.jpg"
-															alt="">
-													</div>
-													<div class="media-body ml-3">
-														<h6 class="mb-0 ">Mai nhậu nha</h6>
-														<small class="float-right font-size-12">10/10/2020</small>
-														<p class="mb-0">Lê Thanh Hà</p>
-													</div>
-												</div>
-											</a>
+											<c:if test="${eventService.findCommingSoon(0).size() >0}">
+												<c:forEach items="${eventService.findCommingSoon(0)}" var="event">
+													<a href="/event/detail/${event.id}" class="iq-sub-card">
+														<div class="media align-items-center">
+															<div class="">
+																<img class="avatar-40 rounded" src="/resources/uploads/${event.image}"
+																	 alt="">
+															</div>
+															<fmt:parseDate value="${event.timeStart }" pattern="yyyy-MM-dd HH:mm" var="start"/>
+
+															<div class="media-body ml-3">
+																<h6 class="mb-0 ">${event.eventName}</h6>
+																<small class="float-right font-size-12"><fmt:formatDate value="${start}"  pattern="dd-MM-yyyy HH:mm a"/></small>
+
+															</div>
+														</div>
+													</a>
+												</c:forEach>
+											</c:if>
+
+
 											<div class="text-center">
 												<a href="#" class="mr-3 btn text-primary">Xem tất cả
 													thông báo</a>
@@ -271,8 +243,7 @@
 									<div class="iq-card shadow-none m-0">
 										<div class="iq-card-body p-0 ">
 											<div class="bg-primary p-3 line-height">
-												<h5 class="mb-0 text-white line-height">Xin chào Lê
-													Thanh Hà</h5>
+												<h5 class="mb-0 text-white line-height">Xin chào ${userInfo.firstName} ${userInfo.lastName}</h5>
 												<span class="text-white font-size-12">Sẵn sàng</span>
 											</div>
 											<a href="/member/detail/${userInfo.id }" class="iq-sub-card iq-bg-primary-hover">

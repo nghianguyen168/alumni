@@ -82,9 +82,10 @@ onchange="this.form.submit()">
             <option value="0">-- Chọn kiểu thành viên --</option>
         <c:if test="${not empty roleService.findAll()}">
             <c:forEach items="${roleService.findAll() }" var="role">
-                <c:if test="${memberType.typeName !='ADMIN'}">
+                <c:if test="${role.name !='ADMIN' && role.name != 'MANAGER'}">
                     <option value="${role.id }">${role.name }</option>
                 </c:if>
+
 
             </c:forEach>
         </c:if>
@@ -92,49 +93,61 @@ onchange="this.form.submit()">
         </form>
 
 
+
         </ul>
         </div>
         <div class="dang-tin" style="background-color: white;">
-        <div class="banner" style="background-color: #428bca;">
+        <div class="banner" style="background-color: #428bca; ">
         <div>
         <span>${memberList.size()} Thành Viên Trong Cộng Đồng</span>
         </div>
         </div>
-        <div id="member-list" class="member">
+        <div id="member-list" class="member" >
 
         <c:if test="${not empty memberList }">
             <c:forEach items="${memberList }" var="member">
-
-                <div class="chia4">
-                    <div>
+                <c:if test="${member.role.name !='ADMIN' && member.role.name != 'MANAGER'}">
+                    <div class="chia4">
                         <div>
-                            <img class="avatar" href="" src="/resources/uploads/${member.avatar }">
-                        </div>
-                        <div class="padding-left">
-                            <div style="display: block;">
-                                <div style="float: left;">
-                                    <a class="font-color"
-                                       href="/member/detail/${member.id}">${member.firstName } ${member.lastName }</a>
-                                </div>
-                                <div style="float: right;">
-                                    <button title="Nhắn tin" style="border: none;"><img
-                                            src="/resources/templates/public/chat.png"></button>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
                             <div>
-                                <div class="margin-bottom-2 overflow padding-top1">${member.role.name }, ${member.kn.k }</div>
-                                <div class="margin-bottom-2 overflow">${member.major.majorName }</div>
-                                <div class="overflow">${member.addressNow}</div>
+                                <c:choose>
+                                    <c:when test="${not empty member.avatar}">
+                                        <img class="avatar" href="" src="/resources/uploads/${member.avatar }">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img  class="avatar" href="" src="/resources/uploads/no-avatar.png">
+                                    </c:otherwise>
+                                </c:choose>
+
+
                             </div>
-                        </div>
-                        <div class="add-network" id="add-friend-${member.id }">
-                            <i class="fa fa-user-plus"></i>
-                            <span>THÊM BẠN BÈ</span>
+                            <div class="padding-left">
+                                <div style="display: block;">
+                                    <div style="float: left;">
+                                        <a class="font-color" style="color: #0f74a8"
+                                           href="/member/detail/${member.id}"><strong>${member.firstName } ${member.lastName }</strong></a>
+                                    </div>
+                                    <div style="float: right;">
+                                        <button title="Nhắn tin" style="border: none;"><img
+                                                src="/resources/templates/public/chat.png"></button>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div>
+                                    <div class="margin-bottom-2 overflow padding-top1">${member.role.name }, ${member.kn.k }</div>
+                                    <div class="margin-bottom-2 overflow">${member.major.majorName }</div>
+                                    <div class="overflow">${member.addressNow}</div>
+                                </div>
+                            </div>
+                            <div class="add-network" id="add-friend-${member.id }">
+                                <i class="fa fa-user-plus"></i>
+                                <span>THÊM BẠN BÈ</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:if>
+
                 <script type="text/javascript">
 
                     $(document).on('click', '#add-friend-${member.id },add-friend-${member.id }', function (e) {
@@ -170,18 +183,19 @@ onchange="this.form.submit()">
         </div>
         </div>
         </div>
-        </div>
-        </div>
+
+<br>
         <br>
         <script src="/resources/templates/public/js/jquery.simpleLoadMore.js"></script>
         <script src="/resources/templates/public/js/loading.js"></script>
         <!-- <script src="jquery.simpleLoadMore.js"></script> -->
+
         <script>
         $('#member-list').simpleLoadMore({
         item: '.chia4',
-        count: 4,
+        count: 20,
         counterInBtn: true,
-        btnText: 'View More {showing}/{total}',
+        btnText: 'Xem thêm {showing}/{total}',
         });
         </script>
         <script type="text/javascript">

@@ -42,7 +42,6 @@ public class PublicIndexController extends UserInfoHandler {
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session) {
 		
-		
 		session.setAttribute("userInfo", isUserLogin(session));
 		
 	
@@ -62,6 +61,7 @@ public class PublicIndexController extends UserInfoHandler {
 		if (isUserLogin(session) != null) {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
+			model.addAttribute("eventService",eventService);
 		}
 
 	}

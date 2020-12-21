@@ -152,4 +152,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberRespository.findByNameSearch(name,name2);
 	}
 
+	@Override
+	public Member findByDtuMail(String dtuMail) {
+		return memberRespository.findByDtuMail(dtuMail);
+	}
+
 }

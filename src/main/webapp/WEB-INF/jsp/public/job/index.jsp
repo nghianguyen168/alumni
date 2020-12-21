@@ -10,7 +10,7 @@
 				<div class="sub-title">DANH MỤC VIỆC LÀM</div>
 				<ul>
 					<a href="/job/index">
-						<li class="category-list"><span class="category-span">Tất
+						<li style=" border-left: 3px solid #F06523;" class="category-list"><span class="category-span">Tất
 								cả công việc</span> <span class="category-count">${sumJob }</span></li>
 					</a>
 
@@ -352,7 +352,7 @@
       item: '.current-tab',
       count: 5,
       counterInBtn: true,
-      btnText: 'View More {showing}/{total}',
+      btnText: 'Xem thêm {showing}/{total}',
     });
   </script>
   <script type="text/javascript">

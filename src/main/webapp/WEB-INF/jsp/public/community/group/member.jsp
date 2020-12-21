@@ -72,7 +72,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <c:if test="${userInfo.id != mem.id}">
+                            <c:if test="${userInfo.id != mem.member.id}">
                                 <div class="add-network" id="join-group_${group.id }">
                                     <i class="fa fa-user-plus"></i>
                                     <span>KẾT BẠN</span>

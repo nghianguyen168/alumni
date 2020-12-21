@@ -21,8 +21,11 @@
 								Tổng số thành viên</div>
 
 							<br>
-							<c:forEach items="${memberTypeService.findAll()}" var="type" >
-								<div class="mb-0 font-weight text-gray-800">${type.typeName} - <strong>${	memberService.findByType(type.id).size()}</strong></div>
+							<c:forEach items="${roleService.findAll()}" var="type" >
+								<c:if test="${type.name !='ADMIN'}">
+									<div class="mb-0 font-weight text-gray-800">${type.name} - <strong>${	memberService.findByRole(type.id).size()}</strong></div>
+								</c:if>
+
 							</c:forEach>
 						</div>
 						<div class="col-auto">

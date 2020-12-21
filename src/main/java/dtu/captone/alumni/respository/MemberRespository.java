@@ -61,7 +61,7 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	@Query(value = "SELECT * FROM member WHERE member_type_id = ? ",nativeQuery = true)
 	Page<Member> getListByType(int type,Pageable page);
 	
-	Member findByDtuMail(String email);
+
 
 	@Query(value = "UPDATE member SET token = ? WHERE dtuMail = ?", nativeQuery = true)
     @Modifying(clearAutomatically=true, flushAutomatically = true)
@@ -78,6 +78,9 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 	@Query(nativeQuery = true, value = "SELECT * from member where dtuMail = ? AND password = ?")
 	Member findByEmailAndPassword(String dtu_mail, String password);
 
+	@Query(nativeQuery = true, value = "SELECT * from member where dtuMail = ?")
+	Member findByDtuMail(String dtu_mail);
+
 	@Query(value = "SELECT * FROM member WHERE enable = 1 AND major_id = ? ORDER BY id DESC",nativeQuery = true)
 	List<Member> findByMajor(int id);
 
@@ -86,6 +89,7 @@ public interface MemberRespository extends JpaRepository<Member, Integer>,JpaSpe
 
 	@Query(value = "SELECT * FROM member WHERE enable = 1 AND Concat(first_name,' ',last_name) LIKE ? OR Concat(first_name,' ',last_name)=?  ORDER BY id DESC",nativeQuery = true)
 	List<Member> findByNameSearch(String name,String name2);
-	
+
+
 	
 }

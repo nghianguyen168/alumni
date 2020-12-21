@@ -50,7 +50,7 @@
           <label class="checkbox">
             <input  type="checkbox" value="remember-me"> Ghi nhớ đăng nhập
             <span class="pull-right">
-            <a data-toggle="modal" href="login.html#myModal"> Quên mật khẩu?</a>
+            <a data-toggle="modal"  href="/user/forgot-password"> Quên mật khẩu?</a>
             </span>
             </label>
          <!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
@@ -59,33 +59,16 @@
          
           <div class="registration">
             Bạn chưa có tài khoản DTU-Alumni?<br/>
-            <a class="" href="#">
+            <a class="" href="/user/register">
               Đăng ky tài khoản DTU-Alumni
               </a>
           </div>
         </div>
         <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Quên mật khẩu ?</h4>
-              </div>
-              <div class="modal-body">
-                <p>Nhập địa chỉ email của bạn để đặt lại mật khẩu!</p>
-                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-              </div>
-              <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
-                <button class="btn btn-theme" type="button">Xác Nhận</button>
-              </div>
-            </div>
-          </div>
-        </div>
+
         <input type="hidden"
-name="${_csrf.parameterName}"
-value="${_csrf.token}"/>
+        name="${_csrf.parameterName}"
+        value="${_csrf.token}"/>
         <!-- modal -->
       </form>
     </div>

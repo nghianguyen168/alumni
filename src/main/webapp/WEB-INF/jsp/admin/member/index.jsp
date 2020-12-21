@@ -49,6 +49,29 @@
 											</c:forEach>
 										</c:if>
 									</select>
+									</select>
+									<select id="type-select" name="role_id"
+											class="browser-default custom-select custom-select-lg mb-3"
+											onchange="this.form.submit()">
+										<option value="0">-- Chọn kiểu thành viên --</option>
+										<c:if test="${not empty roleService.findAll()}">
+											<c:forEach items="${roleService.findAll() }" var="role">
+												<c:if test="${role.name !='ADMIN'}">
+													<c:choose>
+														<c:when test="${typeId == role.id}">
+															<option selected value="${role.id }">${role.name }</option>
+														</c:when>
+														<c:otherwise>
+															<option  value="${role.id }">${role.name }</option>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+
+											</c:forEach>
+										</c:if>
+									</select>
+									</select>
+
 
 							</form>
 					</div>
@@ -156,6 +179,23 @@
 										<a <%--onclick="validMember(${member.id});"--%>  href="javascript:void(0)" type="button" class="btn btn-primary btn-sm" style="font-size: 70%; margin-top: 7px;" id=""><i class="fa fa-check-square-o" aria-hidden="true"></i> Xác nhận</a>
 									</div>
 										</c:if>
+
+								<script>
+									$(document).ready(function() {
+										$('.btn').on('click', function() {
+											var $this = $(this);
+											var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
+											if ($(this).html() !== loadingText) {
+												$this.data('original-text', $(this).html());
+												$this.html(loadingText);
+											}
+											setTimeout(function() {
+												$this.html($this.data('original-text'));
+											}, 6000);
+										});
+									})
+
+								</script>
 								<script type="text/javascript">
 
 									$(document).on('click','#xacnhan-${member.id},#xacnhan-${member.id}',function(e){
@@ -175,6 +215,7 @@
 
 														$('#active_member-${member.id}').load(" #active_member-${member.id}");
 														$('#memberactive-${member.id }').load(" #memberactive-${member.id }");
+														$('#xacnhan-${member.id}').hide();
 														swal({
 															title: 'Check ứng viên thành công!',
 															/* text: 'Redirecting...', */
