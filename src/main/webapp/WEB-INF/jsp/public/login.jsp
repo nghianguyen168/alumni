@@ -9,11 +9,10 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>DTU-Alumni:Login</title>
+  <title>Login</title>
 
   <!-- Favicons -->
-  <link href="/resources/templates/admin/img/favicon.png" rel="icon">
-  <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link rel="shortcut icon" type="image/png" href="/resources/templates/public/IMAGE/HEADER/favicon.png"/>
 
   <!-- Bootstrap core CSS -->
   <link href="/resources/templates/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +37,7 @@
   <div id="login-page">
     <div class="container">
       <form class="form-login" method="post" <%-- action="${pageContext.request.contextPath}/user/login --%> action="javascript:void(0);">
-        <h2 class="form-login-heading">Đăng Nhập Cùng DTU Alumni</h2>
+        <h2 class="form-login-heading">Đăng Nhập</h2>
         <br>
         <div id="message">
         	
@@ -47,10 +46,10 @@
           <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="Dtu Mail" autofocus>
           <br>
           <input type="password" class="form-control" id="pass" name="pass" placeholder="Mật khẩu">
-          <label class="checkbox">
-            <input  type="checkbox" value="remember-me"> Ghi nhớ đăng nhập
+          <label class="checkbox" style="margin-left: 20px !important;">
+            <input  type="checkbox" value="remember-me" > Ghi nhớ đăng nhập
             <span class="pull-right">
-            <a data-toggle="modal" href="login.html#myModal"> Quên mật khẩu?</a>
+            <a data-toggle="modal" data-target="#myModal1"> Quên mật khẩu?</a> <!-- login.html#myModal -->
             </span>
             </label>
          <!--  <input class="btn btn-theme btn-block" type="submit" value="SIGN IN"> -->
@@ -64,13 +63,14 @@
               </a>
           </div>
         </div>
+       <!--  aria-hidden="true" -->
         <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-          <div class="modal-dialog">
+        <div  aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal fade" aria-hidden="true">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Quên mật khẩu ?</h4>
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Quên mật khẩu ?</h4>
               </div>
               <div class="modal-body">
                 <p>Nhập địa chỉ email của bạn để đặt lại mật khẩu!</p>

@@ -15,7 +15,7 @@
             <h2 class="text-center font-weight-light">THÔNG TIN CÁ NHÂN</h2>
         </div>
         <div class="col-lg-8">
-            <div class="alert alert-info alert-dismissable"><i class="fa fa-handshake-o" aria-hidden="true"></i> Vui lòng hoàn thiện thông tin cá nhân để góp phần xây dựng cộng đồng DTU Alumni! </div>
+            <div class="alert alert-info alert-dismissable"><i class="fa fa-handshake-o" aria-hidden="true"></i> Vui lòng hoàn thiện thông tin cá nhân để góp phần xây dựng cộng đồng! </div>
         </div>
         <div class="col-lg-8 order-lg-1 personal-info">
             <form role="form" method="post" action="/profile/edit/" enctype="multipart/form-data">

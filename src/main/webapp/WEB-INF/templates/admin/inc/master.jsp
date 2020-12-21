@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>DTU-Alumni : Trang quản trị</title>
+  <title>Trang quản trị</title>
 
    <link href="/resources/templates/admin/img/dt.png" rel="icon">
   <link href="/resources/templates/admin/img/apple-touch-icon.png" rel="apple-touch-icon">

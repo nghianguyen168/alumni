@@ -1064,7 +1064,7 @@ body.sidebar-main .iq-sidebar .iq-sidebar-menu .iq-menu li ul.iq-submenu-data li
                              Top Menu
 -----------------------------------------------------------------------*/
 
-.iq-top-navbar .navbar-expand-lg { justify-content: space-between !important; }
+.iq-top-navbar .navbar-expand-lg { justify-content: flex-end; }
 .iq-top-navbar .navbar-collapse { flex-grow: unset; }
 .iq-top-navbar.fixed-header { margin: 0; right: 0; width: calc(100% - 260px); border-radius: 0; transition: all 0.45s ease 0s; }
 .iq-top-navbar .iq-navbar-custom .navbar-breadcrumb { display: block; margin-left: 30px; padding: 10px 0; }

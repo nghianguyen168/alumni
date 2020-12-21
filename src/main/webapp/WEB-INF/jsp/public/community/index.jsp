@@ -44,8 +44,8 @@
         </script> -->
             <div class="chia2">
                 <div class="menu-group">
-                    <div style="background-image: url(/resources/templates/public/community/images/bg1.jpg) ; height: 140px;">
-                        <p style="text-align: center; padding: 55px 40px; color: white; font-size: 25px;">${alumni_group.groupName }</p>
+                    <div style="background-image: url(/resources/templates/public/community/images/bg2.jpg) ; height: 170px;">
+                        <p style="text-align: center; padding: 55px 27px; color: white; font-size: 25px;">${alumni_group.groupName }</p>
                     </div>
                     <div class="iq-sidebar">
                         <div id="sidebar-scrollbars">

@@ -4,8 +4,8 @@
 <header>
 	<div class="container">
 		<div class="logo-dtu">
-			<a href="/home"><img
-				src="/resources/templates/public/IMAGE/HEADER/logo1.jpg"></a>
+			<a href="/home"><img style="    height: 87px;"
+				src="/resources/templates/public/IMAGE/HEADER/logoit.png"></a>
 		</div>
 
 		<div class="iq-top-navbar" style="z-index: 5">
@@ -335,8 +335,8 @@
 				<c:otherwise>
 				<div class="login-align" style="margin-top: 10px;">
 				   <ul class="nav navbar-nav navbar-right">
-			        <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			        <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			        <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
+			        <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
 			      </ul>
 					<!-- <ul>
 						<li class="login"><a href="/login">log in</a></li>
@@ -356,6 +356,7 @@
 <div id="menu">
 	<div class="container ">
 		<ul class="navbar">
+			<li><a href="/home">Home</a></li>
 			<li><a href="/news/index">Tin Tức</a></li>
 			<li><a href="">Sự Kiện</a></li>
 			<li><a href="/job/index">Việc làm</a></li>
@@ -365,6 +366,29 @@
 		</ul>
 	</div>
 </div>
+
+<script>
+$(function(){
+	var liElements = $("#menu .container ul li");
+	console.log('liElements', liElements);
+	for(var i = 0; i < liElements.length; i++){
+		var li = liElements[i];
+		var hyperlink = $(li).find('a');
+		if(!hyperlink){
+			continue;
+		}
+		console.log('hyperlink', hyperlink);
+		
+		var href = $(hyperlink).attr('href');
+		if(href && href.length && location.pathname.startsWith(href)){
+			$(li).addClass('active');
+		} else {
+			$(li).removeClass('active');
+		}
+	}
+})();
+</script>
+
 <!-- <script>
 	function logout() {
 		$("#wait").css("display", "block");

@@ -108,7 +108,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 	<div class="container">
 		<div class="chia2">
 			<h2>SỰ KIỆN</h2>
-			<ul>
+			<ul style="padding-top: 11px;">
 				<li><a href="#">XEM TẤT CẢ</a></li>
 			</ul>
 		</div>
@@ -222,7 +222,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 				</div>
 				<div class="icon1">
 					<span class="material-icons"> email </span>
-					<p>contact@alumni.duytan.deu.vn</p>
+					<p>contact@alumni.duytan.edu.vn</p>
 				</div>
 
 			</div>
@@ -260,7 +260,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 
                     if(email ==='' | contactName ==='' | message ===''){
                         $('#messgae-follow').html("<div class=\"alert alert-danger\" role=\"alert\">\r\n" +
-                            "Vui lòng nhập đầy đủ thông tin liên hệ!\r\n" +
+                            "Vui lòng nhập đầy đủ thông tin!\r\n" +
                             "</div>");
                         return;
                     }
@@ -279,7 +279,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 						success : function(response) {
 							$('#contact-form').load(" #contact-form");
 							swal({
-								title: 'Gửi liên hệ thành công!',
+								title: 'Gửi ý kiến thành công!',
 								/* text: 'Redirecting...', */
 								icon: 'success',
 								buttons: true,
