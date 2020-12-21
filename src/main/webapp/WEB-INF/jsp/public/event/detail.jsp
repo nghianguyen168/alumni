@@ -30,11 +30,11 @@
                     
                 
                     <c:choose>
-                    	<c:when test="${event.timeStart lt now}">
+                    	<c:when test="${end < now}">
                     		<span class="badge badge-pill badge-danger">Sự kiện đã kết thúc</span>
                     	</c:when>
-                    	<c:when test="${event.timeStart ge now} AND ${event.timeEnd le now} ">
-                    		<span class="badge badge-pill badge-success">Sự kiện đang diễn ra</span>
+                    	<c:when test="${start<=now && end>now}">
+                    		<span class="badge badge-pill badge-success" style="color: #1b1e21">Sự kiện đang diễn ra</span>
                     	</c:when>
                     	<c:otherwise>
                     			<span class="badge badge-pill badge-warning">Sự kiện sắp diễn ra</span>

@@ -50,4 +50,6 @@ public interface MemberService {
 	List<Member> findByRole(int role_id);
 
 	List<Member> findByNameSearch(String name,String name2);
+
+	Member findByDtuMail(String dtuMail);
 }

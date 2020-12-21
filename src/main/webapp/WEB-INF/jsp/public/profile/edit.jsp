@@ -20,26 +20,26 @@
         <div class="col-lg-8 order-lg-1 personal-info">
             <form role="form" method="post" action="/profile/edit/" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                    <label class="col-lg-3 col-form-label form-control-label">Họ và tên lót</label>
                     <div class="col-lg-9">
                         <input class="form-control" name="firstName" type="text" value="${userInfo.firstName }" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                    <label class="col-lg-3 col-form-label form-control-label">Tên</label>
                     <div class="col-lg-9">
                         <input class="form-control" name="lastName" type="text" value="${userInfo.lastName }" />
                     </div>
                 </div>
                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Date Of Birth</label>
+                    <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
                     <div class="col-lg-9">
                         <input class="form-control"  class="datepicker" name="dateOfBirth" type="date"  value="${userInfo.dateOfBirth }" />
                         
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">DTU Email</label>
+                    <label class="col-lg-3 col-form-label form-control-label">Địa chỉ email DTU</label>
                     <div class="col-lg-9">
                         <input class="form-control" name="dtuMail" type="text" readonly="readonly" value="${userInfo.dtuMail }" />
                     </div>

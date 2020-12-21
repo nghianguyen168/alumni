@@ -179,7 +179,7 @@
 											<c:when test="${job.deadlineApply gt now  }">
 											<div class="apply-1">
 											
-												<button class="apply-2 btn btn-info" id="uploadButton" type="next" >APPLY</button>
+												<button class="apply-2 btn btn-info" id="uploadButton" type="next" >ỨNG TUYỂN</button>
 											</div>
 											</c:when>
 											<c:otherwise>	

@@ -90,11 +90,11 @@
 											<c:choose>
 
 												<c:when test="${job.deadlineApply gt now }">
-													<c:set var="job_status" value="Open" />
+													<c:set var="job_status" value="Đang tuyển" />
 													<div class="job-status-open ">${job_status }</div>
 												</c:when>
 												<c:otherwise>
-													<c:set var="job_status" value="Closed" />
+													<c:set var="job_status" value="Đã hết hạn" />
 													<div class="job-status-close ">${job_status }</div>
 												</c:otherwise>
 											</c:choose>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,6 +61,11 @@ public class PublicProfileController extends UserInfoHandler{
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
 
 	@ModelAttribute
 	public void network_new(Model model,HttpSession session) {
@@ -136,8 +142,27 @@ public class PublicProfileController extends UserInfoHandler{
 		 }
 		
 	}
-	
-	
+
+
+	@GetMapping("/reset-password")
+	public String resetPassword(HttpSession session){
+		if (isUserLogin(session) == null) {
+			return "redirect:/user/login";
+		}
+		return "public.profile.resetpassword";
+	}
+
+	@PostMapping("/reset-password")
+	public String resetPasswordPost(@RequestParam("password") String password,@RequestParam("newpassword") String newPassword,HttpSession session){
+		Member member = (Member) session.getAttribute("userInfo");
+		System.out.println("hihihih");
+		String passEncode = bCryptPasswordEncoder.encode(password);
+		String pass = member.getPassword();
+		if(passEncode.equals(member.getPassword())){
+			return "/home";
+		}
+		return "public.profile.resetpassword";
+	}
 	
 	
 }

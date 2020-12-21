@@ -27,7 +27,7 @@
 
 
 					</div>
-					<li class="category-list"><span class="category-span"><a style="text-decoration: none;"
+					<li style="border-left: 3px solid #F06523;" class="category-list"><span class="category-span"><a style="text-decoration: none;"
 											onclick="return loading();" href="/job/apply-me">Tôi ứng tuyển</a></span> <span class="category-count">${jobApplyService.sumJobApply(userInfo.id) }</span></li>
 					 <c:if test="${userInfo.role.name =='ADMIN' || userInfo.role.name =='MANAGER'|| userInfo.role.name =='TEACHER'|| userInfo.role.name =='ALUMNI' }">
 					<li class="category-list"><span class="category-span"><a
@@ -89,11 +89,11 @@
 											<c:choose>
 
 												<c:when test="${apply.job.deadlineApply gt now }">
-													<c:set var="job_status" value="Open" />
+													<c:set var="job_status" value="Đang tuyển" />
 													<div class="job-status-open ">${job_status }</div>
 												</c:when>
 												<c:otherwise>
-													<c:set var="job_status" value="Closed" />
+													<c:set var="job_status" value="Đẵ hết hạn" />
 													<div class="job-status-close ">${job_status }</div>
 												</c:otherwise>
 											</c:choose>

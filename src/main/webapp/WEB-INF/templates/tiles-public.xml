@@ -25,7 +25,12 @@
 	</definition>
 	<definition name="public.login"
 		template="/WEB-INF/jsp/public/login.jsp">
-		
+	</definition>
+	<definition name="public.forgotPassword"
+				template="/WEB-INF/jsp/public/forgot_pasword.jsp">
+	</definition>
+	<definition name="public.chat"
+				template="/WEB-INF/jsp/public/community/chat/demochat/index.jsp">
 	</definition>
 	<definition name="public.register"
 		template="/WEB-INF/jsp/public/register.jsp">
@@ -90,6 +95,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/profile/profile.jsp"></put-attribute>
 	</definition>
+
+	<definition name="public.profile.resetpassword" extends="templates.public">
+		<put-attribute name="content"
+					   value="/WEB-INF/jsp/public/profile/reset_password.jsp"></put-attribute>
+	</definition>
 	
 	<definition name="public.profile.edit" extends="templates.public">
 		<put-attribute name="content"
@@ -131,4 +141,5 @@
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/community/chat/indexChat.jsp"></put-attribute>
 	</definition>
+
 </tiles-definitions>

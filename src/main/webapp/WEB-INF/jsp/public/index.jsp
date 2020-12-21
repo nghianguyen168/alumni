@@ -175,7 +175,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 							<div>
 								<div style="float: right;">
 								<br>
-									<a href="#">XEM THÊM</a>
+									<a href="/event/detail/${event.id}">CHI TIẾT</a>
 								</div>
 							</div>
 						</div>

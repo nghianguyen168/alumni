@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> THÊM TIN TỨC</h4>
+            <h4><i class="fa fa-angle-right"></i> THÊM SỰ KIỆN</h4>
             <div class="form-panel">
               <div class="form">
                 <form class="cmxform form-horizontal style-form" enctype="multipart/form-data" id="signupForm" method="post" action="${pageContext.request.contextPath }/admin/event/add">
