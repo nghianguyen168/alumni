@@ -67,7 +67,7 @@
 					<div class="row3 no-gutters2 align-items-center2 spacwbt">
 						<div class="col mr-2">
 							<div class="text-xs2 font-weight-bold text-primary text-uppercase mb-1">
-								Số lượt ứng tuyển (Trong tháng)</div>
+								Số lượt ứng tuyển - Tháng ${month}</div>
 							<div class="mb-0 font-weight text-gray-800">Tổng số lượt ứng tuyển : <strong>${jobApplyService.sumJobApplyByMonth(month)}</strong></div>
 						</div>
 						<div class="col-auto">
@@ -85,7 +85,7 @@
 					<div class="row3 no-gutters2 align-items-center2 spacwbt">
 						<div class="col mr-2">
 							<div class="text-xs3 font-weight-bold text-success text-uppercase mb-1">
-								Tin tức - Sự kiện</div>
+								Tin tức - Sự kiện - Tháng ${month}</div>
 							<div class="mb-0 font-weight text-gray-800">Tin Tức: <strong>${newsService.findByMonth(month).size()}</strong></div>
 							<div class="mb-0 font-weight text-gray-800">Sự kiện: <strong>${eventService.findByMonth(month).size()}</strong></div>
 						</div>
@@ -98,6 +98,7 @@
 		</div>
 	</div>
 </div>
+<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
 <script type="text/javascript">
 window.onload = function() {
 
@@ -106,7 +107,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	theme: "light2", // "light1", "dark1", "dark2"
 	animationEnabled: true,
 	title: {
-		text: "Biểu đồ công việc từ alumni"
+		text: "Biểu đồ việc làm từ alumni - Năm ${year}"
 	},
 	axisX: {
 		valueFormatString: "MMM"
@@ -130,7 +131,6 @@ var yValue;
 
 
 
-
 <c:forEach items="${dataPointsList}" var="dataPoints" varStatus="loop">
 	<c:forEach items="${dataPoints}" var="dataPoint">
 		xValue = parseInt("${dataPoint.x}");
@@ -141,7 +141,7 @@ var yValue;
 		});
 	</c:forEach>
 </c:forEach>
-
+	<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
 chart.render();
 
 	var dps1 = [[]];
@@ -150,7 +150,7 @@ chart.render();
 		exportEnabled: true,
 		animationEnabled: true,
 		title: {
-			text: "Biểu đồ tỷ lệ tuyển dụng theo ngành"
+			text: "Biểu đồ tỷ lệ tuyển dụng theo ngành - Năm ${year}"
 		},
 		data: [{
 			type: "pie",

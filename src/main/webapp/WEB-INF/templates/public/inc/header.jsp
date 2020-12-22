@@ -327,9 +327,9 @@
 <div id="menu">
 	<div class="container ">
 		<ul class="navbar">
-			<li><a href="/home">Home</a></li>
+			<li><a href="/home">Trang Chủ</a></li>
 			<li><a href="/news/index">Tin Tức</a></li>
-			<li><a href="">Sự Kiện</a></li>
+			<li><a href="/event/index">Sự Kiện</a></li>
 			<li><a href="/job/index">Việc làm</a></li>
 			<li><a href="/community/index/0">Cộng Đồng</a></li>
 			<li><a href="/member/index">Cựu Sinh Viên</a></li>

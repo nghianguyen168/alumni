@@ -45,7 +45,7 @@
 				<div class="job-list" style=" box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"">
 				<c:if test="${not empty msg}">
 					<div class="alert alert-success fade in alert-dismissible" style="margin-top: 18px;">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> <strong>${msg}</strong>
+						 <strong>${msg}</strong>
 					</div>
 				</c:if>
 					<c:if test="${not empty jobList }">

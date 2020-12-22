@@ -123,7 +123,7 @@
 							</div>
 						</div>
 						<div class="submit-1">
-							<button class="submit-2" type="next">SUBMIT</button>
+							<button type="submit"  class="submit-2 btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Đăng tuyển</button>
 						</div>
 					</form>
 				</div>

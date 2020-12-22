@@ -66,7 +66,6 @@ public class AdminMemberController {
 
 	@GetMapping({ "/index", "/index/{id}" })
 	public String indexGet(Model model,HttpSession session) {
-		System.out.println(((Member) session.getAttribute("userInfo")).getRole().getId());
 		if(session.getAttribute("userInfo")==null ) {
 			return "redirect:/auth/login";
 		} else {
@@ -313,7 +312,7 @@ public class AdminMemberController {
 
 		model.addAttribute("memberList", memberByRole);
 		model.addAttribute("typeId",roleId);
-		return "admin.member.index";
+		return "redirect:/admin/member/index";
 
 	}
 }

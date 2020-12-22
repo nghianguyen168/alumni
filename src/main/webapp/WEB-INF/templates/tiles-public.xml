@@ -55,11 +55,15 @@
 			value="/WEB-INF/jsp/public/news/detail.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="public.event.index" extends="templates.public">
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/public/event/event.jsp"></put-attribute>
+	</definition>
 	<definition name="public.event.detail" extends="templates.public">
 		<put-attribute name="content"
-			value="/WEB-INF/jsp/public/event/detail.jsp"></put-attribute>
+					   value="/WEB-INF/jsp/public/event/detail.jsp"></put-attribute>
 	</definition>
-	
+
 	<definition name="public.job.index" extends="templates.public">
 		<put-attribute name="content"
 			value="/WEB-INF/jsp/public/job/index.jsp"></put-attribute>

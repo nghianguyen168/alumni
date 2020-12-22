@@ -43,14 +43,14 @@
         	
         </div>
         <div class="login-wrap">
-          <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="Dtu Mail" autofocus>
+          <input type="text" class="form-control" name="dtumail" id="dtumail" placeholder="DTU mail" autofocus>
           <br>
           <input type="password" class="form-control" id="pass" name="pass" placeholder="Mật khẩu">
           <label class="checkbox" style="margin-left: 20px !important;">
             <input  type="checkbox" value="remember-me" > Ghi nhớ đăng nhập
             <span class="pull-right">
 
-            <a data-toggle="modal" data-target="#myModal1"> Quên mật khẩu?</a> <!-- login.html#myModal -->
+            <a data-toggle="modal" href="/user/forgot-password"> Quên mật khẩu?</a> <!-- login.html#myModal -->
 
             </span>
             </label>

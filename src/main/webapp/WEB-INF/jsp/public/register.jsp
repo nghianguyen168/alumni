@@ -58,9 +58,9 @@
                         Mail :</strong></label>
                     <div class="col-sm-10">
                         <input type="email" class="form-control" value="${memberExist.dtuMail}" name="dtuMail"
-                               id="dtumail1" placeholder="Dtu Mail" autofocus>
+                               id="dtumail1" placeholder="DTU mail" autofocus>
 
-                        <span><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
+                        <span style="line-height: 30px;"><i>Có thể dùng email cả nhân để đăng ký nếu quên email DTU</i></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -116,8 +116,8 @@
                 <div class="form-group row">
                     <label style="margin-top: 8px;" class="col-sm-2 col-form-label"><strong>Số điện thoại :</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" value="phone" required class="form-control" name="phone"
-                               id="phone" placeholder="Ngày Sinh" autofocus>
+                        <input type="text" value="${memberExist.phone}" required class="form-control" name="phone"
+                               id="phone" placeholder="Số điện thoại.." autofocus>
                     </div>
                 </div>
 

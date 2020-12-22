@@ -50,7 +50,7 @@
 										</c:if>
 									</select>
 									</select>
-									<select id="type-select" name="role_id"
+									<%--<select id="type-select" name="role_id"
 											class="browser-default custom-select custom-select-lg mb-3"
 											onchange="this.form.submit()">
 										<option value="0">-- Chọn kiểu thành viên --</option>
@@ -69,7 +69,7 @@
 
 											</c:forEach>
 										</c:if>
-									</select>
+									</select>--%>
 									</select>
 
 

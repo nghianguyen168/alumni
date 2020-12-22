@@ -27,19 +27,19 @@
           </li>
            <li>
             <a id="job"	 href="${pagecontext.request.contextPath }/admin/job/index">
-              <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
               <span>Quản Lý Việc Làm</span>
               </a>
           </li>
            <li>
             <a id="group"	 href="${pagecontext.request.contextPath }/admin/group/index">
-              <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-users" aria-hidden="true"></i>
               <span>Quản Lý Nhóm</span>
               </a>
           </li>
           <li class="sub-menu">
             <a id="member" href="${pageContext.request.contextPath }/admin/member/index">
-              <i class="fa fa-desktop"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
               <span>Quản Lý Thành Viên</span>
               </a>
           </li>
@@ -55,7 +55,7 @@
     <c:if test="${userInfo.role.name =='ADMIN'}">
         <li class="sub-menu">
             <a id="contact-user" href="${pageContext.request.contextPath }/admin/contact/index">
-                <i class="fa fa-desktop"></i>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
                 <span>Đóng Góp Ý Kiến</span>
             </a>
         </li>

@@ -5,7 +5,7 @@
 <div id="news">
 	<div class="container">
 		<div class="chia2">
-			<h2>TIN MỚI</h2>
+			<h2>TIN TỨC</h2>
 			<ul>
 				<li><a href="/news/index">XEM TẤT CẢ</a></li>
 			</ul>
@@ -109,7 +109,7 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 		<div class="chia2">
 			<h2>SỰ KIỆN</h2>
 			<ul style="padding-top: 11px;">
-				<li><a href="#">XEM TẤT CẢ</a></li>
+				<li><a href="/event/index">XEM TẤT CẢ</a></li>
 			</ul>
 		</div>
 		<div class="chia3">
