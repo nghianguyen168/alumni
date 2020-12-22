@@ -89,8 +89,8 @@ public class AdminJobController {
 		return "redirect:/admin/job/index";
 	}
 	
-	@GetMapping("/export")
-	public void expoxtRepostJob(HttpServletResponse response) throws IOException {
+	@PostMapping("/export")
+	public void expoxtRepostJob(HttpServletResponse response,@RequestParam("thang") int thang) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -99,8 +99,8 @@ public class AdminJobController {
         String headerValue = "attachment; filename=job_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
        
-        List<Job> jobListPost = jobService.findAll(Sort.by("id").descending());
-        List<JobApply> jobApplyList = jobApplyService.findAll(Sort.by("id").descending());
+        List<Job> jobListPost = jobService.getListByMonth(thang);
+        List<JobApply> jobApplyList = jobApplyService.findJobApplyByMonth(thang);
          
         JobPostExport excelExporter = new JobPostExport(jobListPost,jobApplyList);
          

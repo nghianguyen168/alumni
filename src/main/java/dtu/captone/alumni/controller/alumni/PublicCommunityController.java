@@ -12,6 +12,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.domain.*;
+import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,18 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import dtu.captone.alumni.domain.AlumniGroup;
-import dtu.captone.alumni.domain.Comment;
-import dtu.captone.alumni.domain.GroupPost;
-import dtu.captone.alumni.domain.LikePost;
-import dtu.captone.alumni.domain.MemberGroup;
 import dtu.captone.alumni.security.UserInfoHandler;
-import dtu.captone.alumni.service.CommentService;
-import dtu.captone.alumni.service.GroupPostService;
-import dtu.captone.alumni.service.GroupService;
-import dtu.captone.alumni.service.LikePostService;
-import dtu.captone.alumni.service.MemberGroupService;
-import dtu.captone.alumni.service.MemberService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -63,14 +54,21 @@ public class PublicCommunityController extends UserInfoHandler {
 	
 	@Autowired
 	private MemberGroupService memberGroupService;
+
+	@Autowired
+	private NetworkService networkService;
 	
 
 	
 	@ModelAttribute
-	public void sendObjectService(Model model) {
+	public void sendObjectService(Model model,HttpSession session) {
 		model.addAttribute("commentService", commentService);
 		model.addAttribute("likePostService", likePostService);
 		model.addAttribute("memberGroupService", memberGroupService);
+		if(isUserLogin(session)!=null) {
+			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
+			model.addAttribute("newRequestFriendList", newRequestFriendList);
+		}
 	}
 
 	@GetMapping("/index/{id}")

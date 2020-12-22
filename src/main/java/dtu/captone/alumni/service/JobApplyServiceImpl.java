@@ -73,6 +73,11 @@ public class JobApplyServiceImpl implements JobApplyService{
 	}
 
 	@Override
+	public List<JobApply> findJobApplyByMonth(int month) {
+		return jobApplyRespository.findJobApplyByMonth(month);
+	}
+
+	@Override
 	public List<JobApply> findJobApply(int id) {
 		// TODO Auto-generated method stub
 		return jobApplyRespository.findJobApply(id);

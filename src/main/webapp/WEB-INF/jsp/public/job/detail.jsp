@@ -45,9 +45,9 @@
 					</div>
 					<div>
 						<div class=""></div>
-						<div class="basic-title" style="padding-left: 10px; color: blue;">
+						<div class="basic-title" style="padding-left: 10px; color: #0f74a8;">
 							<i class="fa fa-file-text" aria-hidden="true"
-								style="color: blue;"></i> Thông tin cơ bản
+								style="color: #0e2e42;"></i><strong> THÔNG TIN CƠ BẢN </strong>
 						</div>
 						<div>
 							<div class="basic">
@@ -107,9 +107,9 @@
 
 							<div class="description">
 								<div class="basic-title"
-									style="padding-left: 10px; color: blue;">
+									style="padding-left: 10px; color: #0f74a8;">
 									<i class="fa fa-file-text" aria-hidden="true"
-										style="color: blue;"></i> Mô tả chi tiết tuyển dụng
+									   style="color: #0e2e42;"></i><strong> CHI TIẾT TUYỂN DỤNG </strong>
 								</div>
 								<div style="margin-left: 30px;">
 									<p>${job.decription }</p>
@@ -121,9 +121,9 @@
 
 							<div class="post-by">
 								<div class="basic-title"
-									style="padding-left: 10px; color: blue;">
-									<i class="fa fa-user" aria-hidden="true" style="color: blue;"></i>
-									Post by
+									style="padding-left: 10px; color: #0f74a8;">
+									<i class="fa fa-file-text" aria-hidden="true"
+									   style="color: #0e2e42;"></i><strong> NGƯỜI ĐĂNG BÀI </strong>
 
 								</div>
 								<div
@@ -149,9 +149,9 @@
 							</div>
 							<div class="contact">
 								<div class="basic-title"
-									style="padding-left: 10px; color: blue;">
-									<i class="fa fa-envelope" aria-hidden="true"
-										style="color: blue;"></i> Contact
+									style="padding-left: 10px; color: #0f74a8;">
+									<i class="fa fa-file-text" aria-hidden="true"
+									   style="color: #0e2e42;"></i><strong> LIÊN HỆ </strong>
 								</div>
 
 								<div style="padding-left: 35px; padding-bottom: 5px;">
@@ -166,9 +166,9 @@
 							</div>
 							<div class="apply">
 								<div class="basic-title"
-									style="padding-left: 10px; color: blue;">
+									style="padding-left: 10px; color: #0f74a8;">
 									<i class="fa fa-file-text" aria-hidden="true"
-										style="color: blue;"></i> Gửi CV cho người đăng tuyển
+									   style="color: #0e2e42;"></i><strong> GỬI CV CHO NGƯỜI ĐĂNG TUYỂN </strong>
 								</div>
 								<div style="padding-left: 35px; padding-bottom: 5px;">
 									<form action="/job/apply/${job.id }" method="post" enctype="multipart/form-data">

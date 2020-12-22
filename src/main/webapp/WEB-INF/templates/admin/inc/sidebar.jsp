@@ -46,7 +46,7 @@
            </c:if>
     <c:if test="${userInfo.role.name =='ADMIN'}">
            <li class="sub-menu">
-            <a id="adminstraitor" href="${pageContext.request.contextPath }/admin/member/admin">
+            <a id="adminstraitor" href="#">
               <i class="fa fa-desktop"></i>
               <span>Quản Trị Viên</span>
               </a>

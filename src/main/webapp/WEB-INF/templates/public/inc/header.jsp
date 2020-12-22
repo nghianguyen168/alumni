@@ -32,7 +32,8 @@
 
 							<li class="nav-item" ><a
 								class="search-toggle iq-waves-effect" onclick='reloadDIV ();' href=""><i
-									class="ri-group-line"></i></a>
+									class="ri-group-line"><small
+									class="badge badge-light float-right" style="margin-top: 18px; border:solid 0.5px #0f74a8; "><span style="color: red; margin-top: 10px;">${newRequestFriendList.size()}</span></small></i></a>
 									<script type="text/javascript">
 										function reloadDIV () {$('#addfriend1').reload())} 
 									</script>
@@ -130,7 +131,12 @@
 								</div></li>
 							<li class="nav-item"><a href="#"
 								class="search-toggle iq-waves-effect"> <i
-									class="ri-notification-3-line"></i> <!-- <i class="ri-group-line"></i> -->
+									class="ri-notification-3-line"></i>
+								<c:if test="${eventService.findCommingSoon(0).size() > 0}">
+									<small
+											class="badge badge-light float-right" style="margin-top: 18px; border:solid 0.5px #0f74a8; "><span style="color: red; margin-top: 10px;">${eventService.findCommingSoon(0).size()}</span></small></i> <!-- <i class="ri-group-line"></i> -->
+									<!-- <span class="bg-danger dots"></span> -->
+								</c:if><!-- <i class="ri-group-line"></i> -->
 									<!-- <span class="bg-danger dots"></span> -->
 							</a>
 								<div class="iq-sub-dropdown">

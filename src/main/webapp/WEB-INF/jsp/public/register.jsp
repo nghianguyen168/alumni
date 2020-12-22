@@ -51,6 +51,11 @@
                     Tài khoản với mã số sinh viên này đã tồn tại!
                 </div>
             </c:if>
+            <c:if test="${not empty msg}">
+                <div class="alert alert-danger" role="alert">
+                    ${msg}
+                </div>
+            </c:if>
             <div id="message"></div>
             <div class="login-wrap">
                 <div class="form-group row">

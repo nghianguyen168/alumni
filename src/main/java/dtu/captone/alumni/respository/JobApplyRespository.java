@@ -59,6 +59,9 @@ public interface JobApplyRespository extends JpaRepository<JobApply, Integer>{
 
 	@Query(value = "SELECT count(id) FROM job_apply WHERE Month(apply_on) = ? AND year(now())=year(apply_on)",nativeQuery = true)
 	public int sumJobApplyByMonth(int month);
+
+	@Query(value = "SELECT * FROM job_apply WHERE Month(apply_on) = ? AND year(now())=year(apply_on)",nativeQuery = true)
+	public List<JobApply> findJobApplyByMonth(int month);
 	
 	
 	/*

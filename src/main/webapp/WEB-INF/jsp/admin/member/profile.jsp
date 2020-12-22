@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
  <section class="wrapper site-min-height">
         <div class="row mt">
           <div class="col-lg-12">
@@ -57,57 +58,197 @@
                     <div class="row">
                       <div class="col-lg-8 col-lg-offset-2 detailed">
                         <h4 class="mb">Personal Information</h4>
-                        <form role="form" class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Số Điện Thoại</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.phone }" id="c-name" class="form-control" readonly>
+                        <form role="form" class="form-horizontal" action="/admin/member/profile/${member.id}" method="post" enctype="multipart/form-data">
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Họ và tên lót</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="firstName" type="text" value="${member.firstName }" />
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">DTU Mail</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.dtuMail }" id="c-name" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Tên</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="lastName" type="text" value="${member.lastName }" />
                             </div>
                           </div>
-                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Khóa</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.kn.k }" id="c-name" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
+                            <div class="col-lg-9">
+                              <input class="form-control"  class="datepicker" name="dateOfBirth" type="date"  value="${member.dateOfBirth }" />
+
                             </div>
                           </div>
-                            <div class="form-group">
-                            <label class="col-lg-2 control-label">Mật khẩu</label>
-                            <div class="col-lg-6">
-                              <input type="password" placeholder=" " value="${member.password }" id="c-name" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Địa chỉ email DTU</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="dtuMail" type="text" readonly="readonly" value="${member.dtuMail }" />
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Quê Quán</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.hometown }" id="lives-in" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="email" type="email" value="${member.email}" />
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Nơi Ở Hiện Tại</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.addressNow }" id="lives-in" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Mật khẩu</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="matkhau" type="password" value="" />
                             </div>
                           </div>
-                          
-                        
-                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Ngành Học</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.major.majorName }" id="c-name" class="form-control" readonly>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="phone" type="text" value="${member.phone }" />
                             </div>
                           </div>
-                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Nơi Làm Việc Hiện Tại</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " value="${member.workAt }"  id="c-name" class="form-control" readonly>
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Địa chỉ hiện tại</label>
+                            <div class="col-lg-9">
+                              <input class="form-control"  name="addressNow" type="text" value="${member.addressNow }" />
                             </div>
                           </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
+                            <div class="col-lg-9">
+                              <select id="" name="gender" class="form-control" size="0">
+                                <c:choose>
+                                  <c:when test="${member.gender == 'Nam'}">
+                                    <option value="Nam" selected="selected">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ" selected="selected">Nữ</option>
+                                  </c:otherwise>
+                                </c:choose>
+
+
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <c:set var="tthn" value="" />
+                            <c:choose>
+                              <c:when test="${member.maritalStatus eq 1}">
+                                <c:set var="tthn" value="Đã kết hôn" />
+                              </c:when>
+                              <c:otherwise>
+                                <c:set var="tthn" value="Độc thân" />
+                              </c:otherwise>
+                            </c:choose>
+                            <label class="col-lg-3 col-form-label form-control-label">Tình trạng hôn nhân</label>
+                            <div class="col-lg-9">
+                              <select id="user_time_zone" name="maritalStatus" class="form-control" size="0">
+                                <c:choose>
+                                  <c:when test="${member.maritalStatus == 1}">
+                                    <option value="1" selected="selected">Đã kết hôn</option>
+                                    <option value="0">Độc thân</option>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <option value="1">Đã kết hôn</option>
+                                    <option value="0" selected="selected">Độc thân</option>
+                                  </c:otherwise>
+                                </c:choose>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Khoa</label>
+                            <div class="col-lg-9">
+                              <select id="" name="facultyId" class="form-control" size="0">
+                                <c:forEach var="fal" items="${facultyList }">
+                                  <option value="${fal.id }">${fal.facultyName }</option>
+                                </c:forEach>
+
+
+                              </select>
+                            </div>
+                          </div>
+                          <c:if test="${member.role.name =='ALUMNI' || member.role.name =='STUDENT' }">
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Ngành học</label>
+                            <div class="col-lg-9">
+                              <select id="" name="majorId" class="form-control" size="0">
+                                <option value="0"selected>Chọn ngành học</option>
+                                <c:forEach var="major" items="${majorList }">
+                                  <option value="${member.id }">${major.majorName }</option>
+                                </c:forEach>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Hệ đào tạo</label>
+                            <div class="col-lg-9">
+                              <select id="user_time_zone" name="trainning_system_id" class="form-control" size="0">
+                                <c:forEach items="${trainningList }" var="train">
+                                  <option value="${train.id }">${train.training_system_name }</option>
+                                </c:forEach>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Khóa</label>
+                            <div class="col-lg-9">
+                              <select id="user_time_zone" name="knId" class="form-control" size="0">
+                                <c:forEach var="kl" items="${knameList }">
+                                  <option value="${kl.id }">${kl.k}</option>
+                                </c:forEach>
+
+
+                              </select>
+                            </div>
+                          </div>
+                          </c:if>
+                          <c:if test="${member.role.name =='ALUMNI' || member.role.name =='TEACHER' }">
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Công việc hiện tại</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="positionJob" type="text" value="${member.positionJob }" />
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Công ty</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="company" type="text" value="${member.company }" />
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Thời gian bắt đầu công việc</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="" type="date"  value="" />
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Mức lương</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="salary" type="text" value="${member.salary }" />
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Địa chỉ làm việc</label>
+                            <div class="col-lg-9">
+                              <input class="form-control" name="workAt" type="text" value="${member.workAt }" />
+                            </div>
+                          </div>
+                          </c:if>
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Mô tả bản thân</label>
+                            <div class="col-lg-9">
+                              <textarea class="form-control" name="decription" type="text" value="" >${member.decription }</textarea>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-lg-9 ml-auto text-right">
+                              <input type="reset" class="btn btn-outline-secondary" value="Cancel"  onclick="window.history.go(-1); return false;" />
+                              <button type="submit" class="btn-loading btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Đang cập nhật">Cập nhật</button>
+                            </div>
+                          </div>
+                      </div>
+
                           
                       
                         </form>

@@ -113,7 +113,7 @@
 											</div>
 											<div class="infor-detail">
 												<div>
-													<span class="font-medium">Đăng bởi ${apply.member.firstName } ${apply.member.firstName }</span>
+													<span class="font-medium">Đăng bởi ${apply.member.firstName } ${apply.member.lastName }</span>
 												</div>
 												<div>
 													<span class=" ">Đăng lúc

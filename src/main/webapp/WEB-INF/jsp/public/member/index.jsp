@@ -128,8 +128,8 @@ onchange="this.form.submit()">
                                            href="/member/detail/${member.id}"><strong>${member.firstName } ${member.lastName }</strong></a>
                                     </div>
                                     <div style="float: right;">
-                                        <button title="Nhắn tin" style="border: none;"><img
-                                                src="/resources/templates/public/chat.png"></button>
+                                        <a type="button" href="/chat/index" title="Nhắn tin" style="border: none;"><img
+                                                src="/resources/templates/public/chat.png"></a>
                                     </div>
                                 </div>
                                 <br>

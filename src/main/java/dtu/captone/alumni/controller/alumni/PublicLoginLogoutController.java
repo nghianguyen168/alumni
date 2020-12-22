@@ -76,10 +76,19 @@ public class PublicLoginLogoutController {
 		return "public.register";
 	}
 	@PostMapping("/user/register")
-	public String registerPost(Model model,@ModelAttribute("member") Member member, @RequestParam("facultyId") int facultyId,
+	public String registerPost(Model model,@ModelAttribute("member") Member member, @RequestParam("facultyId") int facultyId,RedirectAttributes rd,
 							   @RequestParam("majorId") int majorId,
 							   @RequestParam("knameId") int knameId,
 							   @RequestParam("typeId") int typeId) {
+		if("".equals(member.getDtuMail())){
+			member.setDtuMail(member.getEmail());
+		} else {
+			if(!member.getDtuMail().endsWith("@duytan.edu.vn")){
+				rd.addFlashAttribute(CommonConstants.MSG,
+						messageSource.getMessage("non_valid_dtumail", null, Locale.getDefault()));
+				return "redirect:/user/register";
+			}
+		}
 		member.setMajor(majorService.findById(majorId));
 		member.setFaculty(facultyService.findById(facultyId));
 		member.setKn(knameService.findById(knameId));
@@ -88,9 +97,6 @@ public class PublicLoginLogoutController {
 		member.setEnable(2);
 		member.setRole(roleService.findById(typeId));
 
-		if("".equals(member.getDtuMail())){
-			member.setDtuMail(member.getEmail());
-		}
 		//2 - waiting aprove
 		Member isExist = memberService.findByStudentId(member.getStudentId());
 

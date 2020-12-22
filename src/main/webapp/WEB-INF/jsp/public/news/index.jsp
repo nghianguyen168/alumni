@@ -24,7 +24,7 @@
                         ${news.decription.substring(0,400) }
                     </p> --%>
 							<div style="text-align: end;">
-								<a href="#" style="text-align: end;">Xem Tiếp</a>
+								<a href="/news/detail/${news.id}" style="text-align: end;">Chi tiết</a>
 							</div>
 						</section>
 					</div>

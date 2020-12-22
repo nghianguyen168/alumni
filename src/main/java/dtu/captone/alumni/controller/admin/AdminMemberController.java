@@ -11,6 +11,7 @@ import java.util.Random;
 import dtu.captone.alumni.auth.service.RoleService;
 import dtu.captone.alumni.domain.*;
 import dtu.captone.alumni.service.*;
+import dtu.captone.alumni.utils.FileUtil;
 import dtu.captone.alumni.utils.RandomString;
 import dtu.captone.alumni.utils.SendGmailUtil;
 import org.apache.commons.lang.time.DateUtils;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dtu.captone.alumni.constant.CommonConstants;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -45,8 +47,9 @@ public class AdminMemberController {
 
 	@Autowired
 	private KnameService knameService;
-	
 
+	@Autowired
+	private TrainningSystemService trainningSystemService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -59,6 +62,8 @@ public class AdminMemberController {
 
 	@Autowired
 	private JobApplyService jobApplyService;
+
+
 	
 	
 	@Autowired
@@ -98,8 +103,51 @@ public class AdminMemberController {
 		}else {
 			Member member = memberService.findById(id);
 			model.addAttribute("member", member);
+			model.addAttribute("majorList", majorService.findAll());
+			model.addAttribute("facultyList", facultyService.findAll());
+			model.addAttribute("trainningList", trainningSystemService.findAll());
+			model.addAttribute("knameList", knameService.findAll());
 			return "admin.member.profile";
 		}
+	}
+
+	@PostMapping("/profile/{id}")
+	public String edit(@PathVariable int id,@ModelAttribute("member") Member member, @RequestParam(name="matkhau",required = false) String matkhau,
+					   @RequestParam(name = "majorId",required = false,defaultValue = "0") int majorId, @RequestParam("facultyId") int facultyId,
+					   @RequestParam(name="trainning_system_id",required = false,defaultValue = "0") int trainning_system_id,
+					   @RequestParam(name = "knId",required = false,defaultValue = "0") int knId,HttpServletRequest request,
+					   HttpSession session, RedirectAttributes rd) throws IllegalStateException, IOException {
+
+		System.out.println(member);
+		member.setId(id);
+		member.setToken(memberService.findById(id).getToken());
+		member.setMajor(majorService.findById(majorId));
+		member.setFaculty(facultyService.findById(facultyId));
+		member.setTrainning_system(trainningSystemService.findById(trainning_system_id));
+		member.setKn(knameService.findById(knId));
+		member.setRole(memberService.findById(id).getRole());
+
+		String imageOld = memberService.findById(id).getAvatar();
+
+		System.out.println(member);
+		if(!"".equals(matkhau)){
+			member.setPassword(bCryptPasswordEncoder.encode(matkhau));
+		} else {
+			member.setPassword(memberService.findById(id).getPassword());
+		}
+		member.setEnable(1);
+		member.setAvatar(imageOld);
+		Member memberEdit = memberService.update(member);
+
+		if(memberEdit!=null) {
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("edit_success", null, Locale.getDefault()));
+			return "redirect:/admin/member/index";
+		} else {
+			rd.addFlashAttribute(CommonConstants.MSG, messageSource.getMessage("edit_error", null, Locale.getDefault()));
+			return "redirect:/profile/"+id;
+		}
+
 	}
 
 	@GetMapping("add")
@@ -209,7 +257,7 @@ public class AdminMemberController {
 			RandomString rand = new RandomString();
 
 			String passwordNew =rand.randomAlphaNumeric(numberOfCharactor);
-			member.setPassword(new BCryptPasswordEncoder().encode(passwordNew)+"!");
+			member.setPassword(new BCryptPasswordEncoder().encode(passwordNew));
 			Member memberUpdate = memberService.save(member);
 			String message ="Cảm ơn bạn đã quan tâm đến Cộng đồng sinh viên khoa đào tạo quốc tế"+
 					"\nThông tin đăng ký tài khoản  của bản đã được duyệt thành công!"+
@@ -307,12 +355,16 @@ public class AdminMemberController {
 	@PostMapping("search")
 	public String memberSearchAdmin(@RequestParam("role_id") int roleId,Model model){
 		List<Member> memberByRole = memberService.findByRoleAll(roleId);
-
+		System.out.println(memberByRole);
 		model.addAttribute("roleService",roleService);
-
 		model.addAttribute("memberList", memberByRole);
 		model.addAttribute("typeId",roleId);
-		return "redirect:/admin/member/index";
+		model.addAttribute("roleService", roleService);
+		model.addAttribute("knameService",knameService);
+
+		model.addAttribute("memberList", memberByRole);
+
+		return "admin.member.index";
 
 	}
 }

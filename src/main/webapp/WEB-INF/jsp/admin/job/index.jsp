@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/templates/tags/taglib.jsp"%>
-<!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="now" class="java.util.Date" />
+<!DOCTYPE PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <div class="row mt">
+	<fmt:formatDate var="month" value="${now}" pattern="MM" />
 	<c:set var="contextPath"
 		value="${pageContext.request.contextPath }/admin/job" />
 	<div class="col-md-12">
@@ -16,10 +18,26 @@
 			</c:if>
 			<table id="job-table" class="table table-striped table-advance table-hover">
 				<h4>
-					<strong><i class="fa fa-angle-right"></i> QUẢN LÝ VIỆC LÀM
-						ALUMNI</strong> 
+					<strong style="float: left"><i class="fa fa-angle-right"></i> QUẢN LÝ VIỆC LÀM
+						ALUMNI</strong>
+
+					<div style="width: 50%; margin-left: 71%;">
+						<form action="/admin/job/export" method="post">
+
+						<select class="form-control"  id="membertype_re" name="thang" required style="width: 30%; float: left;">
+							<option value="0">--Chọn tháng cần báo cáo--</option>
+							<c:forEach begin="1" end="${month}" var="thang">
+								<option value="${thang}">Tháng ${thang}</option>
+							</c:forEach>
+
+						</select>
+						<button style="float: left;" type="submit" class="btn btn-info" >Xuất báo cáo</button>
+						</form>
+					</div>
 				</h4>
-				<a type="button" class="btn btn-info" href="/admin/job/export">Xuất báo cáo</a>
+				<br>
+
+
 				<hr>
 				
 				<thead>

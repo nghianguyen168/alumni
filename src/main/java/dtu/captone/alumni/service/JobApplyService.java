@@ -43,7 +43,9 @@ public interface JobApplyService {
 	int sumJobApply(int id);
 
 	public int sumJobApplyByMonth(int month);
-	
+
+	public List<JobApply> findJobApplyByMonth(int month);
+
 	
 	/*
 	 * List<Job> getJobListByMajor(int majorId);
