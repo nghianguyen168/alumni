@@ -70,4 +70,9 @@ public class EventServiceImpl implements EventService {
 		return eventRespository.findByMonth(month);
 	}
 
+	@Override
+	public List<Event> FindAllActie() {
+		return eventRespository.findAllActive();
+	}
+
 }

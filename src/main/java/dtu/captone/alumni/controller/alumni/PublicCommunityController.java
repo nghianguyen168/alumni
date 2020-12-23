@@ -57,7 +57,9 @@ public class PublicCommunityController extends UserInfoHandler {
 
 	@Autowired
 	private NetworkService networkService;
-	
+
+	@Autowired
+	private EventService eventService;
 
 	
 	@ModelAttribute
@@ -68,6 +70,7 @@ public class PublicCommunityController extends UserInfoHandler {
 		if(isUserLogin(session)!=null) {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
+			model.addAttribute("eventService",eventService);
 		}
 	}
 

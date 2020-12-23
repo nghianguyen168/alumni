@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,6 @@ import dtu.captone.alumni.domain.Major;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.Network;
 import dtu.captone.alumni.security.UserInfoHandler;
-import dtu.captone.alumni.service.FollowJobService;
-import dtu.captone.alumni.service.JobApplyService;
-import dtu.captone.alumni.service.JobService;
-import dtu.captone.alumni.service.MajorService;
-import dtu.captone.alumni.service.NetworkService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -59,12 +55,16 @@ public class PublicJobController extends UserInfoHandler {
 	
 	@Autowired
 	private NetworkService networkService;
+
+	@Autowired
+	private EventService eventService;
 	
 	@ModelAttribute
 	public void network_new(Model model,HttpSession session) {
 		if(isUserLogin(session)!=null) {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
+			model.addAttribute("eventService",eventService);
 		}
 		
 		model.addAttribute("jobService", jobService);

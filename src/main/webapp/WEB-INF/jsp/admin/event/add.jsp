@@ -39,7 +39,7 @@
                  <div class="form-group ">
                     <label for="lastname" class="control-label col-lg-2">Mô tả</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="decription" type="text" />
+                      <input class=" form-control" id="decription" name="decription" type="text" />
                     </div>
                   </div>
                 <div class="form-group ">
@@ -68,6 +68,11 @@
           </div>
           <!-- /col-lg-12 -->
         </div>
+<script type="text/javascript">
+    var ckeditor = CKEDITOR.replace('decription');
+    CKFinder.setupCKEditor(ckeditor,'/libraries/ckfinder/');
+
+</script>
         <script>
 document.getElementById("home").classList.remove('active');
 	document.getElementById("news").classList.add('active');

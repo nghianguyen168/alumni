@@ -89,6 +89,13 @@ public class PublicLoginLogoutController {
 				return "redirect:/user/register";
 			}
 		}
+		Member checkMemberExist = memberService.findByDtuMail(member.getDtuMail());
+		if(checkMemberExist!=null){
+			rd.addFlashAttribute(CommonConstants.MSG,
+					messageSource.getMessage("non_valid_dtumail", null, Locale.getDefault()));
+			model.addAttribute("memberExistWithDTUMail",member);
+			return "public.register";
+		}
 		member.setMajor(majorService.findById(majorId));
 		member.setFaculty(facultyService.findById(facultyId));
 		member.setKn(knameService.findById(knameId));

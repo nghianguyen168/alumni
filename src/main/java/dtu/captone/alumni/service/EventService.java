@@ -28,4 +28,7 @@ public interface EventService {
 	List<Event> findCommingSoon(int id);
 
 	List<Event> findByMonth(int month);
+
+	List<Event> FindAllActie();
+
 }

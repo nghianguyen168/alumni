@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import dtu.captone.alumni.service.*;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -26,12 +27,6 @@ import dtu.captone.alumni.constant.CommonConstants;
 import dtu.captone.alumni.domain.Member;
 import dtu.captone.alumni.domain.Network;
 import dtu.captone.alumni.security.UserInfoHandler;
-import dtu.captone.alumni.service.FacultyService;
-import dtu.captone.alumni.service.KnameService;
-import dtu.captone.alumni.service.MajorService;
-import dtu.captone.alumni.service.MemberService;
-import dtu.captone.alumni.service.NetworkService;
-import dtu.captone.alumni.service.TrainningSystemService;
 import dtu.captone.alumni.utils.FileUtil;
 
 @Controller
@@ -65,6 +60,9 @@ public class PublicProfileController extends UserInfoHandler{
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private EventService eventService;
+
 
 
 	@ModelAttribute
@@ -72,6 +70,7 @@ public class PublicProfileController extends UserInfoHandler{
 		if(isUserLogin(session)!=null) {
 			List<Network> newRequestFriendList = networkService.getNewRequestFriendList(isUserLogin(session).getId());
 			model.addAttribute("newRequestFriendList", newRequestFriendList);
+			model.addAttribute("eventService",eventService);
 		}
 		
 	}
@@ -115,6 +114,7 @@ public class PublicProfileController extends UserInfoHandler{
 		member.setTrainning_system(trainningSystemService.findById(trainning_system_id));
 		member.setKn(knameService.findById(knId));
 		member.setRole(isUserLogin(session).getRole());
+		member.setEnable(1);
 		
 		String imageOld = memberService.findById(isUserLogin(session).getId()).getAvatar();
 		

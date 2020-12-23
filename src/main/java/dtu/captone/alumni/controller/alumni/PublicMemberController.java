@@ -42,6 +42,9 @@ public class PublicMemberController extends UserInfoHandler {
 	@Autowired
 	private RoleService roleService;
 
+	@Autowired
+	private EventService eventService;
+
 
 	
 
@@ -62,6 +65,7 @@ public class PublicMemberController extends UserInfoHandler {
 		model.addAttribute("memberList", memberList); 
 		return "public.member.index";
 	}
+
 	
 	@GetMapping("/detail/{id}")
 	public String detail(@PathVariable int id,Model model) {
@@ -84,6 +88,7 @@ public class PublicMemberController extends UserInfoHandler {
 			model.addAttribute("knameService", knameService);
 			model.addAttribute("majorService",majorService);
 			model.addAttribute("roleService",roleService);
+			model.addAttribute("eventService",eventService);
 		}
 		
 	}

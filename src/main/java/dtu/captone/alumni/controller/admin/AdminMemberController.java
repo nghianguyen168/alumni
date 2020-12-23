@@ -193,7 +193,7 @@ public class AdminMemberController {
 					}
 				member.setFirstName(row.getCell(1).getStringCellValue());
 				member.setLastName(row.getCell(2).getStringCellValue());
-				member.setDateOfBirth(new java.sql.Date(row.getCell(3).getDateCellValue().getTime()));
+				member.setDateOfBirth(null);
 				member.setStudentId(((long) row.getCell(4).getNumericCellValue()));
 				member.setDtuMail(row.getCell(5).getStringCellValue());
 			
@@ -214,7 +214,10 @@ public class AdminMemberController {
 				member.setTrainning_system(null);
 				member.setMajor(null);
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				String password = (formatter.format(new java.sql.Date((row.getCell(3).getDateCellValue().getTime()))).toString()).replace("/", "");
+					int numberOfCharactor = 8;
+					RandomString rand = new RandomString();
+
+					String password =rand.randomAlphaNumeric(numberOfCharactor);
 				member.setPassword(bCryptPasswordEncoder.encode(password));
 				System.out.println(password);
 				} catch (Exception e){

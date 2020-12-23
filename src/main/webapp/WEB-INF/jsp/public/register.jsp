@@ -56,6 +56,12 @@
                     ${msg}
                 </div>
             </c:if>
+            <c:if test="${not empty   memberExistWithDTUMail}">
+                <div class="alert alert-danger" role="alert">
+                    DTU mail <strong>"${  memberExistWithDTUMail.dtuMail}"</strong> đã tồn tại!
+                </div>
+            </c:if>
+
             <div id="message"></div>
             <div class="login-wrap">
                 <div class="form-group row">

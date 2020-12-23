@@ -34,7 +34,7 @@
                  <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
                     <div class="col-lg-9">
-                        <input class="form-control"  class="datepicker" name="dateOfBirth" type="date"  value="${userInfo.dateOfBirth }" />
+                        <input class="form-control"  class="datepicker" name="dateOfBirth" type="date"  value="${userInfo.dateOfBirth }" required/>
                         
                     </div>
                 </div>
